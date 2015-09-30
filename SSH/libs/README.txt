@@ -1,0 +1,1 @@
+EasyEE based Maven build, if you do not use maven, you can manually add these jar.
