@@ -4,14 +4,14 @@ EasyEE是一个JaveEE后台开发基础框架。为企业后台项目开发提�
 
 
 - ### EasyEE-ssh
-   基于`Struts2`, `Hibernate4`, `Spring4` 的EasyEE开发后台基础架构。   [中文](ssh/EasyEE-ssh-readme-zh_CN.md)
+   基于`Struts2`, `Hibernate4`, `Spring4` 的EasyEE开发后台基础架构。   [中文](SSH/EasyEE-ssh-readme-zh_CN.md)
 
 
 EasyEE JaveEE background is a basis for the development framework. Background of project development for the enterprise provides the infrastructure that provides common components and user-based, role, rights management system privileges program (support page displays access control), front end uses EasyUI framework.
 
 
 - ### EasyEE-ssh
-   Based on `Struts2`,` Hibernate4`, `Spring4` of EasyEE infrastructure development framework.   [English](ssh/EasyEE-ssh-readme-en.md)
+   Based on `Struts2`,` Hibernate4`, `Spring4` of EasyEE infrastructure development framework.   [English](SSH/EasyEE-ssh-readme-en.md)
 
 
 ### [官方主页](http://www.easyproject.cn/easyee/zh-cn/index.jsp '官方主页')
