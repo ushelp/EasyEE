@@ -63,9 +63,9 @@
 				<a href="easyee-ssh-readme_zh_CN.html" title="中文 API"
 				 style="color:#fff;font-weight: bold;text-decoration: underline;">中文</a> 
 				 |  
-				 <!-- <a href="easyee-ssh-readme_en.html" title="English API"
-				 style="color:#fff;font-weight: bold;text-decoration: underline;">English</a>
-				 | -->  
+				<!--  <a href="easyee-ssh-readme_en.html" title="English API"
+				 style="color:#fff;font-weight: bold;text-decoration: underline;">English</a> 
+				 |   -->
 				 <a href="http://easyproject.cn/easyee" title="English API" target="_blank"
 				 style="color:#fff;font-weight: bold;text-decoration: underline;">Home</a>
 				 </span>
@@ -205,10 +205,10 @@
 <ol>
 <li><p><strong>创建新模块包结构</strong></p>
 <ul>
-<li><p>在项目基础前缀包下创建新模块的包，如:<br><br><strong>cn.easyproject.easyssh.<code class=" prettyprint prettyprinted" style=""><span class="kwd codeSpan">module</span></code></strong></p>
-</li><li><p>在新模块包下创建功能包，如: <br><br><strong>cn.easyproject.easyssh.module.<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">entity</span></code></strong><br><strong>cn.easyproject.easyssh.module.<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">service</span></code></strong><br><strong>cn.easyproject.easyssh.module.<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">action</span></code></strong><br><strong>cn.easyproject.easyssh.module.<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">criteria</span></code></strong></p>
+<li><p>在项目基础前缀包下创建新模块的包，如:<br><br><strong>cn.easyproject.easyee.ssh.<code class=" prettyprint prettyprinted" style=""><span class="kwd codeSpan">module</span></code></strong></p>
+</li><li><p>在新模块包下创建功能包，如: <br><br><strong>cn.easyproject.easyee.ssh.module.<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">entity</span></code></strong><br><strong>cn.easyproject.easyee.ssh.module.<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">service</span></code></strong><br><strong>cn.easyproject.easyee.ssh.module.<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">action</span></code></strong><br><strong>cn.easyproject.easyee.ssh.module.<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">criteria</span></code></strong></p>
 </li></ul>
-</li><li><p><strong>编写POJO实体类代码，并在Spring注册</strong></p>
+</li><li><p><strong>编写POJO实体类代码</strong></p>
 <ul>
 <li><p>在<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">entity</span></code>下根据表创建POJO实体类和ORM映射（注解或XML）</p>
 <ul>
@@ -221,27 +221,11 @@
 </span><span class="dec codeSpan">&lt;!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt;</span><span class="pln codeSpan">
 </span><span class="tag codeSpan">&lt;hibernate-mapping&gt;</span><span class="pln codeSpan">
-</span><span class="tag codeSpan">&lt;class</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"cn.easyproject.easyssh.module.entity.Emp"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">table</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"module_emp"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">catalog</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyssh"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">
+</span><span class="tag codeSpan">&lt;class</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"cn.easyproject.easyee.ssh.module.entity.Emp"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">table</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"module_emp"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">catalog</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyssh"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">
     </span><span class="com codeSpan">&lt;!-- ... --&gt;</span><span class="pln codeSpan">
 </span><span class="tag codeSpan">&lt;/class&gt;</span><span class="pln codeSpan">
 </span><span class="tag codeSpan">&lt;/hibernate-mapping&gt;</span></code></pre>
 </li></ul>
-</li><li><p>在<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">applicationContext</span><span class="pun codeSpan">.</span><span class="pln codeSpan">xml</span></code>的<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">hibernateProperties</span></code>属性中按需声明ORM映射信息</p>
-<pre><code class="lang-XML prettyprint prettyprinted" style=""><span class="pln codeSpan">  </span><span class="com codeSpan">&lt;!-- XML Mapping Resource --&gt;</span><span class="pln codeSpan">
-  </span><span class="tag codeSpan">&lt;property</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"mappingDirectoryLocations"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">
-      </span><span class="tag codeSpan">&lt;list&gt;</span><span class="pln codeSpan">
-          </span><span class="tag codeSpan">&lt;value&gt;</span><span class="pln codeSpan">classpath:/cn/easyproject/easyssh/sys/entity</span><span class="tag codeSpan">&lt;/value&gt;</span><span class="pln codeSpan">
-          </span><span class="com codeSpan">&lt;!-- 自定义模块XML ORM映射文件配置 --&gt;</span><span class="pln codeSpan">
-          </span><span class="tag codeSpan">&lt;value&gt;</span><span class="pln codeSpan">classpath:/cn/easyproject/easyssh/module/entity</span><span class="tag codeSpan">&lt;/value&gt;</span><span class="pln codeSpan">
-      </span><span class="tag codeSpan">&lt;/list&gt;</span><span class="pln codeSpan">
-  </span><span class="tag codeSpan">&lt;/property&gt;</span><span class="pln codeSpan"> 
-   </span><span class="com codeSpan">&lt;!-- Annotation Mapping --&gt;</span><span class="pln codeSpan">
-   </span><span class="tag codeSpan">&lt;property</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"packagesToScan"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">
-       </span><span class="tag codeSpan">&lt;list&gt;</span><span class="pln codeSpan">
-          </span><span class="com codeSpan">&lt;!-- 自定义模块注解 ORM映射包 --&gt;</span><span class="pln codeSpan">
-           </span><span class="tag codeSpan">&lt;value&gt;</span><span class="pln codeSpan">cn.easyproject.easyssh.module.entity</span><span class="tag codeSpan">&lt;/value&gt;</span><span class="pln codeSpan">
-       </span><span class="tag codeSpan">&lt;/list&gt;</span><span class="pln codeSpan">
-   </span><span class="tag codeSpan">&lt;/property&gt;</span></code></pre>
 </li></ul>
 </li><li><p><strong>编写Service代码</strong></p>
 <ul>
@@ -321,19 +305,12 @@
   </span><span class="tag codeSpan">&lt;aop:config&gt;</span><span class="pln codeSpan">
       </span><span class="com codeSpan">&lt;!--  事务AOP --&gt;</span><span class="pln codeSpan">
       </span><span class="tag codeSpan">&lt;aop:advisor</span><span class="pln codeSpan"> </span><span class="atn codeSpan">advice-ref</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"txAdvie"</span><span class="pln codeSpan">
-          </span><span class="atn codeSpan">pointcut</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"execution(* cn.easyproject.easyssh.sys.service..*.*(..))"</span><span class="pln codeSpan"> </span><span class="tag codeSpan">/&gt;</span><span class="pln codeSpan">
+          </span><span class="atn codeSpan">pointcut</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"execution(* cn.easyproject.easyee.ssh.sys.service..*.*(..))"</span><span class="pln codeSpan"> </span><span class="tag codeSpan">/&gt;</span><span class="pln codeSpan">
       </span><span class="com codeSpan">&lt;!-- 自定义模块事务配置.... --&gt;</span><span class="pln codeSpan">
       </span><span class="tag codeSpan">&lt;aop:advisor</span><span class="pln codeSpan"> </span><span class="atn codeSpan">advice-ref</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"txAdvie"</span><span class="pln codeSpan">
-          </span><span class="atn codeSpan">pointcut</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"execution(* cn.easyproject.easyssh.module.service..*.*(..))"</span><span class="pln codeSpan"> </span><span class="tag codeSpan">/&gt;</span><span class="pln codeSpan">
+          </span><span class="atn codeSpan">pointcut</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"execution(* cn.easyproject.easyee.ssh.module.service..*.*(..))"</span><span class="pln codeSpan"> </span><span class="tag codeSpan">/&gt;</span><span class="pln codeSpan">
   </span><span class="tag codeSpan">&lt;/aop:config&gt;</span></code></pre>
 </li></ul>
-</li><li><p>在<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">applicationContext_bean_scan</span><span class="pun codeSpan">.</span><span class="pln codeSpan">xml</span></code> 中声明扫描业务Bean的包</p>
-<pre><code class="lang-XML prettyprint prettyprinted" style=""><span class="pln codeSpan">   </span><span class="com codeSpan">&lt;!-- Bean Annotation --&gt;</span><span class="pln codeSpan">
-   </span><span class="tag codeSpan">&lt;context:component-scan</span><span class="pln codeSpan"> </span><span class="atn codeSpan">base-package</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"cn.easyproject.easyssh.base.dao.impl"</span><span class="tag codeSpan">&gt;&lt;/context:component-scan&gt;</span><span class="pln codeSpan">
-   </span><span class="tag codeSpan">&lt;context:component-scan</span><span class="pln codeSpan"> </span><span class="atn codeSpan">base-package</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"cn.easyproject.easyssh.base.service"</span><span class="tag codeSpan">&gt;&lt;/context:component-scan&gt;</span><span class="pln codeSpan">
-   </span><span class="tag codeSpan">&lt;context:component-scan</span><span class="pln codeSpan"> </span><span class="atn codeSpan">base-package</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"cn.easyproject.easyssh.sys.service.impl"</span><span class="tag codeSpan">&gt;&lt;/context:component-scan&gt;</span><span class="pln codeSpan">
-   </span><span class="com codeSpan">&lt;!-- 自定义模块Bean扫描 --&gt;</span><span class="pln codeSpan">
-   </span><span class="tag codeSpan">&lt;context:component-scan</span><span class="pln codeSpan"> </span><span class="atn codeSpan">base-package</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"cn.easyproject.easyssh.module.service.impl"</span><span class="tag codeSpan">&gt;&lt;/context:component-scan&gt;</span></code></pre>
 </li></ul>
 </li><li><p><strong>编写Action控制器</strong></p>
 <ul>
@@ -455,9 +432,9 @@
    </span><span class="com codeSpan">&lt;!-- 统一继承easyssh-default父包 --&gt;</span><span class="pln codeSpan">
    </span><span class="tag codeSpan">&lt;package</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyssh-module"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">extends</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyssh-default"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">namespace</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"/"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">
             </span><span class="com codeSpan">&lt;!-- EasyUI框架响应结果都是JSON --&gt;</span><span class="pln codeSpan">
-            </span><span class="tag codeSpan">&lt;action</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"dept_*"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">class</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"cn.easyproject.easyssh.module.action.DeptAction"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">method</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"{1}"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">
+            </span><span class="tag codeSpan">&lt;action</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"dept_*"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">class</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"cn.easyproject.easyee.ssh.module.action.DeptAction"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">method</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"{1}"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">
             </span><span class="tag codeSpan">&lt;/action&gt;</span><span class="pln codeSpan">        
-            </span><span class="tag codeSpan">&lt;action</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"emp_*"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">class</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"cn.easyproject.easyssh.module.action.EmpAction"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">method</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"{1}"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">
+            </span><span class="tag codeSpan">&lt;action</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"emp_*"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">class</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"cn.easyproject.easyee.ssh.module.action.EmpAction"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">method</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"{1}"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">
             </span><span class="tag codeSpan">&lt;/action&gt;</span><span class="pln codeSpan">        
    </span><span class="tag codeSpan">&lt;/package&gt;</span><span class="pln codeSpan">
 </span><span class="tag codeSpan">&lt;/struts&gt;</span></code></pre>

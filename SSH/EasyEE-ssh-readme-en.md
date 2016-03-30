@@ -141,25 +141,7 @@ EasyEE JaveEE background is a basis for the development framework. Background of
           </class>
       </hibernate-mapping>
       ```
-    
-    - 在`applicationContext.xml`的`hibernateProperties`属性中按需声明ORM映射信息
-      ```XML
-    	<!-- XML Mapping Resource -->
-    	<property name="mappingDirectoryLocations">
-    		<list>
-    			<value>classpath:/cn/easyproject/easyssh/sys/entity</value>
-    			<!-- 自定义模块XML ORM映射文件配置 -->
-    			<value>classpath:/cn/easyproject/easyssh/module/entity</value>
-    		</list>
-    	</property> 
- 	    <!-- Annotation Mapping -->
- 	    <property name="packagesToScan">
- 	    	<list>
-    			<!-- 自定义模块注解 ORM映射包 -->
- 	    		<value>cn.easyproject.easyssh.module.entity</value>
- 	    	</list>
- 	    </property>    
-      ```
+
 
 3. **编写Service代码**
    - 在`service`下编写业务接口
@@ -253,16 +235,6 @@ EasyEE JaveEE background is a basis for the development framework. Background of
      	</aop:config>
       ```
 
-   - 在`applicationContext_bean_scan.xml` 中声明扫描业务Bean的包
-    
-     ```XML
-    	<!-- Bean Annotation -->
-    	<context:component-scan base-package="cn.easyproject.easyssh.base.dao.impl"></context:component-scan>
-    	<context:component-scan base-package="cn.easyproject.easyssh.base.service"></context:component-scan>
-    	<context:component-scan base-package="cn.easyproject.easyssh.sys.service.impl"></context:component-scan>
-    	<!-- 自定义模块Bean扫描 -->
-    	<context:component-scan base-package="cn.easyproject.easyssh.module.service.impl"></context:component-scan>
-      ```
  
 4. **编写Action控制器**
 
