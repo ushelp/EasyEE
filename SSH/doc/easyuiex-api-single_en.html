@@ -1,0 +1,1128 @@
+<html>
+	  <head>    
+	  <meta charset="UTF-8">
+	    <title>EasyUIEx Readme</title>
+	    <meta http-equiv="keywords" content="easyuiex,uiEx,EasyUI,tesseract-ocr,EasyProject,Easy Project">
+	    <meta http-equiv="description" content="EasyUIEx readme">
+	    <link href="css/main.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<!-- Google prettify -->
+<link rel="stylesheet" href="prettify/github.css" id="prettifyCss"
+	type="text/css"></link>
+<script type="text/javascript" src="prettify/prettify2.js"
+	id="prettifyJs"></script>
+	 <link rel="stylesheet" href="css/md.css" type="text/css"></link>
+	  </head>
+	  <body>
+
+<div id="content_show" style="margin-left: 10px;margin-right: 10px">	
+<h1 id="easyuiex-manual">EasyUIEx Manual</h1>
+<hr>
+<p>jQuery EasyUI + EasyUIEx architecture produced in the enterprise development practices, Easy to follow the principle goal is to simplify everything can simplify part, do not have to provide extended to all the needs. CRUD focus on aspects of the package extensions are also welcome to join the essence of more development practices.</p>
+<h3 id="-html-easyuiex-manual-http-www-easyproject-cn-easyuiex-doc-easyuiex-api_en-html-html-easyuiex-manual-"><a href="easyuiex-api_en.html" title="HTML EasyUIEx Manual" target="_blank">HTML EasyUIEx API</a></h3>
+<h2 id="1-easyuiex-use-steps-">1. EasyUIEx Use steps:</h2>
+<ol>
+<li><p>Include easyuiex directory in the project (including the easyuiex required css, images, js)</p>
+</li><li><p>Include static resources required for the project in the page (<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">jQuery</span></code>,<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">jQuery </span><span class="typ codeSpan">EasyUI</span></code>, <code class=" prettyprint prettyprinted" style=""><span class="typ codeSpan">EasyUIEx</span></code>)</p>
+<blockquote>
+<p>With the use of <code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">easy</span><span class="pun codeSpan">.</span><span class="pln codeSpan">jquery</span><span class="pun codeSpan">.</span><span class="pln codeSpan">edatagrid</span><span class="pun codeSpan">.</span><span class="pln codeSpan">js</span></code> replace<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">jquery</span><span class="pun codeSpan">.</span><span class="pln codeSpan">edatagrid</span><span class="pun codeSpan">.</span><span class="pln codeSpan">js</span></code>, easyUIEx of edatagrid performance and logic optimization and provides additional functionality.</p>
+</blockquote>
+<pre><code class="lang-HTML prettyprint prettyprinted" style=""><span class="pln codeSpan"> </span><span class="com codeSpan">&lt;!-- EasyUI CSS --&gt;</span><span class="pln codeSpan">
+ </span><span class="tag codeSpan">&lt;link</span><span class="pln codeSpan"> </span><span class="atn codeSpan">rel</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"stylesheet"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">type</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"text/css"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">href</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyui/themes/default/easyui.css"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">id</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"themeLink"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">
+ </span><span class="tag codeSpan">&lt;link</span><span class="pln codeSpan"> </span><span class="atn codeSpan">rel</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"stylesheet"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">type</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"text/css"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">href</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyui/themes/icon.css"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">
+
+ </span><span class="com codeSpan">&lt;!-- EasyUI JS &amp; Extension JS--&gt;</span><span class="pln codeSpan">
+ </span><span class="tag codeSpan">&lt;script</span><span class="pln codeSpan"> </span><span class="atn codeSpan">type</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"text/javascript"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">src</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyui/jquery.min.js"</span><span class="tag codeSpan">&gt;&lt;/script&gt;</span><span class="pln codeSpan">
+ </span><span class="tag codeSpan">&lt;script</span><span class="pln codeSpan"> </span><span class="atn codeSpan">type</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"text/javascript"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">src</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyui/jquery.easyui.min.js"</span><span class="tag codeSpan">&gt;&lt;/script&gt;</span><span class="pln codeSpan">
+ </span><span class="tag codeSpan">&lt;script</span><span class="pln codeSpan"> </span><span class="atn codeSpan">type</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"text/javascript"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">src</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyui/locale/easyui-lang-zh_CN.js"</span><span class="tag codeSpan">&gt;&lt;/script&gt;</span><span class="pln codeSpan">
+ </span><span class="tag codeSpan">&lt;script</span><span class="pln codeSpan"> </span><span class="atn codeSpan">type</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"text/javascript"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">src</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyui/datagrid-dnd.js"</span><span class="tag codeSpan">&gt;&lt;/script&gt;</span><span class="pln codeSpan">
+ </span><span class="tag codeSpan">&lt;script</span><span class="pln codeSpan"> </span><span class="atn codeSpan">type</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"text/javascript"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">src</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyui/jquery.edatagrid.js"</span><span class="tag codeSpan">&gt;&lt;/script&gt;</span><span class="pln codeSpan">
+ </span><span class="tag codeSpan">&lt;script</span><span class="pln codeSpan"> </span><span class="atn codeSpan">type</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"text/javascript"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">src</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyui/datagrid-detailview.js"</span><span class="tag codeSpan">&gt;&lt;/script&gt;</span><span class="pln codeSpan">
+
+ </span><span class="com codeSpan">&lt;!-- EasyUIEx --&gt;</span><span class="pln codeSpan">
+ </span><span class="tag codeSpan">&lt;link</span><span class="pln codeSpan"> </span><span class="atn codeSpan">rel</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"stylesheet"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">type</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"text/css"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">href</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyuiex/css/easyuiex.css"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">
+ </span><span class="tag codeSpan">&lt;script</span><span class="pln codeSpan"> </span><span class="atn codeSpan">type</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"text/javascript"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">src</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyuiex/easy.easyuiex.min-2.0.0.js"</span><span class="tag codeSpan">&gt;&lt;/script&gt;</span><span class="pln codeSpan">
+ </span><span class="tag codeSpan">&lt;script</span><span class="pln codeSpan"> </span><span class="atn codeSpan">type</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"text/javascript"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">src</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyuiex/easy.easyuiex-validate.js"</span><span class="tag codeSpan">&gt;&lt;/script&gt;</span><span class="pln codeSpan">
+ </span><span class="com codeSpan">&lt;!-- Use EasyUIEx of easy.jquery.edatagrid.js replaced jquery.edatagrid.js, easyUIEx of edatagrid performance and logic optimization and provides additional functionality. --&gt;</span><span class="pln codeSpan">
+ </span><span class="tag codeSpan">&lt;script</span><span class="pln codeSpan"> </span><span class="atn codeSpan">type</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"text/javascript"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">src</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyuiex/easy.jquery.edatagrid.js"</span><span class="tag codeSpan">&gt;&lt;/script&gt;</span><span class="pln codeSpan">
+ </span><span class="com codeSpan">&lt;!-- Importing files in the appropriate language lang directory --&gt;</span><span class="pln codeSpan">
+  </span><span class="tag codeSpan">&lt;script</span><span class="pln codeSpan"> </span><span class="atn codeSpan">type</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"text/javascript"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">src</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyuiex/lang/easy.easyuiex-lang-en.js"</span><span class="tag codeSpan">&gt;&lt;/script&gt;</span><span class="pln codeSpan"> --&gt;</span></code></pre>
+</li></ol>
+<h2 id="2-easyuiex-api-invoke">2. EasyUIEx API Invoke</h2>
+<p>   <strong>uiEx is the default namespace name EasyUIEx of. EasyUIEx API for DOM operation in extended function with selector selectors are supported calls in two ways.</strong></p>
+<blockquote>
+<p>Note: Due to EasyUIEx internal package <code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">datagrid</span></code>,<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">tree</span></code> and other certain DOM objects used to <code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">id attributes of the </span><span class="kwd codeSpan">object</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> so these DOM elements must have a unique</span></code> id attribute. Priority recommend using the ID selector to select DOM elements.</p>
+</blockquote>
+<ul>
+<li><p>Namespace called directly: in the first argument passed to the operation of the DOM object or object selector</p>
+<p><strong>uiEx.{methodName}(<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">selector</span></code>, [param1], ....);</strong> </p>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="pln codeSpan"> </span><span class="com codeSpan">// Method One: uiEx namespace calls</span><span class="pln codeSpan">
+ uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">clearForm</span><span class="pun codeSpan">(</span><span class="str codeSpan">'#userForm'</span><span class="pun codeSpan">)；</span><span class="pln codeSpan">
+
+ uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">treeChk</span><span class="pun codeSpan">(</span><span class="pln codeSpan">
+     </span><span class="str codeSpan">"#rightsTree"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+     </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+         url</span><span class="pun codeSpan">:</span><span class="str codeSpan">"do/menuJson.jsp"</span><span class="pln codeSpan">
+     </span><span class="pun codeSpan">},</span><span class="pln codeSpan">
+     </span><span class="pun codeSpan">[</span><span class="lit codeSpan">11</span><span class="pun codeSpan">]</span><span class="pln codeSpan">
+ </span><span class="pun codeSpan">);</span></code></pre>
+</li><li><p>jQuery object extension calls: Using jQuery object directly call methods</p>
+<p><strong>$(<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">selector</span></code>).{methodName}([param1], ....);</strong></p>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="pln codeSpan"> </span><span class="com codeSpan">// Method two: jQuery object extension call</span><span class="pln codeSpan">
+ $</span><span class="pun codeSpan">(</span><span class="str codeSpan">'#userForm'</span><span class="pun codeSpan">).</span><span class="pln codeSpan">clearForm</span><span class="pun codeSpan">();</span><span class="pln codeSpan">
+
+ $</span><span class="pun codeSpan">(</span><span class="str codeSpan">"#rightsTree"</span><span class="pun codeSpan">).</span><span class="pln codeSpan">treeChk</span><span class="pun codeSpan">(</span><span class="pln codeSpan">
+     </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+         url</span><span class="pun codeSpan">:</span><span class="str codeSpan">"do/menuJson.jsp"</span><span class="pln codeSpan">
+     </span><span class="pun codeSpan">},</span><span class="pln codeSpan">
+     </span><span class="pun codeSpan">[</span><span class="lit codeSpan">11</span><span class="pun codeSpan">]</span><span class="pln codeSpan">
+ </span><span class="pun codeSpan">);</span></code></pre>
+</li></ul>
+<h2 id="3-easyuiex-api-">3. EasyUIEx API：</h2>
+<h4 id="1-global-configuration-parameters">1. Global configuration parameters</h4>
+<ul>
+<li><p>Message international configuration<br>Modify in <code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">lang </span><span class="pun codeSpan">/</span><span class="pln codeSpan"> easy</span><span class="pun codeSpan">.</span><span class="pln codeSpan">easyuiex</span><span class="pun codeSpan">-</span><span class="pln codeSpan">lang</span><span class="pun codeSpan">-</span><span class="pln codeSpan">LANG_COUNTRY</span><span class="pun codeSpan">.</span><span class="pln codeSpan">js</span></code>.</p>
+</li><li><p>Global configuration parameters can be adjusted EasyUIEx operating parameters, methods and content, modify parameters:<br><code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">uiEx</span><span class="pun codeSpan">.{</span><span class="pln codeSpan">paramName</span><span class="pun codeSpan">}</span><span class="pln codeSpan"> </span><span class="pun codeSpan">=</span><span class="pln codeSpan"> paramValue</span></code></p>
+<p>See note specific role, the following default configuration:</p>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="kwd codeSpan">var</span><span class="pln codeSpan"> uiEx </span><span class="pun codeSpan">=</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+    </span><span class="com codeSpan">/*
+     * ################# Message content and control section
+     */</span><span class="pln codeSpan">
+    showRowEditMsg </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">false</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// After editing the line whether prompt msg</span><span class="pln codeSpan">
+    showRowAddMsg </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">false</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Whether to add the line after the prompt msg</span><span class="pln codeSpan">
+    showRowDeleteMsg </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Whether to delete the line after the prompt msg</span><span class="pln codeSpan">
+    </span><span class="com codeSpan">/*
+     * ################# The default parameters to customize the message box
+     */</span><span class="pln codeSpan">
+    msgDefaults </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+        timeout </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="lit codeSpan">4000</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+        showType </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">'slide'</span><span class="pln codeSpan"> </span><span class="com codeSpan">// null、slide、fade、show。 Default is slide。</span><span class="pln codeSpan">
+    </span><span class="com codeSpan">// width:250,</span><span class="pln codeSpan">
+    </span><span class="com codeSpan">// height:100,</span><span class="pln codeSpan">
+
+    </span><span class="pun codeSpan">},</span><span class="pln codeSpan">
+    </span><span class="com codeSpan">/*
+     * ################# Data Grid default parameters
+     */</span><span class="pln codeSpan">
+    dataGridDefaults </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+        rownumbers </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Show Line Numbers</span><span class="pln codeSpan">
+        fitColumns </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Automatically expand or shrink the size of the column width to fit the grid and prevent the horizontal scroll bar</span><span class="pln codeSpan">
+        singleSelect </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Single Select</span><span class="pln codeSpan">
+        pagination </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Display pagination</span><span class="pln codeSpan">
+        method </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"post"</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Submit Information</span><span class="pln codeSpan">
+        striped </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pln codeSpan">
+    </span><span class="com codeSpan">// Form stripes, alternating row colors parity</span><span class="pln codeSpan">
+    </span><span class="pun codeSpan">},</span><span class="pln codeSpan">
+    </span><span class="com codeSpan">/*
+     * ################# Data Grid default parameters detailed view
+     */</span><span class="pln codeSpan">
+    detailDataGridDefaults </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+        rownumbers </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Show Line Numbers</span><span class="pln codeSpan">
+        fitColumns </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Automatically expand or shrink the size of the column width to fit the grid and prevent the horizontal scroll bar</span><span class="pln codeSpan">
+        singleSelect </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Single Select</span><span class="pln codeSpan">
+        pagination </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Display pagination</span><span class="pln codeSpan">
+        method </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"post"</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Submit Information</span><span class="pln codeSpan">
+        striped </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Form stripes, alternating row colors parity</span><span class="pln codeSpan">
+        </span><span class="com codeSpan">// Return line detail content formatting functions</span><span class="pln codeSpan">
+        detailFormatter </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">function</span><span class="pun codeSpan">(</span><span class="pln codeSpan">index</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> row</span><span class="pun codeSpan">)</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+            </span><span class="kwd codeSpan">return</span><span class="pln codeSpan"> </span><span class="str codeSpan">'&lt;div class="ddv"&gt;&lt;/div&gt;'</span><span class="pun codeSpan">;</span><span class="pln codeSpan">
+        </span><span class="pun codeSpan">}</span><span class="pln codeSpan">
+    </span><span class="pun codeSpan">},</span><span class="pln codeSpan">
+    </span><span class="com codeSpan">/*
+     * ################# url use {expression} expression used when parsing regular
+     */</span><span class="pln codeSpan">
+    expReg </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">/\{([\s\S]+?)\}/</span><span class="pln codeSpan">g</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+    </span><span class="com codeSpan">/*
+     * ################# Verify prompt message
+     */</span><span class="pln codeSpan">
+    msg </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{}</span><span class="pln codeSpan">
+</span><span class="pun codeSpan">};</span></code></pre>
+<h4 id="2-messager-api">2. Messager API</h4>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="com codeSpan">/**
+ * alert
+ * 
+ * @param msg Message Content
+ * @param type Message Icon Type: error, info, question, warning
+ * @param callback Callback
+ */</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">alert</span><span class="pun codeSpan">(</span><span class="pln codeSpan">msg</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> type</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> callback</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+ * confirm
+ * 
+ * @param msg Message Content
+ * @param callback Callback
+ */</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">confirm</span><span class="pun codeSpan">(</span><span class="pln codeSpan">msg</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> callback</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+ * prompt
+ * 
+ * @param msg 消Message Content
+ * @param callback Callback
+ */</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">prompt</span><span class="pun codeSpan">(</span><span class="pln codeSpan">msg</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> callback</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+ * msg
+ * 
+ * @param msg Message Content
+ * @param position topLeft, topCenter, topRight, centerLeft, center, centerRight, bottomLeft, bottomCenter, bottomRight; Default is bottomRight
+ * @param params msg The message box parameters
+ */</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">msg</span><span class="pun codeSpan">(</span><span class="pln codeSpan">msg</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> position</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> params</span><span class="pun codeSpan">);</span></code></pre>
+</li></ul>
+<h4 id="3-dialog-api">3. dialog API</h4>
+<ul>
+<li><p>Two ways to call</p>
+</li><li><p>Dialog EasyUI need to solve the problem defined in the global page, when you close a tab inside the loaded automatically destroyed Tab Dialog</p>
+<blockquote>
+<p>Closed tab, specify loaded automatically destroyed dialog, to prevent the repeated loading.<br>Since the Dialog EasyUI after the label closed and will not be destroyed (easyUI when parsing dialog, regardless of where the definition dialog will be put body), so in order to prevent duplicate tab page defined at each load, usually by The following approaches:<br>1, the dialog into the main interface, rather than through the tab to load<br>2, refresh the tab through the time off to be destroyed before the dialog</p>
+</blockquote>
+</li></ul>
+<ul>
+<li><p>API</p>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="com codeSpan">/**
+* show Dialog
+* 
+* @param dialogSelector dialog selector
+* @param title 
+* @return dialog object
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">openDialog</span><span class="pun codeSpan">(</span><span class="pln codeSpan">dialogSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> title</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* show href in dialog
+* 
+* @param dialogSelector dialog selector
+* @param href the request href
+* @param title 
+* @return dialog object
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">openHrefDialog</span><span class="pun codeSpan">(</span><span class="pln codeSpan">dialogSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> href</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> title</span><span class="pun codeSpan">)</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* close Dialog
+* 
+* @param dialogSelector dialog selector
+* @return dialog object
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">closeDialog</span><span class="pun codeSpan">(</span><span class="pln codeSpan">dialogSelector</span><span class="pun codeSpan">);</span></code></pre>
+</li></ul>
+<h4 id="4-form-api">4. form API</h4>
+<ul>
+<li><p>Two ways to call</p>
+</li><li><p>Ajax form submit<br><code class=" prettyprint prettyprinted" style=""><span class="typ codeSpan">EasyUIEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">submitAjax</span></code> and<code class=" prettyprint prettyprinted" style=""><span class="typ codeSpan">EasyUIEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">submitURLAjax</span></code> encapsulated in a <code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">xRequestedWith </span><span class="pun codeSpan">=</span><span class="pln codeSpan"> </span><span class="typ codeSpan">XMLHttpRequest</span></code> parameters will be submitted along with the form to the server, the server side to help developers through<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan"> </span></code>xRequestedWith parameter to determine whether the Ajax request.</p>
+<blockquote>
+<p>Submit EasyUI form components of form submission method has certain confusing and misleading. Its internal use of the iframe submit submit, is not really Ajax submission.<br>So when a user on the server side when trying to pass the request header information (X-Requested-With = XMLHttpRequest) to determine whether a request submitted by Ajax, and can not accurately judge.</p>
+</blockquote>
+<p>Meanwhile, uiEx Ajax form submission provides a global event handlers <code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">formSubmitSuccess</span></code>, Ajax form submission can monitor the success of the event, registered global handler.</p>
+<pre><code class="lang-JS prettyprint prettyprinted" style=""><span class="com codeSpan">/*
+* EasyUIEx.submitAjax and EasyUIEx.submitURLAjax form using form submission succes successful global event registered a system must perform the function
+ * Global ajaxSuccess function similar to jQuery
+* @param data Data form submitted to the successful return of Ajax data
+*
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">formSubmitSuccess</span><span class="pun codeSpan">=</span><span class="kwd codeSpan">function</span><span class="pun codeSpan">(</span><span class="pln codeSpan">data</span><span class="pun codeSpan">){</span><span class="pln codeSpan">
+   </span><span class="com codeSpan">//...</span><span class="pln codeSpan">
+</span><span class="pun codeSpan">}</span></code></pre>
+</li><li><p>API</p>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="com codeSpan">/**
+* Clear form
+* 
+* @param selector  
+* @return form
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">clearForm</span><span class="pun codeSpan">(</span><span class="pln codeSpan">selector</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Reset form
+* 
+* @param selector
+* @return form
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">resetForm</span><span class="pun codeSpan">(</span><span class="pln codeSpan">selector</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Enable validate
+* 
+* @param selector 
+* @return form
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">enableValidate</span><span class="pun codeSpan">(</span><span class="pln codeSpan">selector</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Disable validate
+* 
+* @param selector 
+* @return form
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">disableValidate</span><span class="pun codeSpan">(</span><span class="pln codeSpan">selector</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* To validate form
+* 
+* @param selector 
+* @return form
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">validate</span><span class="pun codeSpan">(</span><span class="pln codeSpan">selector</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Instead of the form ("load", data); for form filling data
+* You can specify the form name prefix, will fill the data to the specified prefix attribute to
+* As the name attribute value data in the fill to user.name
+* 
+* @param selector 
+* @param data form data
+* @param prefix form element name suffix
+* @return form
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">loadForm</span><span class="pun codeSpan">(</span><span class="pln codeSpan">selector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> data</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> prefix</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Common form submit
+* 
+* @param formSelector 
+* @param params  Optional; additional submission form parameter form
+* @param noValidate Optional; Verify; boolean; default is true
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">submitForm</span><span class="pun codeSpan">(</span><span class="pln codeSpan">formSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> params</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> noValidate</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Band with Ajax form validation form submission, internal encapsulates a `xRequestedWith = XMLHttpRequest` parameters;
+* Will be submitted along with the form to the server, help developers to determine whether the server through Ajax request parameter `` xRequestedWith.
+* 
+* @param formSelector 
+* @param callback 
+* @param params Optional; additional submission form parameter form
+* @param noValidate Optional; Verify; boolean; default is true
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">submitAjax</span><span class="pun codeSpan">(</span><span class="pln codeSpan">formSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> callback</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> params</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> noValidate</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Band with Ajax form validation form submission, internal encapsulates a `xRequestedWith = XMLHttpRequest` parameters;
+* Will be submitted along with the form to the server, help developers to determine whether the server through Ajax request parameter `` xRequestedWith.
+* 
+* @param formSelector 
+* @param url 
+* @param callback 
+* @param params Optional; additional submission form parameter form
+* @param noValidate Optional; Verify; boolean; default is true
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">submitURLAjax</span><span class="pun codeSpan">(</span><span class="pln codeSpan">formSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> url</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> callback</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> params</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> noValidate</span><span class="pun codeSpan">)</span><span class="pln codeSpan"> 
+
+</span><span class="com codeSpan">/**
+* Will form form information formatted as JSON return
+* 
+* @parama formSelector 
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">serializeJSON</span><span class="pun codeSpan">(</span><span class="pln codeSpan">formSelector</span><span class="pun codeSpan">);</span></code></pre>
+</li></ul>
+<h4 id="5-tabs-api">5. tabs API</h4>
+<ul>
+<li><p>Two ways to call</p>
+</li><li><p>The difference between the two dynamic EasyUI Tabs dynamic loading between:</p>
+<ul>
+<li>Use content (iframe frame) into the page:<ul>
+<li><code class=" prettyprint prettyprinted" style=""><span class="typ codeSpan">Content</span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">'&lt;iframe scrolling =" auto "frameborder =" 0 "src ="'</span><span class="pln codeSpan"> </span><span class="pun codeSpan">+</span><span class="pln codeSpan"> url </span><span class="pun codeSpan">+</span><span class="pln codeSpan"> </span><span class="str codeSpan">'"style =" width: 100%; height: 100%; "&gt; &lt;/ iframe&gt;'</span><span class="pun codeSpan">;</span></code></li><li>Exist as a separate window, the page content independent, non-interfering with the current page</li><li>The need to introduce independent JS and CSS resources needed</li><li>Pop-up content is within the window</li><li>Use href methods:</li></ul>
+</li><li><p><code class=" prettyprint prettyprinted" style=""><span class="typ codeSpan">Href</span><span class="pun codeSpan">:</span><span class="pln codeSpan"> url</span><span class="pun codeSpan">,</span></code></p>
+<ul>
+<li>Content loaded clip, the content and the introduction of combined current page</li><li>Need to introduce JS and CSS resource page has introduced</li><li>A reference to the page can not have a body, otherwise the loaded content inside of JS file execution grammar</li><li>Html rendering prompt resolution displays</li><li>Context menu HTML snippet:<pre><code class="lang-HTML prettyprint prettyprinted" style=""><span class="pun codeSpan">&lt;%--</span><span class="pln codeSpan"> </span><span class="com codeSpan">##################Tab Tab context menu can not be deleted################## --</span><span class="pln codeSpan">%&gt;
+</span><span class="tag codeSpan">&lt;div</span><span class="pln codeSpan"> </span><span class="atn codeSpan">id</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"tabsMenu"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">class</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyui-menu"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">style</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"</span><span class="kwd codeSpan">width</span><span class="pun codeSpan">:</span><span class="lit codeSpan">120px</span><span class="pun codeSpan">;</span><span class="atv codeSpan">"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">
+    </span><span class="tag codeSpan">&lt;div</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"close"</span><span class="pln codeSpan">   </span><span class="atn codeSpan">data-options</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"iconCls:'icon-close'"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">close</span><span class="tag codeSpan">&lt;/div&gt;</span><span class="pln codeSpan">  
+    </span><span class="tag codeSpan">&lt;div</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"other"</span><span class="pln codeSpan">   </span><span class="atn codeSpan">data-options</span><span class="pun codeSpan">=</span><span class="atv codeSpan">""</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">close others</span><span class="tag codeSpan">&lt;/div&gt;</span><span class="pln codeSpan">  
+    </span><span class="tag codeSpan">&lt;div</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"all"</span><span class="pln codeSpan">  </span><span class="atn codeSpan">data-options</span><span class="pun codeSpan">=</span><span class="atv codeSpan">""</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">close all</span><span class="tag codeSpan">&lt;/div&gt;</span><span class="pln codeSpan">
+    </span><span class="tag codeSpan">&lt;div</span><span class="pln codeSpan"> </span><span class="atn codeSpan">class</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"menu-sep"</span><span class="tag codeSpan">&gt;&lt;/div&gt;</span><span class="pln codeSpan">
+    </span><span class="tag codeSpan">&lt;div</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"closeRight"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">close right</span><span class="tag codeSpan">&lt;/div&gt;</span><span class="pln codeSpan">
+    </span><span class="tag codeSpan">&lt;div</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"closeLeft"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">close left</span><span class="tag codeSpan">&lt;/div&gt;</span><span class="pln codeSpan">
+    </span><span class="tag codeSpan">&lt;div</span><span class="pln codeSpan"> </span><span class="atn codeSpan">class</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"menu-sep"</span><span class="tag codeSpan">&gt;&lt;/div&gt;</span><span class="pln codeSpan">
+   </span><span class="tag codeSpan">&lt;div</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"refresh"</span><span class="pln codeSpan">  </span><span class="atn codeSpan">data-options</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"iconCls:'icon-reload'"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">refresh</span><span class="tag codeSpan">&lt;/div&gt;</span><span class="pln codeSpan"> 
+</span><span class="tag codeSpan">&lt;/div&gt;</span></code></pre>
+</li><li><p>api</p>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="com codeSpan">/**
+* Add a tab for a specified Tab, supports double-click to close
+* 
+* @parma tabSelector 
+* @parma title
+* @parma url 
+* @parma icon Optional; icon
+* @parma isIframe Optional; boolean value; whether to use iframe incorporated, true way to use iframe introduced href default mode
+* 
+* 
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">openTab</span><span class="pun codeSpan">(</span><span class="pln codeSpan">tabSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> title</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> url</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> icon</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> isIframe</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Refresh the current tab selected Panel
+* 
+* @param tabSelector 
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">reloadSelTab</span><span class="pun codeSpan">(</span><span class="pln codeSpan">tabSelector</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Text automatically at specified according to the menu to open a menu Tab
+* 
+* @param menuSelector
+*            
+* @param tabSeelctor
+*            
+* @param menuText
+*            To open the menu text, you can use an array to define a plurality of menu text
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">openMenuByText</span><span class="pun codeSpan">(</span><span class="pln codeSpan">menuSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> tabSeelctor</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> menuText</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Id according to the menu automatically at specified Tab to open a menu
+* 
+* @param menuSelector
+*            
+* @param tabSeelctor
+*            
+* @param menuId
+*            To open the menu id, you can use an array to define multiple menu id
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">openMenuById</span><span class="pun codeSpan">(</span><span class="pln codeSpan">menuSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> tabSelctor</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> menuId</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Binding tabs of the right-click menu, to achieve: close, close other, close all; Close the left tab close tabs to the right; refreshing the menu function
+* 
+* @param tabSelector 
+* @param menuSelector menu selector; Optional, the default of the #tabsMenu
+* 
+* You must be defined in the page context menu label (menu id, name of the menu item can not be changed):
+&lt;%-- ##################Tab Tab context menu can not be deleted################## --%&gt;
+&lt;div id="tabsMenu" class="easyui-menu" style="width:120px;"&gt;
+    &lt;div name="close"   data-options="iconCls:'icon-close'"&gt;close&lt;/div&gt;  
+    &lt;div name="other"   data-options=""&gt;close others&lt;/div&gt;  
+    &lt;div name="all"  data-options=""&gt;close all&lt;/div&gt;
+    &lt;div class="menu-sep"&gt;&lt;/div&gt;
+    &lt;div name="closeRight"&gt;close right&lt;/div&gt;
+    &lt;div name="closeLeft"&gt;close left&lt;/div&gt;
+    &lt;div class="menu-sep"&gt;&lt;/div&gt;
+   &lt;div name="refresh"  data-options="iconCls:'icon-reload'"&gt;refresh&lt;/div&gt; 
+&lt;/div&gt;
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">addTabsContextMenu</span><span class="pun codeSpan">(</span><span class="pln codeSpan">tabSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> menuSelector</span><span class="pun codeSpan">)</span></code></pre>
+</li></ul>
+</li></ul>
+</li></ul>
+<h4 id="6-datagrid-edatagrid-detaildatagrid-api">6. datagrid、edatagrid、detaildatagrid API</h4>
+<ul>
+<li><p>Two ways to call</p>
+</li><li><p><strong> Package and extended </strong>: EasyUIEx related components for the use of datagrid depth CRUD application package, provides additional functionality, when you call the  Initialization method, with the incoming <code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">url</span></code>,<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">saveUrl</span></code>, <code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">updateUrl</span></code>,<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">destroyUrl</span></code> address and other CRUD server operating parameters (and edatagrid the parameters remain the same), can be in a consistent manner by means of API EasyUIEx complete CRUD operations.</p>
+</li><li><p><strong> Performance Optimization </strong>: the datagrid and edatagrid provides line editing condition monitoring, optimization request to modify. When line editing, column editing, does not submit a request unmodified content.</p>
+</li></ul>
+<ul>
+<li>datagrid、edatagrid、detaildatagrid、treegrid Extended Attributes common</li></ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>string</td>
+<td>Query url; get:<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">dg</span><span class="pun codeSpan">.</span><span class="pln codeSpan">datagrid</span><span class="pun codeSpan">(</span><span class="str codeSpan">"options"</span><span class="pun codeSpan">).</span><span class="pln codeSpan">url</span></code></td>
+<td>false</td>
+</tr>
+<tr>
+<td>saveUrl</td>
+<td>string</td>
+<td>Save url；get：<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">dg</span><span class="pun codeSpan">.</span><span class="pln codeSpan">datagrid</span><span class="pun codeSpan">(</span><span class="str codeSpan">"options"</span><span class="pun codeSpan">).</span><span class="pln codeSpan">saveUrl</span></code></td>
+<td>false</td>
+</tr>
+<tr>
+<td>updateUrl</td>
+<td>string</td>
+<td>Update url；get：<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">dg</span><span class="pun codeSpan">.</span><span class="pln codeSpan">datagrid</span><span class="pun codeSpan">(</span><span class="str codeSpan">"options"</span><span class="pun codeSpan">).</span><span class="pln codeSpan">updateUrl</span></code></td>
+<td>false</td>
+</tr>
+<tr>
+<td>destroyUrl</td>
+<td>string</td>
+<td>Destory url；get：<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">dg</span><span class="pun codeSpan">.</span><span class="pln codeSpan">datagrid</span><span class="pun codeSpan">(</span><span class="str codeSpan">"options"</span><span class="pun codeSpan">).</span><span class="pln codeSpan">destroyUrl</span></code></td>
+<td>false</td>
+</tr>
+<tr>
+<td>showHeaderContextMenu</td>
+<td>boolean</td>
+<td>Whether the meter display the context menu, choose to display a column</td>
+<td>false</td>
+</tr>
+<tr>
+<td>showContextMenu</td>
+<td>boolean</td>
+<td>Whether to display the context menu, with menuSelector property use</td>
+<td>false</td>
+</tr>
+<tr>
+<td>menuSelector</td>
+<td>string</td>
+<td>Menu Selector</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>successKey</td>
+<td>string</td>
+<td>Success mark key returned by the server, for example: "statusCode"</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>successValue</td>
+<td>string</td>
+<td>The server returned successfully labeled value, for example: "200"</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>mutipleDelete</td>
+<td>boolean</td>
+<td>Whether to open a multi-line submission delete</td>
+<td>false</td>
+</tr>
+<tr>
+<td>mutipleDeleteProperty</td>
+<td>string/Array</td>
+<td>Multi-line reference to the property and the value of the server will not delete sendRowDataPrefix prefix added, supports the use of an array to specify multiple attribute names</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>datagrid、edatagrid Extended Attributes common</li></ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sendRowDataPrefix</td>
+<td>boolean</td>
+<td>Add, delete, update data, support setting submitting row data prefix <code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">sendRowDataPrefix</span><span class="pun codeSpan">:</span><span class="str codeSpan">". SysUser "</span></code>, before the data parameter names such submission will increase the specified prefix, handy when using the Struts framework such as submitting data to sysUser object reception</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>datagrid</li></ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clickRowEdit</td>
+<td>boolean</td>
+<td>When you click to achieve line editing in DataGrid, you can replace edatagrid achieve with line editing datagrid</td>
+<td>false</td>
+</tr>
+<tr>
+<td>clickCellEdit</td>
+<td>boolean</td>
+<td>Click column editing function is turned on</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>edatagrid Extended Attributes<br><strong>Use <code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">easy</span><span class="pun codeSpan">.</span><span class="pln codeSpan">jquery</span><span class="pun codeSpan">.</span><span class="pln codeSpan">edatagrid</span><span class="pun codeSpan">.</span><span class="pln codeSpan">js</span></code> replace<code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">jquery</span><span class="pun codeSpan">.</span><span class="pln codeSpan">edatagrid</span><span class="pun codeSpan">.</span><span class="pln codeSpan">js</span></code>, easyUIEx of edatagrid performance and logic optimization, and provide additional functionality</strong>。</li></ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clickEdit</td>
+<td>boolean</td>
+<td>Whether to open, click Edit (edatagrid default double-click to open editor)</td>
+<td>false</td>
+</tr>
+<tr>
+<td>showMsg</td>
+<td>boolean</td>
+<td>Whether to add, modify alert message</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><h3 id="demo">Demo</h3>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="com codeSpan">// datagrid  Initialization</span><span class="pln codeSpan">
+</span><span class="kwd codeSpan">var</span><span class="pln codeSpan"> dg </span><span class="pun codeSpan">=</span><span class="pln codeSpan"> $</span><span class="pun codeSpan">(</span><span class="str codeSpan">"#sysUserDataGrid"</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+dg</span><span class="pun codeSpan">.</span><span class="pln codeSpan">initDatagrid</span><span class="pun codeSpan">({</span><span class="pln codeSpan">
+  iconCls </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">'icon-group'</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  </span><span class="com codeSpan">/*
+   * DataGrid editing: saveUrl, updateUrl, destroyUrl with uiEx use
+   */</span><span class="pln codeSpan">
+  url </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"sysUser_list.action"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  saveUrl </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"sysUser_save.action"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  updateUrl </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"sysUser_update.action"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  destroyUrl </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"sysUser_delete.action"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  showHeaderContextMenu</span><span class="pun codeSpan">:</span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Header add context menu, choose to display a column</span><span class="pln codeSpan">
+  </span><span class="com codeSpan">// clickRowEdit:true, //Register Click-line editing, you can replace with line editing edatagrid implement CRUD</span><span class="pln codeSpan">
+  pageSize </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="lit codeSpan">10</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  pageList </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="pun codeSpan">[</span><span class="pln codeSpan"> </span><span class="lit codeSpan">5</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="lit codeSpan">10</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="lit codeSpan">15</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="lit codeSpan">20</span><span class="pln codeSpan"> </span><span class="pun codeSpan">],</span><span class="pln codeSpan">
+  checkbox </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  singleSelect </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">false</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  checkOnSelect </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  </span><span class="com codeSpan">// Double-click operation</span><span class="pln codeSpan">
+  onDblClickRow </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">function</span><span class="pun codeSpan">(</span><span class="pln codeSpan">rowIndex</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> rowData</span><span class="pun codeSpan">)</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+      toEdit</span><span class="pun codeSpan">(</span><span class="pln codeSpan">rowData</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+  </span><span class="pun codeSpan">},</span><span class="pln codeSpan">
+  menuSelector</span><span class="pun codeSpan">:</span><span class="str codeSpan">"#sysUserContextMenu"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  showContextMenu</span><span class="pun codeSpan">:</span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  sendRowDataPrefix</span><span class="pun codeSpan">:</span><span class="str codeSpan">"sysUser."</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  mutipleDelete</span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Submit delete multiple rows</span><span class="pln codeSpan">
+  mutipleDeleteProperty</span><span class="pun codeSpan">:</span><span class="str codeSpan">"userId"</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Multi-line reference to the property and the value of the server will not delete sendRowDataPrefix prefix added, supports the use of an array to specify multiple attribute names</span><span class="pln codeSpan">
+</span><span class="pun codeSpan">});</span></code></pre>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="com codeSpan">// edatagrid  Initialization</span><span class="pln codeSpan">
+$</span><span class="pun codeSpan">(</span><span class="str codeSpan">"#deptDataGrid"</span><span class="pun codeSpan">).</span><span class="pln codeSpan">initEdatagrid</span><span class="pun codeSpan">({</span><span class="pln codeSpan">
+   </span><span class="com codeSpan">/*
+    * DataGrid editing: saveUrl, updateUrl, destroyUrl with uiEx use
+    */</span><span class="pln codeSpan">
+   url </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"dept_list.action"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+   saveUrl </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"dept_save.action"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+   updateUrl </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"dept_update.action"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+   destroyUrl </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"dept_delete.action"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+   idField </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"deptno"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+   showHeaderContextMenu </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Header add context menu, choose to display a column</span><span class="pln codeSpan">
+   pagination </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+   checkbox </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+   checkOnSelect </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+   singleSelect </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">false</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+   autoSave </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+   </span><span class="com codeSpan">//queryParam:{"rows":dg.datagrid("options").pageSize},</span><span class="pln codeSpan">
+   clickEdit </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Click Edit</span><span class="pln codeSpan">
+   showMsg </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Show operation msg</span><span class="pln codeSpan">
+   </span><span class="com codeSpan">//右键菜单</span><span class="pln codeSpan">
+   menuSelector </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"#deptContextMenu"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+   showContextMenu </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+   sendRowDataPrefix </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"dept."</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">//submit data suffix</span><span class="pln codeSpan">
+   successKey </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"statusCode"</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">//Success marks the return key on the server side</span><span class="pln codeSpan">
+   successValue </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"200"</span><span class="pln codeSpan"> </span><span class="com codeSpan">//Success marks the return value on the server side</span><span class="pln codeSpan">
+</span><span class="pun codeSpan">});</span></code></pre>
+<pre><code class="lang-JS prettyprint prettyprinted" style=""><span class="com codeSpan">// detaildatagrid  Initialization</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">initDetailDatagrid</span><span class="pun codeSpan">(</span><span class="str codeSpan">"#userDataGrid2"</span><span class="pun codeSpan">,</span><span class="str codeSpan">"do/toDetailEdit.jsp"</span><span class="pun codeSpan">,{</span><span class="pln codeSpan">
+  </span><span class="com codeSpan">/*
+  * DataGrid editing: saveUrl, updateUrl, destroyUrl with uiEx use
+  */</span><span class="pln codeSpan">
+  url </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"do/doList.jsp"</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">//Datagrid query</span><span class="pln codeSpan">
+  saveUrl </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"do/doMyUsers.jsp?t=add"</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">//Save</span><span class="pln codeSpan">
+  updateUrl </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"do/doMyUsers.jsp?t=edit&amp;id={id}"</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">//Update</span><span class="pln codeSpan">
+  destroyUrl </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"do/doMyUsers.jsp?t=delete"</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">//Delete</span><span class="pln codeSpan">
+  iconCls </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"icon-group"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  showHeaderContextMenu </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">// Header add context menu, choose to display a column</span><span class="pln codeSpan">
+  pageSize </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="lit codeSpan">5</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  pageList </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="pun codeSpan">[</span><span class="pln codeSpan"> </span><span class="lit codeSpan">5</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="lit codeSpan">10</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="lit codeSpan">15</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="lit codeSpan">20</span><span class="pln codeSpan"> </span><span class="pun codeSpan">]</span><span class="pln codeSpan">
+</span><span class="pun codeSpan">});</span></code></pre>
+<pre><code class="lang-JS prettyprint prettyprinted" style=""><span class="com codeSpan">// treegrid  Initialization</span><span class="pln codeSpan">
+$</span><span class="pun codeSpan">(</span><span class="str codeSpan">"#sysMenuPermissionDataGrid"</span><span class="pun codeSpan">).</span><span class="pln codeSpan">initTreegrid</span><span class="pun codeSpan">({</span><span class="pln codeSpan">
+  url </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">'sysMenuPermission_list.action'</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  rownumbers </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  idField </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"id"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  treeField </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">'text'</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  lines </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  </span><span class="com codeSpan">// Double-click operation</span><span class="pln codeSpan">
+  onDblClickRow </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">function</span><span class="pun codeSpan">(</span><span class="pln codeSpan">rowData</span><span class="pun codeSpan">)</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+      toEdit</span><span class="pun codeSpan">(</span><span class="pln codeSpan">rowData</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+  </span><span class="pun codeSpan">},</span><span class="pln codeSpan">
+  </span><span class="com codeSpan">// Header add context menu, choose to display a column</span><span class="pln codeSpan">
+  showHeaderContextMenu </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  menuSelector </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"#sysMenuPermissionContextMenu"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  showContextMenu </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pln codeSpan">
+</span><span class="pun codeSpan">});</span></code></pre>
+</li><li><h3 id="api">API</h3>
+<ul>
+<li>grid  Initialization API</li></ul>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="com codeSpan">/**
+* DataGrid: datagrid Initialization, It contains the default parameters uiEx.dataGridDefaults
+* 
+* @param datagridSelector 
+* @param params Optional; datagrid Initialization parameters
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">initDatagrid</span><span class="pun codeSpan">(</span><span class="pln codeSpan">datagridSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> params</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* EditDataGrid: edatagrid Initialization, It contains the default parameters uiEx.dataGridDefaults
+* 
+* @param datagridSelector 
+* @param params Optional; datagrid Initialization parameters
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">initEdatagrid</span><span class="pun codeSpan">(</span><span class="pln codeSpan">datagridSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> params</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* DetailDataGrid: DetailDataGrid Initialization, It contains the default parameters uiEx.detailDataGridDefaults
+* 
+* @param datagridSelector 
+* @param detailUrl Load detailed view url
+* @param params Optional; other parameters, including data CRUD the url address
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">initDetailDatagrid</span><span class="pun codeSpan">(</span><span class="pln codeSpan">datagridSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> detailUrl</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> params</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Treegird: Treegird Initialization
+* 
+* @param treegridSelector
+*           
+* @param params
+*            Optional; treegrid other parameters
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">initTreegrid</span><span class="pun codeSpan">(</span><span class="pln codeSpan">treegridSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> params</span><span class="pun codeSpan">);</span></code></pre>
+<ul>
+<li>datagrid CRUD API</li></ul>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="com codeSpan">/*
+* ############## DataGrid CRUD
+*/</span><span class="pln codeSpan">
+</span><span class="com codeSpan">/**
+*  datagrid: To add a new row to row to edit DataGrid
+* 
+* @param datagridSelector 
+* @param rowParam Optional; data parameters of the new data row
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">rowAdd</span><span class="pun codeSpan">(</span><span class="pln codeSpan">datagridSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> rowParam</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* datagrid: DataGrid for the specified line editing is enabled, it will cause a new load
+* 
+* @param datagridSelector  
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">rowEdit</span><span class="pun codeSpan">(</span><span class="pln codeSpan">datagridSelector</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Cancel edit the selected row
+* 
+* @param datagridSelector
+*           
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">rowCancelEdit</span><span class="pun codeSpan">(</span><span class="pln codeSpan">datagridSelector</span><span class="pun codeSpan">)；</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* datagird, edatagrid, detaildatagrid, treegrid: delete the selected row, supports multi-row delete parameters mutipleDelete
+* 
+* @param datagridSelector
+*            
+* @param showMsg
+*            Optional; boolean value, whether a message is displayed, it will override the default parameter values global uiEx.showRowDeleteMsg
+* @param reloadDataGrid
+*           Optional; if reload reload DataGrid, default is false
+* @param successKey
+*            可Selected; the string value, perform a successful return to the mark key, value must be the same as before representatives successValue deleted successfully
+* @param successValue
+*            Optional; String value, execution marks the successful return value
+*  
+*  - demo：
+*  dg.rowDelete(true, false, "statusCode", "200");
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">rowDelete</span><span class="pun codeSpan">(</span><span class="pln codeSpan">datagridSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan">  showMsg</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> reloadDataGrid</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> successKey</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> successValue</span><span class="pun codeSpan">)；</span></code></pre>
+<ul>
+<li>DetailDataGrid API</li></ul>
+<pre><code class="lang-JS prettyprint prettyprinted" style=""><span class="com codeSpan">/**
+ * DetailDataGrid: DetailDataGrid add the line
+ * 
+ * @param datagridSelector 
+ */</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">detailRowAdd</span><span class="pun codeSpan">(</span><span class="pln codeSpan">datagridSelector</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+ * DetailDataGrid: DetailDataGrid edit save
+ * 
+ * @param datagridSelector
+ * @param index Edit line index, when loading detailed data, index value will be submitted to the server directly from the server to get the request parameters passed to the function
+ *            For example, JSP : uiEx.detailRowSave('#userDataGrid',${param.index})
+ * @param showMsg Optional; whether to display a message
+ */</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">detailRowSave</span><span class="pun codeSpan">(</span><span class="pln codeSpan">datagridSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> index</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> showMsg</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+ * DetailDataGrid: DetailDataGrid cancel edit or add
+ * 
+ * @param datagridSelector
+ * @param index Edit line index, when loading detailed data, index value will be submitted to the server directly from the server to get the request parameters passed to the function
+ *            For example, JSP : uiEx.detailRowCancel('#userDataGrid',${param.index})
+ */</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">detailRowCancel</span><span class="pun codeSpan">(</span><span class="pln codeSpan">datagridSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> index</span><span class="pun codeSpan">);</span></code></pre>
+<ul>
+<li>Edatagrid API</li></ul>
+<pre><code class="lang-JS prettyprint prettyprinted" style=""><span class="pln codeSpan">  </span><span class="com codeSpan">/**
+   * edatagrid, start editing, direct Click Edit, do not need to double-click to open the Edit
+   * 
+   * @param datagridSelector
+   *            
+   */</span><span class="pln codeSpan">
+  uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">beginEditGrid</span><span class="pun codeSpan">(</span><span class="pln codeSpan">datagridSelector</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+  </span><span class="com codeSpan">/**
+   * edatagrid, finish editing into editable Unlike disableEditing editing disabled, you can not edit editing disabled
+   * 
+   * @param datagridSelector
+   *            
+   */</span><span class="pln codeSpan">
+  uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">endEditGrid</span><span class="pun codeSpan">(</span><span class="pln codeSpan">datagridSelector</span><span class="pun codeSpan">);</span></code></pre>
+</li></ul>
+<h4 id="7-treegrid-api">7. treegrid API</h4>
+<ul>
+<li><p>Two ways to call</p>
+</li><li><p>Extended Attributes</p>
+</li></ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>showHeaderContextMenu</td>
+<td>boolean</td>
+<td>Whether the meter display the context menu, choose to display a column</td>
+<td>false</td>
+</tr>
+<tr>
+<td>showContextMenu</td>
+<td>boolean</td>
+<td>Whether to display the context menu, with menuSelector property use</td>
+<td>false</td>
+</tr>
+<tr>
+<td>menuSelector</td>
+<td>string</td>
+<td>Menu Selector</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Demo</p>
+<pre><code class="lang-JS prettyprint prettyprinted" style=""><span class="pln codeSpan">$</span><span class="pun codeSpan">(</span><span class="str codeSpan">"#sysMenuPermissionDataGrid"</span><span class="pun codeSpan">).</span><span class="pln codeSpan">initTreegrid</span><span class="pun codeSpan">({</span><span class="pln codeSpan">
+  url </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">'sysMenuPermission_list.action'</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  rownumbers </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  idField </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"id"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  treeField </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">'text'</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  lines </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  </span><span class="com codeSpan">// Double-click operation</span><span class="pln codeSpan">
+  onDblClickRow </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">function</span><span class="pun codeSpan">(</span><span class="pln codeSpan">rowData</span><span class="pun codeSpan">)</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+      toEdit</span><span class="pun codeSpan">(</span><span class="pln codeSpan">rowData</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+  </span><span class="pun codeSpan">},</span><span class="pln codeSpan">
+  </span><span class="com codeSpan">// Header add context menu, choose to display a column</span><span class="pln codeSpan">
+  showHeaderContextMenu </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  menuSelector </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"#sysMenuPermissionContextMenu"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  showContextMenu </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pln codeSpan">
+</span><span class="pun codeSpan">});</span></code></pre>
+<pre><code class="lang-HTML prettyprint prettyprinted" style=""><span class="com codeSpan">&lt;!-- Collapse and expand the current directory --&gt;</span><span class="pln codeSpan">
+</span><span class="tag codeSpan">&lt;div</span><span class="pln codeSpan"> </span><span class="atn codeSpan">id</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"sysMenuRightContextMenu"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">class</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyui-menu"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">style</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"</span><span class="kwd codeSpan">width</span><span class="pun codeSpan">:</span><span class="lit codeSpan">120px</span><span class="pun codeSpan">;</span><span class="atv codeSpan">"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">
+  </span><span class="tag codeSpan">&lt;div</span><span class="pln codeSpan"> </span><span class="atn codeSpan">onclick</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"</span><span class="pln codeSpan">uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">collapse</span><span class="pun codeSpan">(</span><span class="str codeSpan">'#sysMenuRightDataGrid'</span><span class="pun codeSpan">)</span><span class="atv codeSpan">"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">Collapse</span><span class="tag codeSpan">&lt;/div&gt;</span><span class="pln codeSpan">
+  </span><span class="tag codeSpan">&lt;div</span><span class="pln codeSpan"> </span><span class="atn codeSpan">onclick</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"</span><span class="pln codeSpan">uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">expand</span><span class="pun codeSpan">(</span><span class="str codeSpan">'#sysMenuRightDataGrid'</span><span class="pun codeSpan">)</span><span class="atv codeSpan">"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan">Expand</span><span class="tag codeSpan">&lt;/div&gt;</span><span class="pln codeSpan">
+</span><span class="tag codeSpan">&lt;/div&gt;</span></code></pre>
+</li><li><p>api</p>
+<pre><code class="lang-JS prettyprint prettyprinted" style=""><span class="com codeSpan">/**
+* Treegird: Treegird Initialization
+* 
+* @param treegridSelector
+*            
+* @param params
+*            Optional; treegrid other parameters
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">initTreegrid</span><span class="pun codeSpan">(</span><span class="pln codeSpan">treegridSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">params</span><span class="pun codeSpan">)</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Collapse the select folder
+* @param treeGridSelector  
+* 
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">collapse</span><span class="pun codeSpan">(</span><span class="pln codeSpan">treeGridSelector</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Expand the select folder
+* @param treeGridSelector  
+* 
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">expand</span><span class="pun codeSpan">(</span><span class="pln codeSpan">treeGridSelector</span><span class="pun codeSpan">);</span></code></pre>
+</li></ul>
+<h4 id="8-tree-api">8. tree API</h4>
+<ul>
+<li><p>Two ways to call</p>
+</li><li><p>Support Tabs binding</p>
+</li><li><p>Extended Attributes</p>
+</li></ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>expandChilds</td>
+<td>boolean</td>
+<td>Click to expand menu parent child node function</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Demo</p>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="com codeSpan">//Common tree menu Initialization</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">initTree</span><span class="pun codeSpan">(</span><span class="pln codeSpan">
+  </span><span class="str codeSpan">"#menu"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">  </span><span class="com codeSpan">//Tree menu selector</span><span class="pln codeSpan">
+  </span><span class="str codeSpan">"#tabs"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">  </span><span class="com codeSpan">//Open the menu tree url of tabSelector</span><span class="pln codeSpan">
+     </span><span class="com codeSpan">//Other tree parameters</span><span class="pln codeSpan">
+  </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+      expandChilds</span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">//Click the parent menu, expand the submenu</span><span class="pln codeSpan">
+      data</span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="typ codeSpan">EasySSH</span><span class="pun codeSpan">.</span><span class="pln codeSpan">menuTreeJson
+     </span><span class="com codeSpan">//url : "json/menuTree.json.js", </span><span class="pln codeSpan">
+  </span><span class="pun codeSpan">}</span><span class="pln codeSpan">
+</span><span class="pun codeSpan">);</span></code></pre>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="com codeSpan">//Text automatically opens the specified menu</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">openMenuByText</span><span class="pun codeSpan">(</span><span class="str codeSpan">"#menu"</span><span class="pun codeSpan">,</span><span class="str codeSpan">"#tabs"</span><span class="pun codeSpan">,</span><span class="str codeSpan">"CRUD"</span><span class="pun codeSpan">);</span></code></pre>
+</li><li><p>API</p>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="com codeSpan">/*
+* ############## Tree 
+*/</span><span class="pln codeSpan">
+</span><span class="com codeSpan">/**
+ * Tree: tree Initialization, contains two default functionality:
+ * 1. Click on the menu to open the parent node child node function
+ * 2. Click on the menu open in tabSelector specified tab
+ * 3. tab, double-click to close
+ * 
+ * @param treeSelector
+ * @param tabSelector  Open the menu tree url of tab selector
+ * @param params Optional; tree Initialization parameters
+ */</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">initTree</span><span class="pun codeSpan">(</span><span class="pln codeSpan">treeSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> tabSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> params</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+ * onSelect event processing: achieving Tree of onSelect event, to achieve click menu to open the parent node when the child node function tree Initialization incoming event by registering onSelect
+ * onSelect : uiEx.expandChilds, //Click to open the sub-menu parent node functionality
+ * 
+ * By initTree of expandChilds property can achieve the same effect:
+ * expandChilds: true; 
+ * 
+ * @param node
+ *            Click on the node object passed when the event call
+ */</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">expandChilds</span><span class="pun codeSpan">(</span><span class="pln codeSpan">node</span><span class="pun codeSpan">);</span></code></pre>
+</li><li><p>Binding tabs associated API</p>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="com codeSpan">/*
+* ############## Tree Menu open to tab
+*/</span><span class="pln codeSpan">
+</span><span class="com codeSpan">/**
+ * Text automatically at specified according to the menu to open a menu Tab
+ * 
+ * @param menuSelector menu selector
+ * @param tabSeelctor tab selector
+ * @param menuText  To open the menu text, you can use an array to define a plurality of menu text
+ */</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">openMenuByText</span><span class="pun codeSpan">(</span><span class="pln codeSpan">menuSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> tabSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> menuText</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+ * Id according to the menu automatically at specified Tab to open a menu
+ * 
+ * @param menuSelector menu selector
+ * @param tabSeelctor tab selector
+ * @param menuId To open the menu id, you can use an array to define multiple menu id
+ */</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">openMenuById</span><span class="pun codeSpan">(</span><span class="pln codeSpan">menuSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> tabSelctor</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> menuId</span><span class="pun codeSpan">);</span></code></pre>
+</li></ul>
+<h4 id="9-checkbox-tree-checkbox-tree-">9 Checkbox tree（Checkbox Tree）</h4>
+<ul>
+<li><p>Two ways to call</p>
+</li><li><p>Extended Attributes</p>
+</li></ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>showTitle</td>
+<td>string</td>
+<td>Mouse serving individual title prompts, you can specify the attributes displayed</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>noChildCascadeCheck</td>
+<td>boolean</td>
+<td>Cascade Select parent, but the parent does not cascade selected select child nodes. And cascadeCheck: true will cause the parent node is selected automatically select all child nodes.</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Demo</p>
+<pre><code class="lang-JS prettyprint prettyprinted" style=""><span class="com codeSpan">/*
+* Checkbox tree Initialization
+*/</span><span class="pln codeSpan">
+$</span><span class="pun codeSpan">(</span><span class="str codeSpan">"#rightsTree"</span><span class="pun codeSpan">).</span><span class="pln codeSpan">initTreeChk</span><span class="pun codeSpan">(</span><span class="pln codeSpan">
+      </span><span class="com codeSpan">//Loading parameters tree</span><span class="pln codeSpan">
+      </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+          url</span><span class="pun codeSpan">:</span><span class="str codeSpan">"do/menuJson.jsp"</span><span class="pln codeSpan">  </span><span class="com codeSpan">//Get Tree JSON data</span><span class="pln codeSpan">
+      </span><span class="pun codeSpan">},</span><span class="pln codeSpan">
+      </span><span class="pun codeSpan">[</span><span class="lit codeSpan">11</span><span class="pun codeSpan">]</span><span class="pln codeSpan"> </span><span class="com codeSpan">//The default value of the array is selected</span><span class="pln codeSpan">
+</span><span class="pun codeSpan">);</span></code></pre>
+<pre><code class="lang-JS prettyprint prettyprinted" style=""><span class="com codeSpan">/*
+*  Initialization Rights check box
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">initTreeChk</span><span class="pun codeSpan">(</span><span class="str codeSpan">"#sysRoleEditRights"</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+  url </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">"sysMenuRight_listAll.action"</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  checkbox</span><span class="pun codeSpan">:</span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  animate</span><span class="pun codeSpan">:</span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  lines</span><span class="pun codeSpan">:</span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan">
+  noChildCascadeCheck</span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">true</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="com codeSpan">//Cascade Select parent, but the parent does not cascade selected select child nodes</span><span class="pln codeSpan">
+  showTitle</span><span class="pun codeSpan">:</span><span class="str codeSpan">"remark"</span><span class="pln codeSpan"> </span><span class="com codeSpan">//The remark attribute as a title display</span><span class="pln codeSpan">
+</span><span class="pun codeSpan">},</span><span class="pln codeSpan"> data</span><span class="pun codeSpan">.</span><span class="pln codeSpan">list</span><span class="pun codeSpan">);</span></code></pre>
+<pre><code class="lang-JS prettyprint prettyprinted" style=""><span class="com codeSpan">/*
+* Reset
+*/</span><span class="pln codeSpan">
+rights</span><span class="pun codeSpan">.</span><span class="pln codeSpan">resetTree</span><span class="pun codeSpan">=</span><span class="kwd codeSpan">function</span><span class="pun codeSpan">(){</span><span class="pln codeSpan">
+  uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">treeChkRest</span><span class="pun codeSpan">(</span><span class="str codeSpan">"#rightsTree"</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+</span><span class="pun codeSpan">}</span></code></pre>
+<pre><code class="lang-JS prettyprint prettyprinted" style=""><span class="com codeSpan">/*
+* Submit
+*/</span><span class="pln codeSpan">
+rights</span><span class="pun codeSpan">.</span><span class="pln codeSpan">submit</span><span class="pun codeSpan">=</span><span class="kwd codeSpan">function</span><span class="pun codeSpan">(){</span><span class="pln codeSpan">
+  $</span><span class="pun codeSpan">(</span><span class="str codeSpan">"#rightsForm"</span><span class="pun codeSpan">).</span><span class="pln codeSpan">submitAjax</span><span class="pun codeSpan">(</span><span class="kwd codeSpan">function</span><span class="pun codeSpan">(</span><span class="pln codeSpan">data</span><span class="pun codeSpan">){</span><span class="pln codeSpan">
+          console</span><span class="pun codeSpan">.</span><span class="pln codeSpan">info</span><span class="pun codeSpan">(</span><span class="str codeSpan">"Submitted successfully"</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+      </span><span class="pun codeSpan">},</span><span class="pln codeSpan">
+      </span><span class="com codeSpan">//With rightsForm form is submitted to the server with the selected parameters --Checkbox tree node id list (# separated)</span><span class="pln codeSpan">
+      </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+          ids</span><span class="pun codeSpan">:</span><span class="pln codeSpan">uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">getCheckedIds</span><span class="pun codeSpan">(</span><span class="str codeSpan">"#rightsTree"</span><span class="pun codeSpan">).</span><span class="pln codeSpan">join</span><span class="pun codeSpan">(</span><span class="str codeSpan">"#"</span><span class="pun codeSpan">)</span><span class="pln codeSpan">
+      </span><span class="pun codeSpan">}</span><span class="pln codeSpan">
+  </span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+</span><span class="pun codeSpan">}</span></code></pre>
+<pre><code class="lang-JS prettyprint prettyprinted" style=""><span class="com codeSpan">/*
+* Property values specified node attributeArray get Checkbox tree selected, returns an array of values to obtain a list of
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">getCheckedInfos</span><span class="pun codeSpan">(</span><span class="str codeSpan">"#sysRoleAddRights"</span><span class="pun codeSpan">,[</span><span class="str codeSpan">"id"</span><span class="pun codeSpan">,</span><span class="str codeSpan">"type"</span><span class="pun codeSpan">])</span></code></pre>
+</li><li><p>API</p>
+<pre><code class="lang-JS prettyprint prettyprinted" style=""><span class="com codeSpan">/*
+* ############## Checkbox Tree
+*/</span><span class="pln codeSpan">
+</span><span class="com codeSpan">/**
+* Checkbox tree Initialization
+* 
+* @param treeSelector tree selector or dom
+* @param param tree loading parameters 
+* @param values The default value of the array is selected
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">initTreeChk</span><span class="pun codeSpan">(</span><span class="pln codeSpan">treeSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> param</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> values</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Tree with check boxes reset, with uiEx.treeChk use
+* 
+* @param treeSelector tree selector or dom
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">treeChkRest</span><span class="pun codeSpan">(</span><span class="pln codeSpan">treeSelector</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Set the selected tree box, Note: This method must be rendered in the tree after the call
+* 
+* @param treeSelector tree selector or dom
+* @param values The selected tree node ID array
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">treeChkSetValues </span><span class="pun codeSpan">=</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">function</span><span class="pun codeSpan">(</span><span class="pln codeSpan">treeSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> values</span><span class="pun codeSpan">);</span><span class="pln codeSpan"> 
+
+</span><span class="com codeSpan">/**
+* Id get an array of nodes with Checkbox tree selected
+* 
+* @param treeSelector  tree selector or dom
+* @return Id array with Checkbox tree node selected
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">getCheckedIds</span><span class="pun codeSpan">(</span><span class="pln codeSpan">treeSelector</span><span class="pun codeSpan">);</span><span class="pln codeSpan">
+
+</span><span class="com codeSpan">/**
+* Property values specified node attributeArray get Checkbox tree selected, returns an array of values to obtain a list of
+* 
+* @param treeSelector tree selector or dom
+* @param propertyArray Array tree property
+* @return Get an array of value list
+*/</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">getCheckedInfos</span><span class="pun codeSpan">(</span><span class="pln codeSpan">treeSelector</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> propertyArray</span><span class="pun codeSpan">);</span></code></pre>
+</li></ul>
+<h3 id="10-custom-validator">10. Custom validator</h3>
+<ul>
+<li><p>Because authentication scenario and rules vary, according to the need to expand <code class=" prettyprint prettyprinted" style=""><span class="pln codeSpan">easy</span><span class="pun codeSpan">.</span><span class="pln codeSpan">easyuiex</span><span class="pun codeSpan">-</span><span class="pln codeSpan">validate</span><span class="pun codeSpan">.</span><span class="pln codeSpan">js</span></code>, register the custom validator.</p>
+</li><li><p>DEMO：</p>
+<pre><code class="lang-HTML prettyprint prettyprinted" style=""><span class="tag codeSpan">&lt;input</span><span class="pln codeSpan"> </span><span class="atn codeSpan">id</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"renewpwd"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">name</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"renewpwd"</span><span class="pln codeSpan"> </span><span class="atn codeSpan">class</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"easyui-textbox"</span><span class="pln codeSpan"> 
+</span><span class="atn codeSpan">type</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"password"</span><span class="pln codeSpan">  
+</span><span class="atn codeSpan">data-options</span><span class="pun codeSpan">=</span><span class="atv codeSpan">"required:true,validType:['minLength [6]','equals[\'#newpwd\',\'Is inconsistent with the new password.\']']"</span><span class="tag codeSpan">&gt;</span><span class="pln codeSpan"> </span><span class="tag codeSpan">&lt;/input&gt;</span></code></pre>
+</li><li><p>API</p>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="pln codeSpan">$</span><span class="pun codeSpan">(</span><span class="kwd codeSpan">function</span><span class="pun codeSpan">()</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+    </span><span class="com codeSpan">/*
+     * ################# Custom Validator
+     */</span><span class="pln codeSpan">
+
+    </span><span class="com codeSpan">/**
+     * Comparing equals whit other input
+     */</span><span class="pln codeSpan">
+    $</span><span class="pun codeSpan">.</span><span class="pln codeSpan">extend</span><span class="pun codeSpan">(</span><span class="pln codeSpan">$</span><span class="pun codeSpan">.</span><span class="pln codeSpan">fn</span><span class="pun codeSpan">.</span><span class="pln codeSpan">validatebox</span><span class="pun codeSpan">.</span><span class="pln codeSpan">defaults</span><span class="pun codeSpan">.</span><span class="pln codeSpan">rules</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+        equals </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+            validator </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">function</span><span class="pun codeSpan">(</span><span class="pln codeSpan">value</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> param</span><span class="pun codeSpan">)</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+                </span><span class="kwd codeSpan">return</span><span class="pln codeSpan"> value </span><span class="pun codeSpan">==</span><span class="pln codeSpan"> $</span><span class="pun codeSpan">(</span><span class="pln codeSpan">param</span><span class="pun codeSpan">[</span><span class="lit codeSpan">0</span><span class="pun codeSpan">]).</span><span class="pln codeSpan">val</span><span class="pun codeSpan">();</span><span class="pln codeSpan">
+            </span><span class="pun codeSpan">},</span><span class="pln codeSpan">
+            message </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="str codeSpan">'{1}'</span><span class="pln codeSpan">
+        </span><span class="pun codeSpan">}</span><span class="pln codeSpan">
+    </span><span class="pun codeSpan">});</span><span class="pln codeSpan">
+
+    </span><span class="com codeSpan">/**
+     * Comparing equals whit other input
+     */</span><span class="pln codeSpan">
+    $</span><span class="pun codeSpan">.</span><span class="pln codeSpan">extend</span><span class="pun codeSpan">(</span><span class="pln codeSpan">$</span><span class="pun codeSpan">.</span><span class="pln codeSpan">fn</span><span class="pun codeSpan">.</span><span class="pln codeSpan">validatebox</span><span class="pun codeSpan">.</span><span class="pln codeSpan">defaults</span><span class="pun codeSpan">.</span><span class="pln codeSpan">rules</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+        minLength </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+            validator </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> </span><span class="kwd codeSpan">function</span><span class="pun codeSpan">(</span><span class="pln codeSpan">value</span><span class="pun codeSpan">,</span><span class="pln codeSpan"> param</span><span class="pun codeSpan">)</span><span class="pln codeSpan"> </span><span class="pun codeSpan">{</span><span class="pln codeSpan">
+                </span><span class="kwd codeSpan">return</span><span class="pln codeSpan"> value</span><span class="pun codeSpan">.</span><span class="pln codeSpan">length </span><span class="pun codeSpan">&gt;=</span><span class="pln codeSpan"> param</span><span class="pun codeSpan">[</span><span class="lit codeSpan">0</span><span class="pun codeSpan">];</span><span class="pln codeSpan">
+            </span><span class="pun codeSpan">},</span><span class="pln codeSpan">
+            message </span><span class="pun codeSpan">:</span><span class="pln codeSpan"> uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">msg</span><span class="pun codeSpan">.</span><span class="pln codeSpan">minLength
+        </span><span class="pun codeSpan">}</span><span class="pln codeSpan">
+    </span><span class="pun codeSpan">});</span><span class="pln codeSpan">
+
+</span><span class="pun codeSpan">})</span></code></pre>
+</li></ul>
+<h4 id="11-other-api">11. Other API</h4>
+<pre><code class="lang-javascript prettyprint prettyprinted" style=""><span class="com codeSpan">/**
+ * The control variable uiEx of transfer to first realize that its library
+ * @return Object reference uiEx
+ */</span><span class="pln codeSpan">
+uiEx</span><span class="pun codeSpan">.</span><span class="pln codeSpan">noConflict</span><span class="pun codeSpan">();</span></code></pre>
+<h2 id="4-easyuiex-demo-">4. EasyUIEx Demo：</h2>
+<p><a href="http://www.easyproject.cn/easyUIExDemo" title="EasyUIEx demo" target="_blank">EasyUIEx demo online</a></p>
+<h2 id="end">End</h2>
+<p><a href="http://www.easyproject.cn/easyuiex/en/index.jsp#about" title="Comments" target="_blank">Comments</a></p>
+<p>If you have more comments, suggestions or ideas, please contact me.</p>
+<p>Email：<a href="mailto:inthinkcolor@gmail.com" target="_blank">inthinkcolor@gmail.com</a></p>
+<p><a href="http://www.easyproject.cn" title="EasyProject Home" target="_blank">http://www.easyproject.cn</a></p>
+ </div>
+	  
+	  </body>
+
+</html>
+

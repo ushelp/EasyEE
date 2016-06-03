@@ -1,18 +1,20 @@
 # EasyEE
 
-EasyEE是一个JaveEE后台开发基础框架。为企业后台项目开发提供了基础架构，提供了常用组件和基于用户、角色、权限方案的权限管理系统（支持页面显示权限控制），前端使用了EasyUI框架。
+
+EasyEE 是一个 JaveEE 后台开发基础框架。为企业后台项目开发提供了基础架构和规范，并提供了常用组件和基于用户、角色、权限方案的权限管理系统（支持页面显示权限控制）和安全管理框架，前端使用了 EasyUI 框架。
 
 
-### - EasyEE-ssh
-   基于`Struts2`, `Hibernate4`, `Spring4` 的EasyEE开发后台基础架构。   [中文](SSH/EasyEE-ssh-readme-zh_CN.md)
+EasyEE is a basic framework JaveEE background development. Background for the enterprise provides the infrastructure project development and specifications, and provide common components based on users, roles, rights management system privileges program (support page displays access control) and security management framework, front end uses EasyUI framework.
 
 
-EasyEE JaveEE background is a basis for the development framework. Background of project development for the enterprise provides the infrastructure that provides common components and user-based, role, rights management system privileges program (support page displays access control), front end uses EasyUI framework.
+## EasyEE-ssh
+   基于 `Struts2`, `Hibernate5`, `Spring4`, `Shiro` 的 EasyEE 开发后台基础架构。  
 
+- [中文](SSH/EasyEE-ssh-readme-zh_CN.md)
 
-###- EasyEE-ssh
-   Based on `Struts2`,` Hibernate4`, `Spring4` of EasyEE infrastructure development framework.   [English](SSH/EasyEE-ssh-readme-en.md)
+Based on `Struts2`, ` Hibernate5`, `Spring4`, `Shiro` of EasyEE infrastructure development framework.  
 
+- [English](SSH/EasyEE-ssh-readme-en.md)
 
 ### [官方主页](http://www.easyproject.cn/easyee/zh-cn/index.jsp '官方主页')
 

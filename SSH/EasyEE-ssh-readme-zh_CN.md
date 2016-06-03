@@ -1,21 +1,44 @@
-# EasyEE-ssh 架构手册
+# EasyEE-SSH 架构手册
 
-EasyEE是一个JaveEE后台开发基础框架。为企业后台项目开发提供了基础架构，提供了常用组件和基于用户、角色、权限方案的权限管理系统（支持页面显示权限控制），前端使用了EasyUI框架。
+EasyEE 是一个 JaveEE 后台开发基础框架。为企业后台项目开发提供了基础架构和规范，并提供了常用组件和基于用户、角色、权限方案的权限管理系统（支持页面显示权限控制）和安全管理框架，前端使用了 EasyUI 框架。
 
 
 
 ## EasyEE-SSH
- 基于`Struts2`, `Hibernate4`, `Spring4` 的EasyEE开发后台基础架构。包含组件：
+ 基于`Struts2`, `Hibernate5`, `Spring4` 的EasyEE开发后台基础架构。包含组件：
 
-   - `SSH`: JAVA后台框架及相关技术及权限管理模块
+   - `SSH`: JAVA 后台框架，技术及权限管理模块
    
-   - `EasyUI`: 基于jQuery的前端框架
+   - `EasyUI`: 基于 jQuery 的前端框架
    
-   - `EasyUIEx`:  EasyUI的扩展插件（[API](http://www.easyproject.cn/easyuiex "EasyUIEx API")）
+   - `EasyUIEx`:  EasyUI 的扩展插件（[API](http://www.easyproject.cn/easyuiex "EasyUIEx API")）
+
+   - `EasyShiro`:  Shiro 的扩展插件（[API](http://www.easyproject.cn/easyshiro "EasyShiro API")）
    
    - `EasyFilter`: Jave Web请求内容过滤替换组件，进行非法关键字过滤（[API](http://www.easyproject.cn/easyfilter "EasyFilter API")）
 
 
+## 最新版本信息 
+
+- **EasyEE-SSH version： 2.1.0**
+
+ ```
+ <!-- SSH Version: Update on 2016/06/01 -->
+ <struts.version>2.5</struts.version>
+ <hibernate.version>5.1.0.Final</hibernate.version>
+ <spring.version>4.2.6.RELEASE</spring.version>
+ <druid.version>1.0.20</druid.version>
+ <shiro.version>1.2.5</shiro.version>
+ <easyshiro.version>2.3.0-RELEASE</easyshiro.version>
+ <easyfilte.version>2.0.1-RELEASE</easyfilte.version>
+ ```
+
+- **注意：**
+Struts 2.5 之后提供了加强的安全访问模型 `Strict Method Invocation (Strict DMI, SMI)`， 如果要通过通配符或 DMI 调用方法，必须在`struts_easyssh_default.xml`配置允许的方法名：
+```
+<!-- Allowed Methods for Strict DMI -->
+<global-allowed-methods>execute,input,back,cancel,browse,save,delete,list,index,move,update,getAllPermissionsId,changePwd,regex:(list.*),regex:(all.*)</global-allowed-methods>
+```
 
 ## 文档目录
 
@@ -37,12 +60,8 @@ EasyEE是一个JaveEE后台开发基础框架。为企业后台项目开发提�
                     + CommonDAO.java (通用DAO接口)
                     + impl
                         + CommonDAOHibernateImpl.java (通用DAO实现类)
-                + interceptor
-                    + UserInterctptor.java (用户访问权限核心拦截器)
                 + service
                     + BaseService.java (基础Service，所有Service类都基础BaseService)
-                + tag
-                    + ShowActionTag.java (权限管理，页面显示权限自定义标签类)
                 + util 
                     + ... (PageBean、加密、日期处理等日常开发和项目所需的工具类)
             + sys (权限管理系统实现包)
@@ -56,7 +75,8 @@ EasyEE是一个JaveEE后台开发基础框架。为企业后台项目开发提�
         + db.properties (数据库连接参数配置) 
         + easyFilter.properties (EasyFilter Web请求内容过滤替换组件配置文件)
         + ehcache.xml (ehcache 二级缓存配置)
-        + log4j.properties (Log4J日志配置文件)
+        + log4j.properties (Log4J 日志配置文件)
+        + log4j2.xml (Log4J2 日志配置文件)
         + struts.xml (Struts2 核心配置文件，负责引入各个模块的配置文件)
         + struts_easyssh_default.xml (Struts2 默认父包配置)
         + struts_easyssh_dispatcher.xml (Struts2 跳转配置，访问WEB-INF下的JSP视图)
@@ -109,16 +129,15 @@ EasyEE是一个JaveEE后台开发基础框架。为企业后台项目开发提�
 
 1. **创建新模块包结构**
 
-   - 在项目基础前缀包下创建新模块的包，如:<br/>
-   **cn.easyproject.easyssh.`module`**
-  
-   - 在新模块包下创建功能包，如: <br/>
-   **cn.easyproject.easyssh.module.`entity`**
-   **cn.easyproject.easyssh.module.`service`**
-   **cn.easyproject.easyssh.module.`action`**
-   **cn.easyproject.easyssh.module.`criteria`**
+   - 在项目基础前缀包下创建新模块的包，如:
+   
+    **cn.easyproject.easyssh.`module`**
+    **cn.easyproject.easyssh.module.`entity`**
+    **cn.easyproject.easyssh.module.`service`**
+    **cn.easyproject.easyssh.module.`action`**
+    **cn.easyproject.easyssh.module.`criteria`**
      
-2. **编写POJO实体类代码，并在Spring注册**
+2. **编写POJO实体类代码**
     - 在`entity`下根据表创建POJO实体类和ORM映射（注解或XML）
         - 注解映射
       ```JAVA
@@ -231,7 +250,6 @@ EasyEE是一个JaveEE后台开发基础框架。为企业后台项目开发提�
      			pointcut="execution(* cn.easyproject.easyssh.module.service..*.*(..))" />
      	</aop:config>
       ```
-
  
 4. **编写Action控制器**
 
@@ -291,10 +309,12 @@ EasyEE是一个JaveEE后台开发基础框架。为企业后台项目开发提�
        		
        		/*
        		 * Ajax响应信息
-       		 * statusCode：响应状态码;  
-       		 * msg: 响应消息;   
+       		 * {
+       		 * statusCode：响应状态码, 
+       		 * msg: 响应消息, 
        		 * callback: 执行回调函数,
        		 * locationUrl: 跳转页面
+       		 * }
        		 */
        		// EasyUI框架响应结果都是JSON
        		// JSON数据初始化，包含EasySSH Ajax响应信息
@@ -521,12 +541,13 @@ BaseAction中定义了以下主要内容：
    // JSON数据初始化, 包含自定义JSON键值对, 分页信息, 及EasySSH Ajax响应信息
    setJsonPaginationMap(PageBean, Object...)
    ```
+   - reloadPermissions()：刷新用户当前的权限，用于修改权限后
    - 工具方法
    
   
 ### 3.  CommonDAO
 
-CommonDAO提供了通用的持久层操作类, 封装了各种日常操作方法, 包含了基于PageBean和EasyCriteria的分页及查询条件处理组件. 
+CommonDAO提供了通用的持久层操作类, 封装了各种日常操作方法, 包含了基于PageBean和EasyCriteria的分页及查询条件处理组件。
 
 ### 4. PageBean分页和查询条件处理
 
@@ -631,43 +652,49 @@ CommonDAO提供了通用的持久层操作类, 封装了各种日常操作方法
  
   3. 为用户分配角色 
  
-- **显示控制权限配置(可参考用户管理模块实现)**
+- **显示控制权限配置(可参考 WEB-INF/content/jsp/module/dept.jsp)**
 
   1. 在操作权限中配置显示权限动作
 
-  2. 在JSP页面引入`easyssh-tags`标签库, 将需要显示控制的内容定义在`showAction标签`内, `action属性`指定必须具有的显示权限动作名称 
+  2. 在JSP页面引入`siro-tags`标签库, 将需要显示控制的内容定义在`shiro:hasPermission`内, `name`指定必须具有的显示权限动作名称 
   
    ```JSP
-   <%@ taglib uri="/easyssh-tags" prefix="e" %>
+   <%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro"%>
  
-  	<e:showAction action="sysUserDelBtn">
-      	<div onclick="sysUser.toDelete()" data-options="iconCls:'icon-remove'">删除</div>
-  	</e:showAction>
+	<shiro:hasPermission name="deptDeleteShow">
+	   	<div onclick="$('#deptDataGrid').edatagrid('destroyRow')" data-options="iconCls:'icon-remove'">Delete</div>
+	</shiro:hasPermission>
    ```
   3. 按需为用户分配显示权限
 
 ### 6. 附加组件：
-- EasyFilter Jave Web请求内容过滤替换组件 ([API](http://easyproject.cn/easyfilter/zh-cn/index.jsp#readme "EasyFilter 请求内容过滤替换组件"))
- 
-  EasyFilter是一个Jave Web请求内容过滤替换组件, 支持使用properties或xml配置文件自定义过滤配置, 能够对用户请求中的以下信息进行过滤替换：
+
+- **EasyShiro** ([API](http://easyproject.cn/easyshiro/zh-cn/index.jsp#readme "EasShiro API"))
+
+ EasyShiro 是一个基于 Shiro 的安全扩展组件。为基于数据库权限管理和 Web URL 授权 的RBAC（Role Based Access Control） Web 权限模型，提供通用支持。EasyShiro 能简化安全集成，并提供验证码，自动登录，登录锁定，错误消息管理，拦截器，Ajax 响应等等更强大全面的功能支持，仅需简单配置即可。
+
+
+- **EasyFilter Jave Web请求内容过滤替换组件** ([API](http://easyproject.cn/easyfilter/zh-cn/index.jsp#readme "EasyFilter 请求内容过滤替换组件"))
+
+ EasyFilter是一个Jave Web请求内容过滤替换组件, 支持使用properties或xml配置文件自定义过滤配置, 能够对用户请求中的以下信息进行过滤替换：
   1. 特殊字符替换(如：&lt;, &gt;特殊标记, 脚本等)
   2. 非法关键字替换(如：网络系统中国情不允许的特殊关键词)
   3. SQL防注入过滤(如：%,*,or,delete,and等等SQL特殊关键字)
 
-  **在`easyFilter.xml`中已经预定义了默认的替换配置. **
+  **在`easyFilter.xml`中已经预定义了默认的替换配置。 **
 
-- EasyCommons 通用开发组件([API](http://easyproject.cn/easycommons/zh-cn/index.jsp#readme "EasyCommons 通用开发组件"))
+- **EasyCommons 通用开发组件**([API](http://easyproject.cn/easycommons/zh-cn/index.jsp#readme "EasyCommons 通用开发组件"))
   - EasyCommons-imageutils-1.4.jar
   
-    提供图片压缩, 图片地址提取, 图片水印等工具类. 
+    提供图片压缩, 图片地址提取, 图片水印等工具类。
 
   - EasyCommons-objectutils-1.7.1.jar
   
-    提供代替Java Properties对象的properties文件操作组件. 
+    提供代替Java Properties对象的properties文件操作组件。
 
   - EasyCommons-propertiesutils-1.4.jar
   
-    提供基于`字段表达式(FieldExpression)`对象属性抽取, 对象属性过滤, 对象属性置空等Obejct对象操作组件. 
+    提供基于`字段表达式(FieldExpression)`对象属性抽取, 对象属性过滤, 对象属性置空等Obejct对象操作组件。
  
        
 ### 7. EasyUIEx
