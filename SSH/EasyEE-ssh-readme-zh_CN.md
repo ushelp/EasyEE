@@ -132,9 +132,13 @@ Struts 2.5 之后提供了加强的安全访问模型 `Strict Method Invocation 
    - 在项目基础前缀包下创建新模块的包，如:
    
     **cn.easyproject.easyssh.`module`**
+
     **cn.easyproject.easyssh.module.`entity`**
+    
     **cn.easyproject.easyssh.module.`service`**
+    
     **cn.easyproject.easyssh.module.`action`**
+    
     **cn.easyproject.easyssh.module.`criteria`**
      
 2. **编写POJO实体类代码**
