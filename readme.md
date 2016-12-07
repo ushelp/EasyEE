@@ -1,10 +1,10 @@
-# EasyEE 开源 JavaEE 企业快速开发平台
+# EasyEE 开源 JavaEE 企业级快速开发平台
 
-EasyEE 是一个开源 JaveEE 企业快速开发基础平台。
+EasyEE 是一个开源 JaveEE 企业级快速开发基础平台。
 
 整合了广泛使用的 JaveEE 领域优秀框架及 EasyUI 前端框架；提供了基于用户、角色、权限方案的后台权限管理系统，安全管理框架及常用开发组件。为企业级项目开发提供了基础架构和规范。
 
-EasyEE is an open source JaveEE enterprise rapid development of the basic platform.
+EasyEE is an open source JaveEE enterprise-class rapid development of the basic platform.
 
 It integrates the widely used framework of JaveEE domain and EasyUI front-end framework. It provides the back-end rights management system, security management framework and common development components based on user, role and permission scheme. Provides infrastructure and specifications for enterprise-level project development.
 

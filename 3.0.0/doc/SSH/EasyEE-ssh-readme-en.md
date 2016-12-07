@@ -1,6 +1,6 @@
-# EasyEE-SSH(JPA) Architecture Manual
+# EasyEE-SSH(JPA) Platform Development Manual
 
-EasyEE is an open source JaveEE enterprise rapid development of the basic platform.
+EasyEE is an open source JaveEE enterprise-class rapid development of the basic platform.
 
 It integrates the widely used framework of JaveEE domain and EasyUI front-end framework. It provides the back-end rights management system, security management framework and common development components based on user, role and permission scheme. Provides infrastructure and specifications for enterprise-level project development.
 
