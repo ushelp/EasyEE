@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>EasyUIEx API - zh_CN</title>
+<meta http-equiv="keywords"
+	content="easyuiex,uiEx,EasyUI,EasyProject,Easy Project">
+<meta http-equiv="description"
+	content="easyuiex: jQuery EasyUI 简化扩展架构插件  API">
+<meta http-equiv="author" content="inthinkcolor@gmail.com">
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript">
+	$(function(){
+		
+		var titles={
+				use_step:"EasyUIEx 使用步骤",
+				two_way:"EasyUIEx API调用",
+				global_config:"API 全局配置参数",
+				messager:"alter、 confirm、 prompt、 msg 消息窗口相关函数",
+				dialog:"dialog 对话框相关函数",
+				form:"form 表单相关函数",
+				tabs:"tab 选项卡相关函数",
+				datagrid:"datagrid、edatagrid、detaildatagrid 数据网格相关函数",
+				treegrid:"treegrid 树形网格相关函数",
+				tree:"tree 树增强相关函数",
+				checkboxtree:"Checkbox tree 复选框树增强相关函数",
+				validate:"自定义验证器",
+				others:"其他函数"
+				
+		}
+		
+		var def="use_step";//使用步骤
+		var now=$("[show='"+def+"']");
+		
+		$("#content_show").html($("#"+def).html()); 
+		now.addClass('sel'); 
+		
+		$("#menu ul li").not(".tit").on("click",function(){
+			var o=$(this);
+			$("#content_show").css({height:"90%"});
+			$("#content_show").html($("#"+o.attr("show")).html()); 
+			$("#content .tit").html(titles[o.attr("show")]);
+			now.removeClass("sel");
+			now=o;
+			now.addClass('sel'); 
+		});
+	});
+
+</script>
+
+
+
+<style type="text/css">
+body {
+	color: #333;
+	font: 13px/1.4 "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	background: transparent;
+	color: #4183c4;
+	text-decoration: none;
+}
+
+a:active,
+a:hover {
+	outline: 0 none;
+	text-decoration: underline;
+}
+
+abbr[title] {
+	border-bottom: 1px dotted;
+}
+
+b,
+strong {
+	font-weight: bold;
+}
+
+dfn {
+	font-style: italic;
+}
+h1 {
+	font-size: 2em;
+	margin: 0.67em 0;
+}
+mark {
+	background: #ff0;
+	color: #000;
+}
+small {
+	font-size: 80%;
+}
+sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
+img {
+	border: 0 none;
+}
+svg:not(:root) {
+	overflow: hidden;
+}
+figure {
+	margin: 1em 40px;
+}
+hr {
+	box-sizing: content-box;
+	height: 0;
+}
+
+code,
+kbd,
+pre,
+samp {
+	font-family: monospace,monospace;
+	font-size: 1em;
+}
+
+pre {
+	overflow: auto;
+	font: 12px Consolas,"Liberation Mono",Menlo,Courier,monospace;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.markdown-body {
+	padding: 30px;
+	font-size: 16px;
+	line-height: 1.6;
+	word-wrap: break-word;
+}
+
+.markdown-body>*:first-child {
+	margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+	margin-bottom: 0 !important;
+}
+
+.markdown-body .absent {
+	color: #c00;
+}
+
+.markdown-body .anchor {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	display: block;
+	padding-right: 6px;
+	padding-left: 30px;
+	margin-left: -30px;
+}
+
+.markdown-body .anchor:focus {
+	outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+	position: relative;
+	margin-top: 1em;
+	margin-bottom: 16px;
+	font-weight: bold;
+	line-height: 1.4;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+	display: none;
+	color: #000;
+	vertical-align: middle;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+	padding-left: 8px;
+	margin-left: -30px;
+	line-height: 1;
+	text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+	display: inline-block;
+}
+
+.markdown-body h1 tt,
+.markdown-body h1 code,
+.markdown-body h2 tt,
+.markdown-body h2 code,
+.markdown-body h3 tt,
+.markdown-body h3 code,
+.markdown-body h4 tt,
+.markdown-body h4 code,
+.markdown-body h5 tt,
+.markdown-body h5 code,
+.markdown-body h6 tt,
+.markdown-body h6 code {
+	font-size: inherit;
+}
+
+.markdown-body h1 {
+	padding-bottom: 0.3em;
+	font-size: 2.25em;
+	line-height: 1.2;
+	border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+	padding-bottom: 0.3em;
+	font-size: 1.75em;
+	line-height: 1.225;
+	border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+	font-size: 1.5em;
+	line-height: 1.43;
+}
+
+.markdown-body h4 {
+	font-size: 1.25em;
+}
+
+.markdown-body h5 {
+	font-size: 1em;
+}
+
+.markdown-body h6 {
+	font-size: 1em;
+	color: #777;
+}
+
+.markdown-body p,.markdown-body blockquote,
+.markdown-body ul,.markdown-body ol,
+.markdown-body dl,.markdown-body table,
+.markdown-body pre {
+	margin-top: 0;
+	margin-bottom: 16px;
+}
+
+.markdown-body hr {
+	height: 4px;
+	padding: 0;
+	margin: 16px 0;
+	background-color: #e7e7e7;
+	border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+	padding-left: 2em;
+}
+
+.markdown-body ul.no-list,
+.markdown-body ol.no-list {
+	padding: 0;
+	list-style-type: none;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.markdown-body li>p {
+	margin-top: 16px;
+}
+
+.markdown-body dl {
+	padding: 0;
+}
+
+.markdown-body dl dt {
+	padding: 0;
+	margin-top: 16px;
+	font-size: 1em;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.markdown-body dl dd {
+	padding: 0 16px;
+	margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+	padding: 0 15px;
+	color: #777;
+	border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+	margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+	margin-bottom: 0;
+}
+
+.markdown-body table {
+	display: block;
+	width: 100%;
+	overflow: auto;
+	word-break: normal;
+	word-break: keep-all;
+}
+
+.markdown-body table th {
+	font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+	padding: 6px 13px;
+	border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+	background-color: #fff;
+	border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+	background-color: #f8f8f8;
+}
+
+.markdown-body img {
+	max-width: 100%;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.markdown-body span.frame {
+	display: block;
+	overflow: hidden;
+}
+
+.markdown-body span.frame>span {
+	display: block;
+	float: left;
+	width: auto;
+	padding: 7px;
+	margin: 13px 0 0;
+	overflow: hidden;
+	border: 1px solid #ddd;
+}
+
+.markdown-body span.frame span img {
+	display: block;
+	float: left;
+}
+
+.markdown-body span.frame span span {
+	display: block;
+	padding: 5px 0 0;
+	clear: both;
+	color: #333;
+}
+
+.markdown-body span.align-center {
+	display: block;
+	overflow: hidden;
+	clear: both;
+}
+
+.markdown-body span.align-center>span {
+	display: block;
+	margin: 13px auto 0;
+	overflow: hidden;
+	text-align: center;
+}
+
+.markdown-body span.align-center span img {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.markdown-body span.align-right {
+	display: block;
+	overflow: hidden;
+	clear: both;
+}
+
+.markdown-body span.align-right>span {
+	display: block;
+	margin: 13px 0 0;
+	overflow: hidden;
+	text-align: right;
+}
+
+.markdown-body span.align-right span img {
+	margin: 0;
+	text-align: right;
+}
+
+.markdown-body span.float-left {
+	display: block;
+	float: left;
+	margin-right: 13px;
+	overflow: hidden;
+}
+
+.markdown-body span.float-left span {
+	margin: 13px 0 0;
+}
+
+.markdown-body span.float-right {
+	display: block;
+	float: right;
+	margin-left: 13px;
+	overflow: hidden;
+}
+
+.markdown-body span.float-right>span {
+	display: block;
+	margin: 13px auto 0;
+	overflow: hidden;
+	text-align: right;
+}
+
+.markdown-body code,.markdown-body tt {
+	padding: 0;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+	margin: 0;
+	font-size: 85%;
+	background-color: rgba(0,0,0,0.04);
+	border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after,
+.markdown-body tt:before,
+.markdown-body tt:after {
+	letter-spacing: -0.2em;
+	content: "\00a0";
+}
+
+.markdown-body code br,
+.markdown-body tt br {
+	display: none;
+}
+
+.markdown-body del code {
+	text-decoration: inherit;
+}
+
+.markdown-body pre>code {
+	padding: 0;
+	margin: 0;
+	font-size: 100%;
+	word-break: normal;
+	white-space: pre;
+	background: transparent;
+	border: 0;
+}
+
+.markdown-body .highlight {
+	margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	background-color: #f7f7f7;
+	border-radius: 3px;
+}
+
+.markdown-body .highlight pre {
+	margin-bottom: 0;
+	word-break: normal;
+}
+
+.markdown-body pre {
+	word-wrap: normal;
+}
+
+.markdown-body pre code,
+.markdown-body pre tt {
+	display: inline;
+	max-width: initial;
+	padding: 0;
+	margin: 0;
+	overflow: initial;
+	line-height: inherit;
+	word-wrap: normal;
+	background-color: transparent;
+	border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after,
+.markdown-body pre tt:before,
+.markdown-body pre tt:after {
+	content: normal;
+}
+
+.highlight .pl-coc,
+.highlight .pl-entl,
+.highlight .pl-entm,
+.highlight .pl-eoa,
+.highlight .pl-mai .pl-sf,
+.highlight .pl-mm,
+.highlight .pl-pdv,
+.highlight .pl-sc,
+.highlight .pl-som,
+.highlight .pl-sr,
+.highlight .pl-v,
+.highlight .pl-vpf {
+	color: #0086b3;
+}
+.highlight .pl-eoac,
+.highlight .pl-mdht,
+.highlight .pl-mi1,
+.highlight .pl-mri,
+.highlight .pl-va,
+.highlight .pl-vpu {
+	color: #008080;
+}
+.highlight .pl-c,
+.highlight .pl-pdc {
+	color: #b4b7b4;
+	font-style: italic;
+}
+.highlight .pl-k,
+.highlight .pl-ko,
+.highlight .pl-kolp,
+.highlight .pl-mc,
+.highlight .pl-mr,
+.highlight .pl-ms,
+.highlight .pl-s,
+.highlight .pl-sok,
+.highlight .pl-st {
+	color: #6e5494;
+}
+.highlight .pl-ef,
+.highlight .pl-enf,
+.highlight .pl-enm,
+.highlight .pl-entc,
+.highlight .pl-eoi,
+.highlight .pl-sf,
+.highlight .pl-smc {
+	color: #d12089;
+}
+.highlight .pl-ens,
+.highlight .pl-eoai,
+.highlight .pl-kos,
+.highlight .pl-mh .pl-pdh,
+.highlight .pl-mp,
+.highlight .pl-pde,
+.highlight .pl-stp {
+	color: #458;
+}
+.highlight .pl-enti {
+	color: #d12089;
+	font-weight: bold;
+}
+.highlight .pl-cce,
+.highlight .pl-enc,
+.highlight .pl-kou,
+.highlight .pl-mq {
+	color: #f93;
+}
+.highlight .pl-mp1 .pl-sf {
+	color: #458;
+	font-weight: bold;
+}
+.highlight .pl-cos,
+.highlight .pl-ent,
+.highlight .pl-md,
+.highlight .pl-mdhf,
+.highlight .pl-ml,
+.highlight .pl-pdc1,
+.highlight .pl-pds,
+.highlight .pl-s1,
+.highlight .pl-scp,
+.highlight .pl-sol {
+	color: #df5000;
+}
+.highlight .pl-c1,
+.highlight .pl-cn,
+.highlight .pl-pse,
+.highlight .pl-pse .pl-s2,
+.highlight .pl-vi {
+	color: #a31515;
+}
+.highlight .pl-mb,
+.highlight .pl-pdb {
+	color: #df5000;
+	font-weight: bold;
+}
+.highlight .pl-mi,
+.highlight .pl-pdi {
+	color: #6e5494;
+	font-style: italic;
+}
+.highlight .pl-ms1 {
+	background-color: #f5f5f5;
+}
+.highlight .pl-mdh,
+.highlight .pl-mdi {
+	font-weight: bold;
+}
+.highlight .pl-mdr {
+	color: #0086b3;
+	font-weight: bold;
+}
+.highlight .pl-s2 {
+	color: #333;
+}
+.highlight .pl-ii {
+	background-color: #df5000;
+	color: #fff;
+}
+.highlight .pl-ib {
+	background-color: #f93;
+}
+.highlight .pl-id {
+	background-color: #a31515;
+	color: #fff;
+}
+.highlight .pl-iu {
+	background-color: #b4b7b4;
+}
+.highlight .pl-mo {
+	color: #969896;
+}
+
+.content_hide{ padding: 50px 10px !important; }
+html, body {
+	padding: 0px;
+	margin: 0px;
+	height: 100%;
+	font-family: '微软雅黑','宋体',Arial,sans-serif,Verdana,Tahoma
+}
+
+
+#body {
+	height: 100%
+}
+
+#header {
+	background-color: #FF1484;
+	font-size: 40px;
+	font-weight: bold;
+	color: #fff;
+	padding: 10px;
+	height: 10%;
+	min-height: 60px;
+}
+
+#header span {
+	font-size: 16px;
+	font-weight: normal;
+}
+
+#container {
+	overflow: hidden;
+	margin: 0 auto;
+	height: 85%;
+}
+
+#menu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow: auto;
+	height: 100%;
+}
+
+#menu ul li {
+	list-style: none;
+	margin: 0;
+	padding: 5px;
+}
+
+#menu {
+	float: left;
+	min-width: 150px;
+	text-align: left;
+	border: 1px solid #ccc;
+	min-height: 50px;
+	height: 100%;
+	max-height: 100%;
+}
+#menu li[show]{
+	cursor: pointer;
+}
+
+#menu li.tit {
+	color: #777777;
+	font-size: 13px;
+	border-bottom: 1px solid #ccc;
+	font-weight: bold;
+}
+#menu li.ctl {
+	color: #777777;
+	font-size: 12px;
+	border-bottom: 1px solid #ccc;
+	border-left:4px solid #ccc;
+	font-weight: bold;
+}
+#menu li.ctl:hover {
+	color: #333333;
+	font-size: 12px;
+	border-bottom: 1px solid #ccc;
+	border-left:4px solid #ccc;
+	font-weight: bold;
+}
+
+#content {
+	margin-left: 155px;
+	border: 1px solid #ccc;
+	font-size: 14px;
+	 height: 100%;
+}
+#content_show{ overflow: auto; height: 90%; padding: 10px 10px; }
+
+#content .tit {
+	margin: 0;
+	border: 1px solid #ccc;
+	border-left:0px;
+	border-right:0px;
+	font-weight: bold;
+	font-size: 23px;
+	padding: 4px 10px;
+	background-color: #F8F8F8;
+}
+
+
+.content_hide{display: none}
+.sel{color: #0086CE !important; font-size: 13px !important;}
+</style>
+
+
+<script type="text/javascript">
+
+function getDocumentScrollTop() 
+{
+   var res = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset || 0;
+   // alert(res);
+   return res;
+}
+
+function setDocumentScrollTop(ypos) 
+{
+	window.scrollTo(0, ypos);
+}
+
+</script>
+
+
+</head>
+<body class="">
+
+	<div id="body"> 
+		<div id="header">
+			EasyUIEx API <span>jQuery EasyUI Simplify&Extended
+				Architecture plugin</span>  <span>
+				<a href="easyuiex-api_zh_CN.html" title="中文 API"
+				 style="color:#fff;font-weight: bold;text-decoration: underline;">中文</a> 
+				 |  
+				 <a href="easyuiex-api_en.html" title="English API"
+				 style="color:#fff;font-weight: bold;text-decoration: underline;">English</a>
+				 |  
+				 <a href="http://easyproject.cn/easyuiex" title="English API" target="_blank"
+				 style="color:#fff;font-weight: bold;text-decoration: underline;">Home</a>
+				 </span>
+		</div>
+		<div id="container">
+			<div id="menu">
+				<ul>
+					<li class="tit">Plugins</li>
+					<li class="ctl" show="use_step">EasyUIEx 使用步骤</li>
+					<li class="ctl" show="two_way">EasyUIEx API调用</li>
+					<li class="ctl" show="global_config">全局配置参数</li>
+					<li class="ctl" show="messager">Messager</li>
+					<li class="ctl" show="dialog">Dialog</li>
+					<li class="ctl" show="form">Form</li>
+					<li class="ctl" show="tabs">Tabs</li>
+					<li class="ctl" show="datagrid">Datagrid</li>
+					<li class="ctl" show="treegrid">Treegrid</li>
+					<li class="ctl" show="tree">Tree</li>
+					<li class="ctl" show="checkboxtree">Checkbox Tree</li>
+					<li class="ctl" show="validate">Validate</li>
+					<li class="ctl" show="others">Others</li>
+				</ul>
+			</div>
+
+			<div id="content">
+				<div class="tit">EasyUIEx 使用步骤</div>
+				<div id="content_show" class="markdown-body">
+				
+				
+				</div>
+			</div>
+		</div>
+	</div>	
+
+<div class="content_hide" id="use_step">
+<p>使用<code>easy.jquery.edatagrid.js</code>替换<code>jquery.edatagrid.js</code>，easyUIEx的edatagrid对性能和逻辑进行了优化，并提供附加功能。</p> 
+<div class="highlight highlight-text-html-basic">
+ <pre><span class="pl-c">&lt;!-- EasyUI CSS --&gt;</span>
+&lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>stylesheet<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/css<span class="pl-pds">&quot;</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyui/themes/bootstrap/easyui.css<span class="pl-pds">&quot;</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>themeLink<span class="pl-pds">&quot;</span></span>&gt;
+&lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>stylesheet<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/css<span class="pl-pds">&quot;</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyui/themes/icon.css<span class="pl-pds">&quot;</span></span>&gt;
+
+<span class="pl-c">&lt;!-- EasyUI JS &amp; Extension JS...--&gt;</span>
+&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyui/jquery.min.js<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyui/jquery.easyui.min.js<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyui/locale/easyui-lang-zh_CN.js<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+
+<span class="pl-c">&lt;!-- **EasyUIEx** --&gt;</span>
+&lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>stylesheet<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/css<span class="pl-pds">&quot;</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyuiex/css/easyuiex.css<span class="pl-pds">&quot;</span></span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyuiex/easy.easyuiex.min-2.2.0.js<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyuiex/easy.easyuiex-validate.js<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+<span class="pl-c">&lt;!-- EasyUIEx 'easy.jquery.edatagrid.js' instead of 'jquery.edatagrid.js' --&gt;</span>
+&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyuiex/easy.jquery.edatagrid.js<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+<span class="pl-c">&lt;!-- Language file --&gt;</span>
+&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyuiex/lang/easy.easyuiex-lang-zh_CN.js<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt; </pre>
+</div> 
+</div>
+
+
+
+<div id="two_way" class="content_hide">
+<p><strong>uiEx</strong> 是EasyUIEx的默认命名空间名称。 EasyUIEx API 中针对 DOM 操作，带 selector 选择器的扩展函数都支持两种方式的调用。</p> 
+<blockquote> 
+ <p><strong>注意：请为元素指定唯一的 <code>id 属性</code>。</strong>由于 EasyUIEx 内部封装 <code>datagrid</code>, <code>tree</code> 等某些 DOM 对象时使用到了对象的 <code>id 属性</code>，所以这些 DOM元素必须具有唯一的 <code>id 属性</code>。优先推荐使用 <code>id 选择器</code>选择 DOM 元素。</p> 
+</blockquote> 
+<ul> 
+ <li> <p><strong>uiEx命名空间直接调用</strong></p> <p>在第一个参数传入要操作的DOM对象的选择器或对象</p> <p><code>uiEx.{methodName}(selector, [param1], ....);</code> </p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-smi">uiEx</span>.<span class="pl-en">clearForm</span>(<span class="pl-s"><span class="pl-pds">'</span>#userForm<span class="pl-pds">'</span></span>)；
+
+<span class="pl-smi">uiEx</span>.<span class="pl-en">treeChk</span>(
+ <span class="pl-s"><span class="pl-pds">&quot;</span>#rightsTree<span class="pl-pds">&quot;</span></span>,
+ {
+    url<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">&quot;</span>do/menuJson.json<span class="pl-pds">&quot;</span></span>
+ },
+ [<span class="pl-c1">11</span>]
+);</pre>
+  </div> </li> 
+ <li> <p><strong>使用 jQuery 扩展函数</strong></p> <p><code>$(selector).{methodName}([param1], ....);</code></p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>#userForm<span class="pl-pds">'</span></span>).<span class="pl-en">clearForm</span>();
+
+<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>#rightsTree<span class="pl-pds">&quot;</span></span>).<span class="pl-en">treeChk</span>(
+    {
+        url<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">&quot;</span>do/menuJson.json<span class="pl-pds">&quot;</span></span>
+    },
+    [<span class="pl-c1">11</span>]
+);</pre>
+  </div> </li> 
+</ul> 
+</div>
+
+<div id="global_config" class="content_hide">
+
+<ul> 
+ <li> <p><strong>消息国际化配置</strong></p> <p>在 lang/easy.easyuiex-lang-<code>LANG_COUNTRY</code>.js 中修改</p> </li> 
+ <li> <p><strong>全局配置参数</strong></p> <p>可以调整 EasyUIEx 的运行参数、方式和内容，修改参数。</p> <p><code>uiEx.{paramName} = paramValue</code></p> <p>默认配置：</p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-k">var</span> uiEx <span class="pl-k">=</span> {
+  <span class="pl-c">/*</span>
+<span class="pl-c">   * ################# 消息内容和控制部分</span>
+<span class="pl-c">   */</span>
+  showRowEditMsg <span class="pl-k">:</span> <span class="pl-c1">false</span>, <span class="pl-c">// 是否在行编辑完后提示msg</span>
+  showRowAddMsg <span class="pl-k">:</span> <span class="pl-c1">false</span>, <span class="pl-c">// 是否在行添加完后提示msg</span>
+  showRowDeleteMsg <span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// 是否在行删除完后提示msg</span>
+  <span class="pl-c">/*</span>
+<span class="pl-c">   * ################# 自定义消息框的默认参数</span>
+<span class="pl-c">   */</span>
+  msgDefaults <span class="pl-k">:</span> {
+      timeout <span class="pl-k">:</span> <span class="pl-c1">4000</span>,
+      showType <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>slide<span class="pl-pds">'</span></span> <span class="pl-c">// null、slide、fade、show。默认是 slide。</span>
+  <span class="pl-c">// width:250,</span>
+  <span class="pl-c">// height:100,</span>
+
+  },
+  <span class="pl-c">/*</span>
+<span class="pl-c">   * ################# 数据网格默认参数</span>
+<span class="pl-c">   */</span>
+  dataGridDefaults <span class="pl-k">:</span> {
+      rownumbers <span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// 显示行号</span>
+      fitColumns <span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// 自动扩展或收缩列的大小以适应网格宽度和防止水平滚动条</span>
+      singleSelect <span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// 单选</span>
+      pagination <span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// 显示分页</span>
+      method <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>post<span class="pl-pds">&quot;</span></span>, <span class="pl-c">// 提交方式</span>
+      striped <span class="pl-k">:</span> <span class="pl-c1">true</span>
+  <span class="pl-c">// 表格条纹，奇偶行颜色交替</span>
+  },
+  <span class="pl-c">/*</span>
+<span class="pl-c">   * ################# 数据网格详细视图默认参数</span>
+<span class="pl-c">   */</span>
+  detailDataGridDefaults <span class="pl-k">:</span> {
+      rownumbers <span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// 显示行号</span>
+      fitColumns <span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// 自动扩展或收缩列的大小以适应网格宽度和防止水平滚动条</span>
+      singleSelect <span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// 单选</span>
+      pagination <span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// 显示分页</span>
+      method <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>post<span class="pl-pds">&quot;</span></span>, <span class="pl-c">// 提交方式</span>
+      striped <span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// 表格条纹，奇偶行颜色交替</span>
+      <span class="pl-c">// 返回行明细内容的格式化函数</span>
+      <span class="pl-en">detailFormatter</span> <span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">index</span>, <span class="pl-smi">row</span>) {
+          <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;div class=&quot;ddv&quot;&gt;&lt;/div&gt;<span class="pl-pds">'</span></span>;
+      }
+  },
+  <span class="pl-c">/*</span>
+<span class="pl-c">   * ################# url中使用{expression}表达式，解析时用到的正则</span>
+<span class="pl-c">   */</span>
+  expReg <span class="pl-k">:</span><span class="pl-sr"> <span class="pl-pds">/</span><span class="pl-cce">\{</span>(<span class="pl-c1">[<span class="pl-c1">\s\S</span>]</span><span class="pl-k">+?</span>)<span class="pl-cce">\}</span><span class="pl-pds">/</span>g</span>,
+  <span class="pl-c">/*</span>
+<span class="pl-c">   * ################# 验证提示消息</span>
+<span class="pl-c">   */</span>
+  msg <span class="pl-k">:</span> {}
+};</pre>
+  </div> </li> 
+</ul> 
+</div>
+
+<div id="messager" class="content_hide">
+<div class="highlight highlight-source-js">
+ <pre>  <span class="pl-c">/**</span>
+<span class="pl-c">   * 操作提示</span>
+<span class="pl-c">   * </span>
+<span class="pl-c">   * <span class="pl-k">@param</span> msg 消息内容</span>
+<span class="pl-c">   * <span class="pl-k">@param</span> type 消息图标类型：error、info、question、warning</span>
+<span class="pl-c">   * <span class="pl-k">@param</span> callback 回调函数</span>
+<span class="pl-c">   */</span>
+  <span class="pl-smi">uiEx</span>.<span class="pl-c1">alert</span>(msg, type, callback);
+
+  <span class="pl-c">/**</span>
+<span class="pl-c">   * 确认提示</span>
+<span class="pl-c">   * </span>
+<span class="pl-c">   * <span class="pl-k">@param</span> msg 消息内容</span>
+<span class="pl-c">   * <span class="pl-k">@param</span> callback 回调函数</span>
+<span class="pl-c">   */</span>
+  <span class="pl-smi">uiEx</span>.<span class="pl-c1">confirm</span>(msg, callback);
+
+  <span class="pl-c">/**</span>
+<span class="pl-c">   * 输入提示</span>
+<span class="pl-c">   * </span>
+<span class="pl-c">   * <span class="pl-k">@param</span> msg 消息内容</span>
+<span class="pl-c">   * <span class="pl-k">@param</span> callback 回调函数</span>
+<span class="pl-c">   */</span>
+  <span class="pl-smi">uiEx</span>.<span class="pl-c1">prompt</span>(msg, callback);
+
+  <span class="pl-c">/**</span>
+<span class="pl-c">   * 消息提示</span>
+<span class="pl-c">   * </span>
+<span class="pl-c">   * <span class="pl-k">@param</span> msg 消息内容</span>
+<span class="pl-c">   * <span class="pl-k">@param</span> position 消息位置：topLeft, topCenter, topRight, centerLeft, center, centerRight, bottomLeft, bottomCenter, bottomRight; 默认为：bottomRight（右下角）</span>
+<span class="pl-c">   * <span class="pl-k">@param</span> params msg消息框参数</span>
+<span class="pl-c">   */</span>
+  <span class="pl-smi">uiEx</span>.<span class="pl-en">msg</span>(msg, position, params);</pre>
+</div> 
+</div>
+
+
+
+
+<div id="dialog" class="content_hide">
+<ul> 
+ <li> <p>支持两种调用方式</p> <p>解决了 EasyUI 中 Dialog 需要定义在全局页面问题，关闭标签页时自动销毁 Tab 内部加载的 Dialog</p> 
+  <blockquote> 
+   <p>关闭 tab 时，自动销毁加载的指定 dialog，防止重复加载。 由于 EasyUI 的 Dialog 在标签关闭后并不会被销毁（easyUI在解析 dialog 的时候，不论 dialog 定义在哪里，都会被放到 body），所以为了防止在 tab 页面每次加载时重复定义，一般通过以下途径解决： 1、将 dialog 放到主界面中，而不是通过 tab 来加载 2、通刷新的 tab 的时候去销毁掉之前的 dialog</p> 
+  </blockquote> </li> 
+ <li> <p>API</p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">/**</span>
+<span class="pl-c">* 显示指定对话框</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> dialogSelector dialog选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> title 对话框标题</span>
+<span class="pl-c">* <span class="pl-k">@return</span> dialog对象</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">openDialog</span>(dialogSelector, title);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 显示指定href的对话框</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> dialogSelector dialog选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> href 请求内容的href</span>
+<span class="pl-c">* <span class="pl-k">@param</span> title 对话框标题</span>
+<span class="pl-c">* <span class="pl-k">@return</span> dialog对象</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">openHrefDialog</span>(dialogSelector, href, title)
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 关闭指定对话框</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> dialogSelector dialog选择器</span>
+<span class="pl-c">* <span class="pl-k">@return</span> dialog对象</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">closeDialog</span>(dialogSelector);</pre>
+  </div> </li> 
+</ul> 
+
+</div>
+
+
+<div id="form" class="content_hide">
+<ul> 
+ <li><p>支持两种方式调用</p></li> 
+ <li> <p>Ajax表单提交 <code>EasyUIEx.submitAjax</code>和<code>EasyUIEx.submitURLAjax</code>内部封装了一个<code>xRequestedWith=XMLHttpRequest</code>参数，会随表单一同提交到服务器，帮助开发者在服务器端通过<code>xRequestedWith 参数</code>来判断是否是Ajax请求。</p> 
+  <blockquote> 
+   <p>EasyUI的form表单组件的submit提交方法具有一定迷惑和误导性。其内部submit使用的是iframe提交，并非真正的Ajax方式提交。 所以当使用者在服务器端试图通过请求头信息（X-Requested-With=XMLHttpRequest）判断是否是Ajax提交的请求时，并无法准确判断。</p> 
+  </blockquote> <p>同时，uiEx 提供了一个 Ajax 表单提交全局事件处理函数<code>formSubmitSuccess</code>，能够监听表单Ajax提交成功事件，注册全局的处理函数。</p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">/*</span>
+<span class="pl-c">* 为使用EasyUIEx.submitAjax和EasyUIEx.submitURLAjax form表单提交成功的succes事件注册一个系统全局的必须执行函数</span>
+<span class="pl-c">* 类似于jQuery的全局ajaxSuccess函数</span>
+<span class="pl-c">* @param data 表单Ajax提交执行成功返回的数据</span>
+<span class="pl-c">*</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">formSubmitSuccess</span><span class="pl-k">=</span><span class="pl-k">function</span>(<span class="pl-smi">data</span>){
+  <span class="pl-c">//...</span>
+}</pre>
+  </div> </li> 
+ <li> <p>API</p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">/**</span>
+<span class="pl-c">* 清除指定id的form表单信息</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> selector  表单选择器</span>
+<span class="pl-c">* <span class="pl-k">@return</span> form对象</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">clearForm</span>(selector);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 重置reset指定id的form表单信息</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> selector</span>
+<span class="pl-c">*            表单选择器</span>
+<span class="pl-c">* <span class="pl-k">@return</span> form对象</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">resetForm</span>(selector);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 开启表单验证</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> selector 表单选择器</span>
+<span class="pl-c">* <span class="pl-k">@return</span> form对象</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">enableValidate</span>(selector);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 禁用表单验证</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> selector 表单选择器</span>
+<span class="pl-c">* <span class="pl-k">@return</span> form对象</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">disableValidate</span>(selector);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 对表单进行验证</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> selector 表单选择器</span>
+<span class="pl-c">* <span class="pl-k">@return</span> form对象</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">validate</span>(selector);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 代替form(&quot;load&quot;, data);为表单填充数据</span>
+<span class="pl-c">* 可以指定表单名前缀，将数据填充到指定前缀的属性中去</span>
+<span class="pl-c">* 如将data中的name属性值填充到user.name中</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> selector 表单选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> data 表单数据</span>
+<span class="pl-c">* <span class="pl-k">@param</span> prefix 表单名称前缀</span>
+<span class="pl-c">* <span class="pl-k">@return</span> form对象</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">loadForm</span>(selector, data, prefix);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 普通表单提交</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> formSelector 表单选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> params  可选; form表单额外提交的参数</span>
+<span class="pl-c">* <span class="pl-k">@param</span> noValidate 可选; 是否验证; boolean; 默认为true</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">submitForm</span>(formSelector, params, noValidate);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 以Ajax进行带表单验证的表单提交，内部封装了一个`xRequestedWith=XMLHttpRequest`参数；</span>
+<span class="pl-c">* 会随表单一同提交到服务器，帮助开发者在服务器端通过`xRequestedWith参数`来判断是否是Ajax请求。</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> formSelector 表单选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> callback AJAX请求后的回调处理函数</span>
+<span class="pl-c">* <span class="pl-k">@param</span> params 可选; form表单额外提交的参数</span>
+<span class="pl-c">* <span class="pl-k">@param</span> noValidate 可选; 是否验证; boolean; 默认为true</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">submitAjax</span>(formSelector, callback, params, noValidate);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 将表单以Ajax提交到指定url，内部封装了一个`xRequestedWith=XMLHttpRequest`参数；</span>
+<span class="pl-c">* 会随表单一同提交到服务器，帮助开发者在服务器端通过`xRequestedWith参数`来判断是否是Ajax请求。</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> formSelector 表单选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> url 提交到的URL地址</span>
+<span class="pl-c">* <span class="pl-k">@param</span> callback AJAX请求后的回调处理函数</span>
+<span class="pl-c">* <span class="pl-k">@param</span> params 可选; form表单额外提交的参数</span>
+<span class="pl-c">* <span class="pl-k">@param</span> noValidate 可选; 是否验证; boolean; 默认为true</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">submitURLAjax</span>(formSelector, url, callback, params, noValidate) 
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 将form表单信息格式化为JSON返回</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* @parama formSelector form选择器</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">serializeJSON</span>(formSelector);</pre>
+  </div> </li> 
+</ul>
+</div>
+
+<div id="tabs" class="content_hide">
+<ul> 
+ <li><p>支持两种方式调用。</p></li> 
+ <li> <p>EasyUI Tabs两种动态动态加载方式之间的区别：</p> 
+  <ul> 
+   <li>使用content(iframe框架)引入页面: 
+    <ul> 
+     <li><code>content : '&lt;iframe scrolling=&quot;auto&quot; frameborder=&quot;0&quot; src=&quot;'+ url + '&quot; style=&quot;width:100%;height:100%;&quot;&gt;&lt;/iframe&gt;';</code></li> 
+     <li>作为独立窗口存在，页面内容独立，与当前页面互不干扰</li> 
+     <li>需要独立引入需要的JS和CSS资源</li> 
+     <li>弹出的内容是在内部窗口内</li> 
+    </ul> </li> 
+   <li>使用href方法： 
+    <ul> 
+     <li> <code>href : url,</code> </li> 
+     <li>内容片段加载，引入的内容和当前页面合并在一起</li> 
+     <li>不需要引入页面已经引入的JS和CSS资源</li> 
+     <li>引用的页面不能有body，否则加载的内容内部的JS文件文法执行</li> 
+     <li>会显示html渲染解析的提示</li> 
+    </ul> </li> 
+   <li> <p>右键菜单HTML片段：</p> 
+    <div class="highlight highlight-text-html-basic">
+     <pre>&lt;%-- ##################Tab选项卡的右键菜单，不能删除################## --%&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>tabsMenu<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyui-menu<span class="pl-pds">&quot;</span></span> <span class="pl-e">style</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>width:120px;<span class="pl-pds">&quot;</span></span>&gt;
+       &lt;<span class="pl-ent">div</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>close<span class="pl-pds">&quot;</span></span>   <span class="pl-e">data-options</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>iconCls:'icon-close'<span class="pl-pds">&quot;</span></span>&gt;关闭标签&lt;/<span class="pl-ent">div</span>&gt;  
+       &lt;<span class="pl-ent">div</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>other<span class="pl-pds">&quot;</span></span>   <span class="pl-e">data-options</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span>&gt;关闭其他标签&lt;/<span class="pl-ent">div</span>&gt;  
+       &lt;<span class="pl-ent">div</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>all<span class="pl-pds">&quot;</span></span>  <span class="pl-e">data-options</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span>&gt;关闭所有标签&lt;/<span class="pl-ent">div</span>&gt;
+       &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>menu-sep<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+       &lt;<span class="pl-ent">div</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>closeRight<span class="pl-pds">&quot;</span></span>&gt;关闭右侧标签&lt;/<span class="pl-ent">div</span>&gt;
+       &lt;<span class="pl-ent">div</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>closeLeft<span class="pl-pds">&quot;</span></span>&gt;关闭左侧标签&lt;/<span class="pl-ent">div</span>&gt;
+       &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>menu-sep<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+      &lt;<span class="pl-ent">div</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>refresh<span class="pl-pds">&quot;</span></span>  <span class="pl-e">data-options</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>iconCls:'icon-reload'<span class="pl-pds">&quot;</span></span>&gt;刷新标签&lt;/<span class="pl-ent">div</span>&gt; 
+&lt;/<span class="pl-ent">div</span>&gt;</pre>
+    </div> </li> 
+   <li> <p>API</p> 
+    <div class="highlight highlight-source-js">
+     <pre><span class="pl-c">/**</span>
+<span class="pl-c">* 为指定Tab添加选项卡，支持双击关闭</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* @parma tabSelector 选项卡</span>
+<span class="pl-c">* @parma title 标题</span>
+<span class="pl-c">* @parma url 地址</span>
+<span class="pl-c">* @parma icon 可选；图标</span>
+<span class="pl-c">* @parma isIframe 可选；boolean值；是否使用iframe方式引入，true为使用iframe方式引入，默认为href方式</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* # EasyUI Tabs两种动态动态加载方式之间的区别：</span>
+<span class="pl-c">* - 使用content(iframe框架)引入页面:</span>
+<span class="pl-c">*      content : '&lt;iframe scrolling=&quot;auto&quot; frameborder=&quot;0&quot; src=&quot;'+ url + '&quot; style=&quot;width:100%;height:100%;&quot;&gt;&lt;/iframe&gt;';</span>
+<span class="pl-c">*      - 作为独立窗口存在，页面内容独立，与当前页面互不干扰</span>
+<span class="pl-c">*      - 需要独立引入需要的JS和CSS资源</span>
+<span class="pl-c">*      - 弹出的内容是在内部窗口内</span>
+<span class="pl-c">* - 使用href方法：</span>
+<span class="pl-c">*      href : url,</span>
+<span class="pl-c">*      - 内容片段加载，引入的内容和当前页面合并在一起</span>
+<span class="pl-c">*      - 不需要引入页面已经引入的JS和CSS资源</span>
+<span class="pl-c">*      - 引用的页面不能有body，否则加载的内容内部的JS文件文法执行</span>
+<span class="pl-c">*      - 会显示html渲染解析的提示</span>
+<span class="pl-c">* </span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">openTab</span>(tabSelector, title, url, icon, isIframe);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 刷新当前选项卡选中的Panel</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> tabSelector 选项卡选择器</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">reloadSelTab</span>(tabSelector);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 根据菜单Text自动在指定Tab打开某个菜单</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> menuSelector</span>
+<span class="pl-c">*            menu选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> tabSeelctor</span>
+<span class="pl-c">*            选项卡选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> menuText</span>
+<span class="pl-c">*            要打开的菜单文本，可以使用数组定义多个菜单文本</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">openMenuByText</span>(menuSelector, tabSeelctor, menuText);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 根据菜单Id自动在指定Tab打开某个菜单</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> menuSelector</span>
+<span class="pl-c">*            menu选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> tabSeelctor</span>
+<span class="pl-c">*            选项卡选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> menuId</span>
+<span class="pl-c">*            要打开的菜单id，可以使用数组定义多个菜单id</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">openMenuById</span>(menuSelector, tabSelctor, menuId);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 绑定tabs的右键菜单，实现：关闭，关闭其他，关闭所有；关闭左侧标签页、关闭右侧标签页；刷新等菜单功能</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> tabSelector tab选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> menuSelector menu选择器；可选，默认之为#tabsMenu</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* 必须在页面定义右键菜单标签（菜单id、菜单项的name不能修改）：</span>
+<span class="pl-c">*    </span>
+<span class="pl-c">&lt;%-- ##################Tab选项卡的右键菜单，不能删除################## --%&gt;</span>
+<span class="pl-c">&lt;div id=&quot;tabsMenu&quot; class=&quot;easyui-menu&quot; style=&quot;width:120px;&quot;&gt;</span>
+<span class="pl-c">       &lt;div name=&quot;close&quot;   data-options=&quot;iconCls:'icon-close'&quot;&gt;关闭标签&lt;/div&gt;  </span>
+<span class="pl-c">       &lt;div name=&quot;other&quot;   data-options=&quot;&quot;&gt;关闭其他标签&lt;/div&gt;  </span>
+<span class="pl-c">       &lt;div name=&quot;all&quot;  data-options=&quot;&quot;&gt;关闭所有标签&lt;/div&gt;</span>
+<span class="pl-c">       &lt;div class=&quot;menu-sep&quot;&gt;&lt;/div&gt;</span>
+<span class="pl-c">       &lt;div name=&quot;closeRight&quot;&gt;关闭右侧标签&lt;/div&gt;</span>
+<span class="pl-c">       &lt;div name=&quot;closeLeft&quot;&gt;关闭左侧标签&lt;/div&gt;</span>
+<span class="pl-c">       &lt;div class=&quot;menu-sep&quot;&gt;&lt;/div&gt;</span>
+<span class="pl-c">      &lt;div name=&quot;refresh&quot;  data-options=&quot;iconCls:'icon-reload'&quot;&gt;刷新标签&lt;/div&gt; </span>
+<span class="pl-c">&lt;/div&gt;</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">addTabsContextMenu</span>(tabSelector, menuSelector)</pre>
+    </div> </li> 
+  </ul> </li> 
+</ul> 
+</div> 
+
+<div id="datagrid" class="content_hide">
+<ul> 
+ <li><p>支持两种方式调用</p></li> 
+ <li><p><strong>封装和扩展</strong>：EasyUIEx 针对使用 datagrid 相关组件的 CRUD 应用进行了深入封装，提供了附加功能，在调用初始化方法时，配合传入<code>url</code>、<code>saveUrl</code>、<code>updateUrl</code>、<code>destroyUrl</code>等 CRUD 的服务器操作地址参数（和 edatagrid 的参数保持了一致），就能以一致的方式借助 EasyUIEx 的 API 完 CRUD 操作。</p></li> 
+ <li><p><strong>性能优化</strong>：为datagrid和edatagrid 提供了行编辑状态监测，优化修改的请求。当行编辑，列编辑，未修改内容时并不提交请求。</p></li> 
+ <li> <p>datagrid、edatagrid、detaildatagrid、treegrid 共同扩展属性</p> 
+  <table> 
+   <thead> 
+    <tr> 
+     <th>Name</th> 
+     <th>Type</th> 
+     <th>Description</th> 
+     <th>Default</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr> 
+     <td>url</td> 
+     <td>string</td> 
+     <td>查询数据url；获取：<code>dg.datagrid(&quot;options&quot;).url</code> </td> 
+     <td>false</td> 
+    </tr> 
+    <tr> 
+     <td>saveUrl</td> 
+     <td>string</td> 
+     <td>保存数据url；获取：<code>dg.datagrid(&quot;options&quot;).saveUrl</code> </td> 
+     <td>false</td> 
+    </tr> 
+    <tr> 
+     <td>updateUrl</td> 
+     <td>string</td> 
+     <td>修改数据url；获取：<code>dg.datagrid(&quot;options&quot;).updateUrl</code> </td> 
+     <td>false</td> 
+    </tr> 
+    <tr> 
+     <td>destroyUrl</td> 
+     <td>string</td> 
+     <td>删除数据url；获取：<code>dg.datagrid(&quot;options&quot;).destroyUrl</code> </td> 
+     <td>false</td> 
+    </tr> 
+    <tr> 
+     <td>showHeaderContextMenu</td> 
+     <td>boolean</td> 
+     <td>是否在表头显示右键菜单，可选择显示的列</td> 
+     <td>false</td> 
+    </tr> 
+    <tr> 
+     <td>showContextMenu</td> 
+     <td>boolean</td> 
+     <td>是否显示右键菜单，配合menuSelector属性使用</td> 
+     <td>false</td> 
+    </tr> 
+    <tr> 
+     <td>menuSelector</td> 
+     <td>string</td> 
+     <td>菜单选择器</td> 
+     <td>&nbsp;</td> 
+    </tr> 
+    <tr> 
+     <td>successKey</td> 
+     <td>string</td> 
+     <td>服务器端返回的成功标记key，例如：&quot;statusCode&quot;</td> 
+     <td>&nbsp;</td> 
+    </tr> 
+    <tr> 
+     <td>successValue</td> 
+     <td>string</td> 
+     <td>服务器端返回的成功标记value，例如：&quot;200&quot;</td> 
+     <td>&nbsp;</td> 
+    </tr> 
+    <tr> 
+     <td>mutipleDelete</td> 
+     <td>boolean</td> 
+     <td>是否开启多行提交删除</td> 
+     <td>false</td> 
+    </tr> 
+    <tr> 
+     <td>mutipleDeleteProperty</td> 
+     <td>string/Array</td> 
+     <td>多行删除时提及给服务器的属性和值，不会添加sendRowDataPrefix前缀，支持使用数组指定多个属性名</td> 
+     <td>&nbsp;</td> 
+    </tr> 
+   </tbody> 
+  </table> </li> 
+ <li> <p>datagrid、edatagrid 共同扩展属性</p> 
+  <table> 
+   <thead> 
+    <tr> 
+     <th>Name</th> 
+     <th>Type</th> 
+     <th>Description</th> 
+     <th>Default</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr> 
+     <td>sendRowDataPrefix</td> 
+     <td>boolean</td> 
+     <td>添加、删除、更新数据时，支持设置提交row数据前缀<code>sendRowDataPrefix:&quot;sysUser.&quot;</code>，这样提交的数据参数名前会增加指定的前缀，方便在使用Struts等框架时将数据提交到sysUser对象中接收。</td> 
+     <td>&nbsp;</td> 
+    </tr> 
+   </tbody> 
+  </table> </li> 
+ <li> <p>datagrid 扩展属性</p> 
+  <table> 
+   <thead> 
+    <tr> 
+     <th>Name</th> 
+     <th>Type</th> 
+     <th>Description</th> 
+     <th>Default</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr> 
+     <td>clickRowEdit</td> 
+     <td>boolean</td> 
+     <td>在DataGrid单击时实现行编辑，可以代替edatagrid实现带行编辑的datagrid</td> 
+     <td>false</td> 
+    </tr> 
+    <tr> 
+     <td>clickCellEdit</td> 
+     <td>boolean</td> 
+     <td>是否开启单击列编辑功能</td> 
+     <td>false</td> 
+    </tr> 
+   </tbody> 
+  </table> </li> 
+ <li> <p>edatagrid 扩展属性 <strong>使用<code>easy.jquery.edatagrid.js</code>替换<code>jquery.edatagrid.js</code>，easyUIEx的edatagrid对性能和逻辑进行了优化，并提供附加功能</strong>。</p> 
+  <table> 
+   <thead> 
+    <tr> 
+     <th>Name</th> 
+     <th>Type</th> 
+     <th>Description</th> 
+     <th>Default</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr> 
+     <td>clickEdit</td> 
+     <td>boolean</td> 
+     <td>是否开启单击编辑(edatagrid默认为双击开启编辑)</td> 
+     <td>false</td> 
+    </tr> 
+    <tr> 
+     <td>showMsg</td> 
+     <td>boolean</td> 
+     <td>是否显示添加、修改提示消息</td> 
+     <td>false</td> 
+    </tr> 
+   </tbody> 
+  </table> </li> 
+ <li> <p>Demo</p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">// datagrid 初始化</span>
+<span class="pl-k">var</span> dg <span class="pl-k">=</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>#sysUserDataGrid<span class="pl-pds">&quot;</span></span>);
+<span class="pl-smi">dg</span>.<span class="pl-en">initDatagrid</span>({
+iconCls <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>icon-group<span class="pl-pds">'</span></span>,
+<span class="pl-c">/*</span>
+<span class="pl-c"> * 行编辑:saveUrl、updateUrl、destroyUrl配合uiEx使用</span>
+<span class="pl-c"> */</span>
+url <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>sysUser_list.action<span class="pl-pds">&quot;</span></span>,
+saveUrl <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>sysUser_save.action<span class="pl-pds">&quot;</span></span>,
+updateUrl <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>sysUser_update.action<span class="pl-pds">&quot;</span></span>,
+destroyUrl <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>sysUser_delete.action<span class="pl-pds">&quot;</span></span>,
+showHeaderContextMenu<span class="pl-k">:</span><span class="pl-c1">true</span>, <span class="pl-c">// 表头添加右键菜单，可选择显示的列</span>
+<span class="pl-c">// clickRowEdit:true, //注册单击行编辑，可以代替edatagrid实现带行编辑的CRUD</span>
+pageSize <span class="pl-k">:</span> <span class="pl-c1">10</span>,
+pageList <span class="pl-k">:</span> [ <span class="pl-c1">5</span>, <span class="pl-c1">10</span>, <span class="pl-c1">15</span>, <span class="pl-c1">20</span> ],
+checkbox <span class="pl-k">:</span> <span class="pl-c1">true</span>,
+singleSelect <span class="pl-k">:</span> <span class="pl-c1">false</span>,
+checkOnSelect <span class="pl-k">:</span> <span class="pl-c1">true</span>,
+<span class="pl-c">//双击操作</span>
+<span class="pl-en">onDblClickRow</span> <span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">rowIndex</span>, <span class="pl-smi">rowData</span>) {
+    <span class="pl-en">toEdit</span>(rowData);
+},
+menuSelector<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">&quot;</span>#sysUserContextMenu<span class="pl-pds">&quot;</span></span>,
+showContextMenu<span class="pl-k">:</span><span class="pl-c1">true</span>,
+sendRowDataPrefix<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">&quot;</span>sysUser.<span class="pl-pds">&quot;</span></span>,
+mutipleDelete<span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// 多行提交删除</span>
+mutipleDeleteProperty<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">&quot;</span>userId<span class="pl-pds">&quot;</span></span> <span class="pl-c">// 多行删除时提及给服务器的属性和值，不会添加sendRowDataPrefix前缀，支持使用数组指定多个属性名</span>
+});</pre>
+  </div> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">// edatagrid 初始化</span>
+<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>#deptDataGrid<span class="pl-pds">&quot;</span></span>).<span class="pl-en">initEdatagrid</span>({
+   <span class="pl-c">/*</span>
+<span class="pl-c">    * 行编辑:saveUrl、updateUrl、destroyUrl配合uiEx使用</span>
+<span class="pl-c">    */</span>
+   url <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>dept_list.action<span class="pl-pds">&quot;</span></span>,
+   saveUrl <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>dept_save.action<span class="pl-pds">&quot;</span></span>,
+   updateUrl <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>dept_update.action<span class="pl-pds">&quot;</span></span>,
+   destroyUrl <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>dept_delete.action<span class="pl-pds">&quot;</span></span>,
+   idField <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>deptno<span class="pl-pds">&quot;</span></span>,
+   showHeaderContextMenu <span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// 表头添加右键菜单，可选择显示的列</span>
+   pagination <span class="pl-k">:</span> <span class="pl-c1">true</span>,
+   checkbox <span class="pl-k">:</span> <span class="pl-c1">true</span>,
+   checkOnSelect <span class="pl-k">:</span> <span class="pl-c1">true</span>,
+   singleSelect <span class="pl-k">:</span> <span class="pl-c1">false</span>,
+   autoSave <span class="pl-k">:</span> <span class="pl-c1">true</span>,
+   <span class="pl-c">//queryParam:{&quot;rows&quot;:dg.datagrid(&quot;options&quot;).pageSize},</span>
+   clickEdit <span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">//单击编辑</span>
+   showMsg <span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// 显示操作消息</span>
+   <span class="pl-c">//右键菜单</span>
+   menuSelector <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#deptContextMenu<span class="pl-pds">&quot;</span></span>,
+   showContextMenu <span class="pl-k">:</span> <span class="pl-c1">true</span>,
+   sendRowDataPrefix <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>dept.<span class="pl-pds">&quot;</span></span>, <span class="pl-c">//提交数据前缀</span>
+   successKey <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>statusCode<span class="pl-pds">&quot;</span></span>, <span class="pl-c">//服务器端返回的成功标记key</span>
+   successValue <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>200<span class="pl-pds">&quot;</span></span> <span class="pl-c">//服务器端返回的成功标记value</span>
+});</pre>
+  </div> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">// detaildatagrid 初始化</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">initDetailDatagrid</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>#userDataGrid2<span class="pl-pds">&quot;</span></span>,<span class="pl-s"><span class="pl-pds">&quot;</span>do/toDetailEdit.jsp<span class="pl-pds">&quot;</span></span>,{
+<span class="pl-c">/*</span>
+<span class="pl-c">* 行编辑:saveUrl、updateUrl、destroyUrl配合uiEx使用</span>
+<span class="pl-c">*/</span>
+url <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>do/doList.jsp<span class="pl-pds">&quot;</span></span>, <span class="pl-c">//数据表格数据查询</span>
+saveUrl <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>do/doMyUsers.jsp?t=add<span class="pl-pds">&quot;</span></span>, <span class="pl-c">//保存</span>
+updateUrl <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>do/doMyUsers.jsp?t=edit&amp;id={id}<span class="pl-pds">&quot;</span></span>, <span class="pl-c">//修改</span>
+destroyUrl <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>do/doMyUsers.jsp?t=delete<span class="pl-pds">&quot;</span></span>, <span class="pl-c">//删除</span>
+iconCls <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>icon-group<span class="pl-pds">&quot;</span></span>,
+showHeaderContextMenu <span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// 表头添加右键菜单，可选择显示的列</span>
+pageSize <span class="pl-k">:</span> <span class="pl-c1">5</span>,
+pageList <span class="pl-k">:</span> [ <span class="pl-c1">5</span>, <span class="pl-c1">10</span>, <span class="pl-c1">15</span>, <span class="pl-c1">20</span> ]
+});</pre>
+  </div> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">// treegrid 初始化</span>
+<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>#sysMenuPermissionDataGrid<span class="pl-pds">&quot;</span></span>).<span class="pl-en">initTreegrid</span>({
+url <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>sysMenuPermission_list.action<span class="pl-pds">'</span></span>,
+rownumbers <span class="pl-k">:</span> <span class="pl-c1">true</span>,
+idField <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>id<span class="pl-pds">&quot;</span></span>,
+treeField <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>,
+lines <span class="pl-k">:</span> <span class="pl-c1">true</span>,
+<span class="pl-c">//双击操作</span>
+<span class="pl-en">onDblClickRow</span> <span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">rowData</span>) {
+    <span class="pl-en">toEdit</span>(rowData);
+},
+<span class="pl-c">// 表头添加右键菜单，可选择显示的列</span>
+showHeaderContextMenu <span class="pl-k">:</span> <span class="pl-c1">true</span>,
+menuSelector <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#sysMenuPermissionContextMenu<span class="pl-pds">&quot;</span></span>,
+showContextMenu <span class="pl-k">:</span> <span class="pl-c1">true</span>
+});</pre>
+  </div> </li> 
+ <li> <p>API</p> 
+  <ul> 
+   <li> <p>grid 初始化 API</p> 
+    <div class="highlight highlight-source-js">
+     <pre><span class="pl-c">/**</span>
+<span class="pl-c">* DataGrid: datagrid初始化，包含了uiEx.dataGridDefaults默认参数</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> datagridSelector datagrid选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> params 可选；datagrid初始化参数</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">initDatagrid</span>(datagridSelector, params);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* EditDataGrid: edatagrid初始化，包含了uiEx.dataGridDefaults默认参数</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> datagridSelector datagrid选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> params 可选；datagrid初始化参数</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">initEdatagrid</span>(datagridSelector, params);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* DetailDataGrid: DetailDataGrid初始化，包含了detailDataGridDefaults参数的默认值</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> datagridSelector datagrid选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> detailUrl 加载详细视图的url</span>
+<span class="pl-c">* <span class="pl-k">@param</span> params 可选；其他参数，主要包括数据CRUD的url地址</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">initDetailDatagrid</span>(datagridSelector, detailUrl, params);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* Treegird: Treegird初始化</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> treegridSelector</span>
+<span class="pl-c">*            treegrid选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> params</span>
+<span class="pl-c">*            可选；treegrid其他参数</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">initTreegrid</span>(treegridSelector, params); </pre>
+    </div> </li> 
+   <li> <p>datagrid CRUD API</p> 
+    <div class="highlight highlight-source-js">
+     <pre><span class="pl-c">/*</span>
+<span class="pl-c">* ############## DataGrid CRUD</span>
+<span class="pl-c">*/</span>
+<span class="pl-c">/**</span>
+<span class="pl-c">*  datagrid：为行编辑DataGrid追加新行</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> datagridSelector DataGrid选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> rowParam 可选；新数据行的数据参数</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">rowAdd</span>(datagridSelector, rowParam);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* datagrid：为指定DataGrid启用行编辑，会引起一次新加载</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> datagridSelector  datagrid选择器或对象</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">rowEdit</span>(datagridSelector);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 取消选中行的编辑</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> datagridSelector</span>
+<span class="pl-c">*            DataGrid选择器</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">rowCancelEdit</span>(datagridSelector)；
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* datagird、edatagrid、detaildatagrid、treegrid:删除选中行，支持mutipleDelete多行删除参数</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> datagridSelector</span>
+<span class="pl-c">*            DataGrid选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> showMsg</span>
+<span class="pl-c">*            可选；boolean值，是否显示提示消息，会覆盖默认的全局uiEx.showRowDeleteMsg参数值</span>
+<span class="pl-c">* <span class="pl-k">@param</span> reloadDataGrid</span>
+<span class="pl-c">*            可选；是否reload重新加载 DataGrid，默认为false</span>
+<span class="pl-c">* <span class="pl-k">@param</span> successKey</span>
+<span class="pl-c">*            可选；字符串值，执行成功返回的标记key，值必须和successValue相同才代表删除成功</span>
+<span class="pl-c">* <span class="pl-k">@param</span> successValue</span>
+<span class="pl-c">*            可选；字符串值，执行成功返回的标记value</span>
+<span class="pl-c">*  </span>
+<span class="pl-c">*  - demo：</span>
+<span class="pl-c">*  dg.rowDelete(true, false, &quot;statusCode&quot;, &quoquot;200&quot;);</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">rowDelete</span>(datagridSelector,  showMsg, reloadDataGrid, successKey, successValue)；</pre>
+    </div> </li> 
+   <li> <p>DetailDataGrid API</p> 
+    <div class="highlight highlight-source-js">
+     <pre><span class="pl-c">/**</span>
+<span class="pl-c">* DetailDataGrid: DetailDataGrid添加行</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> datagridSelector datagrid选择器</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">detailRowAdd</span>(datagridSelector);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* DetailDataGrid: DetailDataGrid编辑保存</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> datagridSelector datagrid选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> index 编辑行索引，加载详细数据时，index值会提交到服务器，直接从服务器端请求参数获得传入该函数</span>
+<span class="pl-c">*            例如，JSP写法：uiEx.detailRowSave('#userDataGrid',${param.index})</span>
+<span class="pl-c">* <span class="pl-k">@param</span> showMsg 可选；是否显示提示信息</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">detailRowSave</span>(datagridSelector, index, showMsg);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* DetailDataGrid: DetailDataGrid取消编辑或添加</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> datagridSelector datagrid选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> index 编辑行索引，加载详细数据时，index值会提交到服务器，直接从服务器端请求参数获得传入该函数</span>
+<span class="pl-c">*            例如，JSP写法：uiEx.detailRowCancel('#userDataGrid',${param.index})</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">detailRowCancel</span>(datagridSelector, index);</pre>
+    </div> </li> 
+   <li> <p>Edatagrid API</p> 
+    <div class="highlight highlight-source-js">
+     <pre><span class="pl-c">/**</span>
+<span class="pl-c">* edatagrid, 开始编辑，直接单击编辑，无需双击开启编辑</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> datagridSelector</span>
+<span class="pl-c">*            EDataGrid选择器</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">beginEditGrid</span>(datagridSelector);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* edatagrid, 结束编辑，进入可编辑状态 不同于disableEditing禁用编辑，禁用编辑则无法编辑</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> datagridSelector</span>
+<span class="pl-c">*            EDataGrid选择器</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">endEditGrid</span>(datagridSelector);</pre>
+    </div> </li> 
+  </ul> </li> 
+</ul> 
+</div>
+
+<div id="treegrid" class="content_hide">
+<ul> 
+ <li><p>支持两种方式调用</p></li> 
+ <li> <p>支持使用 <code>parentId 属性</code> 方式的树渲染</p> 
+  <blockquote> 
+   <p>EasyUI 默认的 tree 构建使用的是 <code>children 数组</code>。EasyUIEx 允许使用 <code>parentId 属性</code> 来表示并渲染树形组件。</p> 
+  </blockquote> </li> 
+ <li> <p>扩展属性</p> 
+  <table> 
+   <thead> 
+    <tr> 
+     <th>Name</th> 
+     <th>Type</th> 
+     <th>Description</th> 
+     <th>Default</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr> 
+     <td>showHeaderContextMenu</td> 
+     <td>boolean</td> 
+     <td>是否在表头显示右键菜单，可选择显示的列</td> 
+     <td>false</td> 
+    </tr> 
+    <tr> 
+     <td>showContextMenu</td> 
+     <td>boolean</td> 
+     <td>是否显示右键菜单，配合menuSelector属性使用</td> 
+     <td>false</td> 
+    </tr> 
+    <tr> 
+     <td>menuSelector</td> 
+     <td>string</td> 
+     <td>菜单选择器</td> 
+     <td>&nbsp;</td> 
+    </tr> 
+   </tbody> 
+  </table> </li> 
+ <li> <p>Demo</p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>#sysMenuPermissionDataGrid<span class="pl-pds">&quot;</span></span>).<span class="pl-en">initTreegrid</span>({
+url <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>sysMenuPermission_list.action<span class="pl-pds">'</span></span>,
+rownumbers <span class="pl-k">:</span> <span class="pl-c1">true</span>,
+idField <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>id<span class="pl-pds">&quot;</span></span>,
+treeField <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>,
+lines <span class="pl-k">:</span> <span class="pl-c1">true</span>,
+<span class="pl-c">//双击操作</span>
+<span class="pl-en">onDblClickRow</span> <span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">rowData</span>) {
+    <span class="pl-en">toEdit</span>(rowData);
+},
+<span class="pl-c">// 表头添加右键菜单，可选择显示的列</span>
+showHeaderContextMenu <span class="pl-k">:</span> <span class="pl-c1">true</span>,
+menuSelector <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#sysMenuPermissionContextMenu<span class="pl-pds">&quot;</span></span>,
+showContextMenu <span class="pl-k">:</span> <span class="pl-c1">true</span>
+});</pre>
+  </div> 
+  <div class="highlight highlight-text-html-basic">
+   <pre><span class="pl-c">&lt;!-- 折叠和展开当前目录 --&gt;</span>
+&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sysMenuRightContextMenu<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyui-menu<span class="pl-pds">&quot;</span></span> <span class="pl-e">style</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>width:120px;<span class="pl-pds">&quot;</span></span>&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">onclick</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>uiEx.collapse('#sysMenuRightDataGrid')<span class="pl-pds">&quot;</span></span>&gt;折叠目录&lt;/<span class="pl-ent">div</span>&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">onclick</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>uiEx.expand('#sysMenuRightDataGrid')<span class="pl-pds">&quot;</span></span>&gt;展开目录&lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre>
+  </div> </li> 
+ <li> <p>API</p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">/**</span>
+<span class="pl-c">* Treegird: Treegird 初始化</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> treegridSelector</span>
+<span class="pl-c">*            treegrid选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> params</span>
+<span class="pl-c">*            可选；treegrid其他参数</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">initTreegrid</span>(treegridSelector, params)
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* Treegird: 使用 parentId 属性表示的 Treegird 初始化</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> treegridSelector</span>
+<span class="pl-c">*            treegrid选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> params</span>
+<span class="pl-c">*            可选；treegrid其他参数</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">initParentIdTreegrid</span>(treegridSelector, params)
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 折叠选中目录</span>
+<span class="pl-c">* <span class="pl-k">@param</span> treeGridSelector treeGrid选择器 </span>
+<span class="pl-c">* </span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-c1">collapse</span>(treeGridSelector);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 展开选中目录</span>
+<span class="pl-c">* <span class="pl-k">@param</span> treeGridSelector treeGrid选择器 </span>
+<span class="pl-c">* </span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-c1">expand</span>(treeGridSelector);</pre>
+  </div> </li> 
+</ul> 
+</div>
+
+<div id="tree" class="content_hide">
+<ul> 
+ <li><p>支持两种方式调用</p></li> 
+ <li><p>支持与 Tabs 绑定</p></li> 
+ <li><p>支持使用 <code>parentId 属性</code> 方式的树渲染</p></li> 
+ <li> <p>扩展属性</p> 
+  <table> 
+   <thead> 
+    <tr> 
+     <th>Name</th> 
+     <th>Type</th> 
+     <th>Description</th> 
+     <th>Default</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr> 
+     <td>expandChilds</td> 
+     <td>boolean</td> 
+     <td>点击菜单父节点展开子节点功能</td> 
+     <td>false</td> 
+    </tr> 
+   </tbody> 
+  </table> </li> 
+ <li> <p>Demo</p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">//普通树菜单初始化</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">initTree</span>(
+<span class="pl-s"><span class="pl-pds">&quot;</span>#menu<span class="pl-pds">&quot;</span></span>,  <span class="pl-c">//树菜单selector</span>
+<span class="pl-s"><span class="pl-pds">&quot;</span>#tabs<span class="pl-pds">&quot;</span></span>,  <span class="pl-c">//打开树菜单url的tabSelector</span>
+   <span class="pl-c">//其他树参数</span>
+{
+    expandChilds<span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">//点击父菜单，展开子菜单</span>
+    data<span class="pl-k">:</span> <span class="pl-smi">EasySSH</span>.<span class="pl-smi">menuTreeJson</span>
+   <span class="pl-c">//url : &quot;json/menuTree.json.js&quot;, </span>
+}
+);</pre>
+  </div> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">//自动打开指定Text的菜单 </span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">openMenuByText</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>#menu<span class="pl-pds">&quot;</span></span>,<span class="pl-s"><span class="pl-pds">&quot;</span>#tabs<span class="pl-pds">&quot;</span></span>,<span class="pl-s"><span class="pl-pds">&quot;</span>CRUD<span class="pl-pds">&quot;</span></span>);</pre>
+  </div> </li> 
+ <li> <p>API</p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">/*</span>
+<span class="pl-c">* ############## Tree </span>
+<span class="pl-c">*/</span>
+<span class="pl-c">/**</span>
+<span class="pl-c">* Tree: tree初始化，包含两大默认功能：</span>
+<span class="pl-c">* 1. 点击菜单父节点打开子节点功能</span>
+<span class="pl-c">* 2. 点击菜单在tabSelector指定的tab打开</span>
+<span class="pl-c">* 3. tab双击关闭</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> treeSelector datagrid选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> tabSelector  打开树菜单url的tab选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> params 可选；tree初始化参数</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">initTree</span>(treeSelector, tabSelector, params);
+
+  <span class="pl-c">/**</span>
+<span class="pl-c">* Tree: 使用 parentId 属性表示的 tree 初始化，包含两大默认功能：</span>
+<span class="pl-c">* 1. 点击菜单父节点打开子节点功能</span>
+<span class="pl-c">* 2. 点击菜单在 tabSelector 指定的 tab 打开</span>
+<span class="pl-c">* 3. tab 双击关闭</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> treeSelector datagrid选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> tabSelector  打开树菜单url的tab选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> params 可选；tree初始化参数</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">initParentIdTree</span>(treeSelector, tabSelector, params);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* onSelect事件处理：Tree的onSelect事件的实现，能实现点击菜单父节点打开子节点功能 在树初始化时通过注册onSelect事件传入</span>
+<span class="pl-c">* onSelect : uiEx.expandChilds, //点击菜单父节点打开子节点功能</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* 通过initTree的expandChilds属性可以实现相同效果：</span>
+<span class="pl-c">* expandChilds: true; </span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> node</span>
+<span class="pl-c">*            事件调用时传入点击的节点对象</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">expandChilds</span>(node);</pre>
+  </div> </li> 
+ <li> <p>tabs 绑定相关 API</p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">/*</span>
+<span class="pl-c">* ############## Tree Menu open to tab</span>
+<span class="pl-c">*/</span>
+<span class="pl-c">/**</span>
+<span class="pl-c">* 根据菜单Text自动在指定Tab打开某个菜单</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> menuSelector menu选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> tabSeelctor 选项卡选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> menuText  要打开的菜单文本，可以使用数组定义多个菜单文本</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">openMenuByText</span>(menuSelector, tabSelector, menuText);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 根据菜单Id自动在指定Tab打开某个菜单</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> menuSelector menu选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> tabSeelctor 选项卡选择器</span>
+<span class="pl-c">* <span class="pl-k">@param</span> menuId 要打开的菜单id，可以使用数组定义多个菜单id</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">openMenuById</span>(menuSelector, tabSelctor, menuId);</pre>
+  </div> </li> 
+</ul> 
+</div>
+
+
+<div id="checkboxtree" class="content_hide">
+<ul> 
+ <li><p>支持两种方式调用</p></li> 
+ <li><p>支持使用 <code>parentId 属性</code> 方式的树渲染</p></li> 
+ <li> <p>扩展属性</p> 
+  <table> 
+   <thead> 
+    <tr> 
+     <th>Name</th> 
+     <th>Type</th> 
+     <th>Description</th> 
+     <th>Default</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr> 
+     <td>showTitle</td> 
+     <td>string</td> 
+     <td>鼠标移上菜单项title提示功能，可指定显示的属性</td> 
+     <td>&nbsp;</td> 
+    </tr> 
+    <tr> 
+     <td>noChildCascadeCheck</td> 
+     <td>boolean</td> 
+     <td>级联选中父节点，但选中父节点不级联选中子节点。而cascadeCheck:true会导致父节点选中时子节点自动全选。</td> 
+     <td>false</td> 
+    </tr> 
+   </tbody> 
+  </table> </li> 
+ <li> <p>Demo</p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">/*</span>
+<span class="pl-c">* 复选框树初始化</span>
+<span class="pl-c">*/</span>
+<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>#rightsTree<span class="pl-pds">&quot;</span></span>).<span class="pl-en">initTreeChk</span>(
+      <span class="pl-c">//树加载参数</span>
+      {
+          url<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">&quot;</span>do/menuJson.jsp<span class="pl-pds">&quot;</span></span>  <span class="pl-c">//获取树JSON数据</span>
+      },
+      [<span class="pl-c1">11</span>] <span class="pl-c">//默认选中值数组</span>
+);</pre>
+  </div> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">/*</span>
+<span class="pl-c">* 初始化权限复选框</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">initTreeChk</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>#sysRoleEditRights<span class="pl-pds">&quot;</span></span>, {
+  url <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>sysMenuRight_listAll.action<span class="pl-pds">&quot;</span></span>,
+  checkbox<span class="pl-k">:</span><span class="pl-c1">true</span>,
+  animate<span class="pl-k">:</span><span class="pl-c1">true</span>,
+  lines<span class="pl-k">:</span><span class="pl-c1">true</span>,
+  noChildCascadeCheck<span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">//级联选中父节点，但选中父节点不级联选中子节点</span>
+  showTitle<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">&quot;</span>remark<span class="pl-pds">&quot;</span></span> <span class="pl-c">//将remark属性作为title显示</span>
+}, <span class="pl-smi">data</span>.<span class="pl-smi">list</span>);</pre>
+  </div> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">/*</span>
+<span class="pl-c">* 重置</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">rights</span>.<span class="pl-en">resetTree</span><span class="pl-k">=</span><span class="pl-k">function</span>(){
+  <span class="pl-smi">uiEx</span>.<span class="pl-en">treeChkRest</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>#rightsTree<span class="pl-pds">&quot;</span></span>);
+}</pre>
+  </div> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">/*</span>
+<span class="pl-c">* 提交</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">rights</span>.<span class="pl-en">submit</span><span class="pl-k">=</span><span class="pl-k">function</span>(){
+  <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>#rightsForm<span class="pl-pds">&quot;</span></span>).<span class="pl-en">submitAjax</span>(<span class="pl-k">function</span>(<span class="pl-smi">data</span>){
+          <span class="pl-en">console</span>.<span class="pl-c1">info</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>提交成功<span class="pl-pds">&quot;</span></span>);
+      },
+      <span class="pl-c">//随rightsForm表单一同提交到服务器的参数——复选框树选中的节点id列表（#分隔）</span>
+      {
+          ids<span class="pl-k">:</span><span class="pl-smi">uiEx</span>.<span class="pl-en">getCheckedIds</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>#rightsTree<span class="pl-pds">&quot;</span></span>).<span class="pl-c1">join</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>#<span class="pl-pds">&quot;</span></span>)
+      }
+  );
+}</pre>
+  </div> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">/*</span>
+<span class="pl-c">* 获得复选框树选中的节点中attributeArray指定的属性值，返回获得值列表的数组</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">getCheckedInfos</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>#sysRoleAddRights<span class="pl-pds">&quot;</span></span>,[<span class="pl-s"><span class="pl-pds">&quot;</span>id<span class="pl-pds">&quot;</span></span>,<span class="pl-s"><span class="pl-pds">&quot;</span>type<span class="pl-pds">&quot;</span></span>])</pre>
+  </div> </li> 
+ <li> <p>API</p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c">/*</span>
+<span class="pl-c">* ############## Checkbox Tree</span>
+<span class="pl-c">*/</span>
+<span class="pl-c">/**</span>
+<span class="pl-c">* 复选框树初始化</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> treeSelector 树选择器或对象</span>
+<span class="pl-c">* <span class="pl-k">@param</span> param 树加载参数</span>
+<span class="pl-c">* <span class="pl-k">@param</span> values 默认选中值数组</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">initTreeChk</span>(treeSelector, param, values);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* parentId 表示的复选框树初始化</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> treeSelector 树选择器或对象</span>
+<span class="pl-c">* <span class="pl-k">@param</span> param 树加载参数</span>
+<span class="pl-c">* <span class="pl-k">@param</span> values 默认选中值数组</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">initParentIdTreeChk</span>(treeSelector, param, values);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 带复选框的树重置，配合uiEx.treeChk使用</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> treeSelector 树选择器或对象</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">treeChkRest</span>(treeSelector);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 设置选中的树复选框，注意：此方法必须在树渲染完后调用</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> treeSelector 树选择器或对象</span>
+<span class="pl-c">* <span class="pl-k">@param</span> values 选中的树节点ID数组</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">treeChkSetValues</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">treeSelector</span>, <span class="pl-smi">values</span>); 
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 获得带复选框树选中的节点id数组</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> treeSelector  树选择器或对象</span>
+<span class="pl-c">* <span class="pl-k">@return</span> 带复选框树选中的节点id数组</span>
+<span class="pl-c">*/</span>
+uiEx.getCheckedIds(treeSelector);
+
+<span class="pl-c">/**</span>
+<span class="pl-c">* 获得复选框树选中的节点中attributeArray指定的属性值，返回获得值列表的数组</span>
+<span class="pl-c">* </span>
+<span class="pl-c">* <span class="pl-k">@param</span> treeSelector 树选择器或对象</span>
+<span class="pl-c">* <span class="pl-k">@param</span> propertyArray 树属性数组</span>
+<span class="pl-c">* <span class="pl-k">@return</span> 获得值列表的数组</span>
+<span class="pl-c">*/</span>
+uiEx.getCheckedInfos(treeSelector, propertyArray);</pre>
+  </div> </li> 
+</ul> 
+</div>
+
+<div id="validate" class="content_hide">
+<ul> 
+ <li><p>由于验证场景和规则不一，可根据需要扩展<code>easy.easyuiex-validate.js</code>，注册自定义的验证器。</p></li> 
+ <li> <p>Demo：</p> 
+  <div class="highlight highlight-text-html-basic">
+   <pre>&lt;<span class="pl-ent">input</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>renewpwd<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>renewpwd<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyui-textbox<span class="pl-pds">&quot;</span></span> 
+type=<span class="pl-s"><span class="pl-pds">&quot;</span>password<span class="pl-pds">&quot;</span></span>  
+data<span class="pl-e">-options</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>required:true,validType:['minLength [6]','equals[\'#newpwd\',\'与新密码不一致.\']']<span class="pl-pds">&quot;</span></span>&gt; &lt;/<span class="pl-ent">input</span>&gt;</pre>
+  </div> </li> 
+ <li> <p>API</p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-en">$</span>(<span class="pl-k">function</span>() {
+  <span class="pl-c">/*</span>
+<span class="pl-c">   * ################# 自定义验证部分</span>
+<span class="pl-c">   */</span>
+
+  <span class="pl-c">/**</span>
+<span class="pl-c">   * 比较输入是否与指定元素一致</span>
+<span class="pl-c">   */</span>
+  <span class="pl-smi">$</span>.<span class="pl-en">extend</span>(<span class="pl-smi">$</span>.<span class="pl-smi">fn</span>.<span class="pl-smi">validatebox</span>.<span class="pl-smi">defaults</span>.<span class="pl-c1">rules</span>, {
+      equals <span class="pl-k">:</span> {
+          <span class="pl-en">validator</span> <span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">value</span>, <span class="pl-smi">param</span>) {
+              <span class="pl-k">return</span> value <span class="pl-k">==</span> <span class="pl-en">$</span>(param[<span class="pl-c1">0</span>]).<span class="pl-en">val</span>();
+          },
+          message <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>{1}<span class="pl-pds">'</span></span>
+      }
+  });
+
+  <span class="pl-c">/**</span>
+<span class="pl-c">   * 输入最小长度验证</span>
+<span class="pl-c">   */</span>
+  <span class="pl-smi">$</span>.<span class="pl-en">extend</span>(<span class="pl-smi">$</span>.<span class="pl-smi">fn</span>.<span class="pl-smi">validatebox</span>.<span class="pl-smi">defaults</span>.<span class="pl-c1">rules</span>, {
+      minLength <span class="pl-k">:</span> {
+          <span class="pl-en">validator</span> <span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">value</span>, <span class="pl-smi">param</span>) {
+              <span class="pl-k">return</span> <span class="pl-smi">value</span>.<span class="pl-c1">length</span> <span class="pl-k">&gt;=</span> param[<span class="pl-c1">0</span>];
+          },
+          message <span class="pl-k">:</span> <span class="pl-smi">uiEx</span>.<span class="pl-smi">msg</span>.<span class="pl-smi">minLength</span>
+      }
+  });
+
+})</pre>
+  </div> </li> 
+</ul> 
+</div>
+
+<div id="others" class="content_hide">
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-c">/**</span>
+<span class="pl-c"> * 将变量uiEx的控制权让渡给第一个实现它的那个库</span>
+<span class="pl-c"> * <span class="pl-k">@return</span> uiEx对象的引用</span>
+<span class="pl-c"> */</span>
+<span class="pl-smi">uiEx</span>.<span class="pl-en">noConflict</span>();
+
+<span class="pl-c">/*</span>
+<span class="pl-c"> * parentId 类型树生成转换函数，在树形组件的 loadFilter 函数中调用</span>
+<span class="pl-c"> */</span>
+<span class="pl-en">loadFilter</span><span class="pl-k">:</span><span class="pl-k">function</span>(<span class="pl-smi">rows</span>){
+    <span class="pl-smi">uiEx</span>.<span class="pl-en">convert</span>(rows);
+}</pre>
+</div> 
+</div>
+
+</body>
+</html>
+
