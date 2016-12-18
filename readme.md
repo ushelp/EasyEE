@@ -1,15 +1,16 @@
 # EasyEE 开源 JavaEE 企业级快速开发平台
 
-EasyEE 是一个开源 JaveEE 企业级快速开发基础平台。
+EasyEE 是一个开源 JaveEE 企业级快速开发基础平台，提供多种技术方案选择，支持 Spring Boot, Hibernate, MyBatis, Struts, Shiro 等核心框架。
 
 整合了广泛使用的 JaveEE 领域优秀框架及 EasyUI 前端框架；提供了基于用户、角色、权限方案的后台权限管理系统，安全管理框架及常用开发组件。为企业级项目开发提供了基础架构和规范。
 
-EasyEE is an open source JaveEE enterprise-class rapid development of the basic platform.
+EasyEE is an open source JaveEE enterprise-class rapid development of the basic platform, provide a variety of technical options options, support Spring Boot, Hibernate, MyBatis, Struts, Shiro and other core framework.
 
 It integrates the widely used framework of JaveEE domain and EasyUI front-end framework. It provides the back-end rights management system, security management framework and common development components based on user, role and permission scheme. Provides infrastructure and specifications for enterprise-level project development.
 
 
-Least version: `3.0.0-RELEASE`
+Least version: `4.1.0-RELEASE`
+
 
 ## EasyEE Releases/EasyEE 发行版本
 
@@ -17,14 +18,60 @@ Least version: `3.0.0-RELEASE`
 
 Provide a variety of technical framework combinations.
 
-- **EasyEE-SSH**: `Spring` + `Struts` + `Hibernate`
+- **EasyEE-SH-SpringBoot**: `Spring Boot` + `Hibernate(JPA)`
 
-- **EasyEE-SH**: `SpringMVC` + `Hibernate`
+- **EasyEE-SM-SpringBoot**: `Spring Boot` + `MyBatis`
+
+- **EasyEE-SSH**: `Spring` + `Struts2` + `Hibernate(JPA)`
+
+- **EasyEE-SH**: `SpringMVC` + `Hibernate(JPA)`
 
 - **EasyEE-SM**: `SpringMVC` + `MyBatis`
 
 
-### EasyEE-SSH(JPA) 3.0.0
+
+### EasyEE-SH(JPA)-SpringBoot
+---------------------------
+
+- **Spring Boot 1.4.2**
+- **Hibernate 5+(JPA)**
+- **Shiro 2+**
+- EasyCommonDAO
+- EasyShiro 
+- EasyFilter
+- EasyUI 1.4.3
+- EasyUIEx 2.2.0
+
+#### Develop documentation/开发文档
+
+[中文](doc/SHSpringBoot/EasyEE-shpringboot-readme-zh_CN.md)
+
+[English](doc/SHSpringBoot/EasyEE-shpringboot-readme-en.md)
+
+
+### EasyEE-SM-SpringBoot
+---------------------------
+
+- **Spring Boot 1.4.2**
+- **MyBatis 3.4+**
+- **Shiro 2+**
+- EasyCommonDAO
+- EasyShiro 
+- EasyFilter
+- EasyUI 1.4.3
+- EasyUIEx 2.2.0
+
+#### Develop documentation/开发文档
+
+[中文](doc/SMSpringBoot/EasyEE-smspringboot-readme-zh_CN.md)
+
+[English](doc/SMSpringBoot/EasyEE-smspringboot-readme-en.md)
+
+
+
+
+
+### EasyEE-SSH(JPA)
 ---------------------------
 
 - **Struts 2.5+**
@@ -39,11 +86,13 @@ Provide a variety of technical framework combinations.
 
 #### Develop documentation/开发文档
 
-[中文](3.0.0/doc/SSH/EasyEE-ssh-readme-zh_CN.md)
+[中文](doc/SSH/EasyEE-ssh-readme-zh_CN.md)
 
-[English](3.0.0/doc/SSH/EasyEE-ssh-readme-en.md)
+[English](doc/SSH/EasyEE-ssh-readme-en.md)
 
-### EasyEE-SH(JPA) 3.0.0
+
+
+### EasyEE-SH(JPA)
 ---------------------------
 
 - **Spring 4+(SpringMVC)**
@@ -57,12 +106,14 @@ Provide a variety of technical framework combinations.
 
 #### Develop documentation/开发文档
 
-[中文](3.0.0/doc/SH/EasyEE-sh-readme-zh_CN.md)
+[中文](doc/SH/EasyEE-sh-readme-zh_CN.md)
 
-[English](3.0.0/doc/SH/EasyEE-sh-readme-en.md)
+[English](doc/SH/EasyEE-sh-readme-en.md)
 
 
-### EasyEE-SM 3.0.0
+
+
+### EasyEE-SM
 ---------------------------
 
 - **Spring 4+(SpringMVC)**
@@ -76,9 +127,12 @@ Provide a variety of technical framework combinations.
 
 #### Develop documentation/开发文档
 
-[中文](3.0.0/doc/SM/EasyEE-sm-readme-zh_CN.md)
+[中文](doc/SM/EasyEE-sm-readme-zh_CN.md)
 
-[English](3.0.0/doc/SM/EasyEE-sm-readme-en.md)
+[English](doc/SM/EasyEE-sm-readme-en.md)
+
+
+
 
 ## Run/运行 
 
@@ -86,20 +140,35 @@ Provide a variety of technical framework combinations.
 
 1. 运行环境
  - JDK 7+
- - MySQL 5.7+
+ - Oracle / MySQL 5.7
  - Maven 3+
  
 2. 创建数据库
 
- 执行相应 SQL 脚本  `3.0.0\project\XXX\xxx.sql`
+ 执行相应 SQL 脚本  `database\DATABASE_easyee_LANGUAGE[_COUNTRY].sql`
+
+ - MySQL
+  ```SQL
+  mysql> source MySQL_easyee_LANGUAGE[_COUNTRY].sql
+  ```
+ 
+ - Oracle 
+  ```SQL
+  SQL> start Oracle_easyee_LANGUAGE[_COUNTRY].sql
+  ```
  
 3. 编辑 JDBC 数据库连接配置参数
 
- 修改 `src/main/resources/db.properties`
+ Spring Boot: `src/main/resources/application.properties`
+
+ Non-Spring Boot: `src/main/resources/db.properties`
 
 4. 启动
   
- 执行 `startup.bat`(`mvn jetty:run`)/`startup.sh` 
+ 执行 `startup.bat`/`startup.sh` 
+ 
+> Spring Boot: `mvn spring-boot:run`
+> Non-Spring Boot: `mvn jetty:run`
 
 5. 访问( jetty HTTP 端口 `9999`)
  
@@ -113,20 +182,35 @@ Provide a variety of technical framework combinations.
 
 1. Run Enviroment
  - JDK 7+
- - MySQL 5.7+
+ - Oracle / MySQL 5.7
  - Maven 3+
  
 2. Create database
 
- execute `3.0.0\project\XXX\xxx.sql`
+ execute `database\DATABASE_easyee_LANGUAGE[_COUNTRY].sql`
+
+ - MySQL
+  ```SQL
+  mysql> source MySQL_easyee_LANGUAGE[_COUNTRY].sql
+  ```
+ 
+ - Oracle 
+  ```SQL
+  SQL> start Oracle_easyee_LANGUAGE[_COUNTRY].sql
+  ```
  
 3. Edit jdbc properties
 
- Edit `src/main/resources/db.properties`
+ Spring Boot: `src/main/resources/application.properties`
 
+ Non-Spring Boot: `src/main/resources/db.properties`
+ 
 4. Start
   
- Run `startup.bat`(`mvn jetty:run`)/`startup.sh` 
+ Run `startup.bat`/`startup.sh` 
+ 
+>  Spring Boot: `mvn spring-boot:run`
+>  Non-Spring Boot: `mvn jetty:run`
 
 5. Visit( jetty HTTP port `9999`)
  
@@ -143,13 +227,13 @@ Provide a variety of technical framework combinations.
 
 ## Demo
 
-[Demo Online](http://www.easyproject.cn/easyee-ssh 'Demo')
+[Demo Online](http://www.easyproject.cn/easyee 'Demo')
 
 Username: `demo`
 
 Password: `111111`
 
-![Demo](3.0.0/doc/images/easyee.png)
+![Demo](doc/images/easyee.png)
 
 
 
@@ -157,9 +241,9 @@ Password: `111111`
 
 ### Planned versions/计划版本
 
-- **EasyEE 4.0.0**: 
+- **EasyEE 5.0.0**: 
 
- SpringBoot Support
+ Module Support
 
 ### Other porject support/其他项目工具支持
 
