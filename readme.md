@@ -44,9 +44,9 @@ Provide a variety of technical framework combinations.
 
 #### Develop documentation/开发文档
 
-[中文](doc/SHSpringBoot/EasyEE-shpringboot-readme-zh_CN.md)
+[中文](4.1.0/doc/SHSpringBoot/EasyEE-shpringboot-readme-zh_CN.md)
 
-[English](doc/SHSpringBoot/EasyEE-shpringboot-readme-en.md)
+[English](4.1.0/doc/SHSpringBoot/EasyEE-shpringboot-readme-en.md)
 
 
 ### EasyEE-SM-SpringBoot
@@ -63,9 +63,9 @@ Provide a variety of technical framework combinations.
 
 #### Develop documentation/开发文档
 
-[中文](doc/SMSpringBoot/EasyEE-smspringboot-readme-zh_CN.md)
+[中文](4.1.0/doc/SMSpringBoot/EasyEE-smspringboot-readme-zh_CN.md)
 
-[English](doc/SMSpringBoot/EasyEE-smspringboot-readme-en.md)
+[English](4.1.0/doc/SMSpringBoot/EasyEE-smspringboot-readme-en.md)
 
 
 
@@ -86,9 +86,9 @@ Provide a variety of technical framework combinations.
 
 #### Develop documentation/开发文档
 
-[中文](doc/SSH/EasyEE-ssh-readme-zh_CN.md)
+[中文](4.1.0/doc/SSH/EasyEE-ssh-readme-zh_CN.md)
 
-[English](doc/SSH/EasyEE-ssh-readme-en.md)
+[English](4.1.0/doc/SSH/EasyEE-ssh-readme-en.md)
 
 
 
@@ -106,9 +106,9 @@ Provide a variety of technical framework combinations.
 
 #### Develop documentation/开发文档
 
-[中文](doc/SH/EasyEE-sh-readme-zh_CN.md)
+[中文](4.1.0/doc/SH/EasyEE-sh-readme-zh_CN.md)
 
-[English](doc/SH/EasyEE-sh-readme-en.md)
+[English](4.1.0/doc/SH/EasyEE-sh-readme-en.md)
 
 
 
@@ -127,9 +127,9 @@ Provide a variety of technical framework combinations.
 
 #### Develop documentation/开发文档
 
-[中文](doc/SM/EasyEE-sm-readme-zh_CN.md)
+[中文](4.1.0/doc/SM/EasyEE-sm-readme-zh_CN.md)
 
-[English](doc/SM/EasyEE-sm-readme-en.md)
+[English](4.1.0/doc/SM/EasyEE-sm-readme-en.md)
 
 
 
@@ -167,8 +167,9 @@ Provide a variety of technical framework combinations.
   
  执行 `startup.bat`/`startup.sh` 
  
-> Spring Boot: `mvn spring-boot:run`
-> Non-Spring Boot: `mvn jetty:run`
+ > Spring Boot: `mvn spring-boot:run`
+ >
+ > Non-Spring Boot: `mvn jetty:run`
 
 5. 访问( jetty HTTP 端口 `9999`)
  
@@ -209,8 +210,9 @@ Provide a variety of technical framework combinations.
   
  Run `startup.bat`/`startup.sh` 
  
->  Spring Boot: `mvn spring-boot:run`
->  Non-Spring Boot: `mvn jetty:run`
+ > Spring Boot: `mvn spring-boot:run`
+ >
+ > Non-Spring Boot: `mvn jetty:run`
 
 5. Visit( jetty HTTP port `9999`)
  
@@ -233,7 +235,7 @@ Username: `demo`
 
 Password: `111111`
 
-![Demo](doc/images/easyee.png)
+![Demo](4.1.0/doc/images/easyee.png)
 
 
 
