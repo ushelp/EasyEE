@@ -167,7 +167,7 @@ Provide a variety of technical framework combinations.
   
  执行 `startup.bat`/`startup.sh` 
  
- > Spring Boot: `mvn spring-boot:run`
+ > Spring Boot: `mvn compile spring-boot:run`
  >
  > Non-Spring Boot: `mvn jetty:run`
 
@@ -210,7 +210,7 @@ Provide a variety of technical framework combinations.
   
  Run `startup.bat`/`startup.sh` 
  
- > Spring Boot: `mvn spring-boot:run`
+ > Spring Boot: `mvn compile spring-boot:run`
  >
  > Non-Spring Boot: `mvn jetty:run`
 
