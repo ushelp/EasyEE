@@ -238,12 +238,12 @@ insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTIO
 insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (9,6,'修改操作权限','SysOperationPermission/update','');
 insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (10,6,'删除操作权限','SysOperationPermission/delete','');
 insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (11,4,'查询所有角色','SysRole/list','');
-insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (12,4,'添加角色','SysRole/save,SysMenuPermission/listAll,SysMenuPermission/listAllForSysRole','');
-insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (13,4,'修改角色','SysRole/update#SysRole/getAllPermissionsId,SysMenuPermission/listAll,SysMenuPermission/listAllForSysRole','修改角色需要获得用户的相关角色权限');
+insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (12,4,'添加角色','SysRole/save,SysMenuPermission/listAllForSysRole','');
+insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (13,4,'修改角色','SysRole/update#SysRole/getAllPermissionsId,SysMenuPermission/listAllForSysRole','修改角色需要获得用户的相关角色权限');
 insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (14,4,'删除角色','SysRole/delete','');
 insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (15,3,'查询用户列表','SysUser/list','');
-insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (16,3,'添加用户','SysUser/save,sysRole/all','');
-insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (17,3,'修改用户','SysUser/update,sysRole/all','');
+insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (16,3,'添加用户','SysUser/save,SysRole/all','');
+insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (17,3,'修改用户','SysUser/update,SysRole/all','');
 insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (18,3,'删除用户','SysUser/delete','');
 insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (19,3,'显示添加用户按钮','SysUserAddBtn','显示权限');
 insert  into sys_operation(OPERATION_PERMISSION_ID,MENU_PERMISSION_ID,NAME,ACTION,REMARK) values (20,3,'显示删除用户按钮','SysUserDelBtn','显示权限');
