@@ -421,7 +421,7 @@ insert  into sys_user_role(USER_ID,ROLE_ID) values (1,1);
 insert  into sys_user_role(USER_ID,ROLE_ID) values (2,2);
 insert  into sys_user_role(USER_ID,ROLE_ID) values (3,2);
 insert  into sys_user_role(USER_ID,ROLE_ID) values (4,3);
-insert  into sys_user_role(USER_ID,ROLE_ID) values (5,4);
+insert  into sys_user_role(USER_ID,ROLE_ID) values (5,5);
 
 
 commit;
