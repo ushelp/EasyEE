@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<easyFilter xmlns="http://www.easyproject.cn/schema/easyFilter"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.easyproject.cn/schema/easyFilter http://www.easyproject.cn/schema/easyFilter/easyfilter-2.0.xsd">
+
+	<!--######################### Request keyword filter ######################### -->
+	<keywordFilter>
+		<!-- Whether to filter keyword from request parameters 
+			- on: Filter keyword parameter on 
+			- off: Filter keyword parameter off
+		-->
+		<filter>on</filter>
+		<!-- 
+			if find keyword, use defaultReplace to replace 
+		-->
+		<defaultReplace></defaultReplace>
+		<!-- 
+			- keyword and replace list 
+			- Format: keyword replace 
+			- Notice: In XML document, special characters must use character entities in place
+		-->
+		<replaceList>
+			<replace keyword="&lt;" replace="&amp;lt;"></replace>
+			<replace keyword="&gt;" replace="&amp;gt;"></replace>
+			<replace keyword="fuck" replace="f***"></replace>
+			<!-- 
+			<replace keyword="bitch" replace="love"></replace>
+			<replace keyword="毒品" replace="XX"></replace> 
+			-->
+		</replaceList>
+		<!-- 
+			- exclude keyword filter parameterName list 
+			- Format: regexParameterName##regexParameterName2
+			- Supports regex expressions 
+		-->
+		<excludeParameters>
+			<keyword>password</keyword>
+			<keyword>.*.password</keyword>
+			<keyword>confirmPwd</keyword>
+		</excludeParameters>
+		<!-- 
+			- exculde keyword filter uri list, request.getRequestURI() 
+			- Format: regexURI##regexURI2##... 
+			- Supports regex expressions 
+		-->
+		<excludeURI>
+		<!-- 	 
+				<uri>/test\.jsp</uri> 
+				<uri>add\.action</uri> 
+		-->	
+		</excludeURI>
+	</keywordFilter>
+
+
+	<!-- ######################### SQL inject keyword filter ######################### -->
+	<sqlFilter>
+		<!-- 
+			- Whether to filter SQL inject keyword parameters 
+			- on: Filter SQL inject keyword parameter on 
+			- off: Filter SQL inject keyword parameter off 
+		-->
+		<filter>off</filter>
+		<!-- 
+			- SQL inject keyword, when sqlInjectFilter is true, these words will 
+			replace to empty by request 
+			-  Format: word##word2##... 
+		-->
+		<injectFilterList>
+			<value>
+				and##exec##insert##select##delete##update##count##chr##mid##master##truncate##char##declare##or
+			</value>
+			<value>
+				;##-##+##,##*##% 
+			</value>
+		</injectFilterList>
+		<!-- 
+			- inlude sql inject filter parameterName list 
+			- Format: regexParameterName##regexParameterName##... 
+			- Supports regex expressions 
+			- eg. sysUser.name 
+		-->
+		<includeParameters>
+			<!-- 
+				<value>sysUser.name</value> 
+			-->
+		</includeParameters>
+	</sqlFilter>
+</easyFilter>

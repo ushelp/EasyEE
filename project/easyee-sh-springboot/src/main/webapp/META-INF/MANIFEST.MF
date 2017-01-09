@@ -1,0 +1,4 @@
+Implementation-Version: 4.0.0-RELEASE
+Manifest-Version: 1.0
+Class-Path: 
+

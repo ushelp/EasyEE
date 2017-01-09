@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR">
+     <Appenders>
+          <Console name="Console" target="SYSTEM_OUT">
+              <!--  <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %l - %msg%n" /> -->
+               <PatternLayout pattern="%-5level - %msg%n" />
+          </Console>
+     </Appenders>
+     <Loggers>
+     	 <!-- MyBatis -->
+           <Logger name="cn.easyproject.easyee.sm" level="DEBUG" />
+          <!-- ## UserInterceptor ## -->
+          <Logger name="com.bank.spdbank.base.interceptor.UserInterceptor" level="DEBUG"></Logger>
+          <Root level="INFO">
+               <AppenderRef ref="Console" />
+          </Root>
+     </Loggers>
+</Configuration>

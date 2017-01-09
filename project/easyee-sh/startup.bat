@@ -1,0 +1,1 @@
+mvn compile jetty:run

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.easyproject.easyee.sm.sys.dao.SysUserDAO">
+
+	<resultMap type="SysUser" id="SysUserMap">
+		<id column="USER_ID" property="userId"/>
+		<result column="REAL_NAME" property="realName"/>
+		<result column="NAME" property="name"/>
+		<result column="STATUS" property="status"/>
+		<collection property="sysRoles" ofType="SysRole">
+			<id column="ROLE_ID" property="roleId"/>
+			<result column="ROLE_NAME" property="name"/>
+		</collection>
+	</resultMap>
+	
+	<insert id="add" useGeneratedKeys="true" keyProperty="userId" keyColumn="USER_ID">
+		INSERT INTO sys_user (
+		  NAME,
+		  PASSWORD,
+		  STATUS,
+		  REAL_NAME
+		) 
+		VALUES
+		  (
+		    #{name},
+		    #{password},
+		    #{status},
+		    #{realName}
+		  )
+	</insert>
+	
+	<insert id="addUserRoles">
+		insert into sys_user_role(USER_ID, ROLE_ID) values
+		<foreach collection="sysRoles" separator="," item="item">
+		(${userId}, ${item.roleId})
+		</foreach>
+	</insert>
+	
+	<delete id="delete">
+		delete from sys_user where user_id=#{userId}	
+	</delete>
+	<delete id="deleteUserRoles">
+		delete from sys_user_role where USER_ID=#{userId}
+	</delete>
+	<delete id="deleteByIds">
+		delete from sys_user where user_id in
+		  <foreach item="item" index="index" collection="array"
+		      open="(" separator="," close=")">
+		        #{item}
+		  </foreach>	
+	</delete>
+	
+	<update id="update">
+		UPDATE 
+		  sys_user 
+		SET
+		  NAME = #{name},
+		  PASSWORD =  #{password},
+		  STATUS =  #{status},
+		  REAL_NAME =  #{realName}
+		WHERE USER_ID = #{userId}
+	</update>
+	<update id="changePwd">
+		UPDATE 
+		  sys_user 
+		SET
+		  PASSWORD =  #{password}
+		WHERE
+		 USER_ID = #{userId}
+	</update>
+	
+	
+	<select id="login" resultMap="SysUserMap">
+		<!-- 用户状态：0启用；1禁用；2删除 -->
+		select * from sys_user where name=#{name} and password=#{password} and status in(0,1)
+	</select>
+	<select id="get" resultMap="SysUserMap">
+		select * from sys_user where user_id=#{userId}
+	</select>
+	<select id="pagination" resultMap="SysUserMap">
+		${autoSQL}
+	</select>
+	
+	<select id="existsName" resultType="int">
+		select count(*) from sys_user where lower(name)=#{name}
+	</select>
+	<select id="existsNameWhenEdit" resultType="int">
+		select count(*) from sys_user where lower(name)=#{name} and user_Id!=#{userId}
+	</select>
+	<select id="findMaxRow" resultType="int">
+		select count(*) from sys_user
+	</select>
+	<select id="getPwd" resultType="string">
+		select password from sys_user where user_Id=#{userId}
+	</select>
+	
+</mapper>

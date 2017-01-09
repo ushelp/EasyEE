@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- Scan @Controller -->
+	<context:component-scan base-package="cn.easyproject.easyee">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+
+	<!-- 启用 MVC 注解驱动 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	
+	<mvc:default-servlet-handler/>
+	
+
+	<!-- ViewResolver 视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/content/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+	<!-- 配置文件上传multipartResolver Bean -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+	</bean>
+
+	<!-- Interceptors -->
+	<mvc:interceptors>
+		<!-- SysLog -->
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<bean class="cn.easyproject.easyee.sm.sys.interceptor.LogInterceptor"></bean>
+		</mvc:interceptor>
+		<!-- LocaleChange -->
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+
+	<!-- I18N -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<!-- 国际化资源基名称，相对于类路径 -->
+		<property name="basenames">
+			<list>
+				<value>classpath:/i18n/messages</value>
+			</list>
+		</property>
+		<!-- 刷新资源的周期，单位为秒 -->
+		<property name="cacheSeconds" value="10"></property>
+	</bean>
+	<!-- LocaleChange Cookie -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
+
+	<!-- Exception Handler -->
+<!-- 	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="defaultErrorView">
+			<value>error/actionError</value>
+		</property>
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.NullPointerException">
+					error/actionError
+				</prop>
+			</props>
+		</property>
+	</bean> -->
+
+
+
+</beans>

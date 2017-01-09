@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.easyproject.easyee.sm.sys.dao.SysMenuPermissionDAO">
+
+	<resultMap type="SysMenuPermission" id="SysMenuPermissionMap">
+		<result column="MENU_PERMISSION_ID" property="menuPermissionId"/>
+		<result column="PARENT_ID" property="sysMenuPermission.menuPermissionId"/>
+		<result column="SORT_NUM" property="sortNum"/>
+	</resultMap>
+
+    <insert id="add" useGeneratedKeys="true" keyColumn="MENU_PERMISSION_ID" keyProperty="menuPermissionId">
+		INSERT INTO sys_menu (
+		  NAME,
+		  ACTION,
+		  PARENT_ID,
+		  SORT_NUM,
+		  ICON,
+		  REMARK
+		) 
+		VALUES
+		  (
+		    #{name},
+		    #{action},
+		    #{sysMenuPermission.menuPermissionId},
+		    #{sortNum},
+		    #{icon},
+		    #{remark}
+		  ) 
+	</insert>
+	<update id="update">
+		UPDATE 
+		  sys_menu 
+		SET
+		  NAME = #{name},
+		  ACTION = #{action},
+		  PARENT_ID =  #{sysMenuPermission.menuPermissionId},
+		  SORT_NUM = #{sortNum},
+		  ICON = #{icon},
+		  REMARK = #{remark} 
+		WHERE MENU_PERMISSION_ID = #{menuPermissionId}
+	</update>
+	
+	
+	<delete id="deleteMenuRoles">
+		delete from sys_role_menu where MENU_PERMISSION_ID=#{menuPermissionId}
+	</delete>
+	<delete id="deleteMenuOperationRoles">
+		delete from sys_role_operation where OPERATION_PERMISSION_ID in (
+			select OPERATION_PERMISSION_ID from sys_operation where MENU_PERMISSION_ID=#{menuPermissionId}
+		)
+	</delete>
+	<delete id="deleteMenuOperation">
+		delete from sys_operation where MENU_PERMISSION_ID=#{menuPermissionId}
+	</delete>
+	<delete id="delete">
+		delete from sys_menu where MENU_PERMISSION_ID=#{menuPermissionId}
+	</delete>
+    
+	<select id="get" resultMap="SysMenuPermissionMap">
+		select * from sys_menu where MENU_PERMISSION_ID=#{menuPermissionId}
+	</select>
+	<select id="list" resultMap="SysMenuPermissionMap">
+		select * from sys_menu
+	</select>
+	<select id="listAll" resultType="hashmap">
+		  <choose>
+		  <!-- MYSQL -->
+			<when test="@cn.easyproject.easyee.sm.base.controller.BaseController@dialect==3">
+				SELECT 
+		  'menu' AS TYPE,
+		  MENU_PERMISSION_ID AS ID,
+		  NAME as NAME,
+		  ACTION as ACTION,
+		  IFNULL(PARENT_ID,0)AS PARENTID,
+		  REMARK as REMARK,
+		  SORT_NUM as SORTNUM,
+		  ICON AS ICON
+		FROM
+		  sys_menu 
+		UNION
+		SELECT 
+		  'operation' AS TYPE,
+		  OPERATION_PERMISSION_ID AS ID,
+		  NAME as NAME,
+		  ACTION as ACTION,
+		  IFNULL(MENU_PERMISSION_ID,0)AS PARENTID,
+		  REMARK as REMARK,
+		  0,
+		  null
+		FROM
+		  sys_operation 		
+			</when>
+			<!-- ORACLE -->
+			<when test="@cn.easyproject.easyee.sm.base.controller.BaseController@dialect==1 or @cn.easyproject.easyee.sm.base.controller.BaseController@dialect==10">
+				
+		SELECT 
+		  'menu' AS TYPE,
+		  MENU_PERMISSION_ID AS ID,
+		  NAME as NAME,
+		  ACTION as ACTION,
+		  nvl(PARENT_ID,0)AS PARENTID,
+		  REMARK as REMARK,
+		  SORT_NUM as SORTNUM,
+		  ICON AS ICON
+		FROM
+		  sys_menu 
+		UNION
+		SELECT 
+		  'operation' AS TYPE,
+		  OPERATION_PERMISSION_ID AS ID,
+		  NAME as NAME,
+		  ACTION as ACTION,
+		  nvl(MENU_PERMISSION_ID,0)AS PARENTID,
+		  REMARK as REMARK,
+		  0,
+		  null
+		FROM
+		  sys_operation 
+			</when>
+			</choose>
+	</select>
+
+	<select id="getIdsByRoleId" resultType="string">
+		select menu_Permission_Id from sys_role_menu where ROLE_ID=#{roleId}
+	</select>
+	
+	<select id="getMaxSortNum" resultType="int">
+
+		<choose>
+			<!-- MYSQL -->
+			<when test="@cn.easyproject.easyee.sm.base.controller.BaseController@dialect==3">
+				<choose>
+					<when test="parentId!=-1">
+					select IFNULL(max(SORT_NUM),0) from sys_menu where PARENT_ID=#{parentId}
+					</when>
+					<otherwise>
+					select IFNULL(max(SORT_NUM),0) from sys_menu where PARENT_ID is null
+					</otherwise>
+				</choose>
+			</when>
+			<!-- ORACLE -->
+			<when test="@cn.easyproject.easyee.sm.base.controller.BaseController@dialect==1 or @cn.easyproject.easyee.sm.base.controller.BaseController@dialect==10">
+				<choose>
+					<when test="parentId!=-1">
+					select nvl(max(SORT_NUM),0) from sys_menu where PARENT_ID=#{parentId}
+					</when>
+					<otherwise>
+					select nvl(max(SORT_NUM),0) from sys_menu where PARENT_ID is null
+					</otherwise>
+				</choose>
+			</when>
+		</choose>
+	
+		
+	</select>
+	<select id="getSortNum" resultType="boolean">
+		
+		<choose>
+			<!-- MYSQL -->
+			<when test="@cn.easyproject.easyee.sm.base.controller.BaseController@dialect==3">
+				select IFNULL(SORT_NUM,0) from sys_menu where MENU_PERMISSION_ID=#{menuPermissionId}
+			</when>
+			<!-- ORACLE -->
+			<when test="@cn.easyproject.easyee.sm.base.controller.BaseController@dialect==1 or @cn.easyproject.easyee.sm.base.controller.BaseController@dialect==10">
+				select NVL(SORT_NUM,0) from sys_menu where MENU_PERMISSION_ID=#{menuPermissionId}
+			</when>
+		</choose>
+	
+	</select>
+	<select id="hashChildMenu" resultType="int">
+		select count(*) from sys_menu where parent_id=#{menuPermissionId}
+	</select>
+	
+	<!-- MOVE -->
+	<select id="getDownNeighbor" resultMap="SysMenuPermissionMap">
+		<![CDATA[
+		select 
+			*
+		from 
+			sys_menu 
+		where 
+			PARENT_ID=#{sysMenuPermission.menuPermissionId}
+		and 
+			sort_Num=(
+				select 
+					min(SORT_NUM) 
+				from 
+					sys_menu 
+				where 
+					PARENT_ID=#{sysMenuPermission.menuPermissionId} and SORT_NUM>#{sortNum}
+			)
+		]]>
+	</select>
+	<select id="getUpNeighbor" resultMap="SysMenuPermissionMap">
+		<![CDATA[
+		select 
+			*
+		from 
+			sys_menu 
+		where 
+			PARENT_ID=#{sysMenuPermission.menuPermissionId}
+		and 
+			sort_Num=(
+				select 
+					max(SORT_NUM) 
+				from 
+					sys_menu 
+				where 
+					PARENT_ID=#{sysMenuPermission.menuPermissionId} and SORT_NUM<#{sortNum}
+			)
+		]]>
+	</select>
+	<update id="move">
+		update sys_menu set SORT_NUM=#{sortNum} where MENU_PERMISSION_ID=#{menuPermissionId}
+	</update>
+	
+	<select id="listByUserId" resultMap="SysMenuPermissionMap">
+		select smp.*  from sys_menu smp, sys_role_menu srmp, sys_user_role sur
+		where sur.ROLE_ID=srmp.ROLE_ID and smp.MENU_PERMISSION_ID=srmp.MENU_PERMISSION_ID and sur.USER_ID=#{userId}
+	</select>
+
+	
+</mapper>

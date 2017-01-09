@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.easyproject.easyee.sm.hr.dao.EmpDAO">
+
+	<resultMap type="Emp" id="EmpMap">
+		<result column="deptno" property="dept.deptno"/>
+		<result column="dname" property="dept.dname"/>
+		<result column="loc" property="dept.loc"/>
+	</resultMap>
+
+
+	<select id="get" resultMap="EmpMap">
+		select e.empno, e.ename, e.job, d.deptno, d.dname from module_emp e, module_dept d where e.deptno=d.deptno and empno=#{empno}
+	</select>
+	<insert id="save" useGeneratedKeys="true" keyColumn="empno" keyProperty="empno">
+		insert into module_emp(ename,job,deptno) values(#{ename},#{job},#{dept.deptno})
+	</insert>
+	<update id="update">
+		update module_emp set ename=#{ename}, job=#{job}, deptno=#{dept.deptno} where empno=#{empno}
+	</update>
+	<delete id="delete">
+		delete from module_emp where empno=#{empno}
+	</delete>
+	<delete id="deleteByIds">
+		delete from module_emp 
+		 WHERE empno in
+		  <foreach item="item" index="index" collection="array"
+		      open="(" separator="," close=")">
+		        #{item}
+		  </foreach>
+	</delete>
+	
+	<select id="pagination" resultMap="EmpMap">
+		${autoSQL}
+	</select>
+	
+	<select id="findEmpCountByDeptno" resultType="int">
+		select count(*) from module_emp where deptno=#{dept.deptno}
+	</select>
+	<select id="findMaxRow" resultType="int">
+		select count(*) from module_emp
+	</select>
+	
+</mapper>

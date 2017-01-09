@@ -1,0 +1,60 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+	<!-- easyssh 默认父包 -->
+	<package name="easyssh-default" extends="json-default" namespace="/" strict-method-invocation="true" >
+	
+		<interceptors>
+			<interceptor name="sysLog" class="cn.easyproject.easyee.ssh.sys.interceptor.LogInterceptor"></interceptor>
+			<interceptor-stack name="easySSHStack">
+				<interceptor-ref name="defaultStack">
+					<!-- Multipart -->
+					    <!--  Action能接受的最大上传单个文件的字节大小 10Mb -->
+					    <param name="fileUpload.maximumSize">10485760</param>
+					    <!-- 设置允许上传的文件类型列表 -->
+					   <!--  <param name="fileUpload.allowedTypes">image/gif,image/jpeg</param> -->
+					    <!-- 设置允许上传的文件后缀列表 -->
+					    <!-- <param name="fileUpload.allowedExtensions">jpg,gif</param> -->
+				</interceptor-ref>
+				<interceptor-ref name="sysLog"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 默认拦截器 -->
+		<default-interceptor-ref name="easySSHStack"></default-interceptor-ref>
+		<!-- Action请求不存在时执行 -->
+		<default-action-ref name="toLogin"></default-action-ref>
+		<!-- 全局结果 -->
+		<global-results>
+			<!-- JSON Result -->
+			<result name="json" type="json">
+				<param name="excludeProperties">
+					password,.*\.password
+				</param>
+				<param name="ignoreHierarchy">false</param>
+				<param name="root">jsonRoot</param> <!-- JSON根对象 -->
+				<!-- <param name="excludeNullProperties"> true </param> -->
+			</result>
+			<result name="login">/WEB-INF/content/login.jsp</result>
+			<result name="loginRedirect" type="redirect">/toLogin</result>
+			<result name="PermissionDenied">/jsp/error/permissionDenied.jsp</result>
+			<result name="actionError">/jsp/error/actionError.jsp</result>
+		</global-results>
+		
+		<!-- Allowed Methods for Strict DMI -->
+		<global-allowed-methods>execute,input,back,cancel,browse,save,delete,list,index,move,update,getAllPermissionsId,changePwd,regex:(list.*),regex:(all.*)</global-allowed-methods>
+		
+		<!-- Exception  -->
+	    <global-exception-mappings>
+			<exception-mapping result="actionError" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>  
+		
+		<!-- Action请求不存在时执行 -->
+		<action name="notFound">
+			<result>/jsp/error/notFound.jsp</result>
+		</action>
+
+	</package>
+
+</struts>    

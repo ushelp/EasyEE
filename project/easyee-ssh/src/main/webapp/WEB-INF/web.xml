@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	
+	<display-name>EasyEE-ssh</display-name>
+	
+	<welcome-file-list>
+		<welcome-file>toLogin</welcome-file>
+	</welcome-file-list>
+
+	<!-- Shiro Spring Intergation -->
+	<!-- The filter-name matches name of a 'shiroFilter' bean inside applicationContext.xml -->
+ 	<filter>
+		<filter-name>shiroFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<!-- Shiro Web Intergation(shiro.ini, not spring) -->
+	<!--  <listener>
+	<listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+	</listener>
+	<filter>
+	<filter-name>shiroFilter</filter-name>
+	<filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+	</filter> --> 
+		
+
+	<!-- Make sure any request you want accessible to Shiro is filtered. /* 
+		catches all -->
+	<!-- requests. Usually this filter mapping is defined first (before all 
+		others) to -->
+	<!-- ensure that Shiro works in subsequent filters in the filter chain: -->
+	<filter-mapping>
+		<filter-name>shiroFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+
+
+	<!-- EasyFilter -->
+	<filter>
+		<filter-name>contentFilter</filter-name>
+		<filter-class>cn.easyproject.easyfilter.filter.EasyFilter</filter-class>
+		<init-param>
+			<param-name>charset</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>contentFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- Struts2 -->
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
+	<!-- Spring Web -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/ApplicationContext.xml</param-value>
+	</context-param>
+	
+	<servlet>
+		<servlet-name>captcha</servlet-name>
+		<jsp-file>/jsp/VerifyCode.jsp</jsp-file>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	
+	
+	<!-- Error page -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/jsp/error/notFound.jsp</location>
+	</error-page> 
+   <error-page>
+		<error-code>500</error-code>
+		<location>/jsp/error/serverError.jsp</location>
+	</error-page> 
+</web-app>

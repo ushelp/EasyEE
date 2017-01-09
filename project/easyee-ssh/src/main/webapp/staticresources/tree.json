@@ -1,0 +1,15 @@
+[
+{"id":1, "text":"根节点", "url": "url.action", "state": "open", "iconCls": "icon-application", "parentId": "0", "remark": "xxxx", "type": "menu"},
+{"id":2, "text":"菜单一", "url": "url.action", "state": "open", "iconCls": "icon-application", "parentId": "1", "remark": "xxxx", "type": "menu"},
+{"id":3, "text":"菜单二", "url": "url.action", "state": "open", "iconCls": "icon-application", "parentId": "1", "remark": "xxxx", "type": "menu"},
+{"id":4, "text":"菜单三", "url": "url.action", "state": "open", "iconCls": "icon-application", "parentId": "1", "remark": "xxxx", "type": "menu"},
+{"id":5, "text":"菜单四", "url": "url.action", "state": "open", "iconCls": "icon-application", "parentId": "1", "remark": "xxxx", "type": "menu"},
+{"id":6, "text":"菜单一1", "url": "url.action", "state": "open", "iconCls": "icon-application", "parentId": "2", "remark": "xxxx", "type": "menu"},
+{"id":7, "text":"菜单一2", "url": "url.action", "state": "open", "iconCls": "icon-application", "parentId": "2", "remark": "xxxx", "type": "menu"},
+{"id":8, "text":"菜单一3", "url": "url.action", "state": "open", "iconCls": "icon-application", "parentId": "2", "remark": "xxxx", "type": "menu"},
+{"id":9, "text":"菜单二1", "url": "url.action", "state": "open", "iconCls": "icon-application", "parentId": "3", "remark": "xxxx", "type": "menu"},
+{"id":10, "text":"菜单二2", "url": "url.action", "state": "open", "iconCls": "icon-application", "parentId": "3", "remark": "xxxx", "type": "menu"},
+{"id":11, "text":"菜单三1", "url": "url.action", "state": "open", "iconCls": "icon-application", "parentId": "4", "remark": "xxxx", "type": "menu"},
+{"id":12, "text":"菜单四1", "url": "url.action", "state": "open", "iconCls": "icon-application", "parentId": "5", "remark": "xxxx", "type": "menu"},
+{"id":12, "text":"菜单一1-1", "url": "url.action", "state": "open", "iconCls": "icon-application", "parentId": "6", "remark": "xxxx", "type": "menu"}
+]

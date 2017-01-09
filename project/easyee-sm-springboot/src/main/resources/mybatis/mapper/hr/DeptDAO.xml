@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.easyproject.easyee.sm.hr.dao.DeptDAO">
+
+	<insert id="save" useGeneratedKeys="true" keyColumn="deptno" keyProperty="deptno">
+		insert into module_dept(dname,loc) values(#{dname},#{loc})
+	</insert>
+	<delete id="delete">
+		delete from module_dept where deptno=#{deptno}
+	</delete>
+	<update id="update">
+		update module_dept set dname=#{dname},loc=#{loc} where deptno=#{deptno}
+	</update>
+	<select id="get" resultType="Dept">
+		select * from module_dept where deptno=#{deptno}
+	</select>
+
+	<select id="findAll" resultType="Dept">
+		select * from module_dept
+	</select>
+	<select id="findMaxRow" resultType="int">
+		select count(*) from module_dept
+	</select>
+	
+	<!-- EasyMyBatis-Pagination -->
+	<select id="pagination" resultType="Dept">
+		${autoSQL}
+	</select>
+</mapper>

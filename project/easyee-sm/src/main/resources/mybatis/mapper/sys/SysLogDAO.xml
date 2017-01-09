@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.easyproject.easyee.sm.sys.dao.SysLogDAO">
+
+	<resultMap type="SysLog" id="SysLogMap">
+		<result column="LOG_TIME" property="logTime"/>
+	</resultMap>
+
+	<insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+	INSERT INTO sys_log (
+		ACTION, 
+		PARAMETERS, 
+		RES, 
+		ACCOUNT, 
+		IP, 
+		LOG_TIME
+	)
+	 VALUES 
+	 (
+	 #{action},
+	 #{parameters},
+	 #{res},
+	 #{account},
+	 #{ip},
+	 #{logTime}
+	 )
+	</insert>
+	
+	
+	<select id="pagination" resultMap="SysLogMap">
+		${autoSQL}
+	</select>
+
+
+	
+</mapper>

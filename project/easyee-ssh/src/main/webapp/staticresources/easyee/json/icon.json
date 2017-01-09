@@ -1,0 +1,226 @@
+[
+    {
+        "name": "icon-application",
+        "selected": false
+    },
+    {
+        "name": "icon-lock_edit",
+        "selected": false
+    },
+    {
+        "name": "icon-application_home",
+        "selected": false
+    },
+    {
+        "name": "icon-monitor_go",
+        "selected": false
+    },
+    {
+        "name": "icon-close",
+        "selected": false
+    },
+    {
+        "name": "icon-report",
+        "selected": false
+    },
+    {
+        "name": "icon-house",
+        "selected": false
+    },
+    {
+        "name": "icon-chart_curve",
+        "selected": false
+    },
+    {
+        "name": "icon-chart_line",
+        "selected": false
+    },
+    {
+        "name": "icon-chart_pie",
+        "selected": false
+    },
+    {
+        "name": "icon-chart_bar",
+        "selected": false
+    },
+    {
+        "name": "icon-user",
+        "selected": false
+    },
+    {
+        "name": "icon-group",
+        "selected": false
+    },
+    {
+        "name": "icon-home",
+        "selected": false
+    },
+    {
+        "name": "icon-id",
+        "selected": false
+    },
+    {
+        "name": "icon-menu",
+        "selected": false
+    },
+    {
+        "name": "icon-rights",
+        "selected": false
+    },
+    {
+        "name": "icon-role",
+        "selected": false
+    },
+    {
+        "name": "icon-roles",
+        "selected": false
+    },
+    {
+        "name": "icon-computer",
+        "selected": false
+    },
+    {
+        "name": "icon-report_user",
+        "selected": false
+    },
+    {
+        "name": "icon-vcard",
+        "selected": false
+    },
+    {
+        "name": "icon-book",
+        "selected": false
+    },
+    {
+        "name": "icon-application_view_tile",
+        "selected": false
+    },
+    {
+        "name": "icon-reduce-computer",
+        "selected": false
+    },
+    {
+        "name": "icon-reduce-user",
+        "selected": false
+    },
+    {
+        "name": "icon-reduce-charts",
+        "selected": false
+    },
+    {
+        "name": "icon-resources",
+        "selected": false
+    },
+    {
+        "name": "icon-student",
+        "selected": false
+    },
+    {
+        "name": "icon-grade",
+        "selected": false
+    },
+    {
+        "name": "icon-home_app",
+        "selected": false
+    },
+    {
+        "name": "icon-home2",
+        "selected": false
+    },
+    {
+        "name": "icon-blank",
+        "selected": false
+    },
+    {
+        "name": "icon-add",
+        "selected": false
+    },
+    {
+        "name": "icon-edit",
+        "selected": false
+    },
+    {
+        "name": "icon-clear",
+        "selected": false
+    },
+    {
+        "name": "icon-remove",
+        "selected": false
+    },
+    {
+        "name": "icon-save",
+        "selected": false
+    },
+    {
+        "name": "icon-cut",
+        "selected": false
+    },
+    {
+        "name": "icon-ok",
+        "selected": false
+    },
+    {
+        "name": "icon-no",
+        "selected": false
+    },
+    {
+        "name": "icon-cancel",
+        "selected": false
+    },
+    {
+        "name": "icon-reload",
+        "selected": false
+    },
+    {
+        "name": "icon-search",
+        "selected": false
+    },
+    {
+        "name": "icon-print",
+        "selected": false
+    },
+    {
+        "name": "icon-help",
+        "selected": false
+    },
+    {
+        "name": "icon-undo",
+        "selected": false
+    },
+    {
+        "name": "icon-redo",
+        "selected": false
+    },
+    {
+        "name": "icon-back",
+        "selected": false
+    },
+    {
+        "name": "icon-sum",
+        "selected": false
+    },
+    {
+        "name": "icon-tip",
+        "selected": false
+    },
+    {
+        "name": "icon-filter",
+        "selected": false
+    },
+    {
+        "name": "icon-man",
+        "selected": false
+    },
+    {
+        "name": "icon-lock",
+        "selected": false
+    },
+    {
+        "name": "icon-folder",
+        "selected": false
+    },
+    {
+        "name": "icon-palette",
+        "selected": false
+    }
+]

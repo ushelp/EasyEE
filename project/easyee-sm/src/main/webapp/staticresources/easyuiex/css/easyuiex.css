@@ -1,0 +1,136 @@
+
+
+table td {
+	font-size: 13px
+}
+
+#fm {
+	margin: 0;
+	padding: 10px 30px;
+}
+
+.ftitle {
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	padding: 5px 0;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+}
+
+.fitem {
+	margin-bottom: 5px;
+}
+
+.fitem label {
+	display: inline-block;
+	width: 80px;
+}
+.icon-application{
+	background:url('icons/application.png') no-repeat center center;
+}
+.icon-lock_edit{
+	background:url('icons/lock_edit.png') no-repeat center center;
+}
+.icon-application_home{
+	background:url('icons/application_home.png') no-repeat center center;
+}
+.icon-monitor_go{
+	background:url('icons/monitor_go.png') no-repeat center center;
+}
+.icon-close{
+	background:url('icons/close.png') no-repeat center center;
+}
+.icon-report{
+	background:url('icons/report.png') no-repeat center center;
+}
+.icon-house{
+	background:url('icons/house.png') no-repeat center center;
+}
+.icon-chart_curve{
+	background:url('icons/chart_curve.png') no-repeat center center;
+}
+.icon-chart_line{
+	background:url('icons/chart_line.png') no-repeat center center;
+}
+.icon-chart_pie{
+	background:url('icons/chart_pie.png') no-repeat center center;
+}
+.icon-chart_bar{
+	background:url('icons/chart_bar.png') no-repeat center center;
+}
+.icon-user{
+	background:url('icons/user.gif') no-repeat center center;
+}
+.icon-group{
+	background:url('icons/group.png') no-repeat center center;
+}
+.icon-home{
+	background:url('icons/home.png') no-repeat center center;
+}
+.icon-id{
+	background:url('icons/id.png') no-repeat center center;
+}
+.icon-menu{
+	background:url('icons/menu.png') no-repeat center center;
+}
+.icon-rights{
+	background:url('icons/rights.png') no-repeat center center;
+}
+.icon-role{
+	background:url('icons/role.gif') no-repeat center center;
+}
+.icon-roles{
+	background:url('icons/roles.png') no-repeat center center;
+}
+.icon-computer{
+	background:url('icons/computer.png') no-repeat center center;
+}
+.icon-report_user{
+	background:url('icons/report_user.png') no-repeat center center;
+}
+.icon-vcard{
+	background:url('icons/vcard.png') no-repeat center center;
+}
+.icon-book{
+	background:url('icons/book.png') no-repeat center center;
+}
+.icon-application_view_tile{
+	background:url('icons/application_view_tile.png') no-repeat center center;
+}
+.icon-reduce-computer{
+	background:url('icons/reduce-computer.gif') no-repeat center center;
+}
+.icon-reduce-user{
+	background:url('icons/reduce-user.gif') no-repeat center center;
+}
+.icon-reduce-charts{
+	background:url('icons/reduce-charts.gif') no-repeat center center;
+}
+.icon-resources{
+	background:url('icons/resources.png') no-repeat center center;
+}
+.icon-student{
+	background:url('icons/student.png') no-repeat center center;
+}
+.icon-grade{
+	background:url('icons/grade.png') no-repeat center center;
+}
+.icon-home_app{
+	background:url('icons/home_app.png') no-repeat center center;
+}
+.icon-home2{
+	background:url('icons/home2.png') no-repeat center center;
+}
+.icon-arrow_up{
+	background:url('icons/arrow_up.png') no-repeat center center;
+}
+.icon-arrow_down{
+	background:url('icons/arrow_down.png') no-repeat center center;
+}
+.icon-palette{
+	background:url('icons/palette.png') no-repeat center center;
+}
+.icon-folder{
+	background:url('icons/folder.png') no-repeat center center;
+}

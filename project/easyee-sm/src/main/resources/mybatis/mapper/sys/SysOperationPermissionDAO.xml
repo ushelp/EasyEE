@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.easyproject.easyee.sm.sys.dao.SysOperationPermissionDAO">
+	<resultMap type="SysOperationPermission" id="SysOperationPermissionMap">
+		<result column="OPERATION_PERMISSION_ID" property="operationPermissionId"/>
+		<result column="MENU_PERMISSION_ID" property="sysMenuPermission.menuPermissionId"/>
+	</resultMap>
+	
+	<insert id="add" useGeneratedKeys="true" keyColumn="OPERATION_PERMISSION_ID" keyProperty="operationPermissionId">
+		insert into sys_operation (
+		  MENU_PERMISSION_ID,
+		  NAME,
+		  ACTION,
+		  REMARK
+		) 
+		values
+		  (
+		    #{sysMenuPermission.menuPermissionId},
+		    #{name},
+		    #{action},
+		    #{remark}
+		  ) 
+	</insert>
+	<delete id="delete">
+		delete from sys_operation WHERE OPERATION_PERMISSION_ID = #{operationPermissionId}
+	</delete>
+	<delete id="deleteOperationRoles">
+		delete from sys_role_operation where OPERATION_PERMISSION_ID=#{operationPermissionId}
+	</delete>
+	
+	<delete id="deleteByIds">
+		delete from sys_operation 
+		 WHERE OPERATION_PERMISSION_ID in
+		  <foreach item="item" index="index" collection="array"
+		      open="(" separator="," close=")">
+		        #{item}
+		  </foreach>
+	</delete>
+	<delete id="deleteOperationRolesByIds">
+		delete from sys_role_operation 
+		 WHERE OPERATION_PERMISSION_ID in
+		  <foreach item="item" index="index" collection="array"
+		      open="(" separator="," close=")">
+		        #{item}
+		  </foreach>
+	</delete>
+	
+	
+	<delete id="deleteByMenuPermissionId">
+		delete from sys_operation 
+		 WHERE MENU_PERMISSION_ID=#{menuPermissionId}
+	</delete>
+	
+	<update id="update">
+		UPDATE 
+		   sys_operation 
+		SET
+		  NAME = #{name},
+		  ACTION = #{action},
+		  REMARK = #{remark} 
+		WHERE OPERATION_PERMISSION_ID = #{operationPermissionId}
+	</update>
+	
+	
+
+	
+	<select id="get" resultMap="SysOperationPermissionMap">
+		select 
+		  sop.OPERATION_PERMISSION_ID,
+		  sop.MENU_PERMISSION_ID,
+		  sop.NAME,
+		  sop.ACTION,
+		  sop.REMARK 
+		from
+		   sys_operation  sop
+		where 
+		   sop.OPERATION_PERMISSION_ID=#{operationPermissionId}
+	</select>
+	
+	<select id="list" resultMap="SysOperationPermissionMap">
+	select 
+	 OPERATION_PERMISSION_ID ,
+	  NAME as NAME,
+	  ACTION as ACTION,
+	  REMARK as REMARK
+	from
+	 sys_operation  where MENU_PERMISSION_ID=#{menuId}
+	</select>
+	
+	<select id="getIdsByRoleId" resultType="string">
+	select Operation_Permission_Id from sys_role_operation where ROLE_ID=#{roleId}
+	</select>
+	
+	<select id="getAllOpreationNames" resultType="hashmap">
+	select action as ACTION,name as NAME,remark as REMARK from sys_menu
+	union
+	select action as ACTION,name as NAME,remark as REMARK from Sys_Operation
+	</select>
+	
+</mapper>
