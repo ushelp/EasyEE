@@ -853,7 +853,7 @@ function setDocumentScrollTop(ypos)
 
 <span class="pl-c">&lt;!-- **EasyUIEx** --&gt;</span>
 &lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>stylesheet<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/css<span class="pl-pds">&quot;</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyuiex/css/easyuiex.css<span class="pl-pds">&quot;</span></span>&gt;
-&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyuiex/easy.easyuiex.min-2.2.0.js<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyuiex/easy.easyuiex.min-2.2.3.js<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
 &lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyuiex/easy.easyuiex-validate.js<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
 <span class="pl-c">&lt;!-- EasyUIEx 'easy.jquery.edatagrid.js' instead of 'jquery.edatagrid.js' --&gt;</span>
 &lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyuiex/easy.jquery.edatagrid.js<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
@@ -1266,6 +1266,16 @@ function setDocumentScrollTop(ypos)
  <li><p>Two ways to call</p></li> 
  <li><p><strong>Package and extended</strong>: EasyUIEx related components for the use of datagrid depth CRUD application package, provides additional functionality, when you call the Initialization method, with the incoming <code>url</code>,<code>saveUrl</code>, <code>updateUrl</code>,<code>destroyUrl</code> address and other CRUD server operating parameters (and edatagrid the parameters remain the same), can be in a consistent manner by means of API EasyUIEx complete CRUD operations.</p></li> 
  <li><p><strong>Performance Optimization</strong>: the datagrid and edatagrid provides line editing condition monitoring, optimization request to modify. When line editing, column editing, does not submit a request unmodified content.</p></li> 
+ <li> <p><strong>rowData returns the parameter</strong>: </p> <p>When adding or modifying data, you can return a <code>rowData</code> attribute in the<code>JSON</code> response, and EasyUIEx automatically refreshes the static data for the page that was added or edited based on the contents of <code>rowData</code>.</p> <p>For example, when adding data, if the current data primary key is submitted to the server side after the generation (such as the data key by the automatic growth generator control), add data, in the return of <code>JSON</code> set a <strong>rowData</strong> Property, which returns the most recent data that contains the <code>primary key id attribute</code> (other properties are optionally optional if no refresh is required) to automatically refresh the newly added front row. <strong>Otherwise, after the new data, delete the data, you have previously added data in the client does not have the primary key, there will be a failure to delete tips.</strong></p> 
+  <div class="highlight highlight-source-json">
+   <pre>{
+    <span class="pl-s"><span class="pl-pds">&quot;</span>msg<span class="pl-pds">&quot;</span></span>:<span class="pl-s"><span class="pl-pds">&quot;</span>Save  Successed!<span class="pl-pds">&quot;</span></span>,
+    <span class="pl-s"><span class="pl-pds">&quot;</span>locationUrl<span class="pl-pds">&quot;</span></span>:<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span>,
+    <span class="pl-s"><span class="pl-pds">&quot;</span>callback<span class="pl-pds">&quot;</span></span>:<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span>,
+    <span class="pl-s"><span class="pl-pds">&quot;</span>statusCode<span class="pl-pds">&quot;</span></span>:<span class="pl-c1">200</span>,
+    <span class="pl-s"><span class="pl-pds">&quot;</span>rowData<span class="pl-pds">&quot;</span></span>:{<span class="pl-s"><span class="pl-pds">&quot;</span>deptno<span class="pl-pds">&quot;</span></span>:<span class="pl-c1">10</span>,<span class="pl-s"><span class="pl-pds">&quot;</span>dname<span class="pl-pds">&quot;</span></span>:<span class="pl-s"><span class="pl-pds">&quot;</span>x<span class="pl-pds">&quot;</span></span>,<span class="pl-s"><span class="pl-pds">&quot;</span>loc<span class="pl-pds">&quot;</span></span>:<span class="pl-s"><span class="pl-pds">&quot;</span>x<span class="pl-pds">&quot;</span></span>} <span class="pl-ii">//</span> <span class="pl-ii">Returns</span> <span class="pl-ii">the</span> <span class="pl-ii">auto</span> <span class="pl-ii">increment</span> <span class="pl-ii">primary</span> <span class="pl-ii">key</span> <span class="pl-ii">to</span> <span class="pl-ii">update</span> <span class="pl-ii">the</span> <span class="pl-ii">client</span> <span class="pl-ii">data</span>
+}</pre>
+  </div> </li> 
  <li> <p>datagrid、edatagrid、detaildatagrid、treegrid Extended Attributes common</p> 
   <table> 
    <thead> 
@@ -1587,6 +1597,8 @@ showContextMenu <span class="pl-k">:</span> <span class="pl-c1">true</span>
 <span class="pl-c">*            可Selected; the string value, perform a successful return to the mark key, value must be the same as before representatives successValue deleted successfully</span>
 <span class="pl-c">* <span class="pl-k">@param</span> successValue</span>
 <span class="pl-c">*            Optional; String value, execution marks the successful return value</span>
+<span class="pl-c">* <span class="pl-k">@param</span> callback</span>
+<span class="pl-c">*            Optional; After the successful implementation of the callback function, the server-side parameters for the return of data</span>
 <span class="pl-c">*  </span>
 <span class="pl-c">*  - demo：</span>
 <span class="pl-c">*  dg.rowDelete(true, false, &quot;statusCode&quot;, &quot;200&quot;);</span>

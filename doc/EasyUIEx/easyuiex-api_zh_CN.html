@@ -850,7 +850,7 @@ function setDocumentScrollTop(ypos)
 
 <span class="pl-c">&lt;!-- **EasyUIEx** --&gt;</span>
 &lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>stylesheet<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/css<span class="pl-pds">&quot;</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyuiex/css/easyuiex.css<span class="pl-pds">&quot;</span></span>&gt;
-&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyuiex/easy.easyuiex.min-2.2.0.js<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyuiex/easy.easyuiex.min-2.2.3.js<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
 &lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyuiex/easy.easyuiex-validate.js<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
 <span class="pl-c">&lt;!-- EasyUIEx 'easy.jquery.edatagrid.js' instead of 'jquery.edatagrid.js' --&gt;</span>
 &lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyuiex/easy.jquery.edatagrid.js<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
@@ -1275,6 +1275,16 @@ function setDocumentScrollTop(ypos)
  <li><p>支持两种方式调用</p></li> 
  <li><p><strong>封装和扩展</strong>：EasyUIEx 针对使用 datagrid 相关组件的 CRUD 应用进行了深入封装，提供了附加功能，在调用初始化方法时，配合传入<code>url</code>、<code>saveUrl</code>、<code>updateUrl</code>、<code>destroyUrl</code>等 CRUD 的服务器操作地址参数（和 edatagrid 的参数保持了一致），就能以一致的方式借助 EasyUIEx 的 API 完 CRUD 操作。</p></li> 
  <li><p><strong>性能优化</strong>：为datagrid和edatagrid 提供了行编辑状态监测，优化修改的请求。当行编辑，列编辑，未修改内容时并不提交请求。</p></li> 
+ <li> <p><strong>rowData 返回参数</strong>: </p> <p>当新增或修改数据后，可以在响应的 <code>JSON</code> 中返回一个<code>rowData</code> 属性，EasyUIEx 可以根据 <code>rowData</code> 的内容自动刷新新增或编辑的页面静态数据。</p> <p>例如， 在新增数据时，如果当前数据主键是提交到服务器端后生成（如数据主键由自动增长生成器控制），则添加数据后，请在返回的 <code>JSON</code> 中设置一个 <strong>rowData</strong> 属性，返回您包含<code>主键 id 属性</code>的最新数据（其他属性如果不需要刷新则可选可选），以自动刷新新添加的前行。<strong>否则在新增数据后，删除该条数据，您之前新增的数据在客户端并没有主键，会出现删除失败的提示。</strong></p> 
+  <div class="highlight highlight-source-json">
+   <pre>{
+    <span class="pl-s"><span class="pl-pds">&quot;</span>msg<span class="pl-pds">&quot;</span></span>:<span class="pl-s"><span class="pl-pds">&quot;</span>Save  Successed!<span class="pl-pds">&quot;</span></span>,
+    <span class="pl-s"><span class="pl-pds">&quot;</span>locationUrl<span class="pl-pds">&quot;</span></span>:<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span>,
+    <span class="pl-s"><span class="pl-pds">&quot;</span>callback<span class="pl-pds">&quot;</span></span>:<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span>,
+    <span class="pl-s"><span class="pl-pds">&quot;</span>statusCode<span class="pl-pds">&quot;</span></span>:<span class="pl-c1">200</span>,
+    <span class="pl-s"><span class="pl-pds">&quot;</span>rowData<span class="pl-pds">&quot;</span></span>:{<span class="pl-s"><span class="pl-pds">&quot;</span>deptno<span class="pl-pds">&quot;</span></span>:<span class="pl-c1">10</span>,<span class="pl-s"><span class="pl-pds">&quot;</span>dname<span class="pl-pds">&quot;</span></span>:<span class="pl-s"><span class="pl-pds">&quot;</span>x<span class="pl-pds">&quot;</span></span>,<span class="pl-s"><span class="pl-pds">&quot;</span>loc<span class="pl-pds">&quot;</span></span>:<span class="pl-s"><span class="pl-pds">&quot;</span>x<span class="pl-pds">&quot;</span></span>} <span class="pl-ii">//</span> <span class="pl-ii">返回自动增长主键来更新客户端数据</span>
+}</pre>
+  </div> </li> 
  <li> <p>datagrid、edatagrid、detaildatagrid、treegrid 共同扩展属性</p> 
   <table> 
    <thead> 
@@ -1596,6 +1606,8 @@ showContextMenu <span class="pl-k">:</span> <span class="pl-c1">true</span>
 <span class="pl-c">*            可选；字符串值，执行成功返回的标记key，值必须和successValue相同才代表删除成功</span>
 <span class="pl-c">* <span class="pl-k">@param</span> successValue</span>
 <span class="pl-c">*            可选；字符串值，执行成功返回的标记value</span>
+<span class="pl-c">* <span class="pl-k">@param</span> callback</span>
+<span class="pl-c">*            可选；执行删除成功后的回调函数，参数为服务器端返回的数据</span>
 <span class="pl-c">*  </span>
 <span class="pl-c">*  - demo：</span>
 <span class="pl-c">*  dg.rowDelete(true, false, &quot;statusCode&quot;, &quoquot;200&quot;);</span>

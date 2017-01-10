@@ -6,7 +6,7 @@ It integrates the widely used framework of JaveEE domain and EasyUI front-end fr
 
 [EasyEE Auto](https://github.com/ushelp/EasyEE-Auto 'EasyEE Auto') automated code generator is provided.
 
-Latest version:  `4.1.0`
+Latest version:  `4.1.2`
 
 ## SSH Framework
 

@@ -12,7 +12,7 @@ It integrates the widely used framework of JaveEE domain and EasyUI front-end fr
 
 [EasyEE Auto](https://github.com/ushelp/EasyEE-Auto 'EasyEE Auto') automated code generator is provided.
 
-Least version: `4.1.0-RELEASE`
+Least version: `4.1.2-RELEASE`
 
 ## EasyEE Releases/EasyEE 发行版本
 
