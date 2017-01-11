@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.easyproject.easyee.sm.base.controller.BaseController;
 import cn.easyproject.easyee.sm.base.pagination.PageBean;
-import cn.easyproject.easyee.sm.hr.controller.DeptController;
 import cn.easyproject.easyee.sm.sys.criteria.SysLogCriteria;
 import cn.easyproject.easyee.sm.sys.service.SysLogService;
 

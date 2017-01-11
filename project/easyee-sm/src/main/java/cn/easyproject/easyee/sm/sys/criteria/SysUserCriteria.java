@@ -43,15 +43,15 @@ public class SysUserCriteria extends EasyCriteria implements java.io.Serializabl
 		values.clear(); //清除条件数据
 		StringBuffer condition = new StringBuffer();
 		if (StringUtils.isNotNullAndEmpty(this.getName())) {
-			condition.append(" and s.name like #{name}");
+			condition.append(" and name like #{name}");
 			values.put("name", "%" + this.getName() + "%");
 		}
 		if (StringUtils.isNotNullAndEmpty(this.getRealName())) {
-			condition.append(" and s.realName like #{realName}");
+			condition.append(" and real_Name like #{realName}");
 			values.put("realName", "%" + this.getRealName() + "%");
 		}
 		if (StringUtils.isNotNullAndEmpty(this.getStatus())) {
-			condition.append(" and s.status=#{status}");
+			condition.append(" and status=#{status}");
 			values.put("status", this.getStatus());
 		}
 		return condition.toString();

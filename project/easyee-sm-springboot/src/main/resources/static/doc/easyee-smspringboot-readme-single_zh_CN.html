@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>D:\workspace-sts-3.8.1.RELEASE\easyee-doc\github\doc\SHSpringBoot\.EasyEE-shpringboot-readme-zh_CN.md.html</title>
+<title>D:\workspace-sts-3.8.1.RELEASE\easyee-doc\github\doc\SMSpringBoot\.EasyEE-smspringboot-readme-zh_CN.md.html</title>
 
 
 <style type="text/css">
@@ -639,15 +639,15 @@ function setDocumentScrollTop(ypos)
 
 </head>
 <body class="markdown-body">
-<h1> <a id="easyee-shjpa-springboot-平台开发手册" class="anchor" href="#easyee-shjpa-springboot-%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EasyEE-SH(JPA)-SpringBoot 平台开发手册</h1> 
+<h1> <a id="easyee-sm-springboot-平台开发手册" class="anchor" href="#easyee-sm-springboot-%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EasyEE-SM-SpringBoot 平台开发手册</h1> 
 <p>EasyEE 是一个开源 JaveEE 企业级快速开发基础平台，提供多种技术方案选择，支持 Spring Boot, Hibernate, MyBatis, Struts, Shiro 等核心框架。</p> 
 <p>整合了广泛使用的 JaveEE 领域优秀框架及 EasyUI 前端框架；提供了基于用户、角色、权限方案的后台权限管理系统，安全管理框架及常用开发组件。为企业级项目开发提供了基础架构和规范。</p> 
 <p>提供 <a href="https://github.com/ushelp/EasyEE-Auto" title="EasyEE Auto">EasyEE Auto</a> 自动化代码生成器。</p> 
 <p>最新版本： <code>4.1.3</code></p> 
-<h2> <a id="shjpa-spring-boot-framework" class="anchor" href="#shjpa-spring-boot-framework" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SH(JPA)-Spring Boot Framework</h2> 
+<h2> <a id="sm-spring-boot-framework" class="anchor" href="#sm-spring-boot-framework" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SM-Spring Boot Framework</h2> 
 <ul> 
  <li><strong>Spring Boot 1.4.2</strong></li> 
- <li><strong>Hibernate 5+(JPA)</strong></li> 
+ <li><strong>MyBatis 3.4+</strong></li> 
  <li><strong>Shiro 2+</strong></li> 
  <li>EasyCommonDAO</li> 
  <li>EasyShiro </li> 
@@ -660,13 +660,15 @@ function setDocumentScrollTop(ypos)
  <pre>&lt;<span class="pl-ent">java</span>.version&gt;1.7&lt;/<span class="pl-ent">java</span>.version&gt;
 &lt;<span class="pl-ent">tomcat</span>.version&gt;8.5.8&lt;/<span class="pl-ent">tomcat</span>.version&gt;
 
-&lt;<span class="pl-ent">hibernate</span>.version&gt;5.2.4.Final&lt;/<span class="pl-ent">hibernate</span>.version&gt;
+&lt;<span class="pl-ent">spring</span>.version&gt;4.3.4.RELEASE&lt;/<span class="pl-ent">spring</span>.version&gt;
 &lt;<span class="pl-ent">springboot</span>.version&gt;1.4.2.RELEASE&lt;/<span class="pl-ent">springboot</span>.version&gt;
+&lt;<span class="pl-ent">mybatis</span>.version&gt;3.4.1&lt;/<span class="pl-ent">mybatis</span>.version&gt;
+&lt;<span class="pl-ent">org</span>.mybatis.spring.boot.version&gt;1.1.1&lt;/<span class="pl-ent">org</span>.mybatis.spring.boot.version&gt;
+&lt;<span class="pl-ent">mysql</span>.version&gt;5.1.34&lt;/<span class="pl-ent">mysql</span>.version&gt;
+&lt;<span class="pl-ent">oracle</span>.version&gt;11.2.0.4&lt;/<span class="pl-ent">oracle</span>.version&gt;
 
 &lt;<span class="pl-ent">slf4j</span>.version&gt;1.7.21&lt;/<span class="pl-ent">slf4j</span>.version&gt;
 &lt;<span class="pl-ent">log4j2</span>.version&gt;2.7&lt;/<span class="pl-ent">log4j2</span>.version&gt;
-&lt;<span class="pl-ent">mysql</span>.version&gt;5.1.34&lt;/<span class="pl-ent">mysql</span>.version&gt;
-&lt;<span class="pl-ent">oracle</span>.version&gt;11.2.0.4&lt;/<span class="pl-ent">oracle</span>.version&gt;
 &lt;<span class="pl-ent">druid</span>.version&gt;1.0.26&lt;/<span class="pl-ent">druid</span>.version&gt;
 &lt;<span class="pl-ent">commonsfileupload</span>.version&gt;1.3.2&lt;/<span class="pl-ent">commonsfileupload</span>.version&gt;
 &lt;<span class="pl-ent">gson</span>.version&gt;2.8.0&lt;/<span class="pl-ent">gson</span>.version&gt;
@@ -689,31 +691,33 @@ function setDocumentScrollTop(ypos)
 </ol> 
 <h2> <a id="项目结构" class="anchor" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>项目结构</h2> 
 <div class="highlight highlight-source-js">
- <pre>EasySH<span class="pl-k">-</span>SpringBoot
+ <pre>EasySM<span class="pl-k">-</span>SpringBoot
     <span class="pl-k">+</span> src<span class="pl-k">/</span>main<span class="pl-k">/</span><span class="pl-en">java</span> (源码目录)
-        <span class="pl-k">+</span> <span class="pl-smi">cn</span>.<span class="pl-smi">easyproject</span>.<span class="pl-smi">easyee</span>.<span class="pl-en">sh</span> (包前缀)
+        <span class="pl-k">+</span> <span class="pl-smi">cn</span>.<span class="pl-smi">easyproject</span>.<span class="pl-smi">easyee</span>.<span class="pl-en">sm</span> (包前缀)
             <span class="pl-k">+</span> <span class="pl-en">base</span> (项目基础功能公共组件包)
                 <span class="pl-k">+</span> <span class="pl-en">configuration</span> (Spring Boot Configuration)
                 <span class="pl-k">+</span> controller 
                     <span class="pl-k">+</span> <span class="pl-smi">BaseController</span>.<span class="pl-en">java</span>(基础Controller，所有Controller类继承BaseController)
-                <span class="pl-k">+</span> dao
-                    <span class="pl-k">+</span> <span class="pl-smi">CommonDAO</span>.<span class="pl-en">java</span> (通用<span class="pl-c1">DAO</span>接口)
-                    <span class="pl-k">+</span> impl
-                        <span class="pl-k">+</span> <span class="pl-smi">CommonDAOSpringImpl</span>.<span class="pl-en">java</span> (通用<span class="pl-c1">DAO</span>实现类)
+                <span class="pl-k">+</span> <span class="pl-en">pagination</span> (EasyMyBatis<span class="pl-k">-</span>Pagination)
                 <span class="pl-k">+</span> service
                     <span class="pl-k">+</span> <span class="pl-smi">BaseService</span>.<span class="pl-en">java</span> (基础Service，所有Service类都基础BaseService)
                 <span class="pl-k">+</span> util 
                     <span class="pl-k">+</span> <span class="pl-k">...</span> (PageBean、EasyCriteria, 加密、日期处理等日常开发和项目所需的工具类)
             <span class="pl-k">+</span> <span class="pl-en">sys</span> (权限管理系统实现包)
-                <span class="pl-k">+</span> controller, entity, service, util, shiro, criteria<span class="pl-k">...</span> 
+                <span class="pl-k">+</span> controller, entity, dao, service, util, shiro, criteria<span class="pl-k">...</span> 
             <span class="pl-k">+</span> <span class="pl-en">hr</span>  (自定义模块开发包，演示了一个员工管理的Demo)
-                <span class="pl-k">+</span> controller, entity, service, criteria<span class="pl-k">...</span>
+                <span class="pl-k">+</span> controller, entity, dao, service, criteria<span class="pl-k">...</span>
             <span class="pl-k">+</span> <span class="pl-smi">EasyEEJarApplication</span>.<span class="pl-en">java</span> (Run as jar)
             <span class="pl-k">+</span> <span class="pl-smi">EasyEEWarApplication</span>.<span class="pl-en">java</span> (Run as war)
     <span class="pl-k">+</span> src<span class="pl-k">/</span>main<span class="pl-k">/</span><span class="pl-en">resource</span> (源码资源目录)
         <span class="pl-k">+</span> i18n
             <span class="pl-k">+</span> <span class="pl-smi">messages</span>.<span class="pl-en">properties</span> (i18n)
             <span class="pl-k">+</span> <span class="pl-smi">messages_zh_CN</span>.<span class="pl-en">properties</span> (i18n)
+        <span class="pl-k">+</span> mybatis
+            <span class="pl-k">+</span> mapper
+                <span class="pl-k">+</span> hr
+                <span class="pl-k">+</span> sys
+            <span class="pl-k">+</span> mybatis<span class="pl-k">-</span><span class="pl-smi">config</span>.<span class="pl-smi">xml</span>
         <span class="pl-k">+</span> spring
             <span class="pl-k">+</span> <span class="pl-smi">spring_shiro</span>.<span class="pl-en">xml</span> (Spring Shiro)
         <span class="pl-k">+</span> <span class="pl-k">static</span> (web 静态资源<span class="pl-k">...</span>)
@@ -736,8 +740,8 @@ function setDocumentScrollTop(ypos)
                 <span class="pl-k">+</span> <span class="pl-en">images</span> (图片)
                 <span class="pl-k">+</span> <span class="pl-en">style</span> (css样式表)
                     <span class="pl-k">+</span> <span class="pl-smi">easyee</span>.<span class="pl-smi">main</span>.<span class="pl-en">css</span> (easyssh 系统全局css)
-        <span class="pl-k">+</span> <span class="pl-smi">application</span>.<span class="pl-en">properties</span> (Spring Boot properties) 
-        <span class="pl-k">+</span> <span class="pl-smi">banner</span>.<span class="pl-en">txt</span> (Spring Boot Banner)
+        <span class="pl-k">+</span> <span class="pl-smi">application</span>.<span class="pl-en">properties</span> (Spring Boot properties)
+        <span class="pl-k">+</span> <span class="pl-smi">banner</span>.<span class="pl-en">txt</span> (Spring Boot Banner) 
         <span class="pl-k">+</span> <span class="pl-smi">easyFilter</span>.<span class="pl-en">properties</span> (EasyFilter Web请求内容过滤替换组件配置文件)
         <span class="pl-k">+</span> <span class="pl-smi">ehcache</span>.<span class="pl-en">xml</span> (ehcache 二级缓存配置 )
         <span class="pl-k">+</span> <span class="pl-smi">log4j</span>.<span class="pl-en">properties</span> (Log4J)
@@ -745,9 +749,36 @@ function setDocumentScrollTop(ypos)
         <span class="pl-k">+</span> <span class="pl-smi">logback</span>.<span class="pl-en">xml</span> (LogBack)
     <span class="pl-k">+</span> src<span class="pl-k">/</span>test<span class="pl-k">/</span><span class="pl-en">java</span> (测试源码目录)
     <span class="pl-k">+</span> src<span class="pl-k">/</span>test<span class="pl-k">/</span><span class="pl-en">resource</span> (测试资源目录)
-    <span class="pl-k">+</span> src<span class="pl-k">/</span>main<span class="pl-k">/</span><span class="pl-en">webapp</span> (<span class="pl-c1">JSP</span> 动态 Web 资源)
+    <span class="pl-k">+</span> src<span class="pl-k">/</span>main<span class="pl-k">/</span><span class="pl-en">webapp</span> (<span class="pl-c1">JSP</span> dynamic web resources)
         <span class="pl-k">+</span> <span class="pl-c1">META</span><span class="pl-k">-</span><span class="pl-c1">INF</span>
         <span class="pl-k">+</span> <span class="pl-c1">WEB</span><span class="pl-k">-</span><span class="pl-c1">INF</span>
+        <span class="pl-k">+</span>  <span class="pl-en">jsp</span> (一般<span class="pl-c1">JSP</span>页面)
+            <span class="pl-k">+</span> <span class="pl-en">echarts</span> (ECharts demo)
+            <span class="pl-k">+</span> <span class="pl-en">error</span> (系统错误页面)
+                <span class="pl-k">+</span> <span class="pl-smi">notFound</span>.<span class="pl-en">jsp</span> (<span class="pl-c1">404</span>错误提示页面)
+                <span class="pl-k">+</span> <span class="pl-smi">permissionDenied</span>.<span class="pl-en">jsp</span> (权限不足提示页面)
+                <span class="pl-k">+</span> <span class="pl-smi">serverError</span>.<span class="pl-en">jsp</span> (<span class="pl-c1">400</span>错误提示页面)
+            <span class="pl-k">+</span> <span class="pl-smi">VerifyCode</span>.<span class="pl-en">jsp</span> (验证码生成<span class="pl-c1">JSP</span>)
+        <span class="pl-k">+</span> locklogin
+            <span class="pl-k">+</span> <span class="pl-smi">admin</span>.<span class="pl-en">jsp</span> (EasyShiro LockLogin Management)
+        <span class="pl-k">+</span> <span class="pl-en">script</span> (项目开发页面相关<span class="pl-c1">JS</span>文件，和<span class="pl-c1">WEB</span><span class="pl-k">-</span><span class="pl-c1">INF</span><span class="pl-k">/</span>content下的页面一一对应)
+            <span class="pl-k">+</span> main
+                <span class="pl-k">+</span> <span class="pl-en">sys</span> (系统权限模块<span class="pl-c1">JS</span><span class="pl-k">...</span>)
+                <span class="pl-k">+</span> <span class="pl-smi">main</span>.<span class="pl-en">js</span> (系统主页面<span class="pl-c1">JS</span>)
+            <span class="pl-k">+</span> <span class="pl-smi">login</span>.<span class="pl-en">js</span> (登录页面<span class="pl-c1">JS</span>) 
+        <span class="pl-k">+</span> staticresources
+            <span class="pl-k">+</span> <span class="pl-en">easyee</span> (easyssh核心js文件)
+                <span class="pl-k">+</span> <span class="pl-en">json</span> (easyssh所需的<span class="pl-c1">JSON</span>文件——主题，图标)
+                <span class="pl-k">+</span> easyee<span class="pl-k">-</span><span class="pl-smi">sh</span>.<span class="pl-smi">main</span>.<span class="pl-en">js</span> (easyssh核心<span class="pl-c1">JS</span>，全局Ajax请求响应处理)
+                <span class="pl-k">+</span> <span class="pl-smi">jquery</span>.<span class="pl-c1">cookie</span>.<span class="pl-en">js</span> (cookie处理)
+            <span class="pl-k">+</span> <span class="pl-en">easyui</span> (EasyUI 前端框架)
+            <span class="pl-k">+</span> <span class="pl-en">easyuiex</span> (EasyUIEx 扩展插件)
+            <span class="pl-k">+</span> <span class="pl-en">echarts</span> (EChars 前端图形报表组件)
+            <span class="pl-k">+</span> <span class="pl-en">error</span> (<span class="pl-c1">JSP</span>错误页面)
+            <span class="pl-k">+</span> <span class="pl-en">images</span> (图片)
+            <span class="pl-k">+</span> <span class="pl-en">style</span> (css样式表)
+                <span class="pl-k">+</span> <span class="pl-smi">easyee</span>.<span class="pl-smi">main</span>.<span class="pl-en">css</span> (easyssh 系统全局css)
+        <span class="pl-k">+</span> src<span class="pl-k">/</span>main<span class="pl-k">/</span><span class="pl-en">webapp</span> (<span class="pl-c1">JSP</span> 动态 Web 资源)
             <span class="pl-k">+</span> <span class="pl-en">content</span> (项目核心页面)
                 <span class="pl-k">+</span> <span class="pl-en">dialog</span> (EasyUI Dialog 相关页面)
                     <span class="pl-k">+</span> <span class="pl-en">sys</span> (权限系统模块相关Dialog页面)
@@ -771,28 +802,75 @@ function setDocumentScrollTop(ypos)
 </div> 
 <h2> <a id="快速开发指导手册" class="anchor" href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91%E6%8C%87%E5%AF%BC%E6%89%8B%E5%86%8C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>快速开发指导手册</h2> 
 <ol> 
- <li> <p><strong>创建新模块包结构</strong></p> <p>cn.easyproject.easyee.sh.<code>yourmodule</code> cn.easyproject.easyee.sh.yourmodule.<code>entity</code> cn.easyproject.easyee.sh.yourmodule.<code>service</code> cn.easyproject.easyee.sh.yourmodule.<code>controller</code> cn.easyproject.easyee.sh.yourmodule.<code>criteria</code></p> </li> 
- <li> <p><strong>编写POJO实体类代码</strong></p> <p>在<code>entity</code>下根据表创建POJO实体类</p> 
+ <li> <p><strong>创建新模块包结构</strong></p> <p>cn.easyproject.easyee.sm.<code>yourmodule</code> cn.easyproject.easyee.sm.yourmodule.<code>entity</code> cn.easyproject.easyee.sm.yourmodule.<code>dao</code> cn.easyproject.easyee.sm.yourmodule.<code>service</code> cn.easyproject.easyee.sm.yourmodule.<code>controller</code> cn.easyproject.easyee.sm.yourmodule.<code>criteria</code></p> </li> 
+ <li> <p><strong>编写POJO实体类代码</strong></p> <p>在<code>entity</code>下根据表创建 Entity 实体类</p> 
   <div class="highlight highlight-source-java">
-   <pre><span class="pl-k">@Entity</span>
-<span class="pl-k">@Table</span>(<span class="pl-c1">name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Dept<span class="pl-pds">&quot;</span></span>)
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">Dept</span> <span class="pl-k">implements</span> <span class="pl-e">java.io<span class="pl-k">.</span>Serializable</span> {
+   <pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">Dept</span> <span class="pl-k">implements</span> <span class="pl-e">java.io<span class="pl-k">.</span>Serializable</span> {
   <span class="pl-c"><span class="pl-c">//</span>...</span>
 }</pre>
   </div> </li> 
+ <li> <p><strong>编写 MyBatis DAO 接口和 SQL 映射文件</strong></p> 
+  <ul> 
+   <li> <p>DAO Mapper interface</p> 
+    <div class="highlight highlight-source-java">
+     <pre><span class="pl-k">public</span> <span class="pl-k">interface</span> <span class="pl-en">DeptDAO</span> {
+
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">save</span>(<span class="pl-smi">Dept</span> <span class="pl-v">dept</span>);
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">delete</span>(<span class="pl-smi">Serializable</span> <span class="pl-v">deptno</span>);
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">update</span>(<span class="pl-smi">Dept</span> <span class="pl-v">dept</span>);
+    <span class="pl-k">public</span> <span class="pl-smi">Dept</span> <span class="pl-en">get</span>(<span class="pl-smi">Integer</span> <span class="pl-v">deptno</span>);
+
+    <span class="pl-k">public</span> <span class="pl-k">List&lt;<span class="pl-smi">Dept</span>&gt;</span> <span class="pl-en">findAll</span>();
+    <span class="pl-k">public</span> <span class="pl-k">int</span> <span class="pl-en">findMaxRow</span>();
+
+    <span class="pl-k">@SuppressWarnings</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>rawtypes<span class="pl-pds">&quot;</span></span>)
+    <span class="pl-k">public</span> <span class="pl-smi">List</span> <span class="pl-en">pagination</span>(<span class="pl-smi">PageBean</span> <span class="pl-v">pageBean</span>);
+}</pre>
+    </div> </li> 
+   <li> <p>SQL Mapper XML(src/main/resource/mybatis/mapper/<code>yourmodule</code>/DeptDAO.xml)</p> 
+    <div class="highlight highlight-text-xml">
+     <pre>&lt;?<span class="pl-ent">xml</span><span class="pl-e"> version</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1.0<span class="pl-pds">&quot;</span></span><span class="pl-e"> encoding</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>UTF-8<span class="pl-pds">&quot;</span></span>?&gt;
+&lt;!<span class="pl-k">DOCTYPE</span> <span class="pl-c1">mapper</span>
+  PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;
+  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+&lt;<span class="pl-ent">mapper</span> <span class="pl-e">namespace</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cn.easyproject.easyee.sm.hr.dao.DeptDAO<span class="pl-pds">&quot;</span></span>&gt;
+
+    &lt;<span class="pl-ent">insert</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>save<span class="pl-pds">&quot;</span></span>&gt;
+        insert into module_dept(dname,loc) values(#{dname},#{loc})
+    &lt;/<span class="pl-ent">insert</span>&gt;
+    &lt;<span class="pl-ent">delete</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>delete<span class="pl-pds">&quot;</span></span>&gt;
+        delete from module_dept where deptno=#{deptno}
+    &lt;/<span class="pl-ent">delete</span>&gt;
+    &lt;<span class="pl-ent">update</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>update<span class="pl-pds">&quot;</span></span>&gt;
+        update module_dept set dname=#{dname},loc=#{loc} where deptno=#{deptno}
+    &lt;/<span class="pl-ent">update</span>&gt;
+    &lt;<span class="pl-ent">select</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>get<span class="pl-pds">&quot;</span></span> <span class="pl-e">resultType</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Dept<span class="pl-pds">&quot;</span></span>&gt;
+        select * from module_dept where deptno=#{deptno}
+    &lt;/<span class="pl-ent">select</span>&gt;
+
+    &lt;<span class="pl-ent">select</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>findAll<span class="pl-pds">&quot;</span></span> <span class="pl-e">resultType</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Dept<span class="pl-pds">&quot;</span></span>&gt;
+        select * from module_dept
+    &lt;/<span class="pl-ent">select</span>&gt;
+    &lt;<span class="pl-ent">select</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>findMaxRow<span class="pl-pds">&quot;</span></span> <span class="pl-e">resultType</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>int<span class="pl-pds">&quot;</span></span>&gt;
+        select count(*) from module_dept
+    &lt;/<span class="pl-ent">select</span>&gt;
+
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> EasyMyBatis-Pagination <span class="pl-c">--&gt;</span></span>
+    &lt;<span class="pl-ent">select</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>pagination<span class="pl-pds">&quot;</span></span> <span class="pl-e">resultType</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Dept<span class="pl-pds">&quot;</span></span>&gt;
+        ${autoSQL}
+    &lt;/<span class="pl-ent">select</span>&gt;
+&lt;/<span class="pl-ent">mapper</span>&gt;</pre>
+    </div> </li> 
+  </ul> </li> 
  <li> <p><strong>编写Service代码</strong></p> 
   <ul> 
    <li> <p>在 <code>service</code> 下编写业务接口， 使用 <code>@Transactional</code> 声明事务</p> 
     <div class="highlight highlight-source-java">
      <pre><span class="pl-k">@Transactional</span>
 <span class="pl-k">public</span> <span class="pl-k">interface</span> <span class="pl-en">DeptService</span> {
-
     <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">save</span>(<span class="pl-smi">Dept</span> <span class="pl-v">dept</span>);
-
     <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">delete</span>(<span class="pl-smi">Serializable</span> <span class="pl-v">deptno</span>);
-
     <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">update</span>(<span class="pl-smi">Dept</span> <span class="pl-v">dept</span>);
-
     <span class="pl-k">@Transactional</span>(<span class="pl-c1">readOnly</span><span class="pl-k">=</span><span class="pl-c1">true</span>)
     <span class="pl-k">public</span> <span class="pl-smi">Dept</span> <span class="pl-en">get</span>(<span class="pl-smi">Integer</span> <span class="pl-v">deptno</span>);
 
@@ -801,93 +879,83 @@ function setDocumentScrollTop(ypos)
     <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">findByPage</span>(<span class="pl-smi">PageBean</span> <span class="pl-v">pageBean</span>, <span class="pl-smi">DeptCriteria</span> <span class="pl-v">deptCriteria</span>);
 
     <span class="pl-k">@Transactional</span>(<span class="pl-c1">readOnly</span><span class="pl-k">=</span><span class="pl-c1">true</span>)
-    <span class="pl-k">public</span> <span class="pl-k">int</span> <span class="pl-en">findMaxPage</span>(<span class="pl-k">int</span> <span class="pl-v">rowPerPage</span>);
-
-    <span class="pl-k">@Transactional</span>(<span class="pl-c1">readOnly</span><span class="pl-k">=</span><span class="pl-c1">true</span>)
     <span class="pl-k">public</span> <span class="pl-k">List&lt;<span class="pl-smi">Dept</span>&gt;</span> <span class="pl-en">findAll</span>();
 }</pre>
     </div> </li> 
    <li> <p>在 <code>service.impl</code> 下编写业务接口对应的实现类</p> 
     <ul> 
-     <li><p>业务实现类统一继承BaseService类</p></li> 
-     <li><p>BaseService中注入了通用DAO，直接调用commonDAO的数据方法方法即可</p></li> 
+     <li><p>业务实现类统一继承 BaseService 类</p></li> 
      <li><p>使用@Service声明Bean</p></li> 
     </ul> 
     <div class="highlight highlight-source-java">
      <pre><span class="pl-c"><span class="pl-c">/*</span>*</span>
-<span class="pl-c"> * 业务实现类统一继承BaseService类</span>
-<span class="pl-c"> * BaseService中注入了通用DAO，直接调用commonDAO的数据方法方法即可</span>
-<span class="pl-c"> * </span>
-<span class="pl-c"> * @author easyproject.cn</span>
-<span class="pl-c"> * @version 1.0</span>
-<span class="pl-c"> *</span>
-<span class="pl-c"> <span class="pl-c">*/</span></span>
-<span class="pl-k">@Service</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>deptService<span class="pl-pds">&quot;</span></span>)
-  <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">DeptServiceImpl</span> <span class="pl-k">extends</span> <span class="pl-e">BaseService</span> <span class="pl-k">implements</span> <span class="pl-e">DeptService</span> {
-
-      <span class="pl-k">@Override</span>
-      <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">save</span>(<span class="pl-smi">Dept</span> <span class="pl-v">dept</span>) {
-          commonDAO<span class="pl-k">.</span>persist(dept);
-      }
-
-      <span class="pl-k">@Override</span>
-      <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">delete</span>(<span class="pl-smi">Serializable</span> <span class="pl-v">deptno</span>) {
-          commonDAO<span class="pl-k">.</span>updateByJpql(<span class="pl-s"><span class="pl-pds">&quot;</span>delete from Dept where deptno=?<span class="pl-pds">&quot;</span></span>,deptno);
-      }
-
-      <span class="pl-k">@Override</span>
-      <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">update</span>(<span class="pl-smi">Dept</span> <span class="pl-v">dept</span>) {
-          commonDAO<span class="pl-k">.</span>merge(dept);
-      }
-
-      <span class="pl-k">@Override</span>
-      <span class="pl-k">public</span> <span class="pl-smi">Dept</span> <span class="pl-en">get</span>(<span class="pl-smi">Integer</span> <span class="pl-v">deptno</span>) {
-          <span class="pl-k">return</span> commonDAO<span class="pl-k">.</span>find(<span class="pl-smi">Dept</span><span class="pl-k">.</span>class, deptno);
-      }
-
-      <span class="pl-k">@SuppressWarnings</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>rawtypes<span class="pl-pds">&quot;</span></span>)
-      <span class="pl-k">@Override</span>
-      <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">findByPage</span>(<span class="pl-smi">PageBean</span> <span class="pl-v">pageBean</span>, <span class="pl-smi">DeptCriteria</span> <span class="pl-v">deptCriteria</span>) {
-          pageBean<span class="pl-k">.</span>setEntityName(<span class="pl-s"><span class="pl-pds">&quot;</span>Dept dept<span class="pl-pds">&quot;</span></span>);
-          pageBean<span class="pl-k">.</span>setSelect(<span class="pl-s"><span class="pl-pds">&quot;</span>select dept<span class="pl-pds">&quot;</span></span>);
-
-          <span class="pl-c"><span class="pl-c">//</span> 按条件分页查询</span>
-          commonDAO<span class="pl-k">.</span>findByPage(pageBean,deptCriteria);
-      }
-
-      <span class="pl-k">@Override</span>
-      <span class="pl-k">public</span> <span class="pl-k">int</span> <span class="pl-en">findMaxPage</span>(<span class="pl-k">int</span> <span class="pl-v">rowPerPage</span>) {
-          <span class="pl-k">return</span> commonDAO<span class="pl-k">.</span>findMaxPage(<span class="pl-s"><span class="pl-pds">&quot;</span>select count(*) from Dept<span class="pl-pds">&quot;</span></span>, rowPerPage);
-      }
-
-      <span class="pl-k">@SuppressWarnings</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>unchecked<span class="pl-pds">&quot;</span></span>)
-      <span class="pl-k">@Override</span>
-      <span class="pl-k">public</span> <span class="pl-k">List&lt;<span class="pl-smi">Dept</span>&gt;</span> <span class="pl-en">findAll</span>() {
-          <span class="pl-k">return</span> commonDAO<span class="pl-k">.</span>find(<span class="pl-s"><span class="pl-pds">&quot;</span>from Dept<span class="pl-pds">&quot;</span></span>);
-      }
-
-  }</pre>
-    </div> </li> 
-  </ul> </li> 
- <li> <p><strong>编写 Controller 控制器</strong></p> 
-  <div class="highlight highlight-source-java">
-   <pre><span class="pl-c"><span class="pl-c">/*</span>*</span>
-<span class="pl-c">* 所有Controller处理类统一继承BaseController</span>
-<span class="pl-c">* </span>
-<span class="pl-c">* BaseController 中定义了一下内容：</span>
-<span class="pl-c">* - request, application Servlet API</span>
-<span class="pl-c">* - 请求响应相关的JSON参数(EasyUI框架请求都是通过JSON响应)</span>
-<span class="pl-c">* - 初始化JSON响应数据的方法(setJsonMap，setJsonMsgMap，setJsonPaginationMap(PageBean, Object...))</span>
-<span class="pl-c">* - 获得分页对象：super.getPageBean() </span>
-<span class="pl-c">* </span>
+<span class="pl-c">* 业务实现类统一继承BaseService类</span>
 <span class="pl-c">* </span>
 <span class="pl-c">* @author easyproject.cn</span>
 <span class="pl-c">* @version 1.0</span>
 <span class="pl-c">*</span>
 <span class="pl-c"><span class="pl-c">*/</span></span>
-<span class="pl-k">@RestController</span>
-<span class="pl-k">@RequestMapping</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Dept<span class="pl-pds">&quot;</span></span>)
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">DeptController</span> <span class="pl-k">extends</span> <span class="pl-e">BaseController</span> {
+<span class="pl-k">@Service</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>deptService<span class="pl-pds">&quot;</span></span>)
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">DeptServiceImpl</span> <span class="pl-k">extends</span> <span class="pl-e">BaseService</span> <span class="pl-k">implements</span> <span class="pl-e">DeptService</span> {
+
+    <span class="pl-k">@Resource</span>
+    <span class="pl-smi">DeptDAO</span> deptDAO;
+
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">save</span>(<span class="pl-smi">Dept</span> <span class="pl-v">dept</span>) {
+        deptDAO<span class="pl-k">.</span>save(dept);
+    }
+
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">delete</span>(<span class="pl-smi">Serializable</span> <span class="pl-v">deptno</span>) {
+        deptDAO<span class="pl-k">.</span>delete(deptno);
+    }
+
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">update</span>(<span class="pl-smi">Dept</span> <span class="pl-v">dept</span>) {
+        deptDAO<span class="pl-k">.</span>update(dept);
+    }
+
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">Dept</span> <span class="pl-en">get</span>(<span class="pl-smi">Integer</span> <span class="pl-v">deptno</span>) {
+        <span class="pl-k">return</span> deptDAO<span class="pl-k">.</span>get(deptno);
+    }
+
+    <span class="pl-k">@SuppressWarnings</span>({ <span class="pl-s"><span class="pl-pds">&quot;</span>rawtypes<span class="pl-pds">&quot;</span></span>})
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">findByPage</span>(<span class="pl-smi">PageBean</span> <span class="pl-v">pageBean</span>, <span class="pl-smi">DeptCriteria</span> <span class="pl-v">deptCriteria</span>) {
+        pageBean<span class="pl-k">.</span>setFrom(<span class="pl-s"><span class="pl-pds">&quot;</span>module_dept dept<span class="pl-pds">&quot;</span></span>);
+        pageBean<span class="pl-k">.</span>setSelect(<span class="pl-s"><span class="pl-pds">&quot;</span>dept.*<span class="pl-pds">&quot;</span></span>);
+        pageBean<span class="pl-k">.</span>setEasyCriteria(deptCriteria);
+        <span class="pl-c"><span class="pl-c">//</span> 按条件分页查询</span>
+        deptDAO<span class="pl-k">.</span>pagination(pageBean);
+    }
+
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">List&lt;<span class="pl-smi">Dept</span>&gt;</span> <span class="pl-en">findAll</span>() {
+        <span class="pl-k">return</span> deptDAO<span class="pl-k">.</span>findAll();
+    }
+}</pre>
+    </div> </li> 
+  </ul> </li> 
+ <li> <p><strong>编写 Controller 控制器</strong></p> 
+  <div class="highlight highlight-source-java">
+   <pre>  <span class="pl-c"><span class="pl-c">/*</span>*</span>
+<span class="pl-c">   * Must extends BaseController</span>
+<span class="pl-c">   * </span>
+<span class="pl-c">   * BaseController中定义了一下内容：</span>
+<span class="pl-c">   * - request, application Servlet API </span>
+<span class="pl-c">   * - 请求响应相关的JSON参数(EasyUI框架请求都是通过JSON响应) </span>
+<span class="pl-c">   * - 初始化JSON响应数据的方法(setJsonMap，setJsonMsgMap，setJsonPaginationMap(PageBean, Object...)) </span>
+<span class="pl-c">   * - 获得分页对象：super.getPageBean() </span>
+<span class="pl-c">   * </span>
+<span class="pl-c">   * @author easyproject.cn</span>
+<span class="pl-c">   * @version 1.0</span>
+<span class="pl-c">   *</span>
+<span class="pl-c">   <span class="pl-c">*/</span></span>
+  <span class="pl-k">@RestController</span>
+  <span class="pl-k">@RequestMapping</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Dept<span class="pl-pds">&quot;</span></span>)
+  <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">DeptController</span> <span class="pl-k">extends</span> <span class="pl-e">BaseController</span> {
 
       <span class="pl-k">@Resource</span>
       <span class="pl-k">private</span> <span class="pl-smi">DeptService</span> deptService;
@@ -971,6 +1039,7 @@ function setDocumentScrollTop(ypos)
           }
           <span class="pl-k">return</span> <span class="pl-c1">super</span><span class="pl-k">.</span>setJsonMsgMap();
       }
+
       <span class="pl-k">@RequestMapping</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>update<span class="pl-pds">&quot;</span></span>)
       <span class="pl-k">public</span> <span class="pl-k">Map&lt;<span class="pl-smi">Object</span>,<span class="pl-smi">Object</span>&gt;</span> <span class="pl-en">update</span>(<span class="pl-smi">Dept</span> <span class="pl-v">dept</span>){
           <span class="pl-k">try</span> {
@@ -984,8 +1053,7 @@ function setDocumentScrollTop(ypos)
 
           <span class="pl-k">return</span> <span class="pl-c1">super</span><span class="pl-k">.</span>setJsonMsgMap();
       }
-
-}</pre>
+  }</pre>
   </div> </li> 
  <li> <p><strong>页面开发</strong></p> 
   <ul> 
@@ -1099,124 +1167,158 @@ setJsonPaginationMap(<span class="pl-smi">PageBean</span>, <span class="pl-smi">
  <li>reloadPermissions()：刷新用户当前的权限，用于修改权限后</li> 
  <li>工具方法</li> 
 </ul> 
-<h3> <a id="3-easycommondao" class="anchor" href="#3-easycommondao" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. EasyCommonDAO</h3> 
-<p><a href="https://github.com/ushelp/EasyCommonDAO" title="EasyCommonDAO">EasyCommonDAO</a> 提供了通用的持久层操作类, 封装了各种日常操作方法, 包含了基于 PageBean 和EasyCriteria 的分页及查询条件处理组件。</p> 
 <h4> <a id="pagebean分页和查询条件处理" class="anchor" href="#pagebean%E5%88%86%E9%A1%B5%E5%92%8C%E6%9F%A5%E8%AF%A2%E6%9D%A1%E4%BB%B6%E5%A4%84%E7%90%86" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PageBean分页和查询条件处理</h4> 
 <ul> 
- <li> <p>Example</p> 
+ <li> <p>DAO interface:</p> 
   <div class="highlight highlight-source-java">
-   <pre><span class="pl-smi">PageBean</span> pb <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">PageBean</span>();
-
-<span class="pl-c"><span class="pl-c">//</span> FROM Clause; optional</span>
-<span class="pl-c"><span class="pl-c">//</span> **If use EclipseLink is required!**</span>
-pb<span class="pl-k">.</span>setSelect(<span class="pl-s"><span class="pl-pds">&quot;</span> select new com.company.ssh.entity.Account(ac.accountid, ac.qxname) <span class="pl-pds">&quot;</span></span>);
-<span class="pl-c"><span class="pl-c">//</span> FROM Clause Entity Name; rquired</span>
-pb<span class="pl-k">.</span>setEntityName(<span class="pl-s"><span class="pl-pds">&quot;</span>Account ac<span class="pl-pds">&quot;</span></span>); 
-<span class="pl-c"><span class="pl-c">//</span> Page Number; optional; default is 1</span>
-pb<span class="pl-k">.</span>setPageNo(<span class="pl-c1">1</span>); 
-<span class="pl-c"><span class="pl-c">//</span> Rows per page; optional; default is 10</span>
-pb<span class="pl-k">.</span>setRowsPerPage(<span class="pl-c1">4</span>);
-<span class="pl-c"><span class="pl-c">//</span> WHERE Clause; optional; default is ''</span>
-pb<span class="pl-k">.</span>setCondition(<span class="pl-s"><span class="pl-pds">&quot;</span> and ac.accountid&gt;2<span class="pl-pds">&quot;</span></span>);
-<span class="pl-c"><span class="pl-c">//</span> Append where clause condition; optional; default is ''</span>
-<span class="pl-c"><span class="pl-c">//</span> pb.addCondition(&quot; and name='A'&quot;);</span>
-<span class="pl-c"><span class="pl-c">//</span> SortName; optional; default is ''</span>
-pb<span class="pl-k">.</span>setSort(<span class="pl-s"><span class="pl-pds">&quot;</span>ac.accountid<span class="pl-pds">&quot;</span></span>);
-<span class="pl-c"><span class="pl-c">//</span> SortOrder; optional; default is 'asc'</span>
-pb<span class="pl-k">.</span>setSortOrder(<span class="pl-s"><span class="pl-pds">&quot;</span>desc<span class="pl-pds">&quot;</span></span>);
-<span class="pl-c"><span class="pl-c">//</span> Other sorting methods; optional; default is ''</span>
-pb<span class="pl-k">.</span>setLastSort(<span class="pl-s"><span class="pl-pds">&quot;</span>,time desc<span class="pl-pds">&quot;</span></span>);
-
-<span class="pl-c"><span class="pl-c">//</span> Execute pagination quries</span>
-commonDAO<span class="pl-k">.</span>findByPage(pb); 
-
-<span class="pl-c"><span class="pl-c">//</span> Pagination data</span>
-<span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(pb<span class="pl-k">.</span>getData());
-<span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(pb<span class="pl-k">.</span>getPageNo());
-<span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(pb<span class="pl-k">.</span>getRowsPerPage());
-<span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(pb<span class="pl-k">.</span>getRowsCount());
-<span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(pb<span class="pl-k">.</span>getPageTotal());</pre>
+   <pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">EmpDAO</span>{
+  <span class="pl-k">public</span> <span class="pl-smi">List</span> <span class="pl-en">pagination</span>(<span class="pl-smi">PageBean</span> <span class="pl-v">pageBean</span>);
+  <span class="pl-c"><span class="pl-c">//</span> ...</span>
+}</pre>
   </div> </li> 
- <li> <p>Example2</p> 
+ <li> <p>SQL Mapper:</p> 
+  <div class="highlight highlight-text-xml">
+   <pre>&lt;<span class="pl-ent">select</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>pagination<span class="pl-pds">&quot;</span></span> <span class="pl-e">resultType</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Emp<span class="pl-pds">&quot;</span></span>&gt;
+        ${autoSQL}
+&lt;/<span class="pl-ent">select</span>&gt;</pre>
+  </div> </li> 
+ <li> <p>Service:</p> 
   <div class="highlight highlight-source-java">
-   <pre><span class="pl-c"><span class="pl-c">//</span> Immediate use this query</span>
+   <pre><span class="pl-c"><span class="pl-c">//</span> 查询接口</span>
+<span class="pl-k">@Transactional</span>
+<span class="pl-k">public</span> <span class="pl-k">interface</span> <span class="pl-en">EmpService</span> {
+    <span class="pl-c"><span class="pl-c">//</span>...</span>
+
+    <span class="pl-c"><span class="pl-c">//</span> Pagination</span>
+    <span class="pl-k">@Transactional</span>(<span class="pl-c1">readOnly</span><span class="pl-k">=</span><span class="pl-c1">true</span>)
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">findByPage</span>(<span class="pl-smi">PageBean</span> <span class="pl-v">pageBean</span>,<span class="pl-smi">EmpCriteria</span> <span class="pl-v">empCriteria</span>); <span class="pl-c"><span class="pl-c">//</span> EmpCriteria 参数可选</span>
+}
+
+<span class="pl-c"><span class="pl-c">//</span> 查询实现类</span>
+<span class="pl-k">@Service</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>empService<span class="pl-pds">&quot;</span></span>)
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">EmpServiceImpl</span> <span class="pl-k">extends</span> <span class="pl-e">BaseService</span> <span class="pl-k">implements</span> <span class="pl-e">EmpService</span> {
+
+    <span class="pl-k">@Resource</span>
+    <span class="pl-smi">EmpDAO</span> empDAO;
+
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">findByPage</span>(<span class="pl-smi">PageBean</span> <span class="pl-v">pageBean</span>, <span class="pl-smi">EmpCriteria</span> <span class="pl-v">empCriteria</span>) {
+        pageBean<span class="pl-k">.</span>setEasyCriteria(empCriteria);
+
+        pageBean<span class="pl-k">.</span>setSelect(<span class="pl-s"><span class="pl-pds">&quot;</span>e.empno, e.ename, e.job, d.deptno, d.dname<span class="pl-pds">&quot;</span></span>);
+        pageBean<span class="pl-k">.</span>setFrom(<span class="pl-s"><span class="pl-pds">&quot;</span> module_emp e, module_dept d <span class="pl-pds">&quot;</span></span>);
+        pageBean<span class="pl-k">.</span>addCondition(<span class="pl-s"><span class="pl-pds">&quot;</span>and e.deptno=d.deptno<span class="pl-pds">&quot;</span></span>);
+        pageBean<span class="pl-k">.</span>setPrimaryTable(<span class="pl-s"><span class="pl-pds">&quot;</span>e<span class="pl-pds">&quot;</span></span>);
+
+        <span class="pl-c"><span class="pl-c">//</span> 按条件分页查询</span>
+        empDAO<span class="pl-k">.</span>pagination(pageBean);
+    }
+
+    <span class="pl-c"><span class="pl-c">//</span>...</span>
+}</pre>
+  </div> </li> 
+ <li> <p>PageBean 查询设置示例 1：</p> <p>设置语法： <code>SELECT &lt;select&gt; FROM &lt;from&gt; WHERE &lt;conditions&gt; OREDER BY &lt;order&gt; &lt;sortOrder&gt;,&lt;lastSort&gt;,[primaryTable.ROWID]</code></p> 
+  <div class="highlight highlight-source-java">
+   <pre>  <span class="pl-smi">PageBean</span> pb<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-smi">PageBean</span>();
+  <span class="pl-c"><span class="pl-c">//</span> SELECT 语句; 可选; 默认为 *</span>
+  pb<span class="pl-k">.</span>setSelect(<span class="pl-s"><span class="pl-pds">&quot;</span>*<span class="pl-pds">&quot;</span></span>); 
+  <span class="pl-c"><span class="pl-c">//</span> From 语句; 必须</span>
+  pb<span class="pl-k">.</span>setFrom(<span class="pl-s"><span class="pl-pds">&quot;</span>Account account<span class="pl-pds">&quot;</span></span>);
+  <span class="pl-c"><span class="pl-c">//</span> WHERE 语句; 可选; 默认为 ''</span>
+  pb<span class="pl-k">.</span>setCondition(<span class="pl-s"><span class="pl-pds">&quot;</span> and account.qxid&gt;=10<span class="pl-pds">&quot;</span></span>);
+  <span class="pl-c"><span class="pl-c">//</span> 追加 WHERE 条件; 可选; 默认为 ''</span>
+  <span class="pl-c"><span class="pl-c">//</span>pb.addCondition(&quot;&quot;); </span>
+  <span class="pl-c"><span class="pl-c">//</span> 排序列名; 可选; 默认为 ''</span>
+  pb<span class="pl-k">.</span>setSort(<span class="pl-s"><span class="pl-pds">&quot;</span>account.accountid<span class="pl-pds">&quot;</span></span>);
+  <span class="pl-c"><span class="pl-c">//</span> 排序方式; 可选; 默认为 'asc'</span>
+  pb<span class="pl-k">.</span>setSortOrder(<span class="pl-s"><span class="pl-pds">&quot;</span>desc<span class="pl-pds">&quot;</span></span>);
+  <span class="pl-c"><span class="pl-c">//</span> 当前页数; 可选; 默认为 1</span>
+  pb<span class="pl-k">.</span>setPageNo(<span class="pl-c1">1</span>);
+  <span class="pl-c"><span class="pl-c">//</span> 每页条数; 可选; 默认为 10</span>
+  pb<span class="pl-k">.</span>setRowsPerPage(<span class="pl-c1">4</span>);
+
+  <span class="pl-c"><span class="pl-c">//</span> 按条件分页查询</span>
+  xxxDAO<span class="pl-k">.</span>pagination(pageBean);</pre>
+  </div> </li> 
+ <li> <p>PageBean 查询设置示例 2：</p> 
+  <div class="highlight highlight-source-java">
+   <pre><span class="pl-smi">PageBean</span> pb<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-smi">PageBean</span>();
+pb<span class="pl-k">.</span>setPageNo(<span class="pl-c1">2</span>);
+pb<span class="pl-k">.</span>setRowsPerPage(<span class="pl-c1">5</span>);
 <span class="pl-c"><span class="pl-c">//</span> data sql</span>
-pb<span class="pl-k">.</span>setQuery(<span class="pl-s"><span class="pl-pds">&quot;</span>select ac from Account ac where ac.accountid&gt;=10 and ac.accountid&lt;1000<span class="pl-pds">&quot;</span></span>);
+pb<span class="pl-k">.</span>setSql(<span class="pl-s"><span class="pl-pds">&quot;</span>select * from Emp where empno&lt;=80 and ename like #{ename} limit 10,5<span class="pl-pds">&quot;</span></span>); 
 <span class="pl-c"><span class="pl-c">//</span> total sql</span>
-pb<span class="pl-k">.</span>setCountSQL(<span class="pl-s"><span class="pl-pds">&quot;</span>select count(1) from Account ac where ac.accountid&gt;=10 and ac.accountid&lt;1000<span class="pl-pds">&quot;</span></span>); 
-<span class="pl-c"><span class="pl-c">//</span> Page Number; optional; default is 1</span>
-pb<span class="pl-k">.</span>setPageNo(<span class="pl-c1">1</span>); 
-<span class="pl-c"><span class="pl-c">//</span> Rows per page; optional; default is 10</span>
-pb<span class="pl-k">.</span>setRowsPerPage(<span class="pl-c1">4</span>);
+pb<span class="pl-k">.</span>setCountSQL(<span class="pl-s"><span class="pl-pds">&quot;</span>select count(*) from Emp where empno&lt;=80 and ename like #{ename}<span class="pl-pds">&quot;</span></span>); 
 
-<span class="pl-c"><span class="pl-c">//</span> Execute pagination quries</span>
-commonDAO<span class="pl-k">.</span>findByPage(pb); 
+<span class="pl-c"><span class="pl-c">//</span> Set parameter values</span>
+<span class="pl-k">Map&lt;<span class="pl-smi">String</span>, <span class="pl-smi">Object</span>&gt;</span> values<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-k">HashMap&lt;<span class="pl-smi">String</span>,<span class="pl-smi">Object</span>&gt;</span>();
+values<span class="pl-k">.</span>put(<span class="pl-s"><span class="pl-pds">&quot;</span>ename<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>%a%<span class="pl-pds">&quot;</span></span>);
+pb<span class="pl-k">.</span>setSqlParameterValues(values);
 
-<span class="pl-c"><span class="pl-c">//</span> Pagination data...</span></pre>
+xxxDAO<span class="pl-k">.</span>pagination(pageBean);</pre>
   </div> </li> 
 </ul> 
 <h4> <a id="easycriteria-条件查询" class="anchor" href="#easycriteria-%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EasyCriteria 条件查询</h4> 
 <ol> 
- <li><p>创建 EasyCriteria 类, 必须 extends EasyCriteria implements Serializable</p></li> 
- <li><p>编写条件方法 getCondition()</p></li> 
+ <li><p>创建 <strong>EasyCriteria</strong> 类, 必须 <code>extends EasyCriteria implements Serializable</code></p></li> 
+ <li><p>编写条件方法 <code>getCondition()</code></p></li> 
 </ol> 
 <ul> 
  <li> <p>Example</p> 
   <div class="highlight highlight-source-java">
-   <pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">SysUserCriteria</span> <span class="pl-k">extends</span> <span class="pl-e">EasyCriteria</span> <span class="pl-k">implements</span> <span class="pl-e">java.io<span class="pl-k">.</span>Serializable</span> {
-   <span class="pl-c"><span class="pl-c">//</span> 1. Criteria field</span>
-   <span class="pl-k">private</span> <span class="pl-smi">String</span> name;
-   <span class="pl-k">private</span> <span class="pl-smi">String</span> realName;
-   <span class="pl-k">private</span> <span class="pl-smi">Integer</span> status; <span class="pl-c"><span class="pl-c">//</span> 0 is ON; 1 is OFF; 2 is REMOVED</span>
+   <pre><span class="pl-c"><span class="pl-c">/*</span>*</span>
+<span class="pl-c"> * </span>
+<span class="pl-c"> * @author easyproject.cn</span>
+<span class="pl-c"> * @version 1.0</span>
+<span class="pl-c"> *</span>
+<span class="pl-c"> <span class="pl-c">*/</span></span>
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">SysUserCriteria</span> <span class="pl-k">extends</span> <span class="pl-e">EasyCriteria</span> <span class="pl-k">implements</span> <span class="pl-e">java.io<span class="pl-k">.</span>Serializable</span> {
 
-   <span class="pl-c"><span class="pl-c">//</span> 2. Constructor</span>
-   <span class="pl-k">public</span> <span class="pl-en">SysUserCriteria</span>() {
-   }
+    <span class="pl-c"><span class="pl-c">//</span> Fields</span>
+    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">final</span> <span class="pl-k">long</span> serialVersionUID <span class="pl-k">=</span> <span class="pl-c1">1L</span>;
+    <span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">     * 1. 条件属性</span>
+<span class="pl-c">     <span class="pl-c">*/</span></span>
+    <span class="pl-k">private</span> <span class="pl-smi">String</span> name;
+    <span class="pl-k">private</span> <span class="pl-smi">String</span> status;
 
-   <span class="pl-k">public</span> <span class="pl-en">SysUserCriteria</span>(<span class="pl-smi">String</span> <span class="pl-v">name</span>, <span class="pl-smi">String</span> <span class="pl-v">realName</span>, <span class="pl-smi">Integer</span> <span class="pl-v">status</span>) {
-       <span class="pl-c1">super</span>();
-       <span class="pl-c1">this</span><span class="pl-k">.</span>name <span class="pl-k">=</span> name;
-       <span class="pl-c1">this</span><span class="pl-k">.</span>realName <span class="pl-k">=</span> realName;
-       <span class="pl-c1">this</span><span class="pl-k">.</span>status <span class="pl-k">=</span> status;
-   }
-
-   <span class="pl-c"><span class="pl-c">//</span> 3. Condition genertator abstract method implements</span>
-   <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getCondition</span>() {
-       values<span class="pl-k">.</span>clear(); <span class="pl-c"><span class="pl-c">//</span> **Must clear old values**</span>
-
-       <span class="pl-smi">StringBuffer</span> condition <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">StringBuffer</span>();
-       <span class="pl-k">if</span> (<span class="pl-smi">StringUtils</span><span class="pl-k">.</span>isNotNullAndEmpty(<span class="pl-c1">this</span><span class="pl-k">.</span>getName())) {
-           condition<span class="pl-k">.</span>append(<span class="pl-s"><span class="pl-pds">&quot;</span> and name like ?<span class="pl-pds">&quot;</span></span>);
-           values<span class="pl-k">.</span>add(<span class="pl-s"><span class="pl-pds">&quot;</span>%<span class="pl-pds">&quot;</span></span> <span class="pl-k">+</span> <span class="pl-c1">this</span><span class="pl-k">.</span>getName() <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">&quot;</span>%<span class="pl-pds">&quot;</span></span>);
-       }
-       <span class="pl-k">if</span> (<span class="pl-smi">StringUtils</span><span class="pl-k">.</span>isNotNullAndEmpty(<span class="pl-c1">this</span><span class="pl-k">.</span>getRealName())) {
-           condition<span class="pl-k">.</span>append(<span class="pl-s"><span class="pl-pds">&quot;</span> and realName like ?<span class="pl-pds">&quot;</span></span>);
-           values<span class="pl-k">.</span>add(<span class="pl-s"><span class="pl-pds">&quot;</span>%<span class="pl-pds">&quot;</span></span> <span class="pl-k">+</span> <span class="pl-c1">this</span><span class="pl-k">.</span>getRealName() <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">&quot;</span>%<span class="pl-pds">&quot;</span></span>);
-       }
-       <span class="pl-k">if</span> (<span class="pl-smi">StringUtils</span><span class="pl-k">.</span>isNotNullAndEmpty(<span class="pl-c1">this</span><span class="pl-k">.</span>getStatus())) {
-           condition<span class="pl-k">.</span>append(<span class="pl-s"><span class="pl-pds">&quot;</span> and status=?<span class="pl-pds">&quot;</span></span>);
-           values<span class="pl-k">.</span>add(<span class="pl-c1">this</span><span class="pl-k">.</span>getStatus());
-       }
-       <span class="pl-k">return</span> condition<span class="pl-k">.</span>toString();
-   }
-
-   <span class="pl-c"><span class="pl-c">//</span> 4. Setters&amp;amp;Getters...</span>
-
+     <span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">     * 2. 条件生成抽象方法实现</span>
+<span class="pl-c">     <span class="pl-c">*/</span></span>
+    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getCondition</span>() {
+        values<span class="pl-k">.</span>clear(); <span class="pl-c"><span class="pl-c">//</span>清除条件数据</span>
+        <span class="pl-smi">StringBuffer</span> condition <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">StringBuffer</span>();
+        <span class="pl-k">if</span> (<span class="pl-smi">StringUtils</span><span class="pl-k">.</span>isNotNullAndEmpty(<span class="pl-c1">this</span><span class="pl-k">.</span>getDname())) {
+            condition<span class="pl-k">.</span>append(<span class="pl-s"><span class="pl-pds">&quot;</span> and dname like #{dname}<span class="pl-pds">&quot;</span></span>);
+            values<span class="pl-k">.</span>put(<span class="pl-s"><span class="pl-pds">&quot;</span>dname<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>%<span class="pl-pds">&quot;</span></span> <span class="pl-k">+</span> <span class="pl-c1">this</span><span class="pl-k">.</span>getDname() <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">&quot;</span>%<span class="pl-pds">&quot;</span></span>);
+        }
+        <span class="pl-k">if</span> (<span class="pl-smi">StringUtils</span><span class="pl-k">.</span>isNotNullAndEmpty(<span class="pl-c1">this</span><span class="pl-k">.</span>getLoc())) {
+            condition<span class="pl-k">.</span>append(<span class="pl-s"><span class="pl-pds">&quot;</span> and loc like #{loc}<span class="pl-pds">&quot;</span></span>);
+            values<span class="pl-k">.</span>put(<span class="pl-s"><span class="pl-pds">&quot;</span>loc<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>%<span class="pl-pds">&quot;</span></span> <span class="pl-k">+</span> <span class="pl-c1">this</span><span class="pl-k">.</span>getLoc() <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">&quot;</span>%<span class="pl-pds">&quot;</span></span>);
+        }
+        <span class="pl-k">return</span> condition<span class="pl-k">.</span>toString();
+    }
+     <span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">     * 3. Setters &amp; Getters...</span>
+<span class="pl-c">     <span class="pl-c">*/</span></span> 
 }</pre>
   </div> </li> 
  <li> <p>Usage</p> 
   <div class="highlight highlight-source-java">
-   <pre><span class="pl-smi">PageBean</span> pageBean <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">PageBean</span>();
-pageBean<span class="pl-k">.</span>setEntityName(<span class="pl-s"><span class="pl-pds">&quot;</span>SysUser users<span class="pl-pds">&quot;</span></span>);
-pageBean<span class="pl-k">.</span>setSelect(<span class="pl-s"><span class="pl-pds">&quot;</span>select users<span class="pl-pds">&quot;</span></span>);
+   <pre><span class="pl-smi">PageBean</span> pb<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-smi">PageBean</span>();
+pageBean<span class="pl-k">.</span>setSelect(<span class="pl-s"><span class="pl-pds">&quot;</span>*<span class="pl-pds">&quot;</span></span>);
+pageBean<span class="pl-k">.</span>setFrom(<span class="pl-s"><span class="pl-pds">&quot;</span>SysUser<span class="pl-pds">&quot;</span></span>);
+
 
 <span class="pl-c"><span class="pl-c">//</span> EasyCriteria</span>
 <span class="pl-smi">SysUserCriteria</span> usersCriteria <span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-smi">SysUserCriteria</span>();
 usersCriteria<span class="pl-k">.</span>setName(<span class="pl-s"><span class="pl-pds">&quot;</span>A<span class="pl-pds">&quot;</span></span>);
 usersCriteria<span class="pl-k">.</span>setStatus(<span class="pl-c1">0</span>);
 
+pb<span class="pl-k">.</span>setEasyCriteria(usersCriteria);
+
 <span class="pl-c"><span class="pl-c">//</span> Find by EasyCriteria</span>
-commonDAO<span class="pl-k">.</span>findByPage(pageBean, usersCriteria);</pre>
+xxxDAO<span class="pl-k">.</span>pagination(pageBean);</pre>
   </div> </li> 
 </ul> 
 <h3> <a id="5-权限配置" class="anchor" href="#5-%E6%9D%83%E9%99%90%E9%85%8D%E7%BD%AE" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5. 权限配置</h3> 

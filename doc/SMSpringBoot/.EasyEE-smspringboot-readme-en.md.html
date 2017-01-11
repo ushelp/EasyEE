@@ -1131,90 +1131,103 @@ setJsonPaginationMap(<span class="pl-smi">PageBean</span>, <span class="pl-smi">
  <li>utils</li> 
 </ul> 
 <h3> <a id="3-easymybatis-pagination" class="anchor" href="#3-easymybatis-pagination" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. EasyMyBatis-Pagination</h3> 
-<p><a href="https://github.com/ushelp/EasyMyBatis-Pagination" title="EasyMyBatis-Pagination">EasyMyBatis-Pagination</a> is a generic paging plugin for the MyBaits framework. Provides the PageBean automatic paging data encapsulation, the EasyCriteria paging condition object, and based <code>Mappers Interface</code> or <code>SQLID</code> the automated paging SQL that supports common databases.</p> 
-<h3> <a id="pagebean-pagination" class="anchor" href="#pagebean-pagination" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PageBean pagination</h3> 
+<p><a href="https://github.com/ushelp/EasyMyBatis-Pagination" title="EasyMyBatis-Pagination">EasyMyBatis-Pagination</a> Is a generic paging plug-in for the MyBaits framework. Provides the PageBean automatic paging data encapsulation, the EasyCriteria paging condition object, and the automated paging SQL that supports databases based on both the <code>Mappers</code> interface and <code>SQLID</code>.</p> 
+<p>The EasyEE MyBaits version integrates this plug-in to complete paging.</p> 
+<h4> <a id="pagebean-paging-and-query-condition-processing" class="anchor" href="#pagebean-paging-and-query-condition-processing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PageBean paging and query condition processing</h4> 
 <ul> 
- <li> <p>MyBatis plugin</p> 
-  <div class="highlight highlight-text-xml">
-   <pre>&lt;<span class="pl-ent">plugins</span>&gt;
-  &lt;<span class="pl-ent">plugin</span> <span class="pl-e">interceptor</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cn.easyproject.easymybatis.pagination.EasyMybatisPaginationPlugin<span class="pl-pds">&quot;</span></span>&gt;
-      <span class="pl-c"><span class="pl-c">&lt;!--</span> required; ORACLE, ORACLE_12C, SQLSERVER, SQLSERVER_2012, MYSQL <span class="pl-c">--&gt;</span></span>
-      &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>dialect<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>MYSQL<span class="pl-pds">&quot;</span></span> /&gt;
-  &lt;/<span class="pl-ent">plugin</span>&gt;
-&lt;/<span class="pl-ent">plugins</span>&gt;</pre>
-  </div> </li> 
  <li> <p>DAO interface:</p> 
   <div class="highlight highlight-source-java">
-   <pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">AccountDAO</span>{
+   <pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">EmpDAO</span>{
   <span class="pl-k">public</span> <span class="pl-smi">List</span> <span class="pl-en">pagination</span>(<span class="pl-smi">PageBean</span> <span class="pl-v">pageBean</span>);
   <span class="pl-c"><span class="pl-c">//</span> ...</span>
 }</pre>
   </div> </li> 
- <li> <p>SQL Mapper</p> 
+ <li> <p>SQL Mapper:</p> 
   <div class="highlight highlight-text-xml">
-   <pre>&lt;<span class="pl-ent">select</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>pagination<span class="pl-pds">&quot;</span></span> <span class="pl-e">resultType</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Account<span class="pl-pds">&quot;</span></span>&gt;
+   <pre>&lt;<span class="pl-ent">select</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>pagination<span class="pl-pds">&quot;</span></span> <span class="pl-e">resultType</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Emp<span class="pl-pds">&quot;</span></span>&gt;
         ${autoSQL}
 &lt;/<span class="pl-ent">select</span>&gt;</pre>
   </div> </li> 
- <li> <p>Example</p> 
+ <li> <p>Service:</p> 
   <div class="highlight highlight-source-java">
-   <pre><span class="pl-smi">SqlSession</span> session<span class="pl-k">=</span><span class="pl-smi">MyBatisSessionFactory</span><span class="pl-k">.</span>getSession();
+   <pre><span class="pl-c"><span class="pl-c">//</span> Query interface</span>
+<span class="pl-k">@Transactional</span>
+<span class="pl-k">public</span> <span class="pl-k">interface</span> <span class="pl-en">EmpService</span> {
+    <span class="pl-c"><span class="pl-c">//</span>...</span>
 
-<span class="pl-smi">PageBean</span> pb<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-smi">PageBean</span>();
-<span class="pl-c"><span class="pl-c">//</span> SELECT 语句; 可选; 默认为 *</span>
-pb<span class="pl-k">.</span>setSelect(<span class="pl-s"><span class="pl-pds">&quot;</span>*<span class="pl-pds">&quot;</span></span>); 
-<span class="pl-c"><span class="pl-c">//</span> From 语句; 必须</span>
-pb<span class="pl-k">.</span>setFrom(<span class="pl-s"><span class="pl-pds">&quot;</span>Account account<span class="pl-pds">&quot;</span></span>);
-<span class="pl-c"><span class="pl-c">//</span> WHERE 语句; 可选; 默认为 ''</span>
-pb<span class="pl-k">.</span>setCondition(<span class="pl-s"><span class="pl-pds">&quot;</span> and account.qxid&gt;=10<span class="pl-pds">&quot;</span></span>);
-<span class="pl-c"><span class="pl-c">//</span> 追加 WHERE 条件; 可选; 默认为 ''</span>
-<span class="pl-c"><span class="pl-c">//</span>pb.addCondition(&quot;&quot;); </span>
-<span class="pl-c"><span class="pl-c">//</span> 排序列名; 可选; 默认为 ''</span>
-pb<span class="pl-k">.</span>setSort(<span class="pl-s"><span class="pl-pds">&quot;</span>account.accountid<span class="pl-pds">&quot;</span></span>);
-<span class="pl-c"><span class="pl-c">//</span> 排序方式; 可选; 默认为 'asc'</span>
-pb<span class="pl-k">.</span>setSortOrder(<span class="pl-s"><span class="pl-pds">&quot;</span>desc<span class="pl-pds">&quot;</span></span>);
-<span class="pl-c"><span class="pl-c">//</span> 当前页数; 可选; 默认为 1</span>
-pb<span class="pl-k">.</span>setPageNo(<span class="pl-c1">1</span>);
-<span class="pl-c"><span class="pl-c">//</span> 每页条数; 可选; 默认为 10</span>
-pb<span class="pl-k">.</span>setRowsPerPage(<span class="pl-c1">4</span>);
+    <span class="pl-c"><span class="pl-c">//</span> Pagination</span>
+    <span class="pl-k">@Transactional</span>(<span class="pl-c1">readOnly</span><span class="pl-k">=</span><span class="pl-c1">true</span>)
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">findByPage</span>(<span class="pl-smi">PageBean</span> <span class="pl-v">pageBean</span>,<span class="pl-smi">EmpCriteria</span> <span class="pl-v">empCriteria</span>); <span class="pl-c"><span class="pl-c">//</span> EmpCriteria parameters are optional</span>
+}
 
-<span class="pl-c"><span class="pl-c">//</span> 查询方式一: Mappers Interface</span>
-<span class="pl-smi">AccountDAO</span> accountDAO<span class="pl-k">=</span>session<span class="pl-k">.</span>getMapper(<span class="pl-smi">AccountDAO</span><span class="pl-k">.</span>class);
-accountDAO<span class="pl-k">.</span>pagination(pb)
+<span class="pl-c"><span class="pl-c">//</span> Query implementation class</span>
+<span class="pl-k">@Service</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>empService<span class="pl-pds">&quot;</span></span>)
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">EmpServiceImpl</span> <span class="pl-k">extends</span> <span class="pl-e">BaseService</span> <span class="pl-k">implements</span> <span class="pl-e">EmpService</span> {
 
-<span class="pl-c"><span class="pl-c">//</span> 查询方式二: SQL ID</span>
-session<span class="pl-k">.</span>selectList(<span class="pl-s"><span class="pl-pds">&quot;</span>cn.easyproject.easymybatis.pagination.dao.AccountDAO.pagination<span class="pl-pds">&quot;</span></span>, pb);
+    <span class="pl-k">@Resource</span>
+    <span class="pl-smi">EmpDAO</span> empDAO;
 
-<span class="pl-c"><span class="pl-c">//</span> Pagination data</span>
-<span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(pb<span class="pl-k">.</span>getData());
-<span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(pb<span class="pl-k">.</span>getPageTotal());
-<span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(pb<span class="pl-k">.</span>getPageNo());
-<span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(pb<span class="pl-k">.</span>getRowsPerPage());
-<span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(pb<span class="pl-k">.</span>getRowsCount());</pre>
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">findByPage</span>(<span class="pl-smi">PageBean</span> <span class="pl-v">pageBean</span>, <span class="pl-smi">EmpCriteria</span> <span class="pl-v">empCriteria</span>) {
+        pageBean<span class="pl-k">.</span>setEasyCriteria(empCriteria);
+
+        pageBean<span class="pl-k">.</span>setSelect(<span class="pl-s"><span class="pl-pds">&quot;</span>e.empno, e.ename, e.job, d.deptno, d.dname<span class="pl-pds">&quot;</span></span>);
+        pageBean<span class="pl-k">.</span>setFrom(<span class="pl-s"><span class="pl-pds">&quot;</span> module_emp e, module_dept d <span class="pl-pds">&quot;</span></span>);
+        pageBean<span class="pl-k">.</span>addCondition(<span class="pl-s"><span class="pl-pds">&quot;</span>and e.deptno=d.deptno<span class="pl-pds">&quot;</span></span>);
+        pageBean<span class="pl-k">.</span>setPrimaryTable(<span class="pl-s"><span class="pl-pds">&quot;</span>e<span class="pl-pds">&quot;</span></span>);
+
+        <span class="pl-c"><span class="pl-c">//</span> Paged by condition query</span>
+        empDAO<span class="pl-k">.</span>pagination(pageBean);
+    }
+
+    <span class="pl-c"><span class="pl-c">//</span>...</span>
+}</pre>
   </div> </li> 
- <li> <p>Example2</p> 
+ <li> <p>PageBean Query Settings Example 1:</p> <p>Setting syntax: <code>SELECT &lt;select&gt; FROM &lt;from&gt; WHERE &lt;conditions&gt; OREDER BY &lt;order&gt; &lt;sortOrder&gt;,&lt;lastSort&gt;,[primaryTable.ROWID]</code></p> 
   <div class="highlight highlight-source-java">
-   <pre><span class="pl-c"><span class="pl-c">//</span> Immediate use this query</span>
+   <pre>  <span class="pl-smi">PageBean</span> pb<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-smi">PageBean</span>();
+  <span class="pl-c"><span class="pl-c">//</span> SELECT Statement; optional; default is  *</span>
+  pb<span class="pl-k">.</span>setSelect(<span class="pl-s"><span class="pl-pds">&quot;</span>*<span class="pl-pds">&quot;</span></span>); 
+  <span class="pl-c"><span class="pl-c">//</span> From Statement; required</span>
+  pb<span class="pl-k">.</span>setFrom(<span class="pl-s"><span class="pl-pds">&quot;</span>Account account<span class="pl-pds">&quot;</span></span>);
+  <span class="pl-c"><span class="pl-c">//</span> WHERE Statement; optional; default is  ''</span>
+  pb<span class="pl-k">.</span>setCondition(<span class="pl-s"><span class="pl-pds">&quot;</span> and account.qxid&gt;=10<span class="pl-pds">&quot;</span></span>);
+  <span class="pl-c"><span class="pl-c">//</span> Additional WHERE condition; optional; default is  ''</span>
+  <span class="pl-c"><span class="pl-c">//</span>pb.addCondition(&quot;&quot;); </span>
+  <span class="pl-c"><span class="pl-c">//</span> Column sorting; optional; default is  ''</span>
+  pb<span class="pl-k">.</span>setSort(<span class="pl-s"><span class="pl-pds">&quot;</span>account.accountid<span class="pl-pds">&quot;</span></span>);
+  <span class="pl-c"><span class="pl-c">//</span> Sorting method; optional; default is  'asc'</span>
+  pb<span class="pl-k">.</span>setSortOrder(<span class="pl-s"><span class="pl-pds">&quot;</span>desc<span class="pl-pds">&quot;</span></span>);
+  <span class="pl-c"><span class="pl-c">//</span> The current page; optional; default is  1</span>
+  pb<span class="pl-k">.</span>setPageNo(<span class="pl-c1">1</span>);
+  <span class="pl-c"><span class="pl-c">//</span> Page number; optional; default is  10</span>
+  pb<span class="pl-k">.</span>setRowsPerPage(<span class="pl-c1">4</span>);
+
+  <span class="pl-c"><span class="pl-c">//</span> Condition paging query</span>
+  xxxDAO<span class="pl-k">.</span>pagination(pageBean);</pre>
+  </div> </li> 
+ <li> <p>PageBean query settings example 2:</p> 
+  <div class="highlight highlight-source-java">
+   <pre><span class="pl-smi">PageBean</span> pb<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-smi">PageBean</span>();
+pb<span class="pl-k">.</span>setPageNo(<span class="pl-c1">2</span>);
+pb<span class="pl-k">.</span>setRowsPerPage(<span class="pl-c1">5</span>);
 <span class="pl-c"><span class="pl-c">//</span> data sql</span>
-pb<span class="pl-k">.</span>setQuery(<span class="pl-s"><span class="pl-pds">&quot;</span>select ac from Account ac where ac.accountid&gt;=10 and ac.accountid&lt;1000<span class="pl-pds">&quot;</span></span>);
+pb<span class="pl-k">.</span>setSql(<span class="pl-s"><span class="pl-pds">&quot;</span>select * from Emp where empno&lt;=80 and ename like #{ename} limit 10,5<span class="pl-pds">&quot;</span></span>); 
 <span class="pl-c"><span class="pl-c">//</span> total sql</span>
-pb<span class="pl-k">.</span>setCountSQL(<span class="pl-s"><span class="pl-pds">&quot;</span>select count(1) from Account ac where ac.accountid&gt;=10 and ac.accountid&lt;1000<span class="pl-pds">&quot;</span></span>); 
-<span class="pl-c"><span class="pl-c">//</span> Page Number; optional; default is 1</span>
-pb<span class="pl-k">.</span>setPageNo(<span class="pl-c1">1</span>); 
-<span class="pl-c"><span class="pl-c">//</span> Rows per page; optional; default is 10</span>
-pb<span class="pl-k">.</span>setRowsPerPage(<span class="pl-c1">4</span>);
+pb<span class="pl-k">.</span>setCountSQL(<span class="pl-s"><span class="pl-pds">&quot;</span>select count(*) from Emp where empno&lt;=80 and ename like #{ename}<span class="pl-pds">&quot;</span></span>); 
 
-<span class="pl-c"><span class="pl-c">//</span> Execute pagination quries</span>
-commonDAO<span class="pl-k">.</span>findByPage(pb); 
+<span class="pl-c"><span class="pl-c">//</span> Set parameter values</span>
+<span class="pl-k">Map&lt;<span class="pl-smi">String</span>, <span class="pl-smi">Object</span>&gt;</span> values<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-k">HashMap&lt;<span class="pl-smi">String</span>,<span class="pl-smi">Object</span>&gt;</span>();
+values<span class="pl-k">.</span>put(<span class="pl-s"><span class="pl-pds">&quot;</span>ename<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>%a%<span class="pl-pds">&quot;</span></span>);
+pb<span class="pl-k">.</span>setSqlParameterValues(values);
 
-<span class="pl-c"><span class="pl-c">//</span> Pagination data...</span></pre>
+xxxDAO<span class="pl-k">.</span>pagination(pageBean);</pre>
   </div> </li> 
 </ul> 
 <h4> <a id="easycriteria-criteria-queries" class="anchor" href="#easycriteria-criteria-queries" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EasyCriteria criteria queries</h4> 
 <ol> 
- <li><p>New your EasyCriteria class, must extends EasyCriteria implements Serializable</p></li> 
- <li><p>Write your condition by getCondition()</p></li> 
- <li><p>Find by EasyCriteria</p></li> 
+ <li><p>Create <strong>EasyCriteria</strong> Class, must <code>extends EasyCriteria implements Serializable</code></p></li> 
+ <li><p>create method <code>getCondition()</code></p></li> 
 </ol> 
 <ul> 
  <li> <p>Example</p> 
@@ -1225,15 +1238,21 @@ commonDAO<span class="pl-k">.</span>findByPage(pb);
 <span class="pl-c"> * @version 1.0</span>
 <span class="pl-c"> *</span>
 <span class="pl-c"> <span class="pl-c">*/</span></span>
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">DeptCriteria</span> <span class="pl-k">extends</span> <span class="pl-e">EasyCriteria</span> <span class="pl-k">implements</span> <span class="pl-e">java.io<span class="pl-k">.</span>Serializable</span> {
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">SysUserCriteria</span> <span class="pl-k">extends</span> <span class="pl-e">EasyCriteria</span> <span class="pl-k">implements</span> <span class="pl-e">java.io<span class="pl-k">.</span>Serializable</span> {
 
     <span class="pl-c"><span class="pl-c">//</span> Fields</span>
     <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">final</span> <span class="pl-k">long</span> serialVersionUID <span class="pl-k">=</span> <span class="pl-c1">1L</span>;
-    <span class="pl-k">private</span> <span class="pl-smi">String</span> dname;
-    <span class="pl-k">private</span> <span class="pl-smi">String</span> loc;
+    <span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">     * 1. fields</span>
+<span class="pl-c">     <span class="pl-c">*/</span></span>
+    <span class="pl-k">private</span> <span class="pl-smi">String</span> name;
+    <span class="pl-k">private</span> <span class="pl-smi">String</span> status;
 
+     <span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">     * 2. core method</span>
+<span class="pl-c">     <span class="pl-c">*/</span></span>
     <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getCondition</span>() {
-        values<span class="pl-k">.</span>clear(); <span class="pl-c"><span class="pl-c">//</span>清除条件数据</span>
+        values<span class="pl-k">.</span>clear(); <span class="pl-c"><span class="pl-c">//</span>clear</span>
         <span class="pl-smi">StringBuffer</span> condition <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">StringBuffer</span>();
         <span class="pl-k">if</span> (<span class="pl-smi">StringUtils</span><span class="pl-k">.</span>isNotNullAndEmpty(<span class="pl-c1">this</span><span class="pl-k">.</span>getDname())) {
             condition<span class="pl-k">.</span>append(<span class="pl-s"><span class="pl-pds">&quot;</span> and dname like #{dname}<span class="pl-pds">&quot;</span></span>);
@@ -1245,22 +1264,27 @@ commonDAO<span class="pl-k">.</span>findByPage(pb);
         }
         <span class="pl-k">return</span> condition<span class="pl-k">.</span>toString();
     }
-    <span class="pl-c"><span class="pl-c">//</span> Setters &amp; Getters...</span>
+     <span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">     * 3. Setters &amp; Getters...</span>
+<span class="pl-c">     <span class="pl-c">*/</span></span> 
 }</pre>
   </div> </li> 
  <li> <p>Usage</p> 
   <div class="highlight highlight-source-java">
-   <pre><span class="pl-smi">PageBean</span> pageBean <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">PageBean</span>();
-pageBean<span class="pl-k">.</span>setEntityName(<span class="pl-s"><span class="pl-pds">&quot;</span>SysUser users<span class="pl-pds">&quot;</span></span>);
-pageBean<span class="pl-k">.</span>setSelect(<span class="pl-s"><span class="pl-pds">&quot;</span>select users<span class="pl-pds">&quot;</span></span>);
+   <pre><span class="pl-smi">PageBean</span> pb<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-smi">PageBean</span>();
+pageBean<span class="pl-k">.</span>setSelect(<span class="pl-s"><span class="pl-pds">&quot;</span>*<span class="pl-pds">&quot;</span></span>);
+pageBean<span class="pl-k">.</span>setFrom(<span class="pl-s"><span class="pl-pds">&quot;</span>SysUser<span class="pl-pds">&quot;</span></span>);
+
 
 <span class="pl-c"><span class="pl-c">//</span> EasyCriteria</span>
 <span class="pl-smi">SysUserCriteria</span> usersCriteria <span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-smi">SysUserCriteria</span>();
 usersCriteria<span class="pl-k">.</span>setName(<span class="pl-s"><span class="pl-pds">&quot;</span>A<span class="pl-pds">&quot;</span></span>);
 usersCriteria<span class="pl-k">.</span>setStatus(<span class="pl-c1">0</span>);
 
+pb<span class="pl-k">.</span>setEasyCriteria(usersCriteria);
+
 <span class="pl-c"><span class="pl-c">//</span> Find by EasyCriteria</span>
-commonDAO<span class="pl-k">.</span>findByPage(pageBean, usersCriteria);</pre>
+xxxDAO<span class="pl-k">.</span>pagination(pageBean);</pre>
   </div> </li> 
 </ul> 
 <h3> <a id="5-rights-profile" class="anchor" href="#5-rights-profile" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5. Rights Profile</h3> 

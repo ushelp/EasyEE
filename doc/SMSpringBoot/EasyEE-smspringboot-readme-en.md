@@ -6,7 +6,7 @@ It integrates the widely used framework of JaveEE domain and EasyUI front-end fr
 
 [EasyEE Auto](https://github.com/ushelp/EasyEE-Auto 'EasyEE Auto') automated code generator is provided.
 
-Latest version:  `4.1.2`
+Latest version:  `4.1.3`
 
 ## SM-Spring Boot Framework
 
@@ -554,104 +554,120 @@ EasySM-SpringBoot
   - reloadPermissions(): refreshing the user's current permission after to modify permissions
   - utils
    
-  
+
+   
 ### 3. EasyMyBatis-Pagination
 
-[EasyMyBatis-Pagination](https://github.com/ushelp/EasyMyBatis-Pagination 'EasyMyBatis-Pagination') is a generic paging plugin for the MyBaits framework. Provides the PageBean automatic paging data encapsulation, the EasyCriteria paging condition object, and based `Mappers Interface` or `SQLID` the automated paging SQL that supports common databases.
+[EasyMyBatis-Pagination](https://github.com/ushelp/EasyMyBatis-Pagination 'EasyMyBatis-Pagination') Is a generic paging plug-in for the MyBaits framework. Provides the PageBean automatic paging data encapsulation, the EasyCriteria paging condition object, and the automated paging SQL that supports databases based on both the `Mappers` interface and `SQLID`.
 
-### PageBean pagination
+The EasyEE MyBaits version integrates this plug-in to complete paging.
 
-- MyBatis plugin
 
-	```XML
-	<plugins>
-	  <plugin interceptor="cn.easyproject.easymybatis.pagination.EasyMybatisPaginationPlugin">
-	      <!-- required; ORACLE, ORACLE_12C, SQLSERVER, SQLSERVER_2012, MYSQL -->
-	      <property name="dialect" value="MYSQL" />
-	  </plugin>
-	</plugins>
-	```
+#### PageBean paging and query condition processing
 	
 - DAO interface:
 	```JAVA
-	public class AccountDAO{
+	public class EmpDAO{
 	  public List pagination(PageBean pageBean);
 	  // ...
 	}
 	```
 
-- SQL Mapper
+- SQL Mapper:
 	```XML
-	<select id="pagination" resultType="Account">
+	<select id="pagination" resultType="Emp">
 	        ${autoSQL}
 	</select>
 	```
-
-- Example
+- Service:
 
    ```JAVA
-	SqlSession session=MyBatisSessionFactory.getSession();
+   // Query interface
+   @Transactional
+	public interface EmpService {
+		//...
+		
+		// Pagination
+		@Transactional(readOnly=true)
+		public void findByPage(PageBean pageBean,EmpCriteria empCriteria); // EmpCriteria parameters are optional
+	}
 	
-	PageBean pb=new PageBean();
-	// SELECT 语句; 可选; 默认为 *
-	pb.setSelect("*"); 
-	// From 语句; 必须
-	pb.setFrom("Account account");
-	// WHERE 语句; 可选; 默认为 ''
-	pb.setCondition(" and account.qxid>=10");
-	// 追加 WHERE 条件; 可选; 默认为 ''
-	//pb.addCondition(""); 
-	// 排序列名; 可选; 默认为 ''
-	pb.setSort("account.accountid");
-	// 排序方式; 可选; 默认为 'asc'
-	pb.setSortOrder("desc");
-	// 当前页数; 可选; 默认为 1
-	pb.setPageNo(1);
-	// 每页条数; 可选; 默认为 10
-	pb.setRowsPerPage(4);
+	// Query implementation class
+	@Service("empService")
+	public class EmpServiceImpl extends BaseService implements EmpService {
+		
+		@Resource
+		EmpDAO empDAO;
+		
+		@Override
+		public void findByPage(PageBean pageBean, EmpCriteria empCriteria) {
+			pageBean.setEasyCriteria(empCriteria);
+		
+			pageBean.setSelect("e.empno, e.ename, e.job, d.deptno, d.dname");
+			pageBean.setFrom(" module_emp e, module_dept d ");
+			pageBean.addCondition("and e.deptno=d.deptno");
+			pageBean.setPrimaryTable("e");
+			
+			// Paged by condition query
+			empDAO.pagination(pageBean);
+		}
 	
-	// 查询方式一: Mappers Interface
-	AccountDAO accountDAO=session.getMapper(AccountDAO.class);
-	accountDAO.pagination(pb)
-	
-	// 查询方式二: SQL ID
-	session.selectList("cn.easyproject.easymybatis.pagination.dao.AccountDAO.pagination", pb);
-	
-	// Pagination data
-	System.out.println(pb.getData());
-	System.out.println(pb.getPageTotal());
-	System.out.println(pb.getPageNo());
-	System.out.println(pb.getRowsPerPage());
-	System.out.println(pb.getRowsCount());
+		//...
+	}
    ```
-
-- Example2
-
-   ```JAVA
-   // Immediate use this query
-	// data sql
-	pb.setQuery("select ac from Account ac where ac.accountid>=10 and ac.accountid<1000");
-	// total sql
-	pb.setCountSQL("select count(1) from Account ac where ac.accountid>=10 and ac.accountid<1000"); 
-	// Page Number; optional; default is 1
-	pb.setPageNo(1); 
-	// Rows per page; optional; default is 10
-	pb.setRowsPerPage(4);
-	
-	// Execute pagination quries
-	commonDAO.findByPage(pb); 
    
-   // Pagination data...
-   ```
+- PageBean Query Settings Example 1:
 
+ Setting syntax: `SELECT <select> FROM <from> WHERE <conditions> OREDER BY <order> <sortOrder>,<lastSort>,[primaryTable.ROWID]`
+
+	```JAVA
+	PageBean pb=new PageBean();
+	// SELECT Statement; optional; default is  *
+	pb.setSelect("*"); 
+	// From Statement; required
+	pb.setFrom("Account account");
+	// WHERE Statement; optional; default is  ''
+	pb.setCondition(" and account.qxid>=10");
+	// Additional WHERE condition; optional; default is  ''
+	//pb.addCondition(""); 
+	// Column sorting; optional; default is  ''
+	pb.setSort("account.accountid");
+	// Sorting method; optional; default is  'asc'
+	pb.setSortOrder("desc");
+	// The current page; optional; default is  1
+	pb.setPageNo(1);
+	// Page number; optional; default is  10
+	pb.setRowsPerPage(4);
+	
+	// Condition paging query
+	xxxDAO.pagination(pageBean);
+	```
+
+
+- PageBean query settings example 2:
+
+   ```JAVA
+	PageBean pb=new PageBean();
+	pb.setPageNo(2);
+	pb.setRowsPerPage(5);
+	// data sql
+	pb.setSql("select * from Emp where empno<=80 and ename like #{ename} limit 10,5"); 
+	// total sql
+	pb.setCountSQL("select count(*) from Emp where empno<=80 and ename like #{ename}"); 
+	
+	// Set parameter values
+	Map<String, Object> values=new HashMap<String,Object>();
+	values.put("ename", "%a%");
+	pb.setSqlParameterValues(values);
+	
+	xxxDAO.pagination(pageBean);
+   ```
 
 #### EasyCriteria criteria queries
 
-1. New your EasyCriteria class, must extends EasyCriteria implements Serializable
+1. Create **EasyCriteria** Class, must `extends EasyCriteria implements Serializable`
 
-2. Write your condition by getCondition()
-
-3. Find by EasyCriteria
+2. create method `getCondition()`
 
 - Example
     
@@ -662,15 +678,21 @@ EasySM-SpringBoot
 	 * @version 1.0
 	 *
 	 */
-	public class DeptCriteria extends EasyCriteria implements java.io.Serializable {
+	public class SysUserCriteria extends EasyCriteria implements java.io.Serializable {
 	
 		// Fields
 		private static final long serialVersionUID = 1L;
-		private String dname;
-		private String loc;
+		/*
+	 	 * 1. fields
+	 	 */
+		private String name;
+		private String status;
 		
+		 /*
+	 	 * 2. core method
+	 	 */
 		public String getCondition() {
-			values.clear(); //清除条件数据
+			values.clear(); //clear
 			StringBuffer condition = new StringBuffer();
 			if (StringUtils.isNotNullAndEmpty(this.getDname())) {
 				condition.append(" and dname like #{dname}");
@@ -682,25 +704,31 @@ EasySM-SpringBoot
 			}
 			return condition.toString();
 		}
-	 	// Setters & Getters...
+		 /*
+	 	 * 3. Setters & Getters...
+	 	 */ 
 	}
     ```
 
 - Usage
 
     ```JAVA
-    PageBean pageBean = new PageBean();
-    pageBean.setEntityName("SysUser users");
-    pageBean.setSelect("select users");
+    PageBean pb=new PageBean();
+    pageBean.setSelect("*");
+    pageBean.setFrom("SysUser");
+    
     
     // EasyCriteria
     SysUserCriteria usersCriteria =new SysUserCriteria();
     usersCriteria.setName("A");
     usersCriteria.setStatus(0);
     
+    pb.setEasyCriteria(usersCriteria);
+    
     // Find by EasyCriteria
-    commonDAO.findByPage(pageBean, usersCriteria);
+    xxxDAO.pagination(pageBean);
     ```
+
 
 
 ### 5. Rights Profile

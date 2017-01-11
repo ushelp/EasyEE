@@ -11,7 +11,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -280,6 +279,7 @@ public class BaseController {
 	 * 
 	 * @return 当前登录的用户对象
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked", "unused" })
 	public SysUser getLoginUser() {
 		HttpSession session = request.getSession();
 		SysUser user=new SysUser();

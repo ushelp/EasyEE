@@ -6,7 +6,7 @@ EasyEE 是一个开源 JaveEE 企业级快速开发基础平台，提供多种�
 
 提供 [EasyEE Auto](https://github.com/ushelp/EasyEE-Auto 'EasyEE Auto') 自动化代码生成器。
 
-最新版本： `4.1.2`
+最新版本： `4.1.3`
 
 ## SM Framework
 
@@ -545,41 +545,69 @@ BaseAction 中定义了以下主要内容：
   
 ### 3. EasyMyBatis-Pagination
 
-[EasyMyBatis-Pagination](https://github.com/ushelp/EasyMyBatis-Pagination 'EasyMyBatis-Pagination') EasyMyBatis Pagination 是一个针对 MyBaits 框架的通用分页插件。提供 PageBean 自动分页数据封装, EasyCriteria 分页条件对象，支持基于 `Mappers` 接口和 `SQLID` 两种方式的数据库的自动化分页 SQL。
+[EasyMyBatis-Pagination](https://github.com/ushelp/EasyMyBatis-Pagination 'EasyMyBatis-Pagination') 是一个针对 MyBaits 框架的通用分页插件。提供 PageBean 自动分页数据封装, EasyCriteria 分页条件对象，支持基于 `Mappers` 接口和 `SQLID` 两种方式的数据库的自动化分页 SQL。
+
+EasyEE MyBaits 版本集成了此插件完成分页。
 
 
 #### PageBean分页和查询条件处理
-
-- MyBatis plugin
-
-	```XML
-	<plugins>
-	  <plugin interceptor="cn.easyproject.easymybatis.pagination.EasyMybatisPaginationPlugin">
-	      <!-- required; ORACLE, ORACLE_12C, SQLSERVER, SQLSERVER_2012, MYSQL -->
-	      <property name="dialect" value="MYSQL" />
-	  </plugin>
-	</plugins>
-	```
 	
 - DAO interface:
 	```JAVA
-	public class AccountDAO{
+	public class EmpDAO{
 	  public List pagination(PageBean pageBean);
 	  // ...
 	}
 	```
 
-- SQL Mapper
+- SQL Mapper:
 	```XML
-	<select id="pagination" resultType="Account">
+	<select id="pagination" resultType="Emp">
 	        ${autoSQL}
 	</select>
 	```
-- Example
+- Service:
 
    ```JAVA
-	SqlSession session=MyBatisSessionFactory.getSession();
+   // 查询接口
+   @Transactional
+	public interface EmpService {
+		//...
+		
+		// Pagination
+		@Transactional(readOnly=true)
+		public void findByPage(PageBean pageBean,EmpCriteria empCriteria); // EmpCriteria 参数可选
+	}
 	
+	// 查询实现类
+	@Service("empService")
+	public class EmpServiceImpl extends BaseService implements EmpService {
+		
+		@Resource
+		EmpDAO empDAO;
+		
+		@Override
+		public void findByPage(PageBean pageBean, EmpCriteria empCriteria) {
+			pageBean.setEasyCriteria(empCriteria);
+		
+			pageBean.setSelect("e.empno, e.ename, e.job, d.deptno, d.dname");
+			pageBean.setFrom(" module_emp e, module_dept d ");
+			pageBean.addCondition("and e.deptno=d.deptno");
+			pageBean.setPrimaryTable("e");
+			
+			// 按条件分页查询
+			empDAO.pagination(pageBean);
+		}
+	
+		//...
+	}
+   ```
+   
+- PageBean 查询设置示例 1：
+
+ 设置语法： `SELECT <select> FROM <from> WHERE <conditions> OREDER BY <order> <sortOrder>,<lastSort>,[primaryTable.ROWID]`
+
+	```JAVA
 	PageBean pb=new PageBean();
 	// SELECT 语句; 可选; 默认为 *
 	pb.setSelect("*"); 
@@ -598,52 +626,35 @@ BaseAction 中定义了以下主要内容：
 	// 每页条数; 可选; 默认为 10
 	pb.setRowsPerPage(4);
 	
-	// 查询方式一: Mappers Interface
-	AccountDAO accountDAO=session.getMapper(AccountDAO.class);
-	accountDAO.pagination(pb)
-	
-	// 查询方式二: SQL ID
-	session.selectList("cn.easyproject.easymybatis.pagination.dao.AccountDAO.pagination", pb);
-	
-	// Pagination data
-	System.out.println(pb.getData());
-	System.out.println(pb.getPageTotal());
-	System.out.println(pb.getPageNo());
-	System.out.println(pb.getRowsPerPage());
-	System.out.println(pb.getRowsCount());
-   ```
+	// 按条件分页查询
+	xxxDAO.pagination(pageBean);
+	```
 
-- Example2
+
+- PageBean 查询设置示例 2：
 
    ```JAVA
-	PageBean<Qx> pb=new PageBean<Qx>();
+	PageBean pb=new PageBean();
 	pb.setPageNo(2);
 	pb.setRowsPerPage(5);
 	// data sql
-	pb.setSql("select * from Account where accountId<=80 and accountName=? limit 5,5"); 
+	pb.setSql("select * from Emp where empno<=80 and ename like #{ename} limit 10,5"); 
 	// total sql
-	pb.setCountSQL("select count(*) from Account where accountId<=80 and accoutName=?"); 
+	pb.setCountSQL("select count(*) from Emp where empno<=80 and ename like #{ename}"); 
 	
 	// Set parameter values
 	Map<String, Object> values=new HashMap<String,Object>();
-	values.put("accoutName", "%a%");
+	values.put("ename", "%a%");
 	pb.setSqlParameterValues(values);
 	
-	// 查询方式一: Mappers Interface
-	AccountDAO accountDAO=session.getMapper(AccountDAO.class);
-	accountDAO.pagination(pb)
-	
-	// 查询方式二: SQL ID
-	session.selectList("cn.easyproject.easymybatis.pagination.dao.AccountDAO.pagination", pb);
-   
-   // Pagination data...
+	xxxDAO.pagination(pageBean);
    ```
 
 #### EasyCriteria 条件查询
 
-1. 创建 EasyCriteria 类, 必须 extends EasyCriteria implements Serializable
+1. 创建 **EasyCriteria** 类, 必须 `extends EasyCriteria implements Serializable`
 
-2. 编写条件方法 getCondition()
+2. 编写条件方法 `getCondition()`
 
 - Example
     
@@ -654,15 +665,15 @@ BaseAction 中定义了以下主要内容：
 	 * @version 1.0
 	 *
 	 */
-	public class DeptCriteria extends EasyCriteria implements java.io.Serializable {
+	public class SysUserCriteria extends EasyCriteria implements java.io.Serializable {
 	
 		// Fields
 		private static final long serialVersionUID = 1L;
 		/*
 	 	 * 1. 条件属性
 	 	 */
-		private String dname;
-		private String loc;
+		private String name;
+		private String status;
 		
 		 /*
 	 	 * 2. 条件生成抽象方法实现
@@ -689,17 +700,20 @@ BaseAction 中定义了以下主要内容：
 - Usage
 
     ```JAVA
-    PageBean pageBean = new PageBean();
-    pageBean.setEntityName("SysUser users");
-    pageBean.setSelect("select users");
+    PageBean pb=new PageBean();
+    pageBean.setSelect("*");
+    pageBean.setFrom("SysUser");
+    
     
     // EasyCriteria
     SysUserCriteria usersCriteria =new SysUserCriteria();
     usersCriteria.setName("A");
     usersCriteria.setStatus(0);
     
+    pb.setEasyCriteria(usersCriteria);
+    
     // Find by EasyCriteria
-    commonDAO.findByPage(pageBean, usersCriteria);
+    xxxDAO.pagination(pageBean);
     ```
 
 ### 5. 权限配置

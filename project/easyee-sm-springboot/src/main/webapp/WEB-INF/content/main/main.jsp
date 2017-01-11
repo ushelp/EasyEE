@@ -171,7 +171,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div data-options="region:'center',split:true"  >
 			<div class="easyui-tabs" id="tabs" data-options="fit:true">
 				<%-- <div title="最近报表"  iconCls="icon-chart_bar" data-options="href:'jsp/echarts/doChart.jsp'"></div> --%>
-				<div title="框架手册"  iconCls="icon-book"  data-options="fit:true, content:'<iframe src=\'doc/easyee-sm-readme-single_zh_CN.html?v=1\' frameborder=\'0\' style=\'height:500px;width:100%;\'  ></iframe>'"></div> 
+				<div title="框架手册"  iconCls="icon-book"  data-options="fit:true, content:'<iframe src=\'doc/easyee-smspringboot-readme-single_zh_CN.html?v=1\' frameborder=\'0\' style=\'height:500px;width:100%;\'  ></iframe>'"></div> 
 		<%-- 		<div title="Tab3" iconCls="icon-reload" closable="true"
 					style="padding:20px;display:none;">tab3</div> --%>
 			</div>

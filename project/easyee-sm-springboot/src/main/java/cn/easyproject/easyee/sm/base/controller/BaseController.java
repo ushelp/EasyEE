@@ -258,6 +258,7 @@ public class BaseController {
 	 * 
 	 * @return 当前登录的用户对象
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked", "unused" })
 	public SysUser getLoginUser() {
 		HttpSession session = request.getSession();
 		SysUser user=new SysUser();

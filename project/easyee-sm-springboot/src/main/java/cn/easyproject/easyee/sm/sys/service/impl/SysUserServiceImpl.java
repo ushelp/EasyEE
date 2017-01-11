@@ -62,7 +62,7 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void findByPage(PageBean pb,SysUserCriteria sysUserCriteria) {
-		
+		pb.setEasyCriteria(sysUserCriteria);
 		String condition="";
 		if(pb.getEasyCriteria()!=null){
 			condition=pb.getEasyCriteria().getCondition();
