@@ -149,7 +149,7 @@
         <div data-options="region:'center',border:false" title="" style="overflow: hidden;width: 100%">
  --%>	<%-- 2. 页面内容 --%>
 	<table id="sysRoleDataGrid" title="角色列表" style="width: 100%"
-		toolbar="#sysRoleToolbar" idField="roleId" rownumbers="true"
+		toolbar="#sysRoleToolbar" idField="roleId" fit="true" rownumbers="true"
 		fitColumns="true" nowrap="false">
 		<thead>
 			<tr>

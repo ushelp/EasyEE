@@ -178,8 +178,7 @@
 </script>
 <%-- 2. 页面内容 --%>
 <table id="sysUserDataGrid" title="用户列表" style=""
-	toolbar="#sysUserToolbar" idField="userId" rownumbers="true"
-	fitColumns="true" nowrap="false" fit="true" >
+	toolbar="#sysUserToolbar" idField="userId" rownumbers="true" fit="true" fitColumns="true" nowrap="false" fit="true" >
 	<thead>
 		<tr>
 			<th field="ck" checkbox="true" width="50" sortable="true">多选框</th>

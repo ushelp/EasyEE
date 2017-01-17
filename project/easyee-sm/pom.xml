@@ -4,7 +4,7 @@
 	<groupId>cn.easyproject</groupId>
 	<artifactId>easyee-sm</artifactId>
 	<packaging>war</packaging>
-	<version>4.1.3-RELEASE</version>
+	<version>4.2.0-RELEASE</version>
 	<name>easyee-sh Maven Webapp</name>
 	<url>http://easyproject.cn/easyee</url>
 	<properties>

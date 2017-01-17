@@ -48,7 +48,7 @@
 			<when test="@cn.easyproject.easyee.sm.base.controller.BaseController@dialect==3">
 				insert into sys_role_operation(ROLE_ID, OPERATION_PERMISSION_ID) values
 				<foreach collection="sysOperationPermissions" separator="," item="item">
-				select #{roleId}, #{item.operationPermissionId}
+				(#{roleId}, #{item.operationPermissionId})
 				</foreach>
 			</when>
 			<!-- ORACLE -->

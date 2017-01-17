@@ -6,7 +6,7 @@ EasyEE 是一个开源 JaveEE 企业级快速开发基础平台，提供多种�
 
 提供 [EasyEE Auto](https://github.com/ushelp/EasyEE-Auto 'EasyEE Auto') 自动化代码生成器。
 
-最新版本： `4.1.3`
+最新版本： `4.2.0`
 
 ## SM Framework
 

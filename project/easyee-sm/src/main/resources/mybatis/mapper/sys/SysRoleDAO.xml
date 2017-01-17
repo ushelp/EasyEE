@@ -22,16 +22,43 @@
 		  ) 
 	</insert>
 	<insert id="addRoleMenus">
-		insert into sys_role_menu(ROLE_ID, MENU_PERMISSION_ID) values
-		<foreach collection="sysMenuPermissions" separator="," item="item">
-		(${roleId}, ${item.menuPermissionId})
-		</foreach>
+
+		
+		<choose>
+			<!-- MYSQL -->
+			<when test="@cn.easyproject.easyee.sm.base.controller.BaseController@dialect==3">
+				insert into sys_role_menu(ROLE_ID, MENU_PERMISSION_ID) values
+				<foreach collection="sysMenuPermissions" separator="," item="item">
+				(${roleId}, ${item.menuPermissionId})
+				</foreach>
+			</when>
+			<!-- ORACLE -->
+			<when test="@cn.easyproject.easyee.sm.base.controller.BaseController@dialect==1 or @cn.easyproject.easyee.sm.base.controller.BaseController@dialect==10">
+				insert into sys_role_menu(ROLE_ID, MENU_PERMISSION_ID)
+				<foreach collection="sysMenuPermissions" separator="union all" item="item">
+				select ${roleId}, ${item.menuPermissionId} from dual
+				</foreach>
+			</when>
+		</choose>
+		
 	</insert>
 	<insert id="addRoleOperations">
-		insert into sys_role_operation(ROLE_ID, OPERATION_PERMISSION_ID) values
-		<foreach collection="sysOperationPermissions" separator="," item="item">
-		(${roleId}, ${item.operationPermissionId})
-		</foreach>
+		<choose>
+			<!-- MYSQL -->
+			<when test="@cn.easyproject.easyee.sm.base.controller.BaseController@dialect==3">
+				insert into sys_role_operation(ROLE_ID, OPERATION_PERMISSION_ID) values
+				<foreach collection="sysOperationPermissions" separator="," item="item">
+				(#{roleId}, #{item.operationPermissionId})
+				</foreach>
+			</when>
+			<!-- ORACLE -->
+			<when test="@cn.easyproject.easyee.sm.base.controller.BaseController@dialect==1 or @cn.easyproject.easyee.sm.base.controller.BaseController@dialect==10">
+				insert into sys_role_operation(ROLE_ID, OPERATION_PERMISSION_ID) 
+				<foreach collection="sysOperationPermissions" separator="union all" item="item">
+				select ${roleId}, ${item.operationPermissionId} from dual
+				</foreach>
+			</when>
+		</choose>
 	</insert>
 	
 	
