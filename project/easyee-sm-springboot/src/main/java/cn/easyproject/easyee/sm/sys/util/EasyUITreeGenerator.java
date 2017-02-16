@@ -148,23 +148,54 @@ public class EasyUITreeGenerator {
 			}
 		});
 	}
+
+
 	/**
 	 * 按照SortNum对菜单排序
+	 * 
 	 * @param menus
 	 */
-	private static void sortEasyUITreeEntity(List<EasyUITreeEntity> trees){
+	private static void sortEasyUITreeEntity(List<EasyUITreeEntity> trees) {
+		List<EasyUITreeEntity> menuTrees = new ArrayList<EasyUITreeEntity>();
+		List<EasyUITreeEntity> operationTrees = new ArrayList<EasyUITreeEntity>();
+		for (EasyUITreeEntity easyUITreeEntity : trees) {
+			if (easyUITreeEntity.getType().equals(EasyUITreeEntity.OPERATION_PERMISSION)) {
+				operationTrees.add(easyUITreeEntity);
+			} else {
+				menuTrees.add(easyUITreeEntity);
+			}
+		}
 		// 按sortNum排序
-		Collections.sort(trees,new Comparator<EasyUITreeEntity>() {
+		Collections.sort(menuTrees, new Comparator<EasyUITreeEntity>() {
 			@Override
 			public int compare(EasyUITreeEntity o1, EasyUITreeEntity o2) {
-				if(o1.getType().equals(EasyUITreeEntity.OPERATION_PERMISSION)){
-					return 1;
-				}
-				if(o2.getType().equals(EasyUITreeEntity.OPERATION_PERMISSION)){
-					return 1;
-				}
-				return o1.getSortNum()-o2.getSortNum();
+				return o1.getSortNum() - o2.getSortNum();
 			}
 		});
+		Collections.sort(operationTrees, new Comparator<EasyUITreeEntity>() {
+			@Override
+			public int compare(EasyUITreeEntity o1, EasyUITreeEntity o2) {
+				return o1.getSortNum() - o2.getSortNum();
+			}
+		});
+		menuTrees.addAll(operationTrees);
+		trees.clear();
+		trees.addAll(menuTrees);
 	}
+	
+//	private static void sortEasyUITreeEntity(List<EasyUITreeEntity> trees){
+//	// 按sortNum排序
+//	Collections.sort(trees,new Comparator<EasyUITreeEntity>() {
+//		@Override
+//		public int compare(EasyUITreeEntity o1, EasyUITreeEntity o2) {
+//			if(o1.getType().equals(EasyUITreeEntity.OPERATION_PERMISSION)){
+//				return 1;
+//			}
+//			if(o2.getType().equals(EasyUITreeEntity.OPERATION_PERMISSION)){
+//				return 1;
+//			}
+//			return o1.getSortNum()-o2.getSortNum();
+//		}
+//	});
+//}
 }
