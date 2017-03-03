@@ -204,7 +204,7 @@
 			<option value="0">正常</option>
 			<option value="1">禁用</option>
 		</select> <a class="easyui-linkbutton" iconCls="icon-search" plain="true"
-			onclick="sysUser.doSearch()">Search</a>
+			onclick="sysUser.doSearch()"><s:text name="label.search"></s:text></a>
 	</div>
 	<shiro:hasPermission name="sysUserAddBtn">
 	<a href="javascript:void(0)" class="easyui-linkbutton"

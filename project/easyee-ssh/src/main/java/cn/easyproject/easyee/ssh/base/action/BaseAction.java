@@ -249,7 +249,7 @@ public class BaseAction extends ActionSupport implements ServletRequestAware,
 				String password=c.getMethod("getPassword").invoke(o).toString();
 				
 				user.setUserId(userId);
-				user.setName(realName);
+				user.setName(name);
 				user.setPassword(password);
 				user.setRealName(realName);
 				user.setStatus(status);

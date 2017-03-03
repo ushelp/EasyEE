@@ -3,6 +3,7 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
+<%@ taglib uri="http://www.springframework.org/tags"  prefix="s"%>
 <%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro"%>
 
 <%-- 1. 页面Datagrid初始化相关JS --%>
@@ -83,8 +84,8 @@
 	<form action="" id="DeptSearchForm" onclick="Dept.doSearch()">
 		<span>部门名称:</span> <input name="dname" id="deptName" class="easyui-textbox" />
 		<span>地址:</span> <input name="loc" id="deptLoc" class="easyui-textbox" />
-		<a class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="Dept.doSearch()">Search</a>
-		<a class="easyui-linkbutton" iconCls="icon-clear" plain="true" onclick="Dept.clearAll()">Clear</a>
+		<a class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="Dept.doSearch()"><s:message code="label.search"></s:message></a>
+		<a class="easyui-linkbutton" iconCls="icon-clear" plain="true" onclick="Dept.clearAll()"><s:message code="label.clear"></s:message></a>
 	</form>
 	</div>
 	<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="$('#deptDataGrid').edatagrid('addRow')">添加部门</a>

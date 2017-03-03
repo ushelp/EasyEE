@@ -362,7 +362,7 @@ public class CommonDAOSpringImpl implements CommonDAO {
 	@Override
 	public void findByPage(PageBean pageBean, List values) {
 		String jpql = pageBean.getAutoQuery();
-
+	
 		Query query = createQuery(entityManager, jpql, false, null, values.toArray());
 		query.setFirstResult(pageBean.getRowStart());
 		query.setMaxResults(pageBean.getRowsPerPage());

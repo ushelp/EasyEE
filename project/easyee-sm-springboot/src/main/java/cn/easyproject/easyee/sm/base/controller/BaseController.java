@@ -227,7 +227,7 @@ public class BaseController {
 		int rows = ServletRequestUtils.getIntParameter(request, "rows", 10);
 		String sort = ServletRequestUtils.getStringParameter(request, "sort", "");
 		String order = ServletRequestUtils.getStringParameter(request, "order", "");
-
+		
 		pb.setPageNo(page);
 		pb.setRowsPerPage(rows);
 		// 分页排序
@@ -242,7 +242,7 @@ public class BaseController {
 		if (isNotNullAndEmpty(order)) {
 			pb.setSortOrder(order);
 		}
-
+		
 		return pb;
 	}
 

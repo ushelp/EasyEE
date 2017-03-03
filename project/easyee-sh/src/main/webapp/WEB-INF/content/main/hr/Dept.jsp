@@ -4,7 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro"%>
-
+<%@ taglib uri="http://www.springframework.org/tags"  prefix="s"%>
 <%-- 1. 页面Datagrid初始化相关JS --%>
 <%-- JS代码必须包含在页面中，引入外部JS文件会导致表格界面在未完成初始化前就显示，出现短暂的未初始化界面 --%>
 <script type="text/javascript">
@@ -84,7 +84,7 @@
 		<span>部门名称:</span> <input name="dname" id="deptName" class="easyui-textbox" />
 		<span>地址:</span> <input name="loc" id="deptLoc" class="easyui-textbox" />
 		<a class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="Dept.doSearch()">Search</a>
-		<a class="easyui-linkbutton" iconCls="icon-clear" plain="true" onclick="Dept.clearAll()">Clear</a>
+		<a class="easyui-linkbutton" iconCls="icon-clear" plain="true" onclick="Dept.clearAll()"><s:message code="label.clear"></s:message></a>
 	</form>
 	</div>
 	<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="$('#deptDataGrid').edatagrid('addRow')">添加部门</a>

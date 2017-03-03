@@ -122,7 +122,7 @@
             }]
             ">
 		<a class="easyui-linkbutton" iconCls="icon-search" plain="true"
-			onclick="sysLog.doSearch()">Search</a>
+			onclick="sysLog.doSearch()"><s:message code="label.search"></s:message></a>
 	</div>
 	
 </div>

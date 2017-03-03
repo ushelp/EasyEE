@@ -174,7 +174,7 @@
 				<option value="0">正常</option>
 				<option value="1">禁用</option>
 			</select> <a class="easyui-linkbutton" iconCls="icon-search" plain="true"
-				onclick="sysRole.doSearch()">Search</a>
+				onclick="sysRole.doSearch()"><s:text name="label.search"></s:text></a>
 		</div>
 		<a href="javascript:void(0)" class="easyui-linkbutton"
 			data-options="iconCls:'icon-add',plain:true"

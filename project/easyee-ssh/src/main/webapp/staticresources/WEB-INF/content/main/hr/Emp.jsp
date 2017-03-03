@@ -183,8 +183,8 @@
 			id="empDeptno" style="width:90px;"
 			data-options="editable:false,panelHeight:'auto'">
 		</select> <a class="easyui-linkbutton" iconCls="icon-search" plain="true"
-			onclick="Emp.doSearch()">Search</a>
-		<a class="easyui-linkbutton" iconCls="icon-clear" plain="true" onclick="Emp.clearAll()">Clear</a>
+			onclick="Emp.doSearch()"><s:text name="label.search"></s:text></a>
+		<a class="easyui-linkbutton" iconCls="icon-clear" plain="true" onclick="Emp.clearAll()"><s:text name="label.clear"></s:text></a>
 	</form>
 	</div>
 	<a href="javascript:void(0)" class="easyui-linkbutton"

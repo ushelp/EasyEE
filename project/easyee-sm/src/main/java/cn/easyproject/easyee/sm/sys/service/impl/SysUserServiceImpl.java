@@ -64,6 +64,17 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 	public void findByPage(PageBean pb,SysUserCriteria sysUserCriteria) {
 		pb.setEasyCriteria(sysUserCriteria);
 		String condition="";
+		
+		String sort="USER_ID";
+		String sortOrder="ASC";
+		
+		if(isNotNullAndEmpty(pb.getSort())){
+			sort=pb.getSort();
+		}
+		if(isNotNullAndEmpty(pb.getSortOrder())){
+			sortOrder=pb.getSortOrder();
+		}
+		
 		if(pb.getEasyCriteria()!=null){
 			condition=pb.getEasyCriteria().getCondition();
 			pb.setSqlParameterValues(pb.getEasyCriteria().getValues());
@@ -77,7 +88,7 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 					+ " ) A"
 					+ " WHERE 1=1 "
 					+  condition
-					+ " order by A.USER_ID ASC limit "+((pb.getPageNo()-1)*pb.getRowsPerPage())+","+pb.getRowsPerPage());
+					+ " order by A."+sort+" "+sortOrder+" limit "+((pb.getPageNo()-1)*pb.getRowsPerPage())+","+pb.getRowsPerPage());
 		}else if(pb.getDialect()==PageBean.ORACLE_DIALECT || pb.getDialect()==PageBean.ORACLE_12C_DIALECT){
 			int start=((pb.getPageNo()-1)*pb.getRowsPerPage());
 			int end=start+pb.getRowsPerPage();
@@ -89,7 +100,7 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 					+ " ) A"
 					+ " WHERE 1=1 "
 					+  condition
-					+ " order by A.USER_ID ASC";
+					+ " order by A."+sort+" "+sortOrder;
 			
 			 sql="select * from ("
 					+ "select B.*,rownum r from ("+sql+") B where rownum<="+end

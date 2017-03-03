@@ -248,6 +248,7 @@ public class BaseController {
 	 * 
 	 * @return 当前登录的用户对象
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SysUser getLoginUser() {
 		HttpSession session = request.getSession();
 		SysUser user=new SysUser();
@@ -265,7 +266,7 @@ public class BaseController {
 				String password=c.getMethod("getPassword").invoke(o).toString();
 				
 				user.setUserId(userId);
-				user.setName(realName);
+				user.setName(name);
 				user.setPassword(password);
 				user.setRealName(realName);
 				user.setStatus(status);
