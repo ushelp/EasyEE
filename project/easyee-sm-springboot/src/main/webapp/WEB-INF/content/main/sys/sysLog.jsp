@@ -5,6 +5,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@ taglib uri="http://www.springframework.org/tags"  prefix="s"%>
 <%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
 <%-- 1. 页面Datagrid初始化相关JS --%>
 <%-- JS代码必须包含在页面中，引入外部JS文件会导致表格界面在未完成初始化前就显示，出现短暂的未初始化界面 --%>
