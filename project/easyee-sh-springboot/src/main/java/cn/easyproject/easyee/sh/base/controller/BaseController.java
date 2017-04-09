@@ -122,7 +122,7 @@ public class BaseController {
 		jsonMap.put("locationUrl", locationUrl.get());
 		if (jsonKeyAndValuePair.length > 0) {
 			for (int i = 0; i < jsonKeyAndValuePair.length / 2; i++) {
-				jsonMap.put(jsonKeyAndValuePair[i], jsonKeyAndValuePair[2 * i + 1]);
+				jsonMap.put(jsonKeyAndValuePair[2 * i], jsonKeyAndValuePair[2 * i + 1]);
 			}
 		}
 		clearThreadLocalResponse();
@@ -168,7 +168,7 @@ public class BaseController {
 		jsonMap.put("locationUrl", locationUrl.get());
 		if (jsonKeyAndValuePair.length > 0) {
 			for (int i = 0; i < jsonKeyAndValuePair.length / 2; i++) {
-				jsonMap.put(jsonKeyAndValuePair[i], jsonKeyAndValuePair[2 * i + 1]);
+				jsonMap.put(jsonKeyAndValuePair[2 * i], jsonKeyAndValuePair[2 * i + 1]);
 			}
 		}
 		clearThreadLocalResponse();
