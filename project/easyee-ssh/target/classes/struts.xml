@@ -1,0 +1,8 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<!-- easyssh 默认主系统配置模块包 -->
+	<include file="struts/struts_default.xml"></include>
+	
+</struts>    
