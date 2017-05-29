@@ -65,7 +65,7 @@ var EasyEE={
 
 <!-- EasyUIEx -->
 <link rel="stylesheet" type="text/css" href="staticresources/easyuiex/css/easyuiex.css">
-<script type="text/javascript" src="staticresources/easyuiex/easy.easyuiex.min-2.2.4.js"></script>
+<script type="text/javascript" src="staticresources/easyuiex/easy.easyuiex.min.js"></script>
 <script type="text/javascript" src="staticresources/easyuiex/easy.easyuiex-validate.js"></script>
 <!-- EasyUIEx的默认消息语言为中文，使用其他语言需要导入相应语言文件 -->
 <script type="text/javascript" src="staticresources/easyuiex/lang/easy.easyuiex-lang-zh_CN.js"></script>

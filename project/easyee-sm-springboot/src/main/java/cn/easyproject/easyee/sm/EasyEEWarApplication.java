@@ -23,26 +23,26 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author easyproject.cn
  *
  */
-//@SpringBootApplication(
-//		scanBasePackages = { "cn.easyproject.easyee.sm" }, 
-//		exclude = { SecurityAutoConfiguration.class })
-//@ImportResource({ 
-//	"classpath*:/spring/spring_shiro.xml"
-//})
-//@EnableTransactionManagement
-//@MapperScan(basePackages={
-//		"cn.easyproject.easyee.sm.sys.dao",
-//		"cn.easyproject.easyee.sm.hr.dao"
-//})
-//@ServletComponentScan(basePackages={"cn.easyproject.easyee.sm"})
+@SpringBootApplication(
+		scanBasePackages = { "cn.easyproject.easyee.sm" }, 
+		exclude = { SecurityAutoConfiguration.class })
+@ImportResource({ 
+	"classpath*:/spring/spring_shiro.xml"
+})
+@EnableTransactionManagement
+@MapperScan(basePackages={
+		"cn.easyproject.easyee.sm.sys.dao",
+		"cn.easyproject.easyee.sm.hr.dao"
+})
+@ServletComponentScan(basePackages={"cn.easyproject.easyee.sm"})
 public class EasyEEWarApplication extends SpringBootServletInitializer {
 
-//    @Override
-//    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-//        return application.sources(EasyEEWarApplication.class);
-//    }
-//	
-//	public static void main(String[] args) {
-//		SpringApplication.run(EasyEEWarApplication.class, args);
-//	}
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(EasyEEWarApplication.class);
+    }
+	
+	public static void main(String[] args) {
+		SpringApplication.run(EasyEEWarApplication.class, args);
+	}
 }

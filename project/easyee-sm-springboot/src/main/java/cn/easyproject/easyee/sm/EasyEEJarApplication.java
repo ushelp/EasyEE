@@ -18,22 +18,22 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author easyproject.cn
  *
  */
-@SpringBootApplication(
-		scanBasePackages = { "cn.easyproject.easyee.sm" }, 
-		exclude = { SecurityAutoConfiguration.class })
-@ImportResource({ 
-	"classpath*:/spring/spring_shiro.xml"
-})
-@MapperScan(basePackages={
-		"cn.easyproject.easyee.**.dao"
-})
-@EnableTransactionManagement
+//@SpringBootApplication(
+//		scanBasePackages = { "cn.easyproject.easyee.sm" }, 
+//		exclude = { SecurityAutoConfiguration.class })
+//@ImportResource({ 
+//	"classpath*:/spring/spring_shiro.xml"
+//})
+//@MapperScan(basePackages={
+//		"cn.easyproject.easyee.**.dao"
+//})
+//@EnableTransactionManagement
 public class EasyEEJarApplication {
 
-	public static void main(String[] args) {
-		SpringApplication app = new SpringApplication(EasyEEJarApplication.class);
-		app.run();
-	
-	}
+//	public static void main(String[] args) {
+//		SpringApplication app = new SpringApplication(EasyEEJarApplication.class);
+//		app.run();
+//	
+//	}
 
 }

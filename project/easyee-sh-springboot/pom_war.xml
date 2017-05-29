@@ -13,7 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.7</java.version>
-		<tomcat.version>8.5.15</tomcat.version>
+		<tomcat.version>8.5.8</tomcat.version>
 
 		<hibernate.version>5.2.4.Final</hibernate.version>
 		<springboot.version>1.4.2.RELEASE</springboot.version>
@@ -74,7 +74,7 @@
 		<dependency>  
             <groupId>org.apache.tomcat</groupId>  
             <artifactId>tomcat-servlet-api</artifactId>  
-            <version>8.5.15</version>  
+            <version>8.5.8</version>  
             <scope>provided</scope>  
 		</dependency>  
 		<dependency>

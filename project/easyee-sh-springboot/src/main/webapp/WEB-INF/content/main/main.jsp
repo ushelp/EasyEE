@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <%-- EasyUIEx --%>
 <link rel="stylesheet" type="text/css" href="staticresources/easyuiex/css/easyuiex.css">
-<script type="text/javascript" src="staticresources/easyuiex/easy.easyuiex.min-2.2.4.js"></script>
+<script type="text/javascript" src="staticresources/easyuiex/easy.easyuiex.min.js"></script>
 <script type="text/javascript" src="staticresources/easyuiex/easy.easyuiex-validate.js"></script>
 <%-- 使用 EasyUIEx的 easy.jquery.edatagrid.js 代替 jquery.edatagrid.js --%>
 <script type="text/javascript" src="staticresources/easyuiex/easy.jquery.edatagrid.js"></script>
