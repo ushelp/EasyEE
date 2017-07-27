@@ -1,7 +1,7 @@
 /**
  * EasyUIEx
  * 
- * Version 2.2.5
+ * Version 2.2.6
  * 
  * http://easyproject.cn https://github.com/ushelp
  * 
@@ -362,7 +362,7 @@
 	 *            row对象
 	 * 
 	 */
-	showTreegridContextMenu = function(e, row) {
+	showTreegridContextMenu = function(e, index, row) {
 		e.preventDefault();
 		if (index != -1) {
 			$(this).treegrid('select', row.id);
