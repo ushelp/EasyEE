@@ -114,6 +114,9 @@ public class SysUserController extends BaseController {
 			SysUser u2=null;
 			if(u instanceof SysUser){
 				u2=(SysUser) u;
+				password=u2.getPassword();
+				name=u2.getName(); 
+				userId=u2.getUserId();
 			}else{
 				name=u.getClass().getMethod("getName").invoke(u).toString();
 				password=u.getClass().getMethod("getPassword").invoke(u).toString();
