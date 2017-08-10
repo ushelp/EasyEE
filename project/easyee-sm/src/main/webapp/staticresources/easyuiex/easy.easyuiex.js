@@ -1,7 +1,7 @@
 /**
  * EasyUIEx
  * 
- * Version 2.2.6
+ * Version 2.2.8
  * 
  * http://easyproject.cn https://github.com/ushelp
  * 
@@ -1686,9 +1686,7 @@
 													}
 												}
 											});
-									return;
-								}
-						
+								}else{
 								// 单行提交，多次
 								$.each(
 												delRows,
@@ -1789,6 +1787,7 @@
 															});
 
 												});
+								}
 								// 刷新
 								if (reloadDataGrid) {
 									dg.datagrid('reload');
