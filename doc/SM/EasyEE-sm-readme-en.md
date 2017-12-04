@@ -6,7 +6,6 @@ It integrates the widely used framework of JaveEE domain and EasyUI front-end fr
 
 [EasyEE Auto](https://github.com/ushelp/EasyEE-Auto 'EasyEE Auto') automated code generator is provided.
 
-Latest version:  `4.2.0`
 
 ## SM Framework
 
@@ -16,35 +15,9 @@ Latest version:  `4.2.0`
 - EasyMyBatis-Pagination
 - EasyShiro 
 - EasyFilter
-- EasyUI 1.4.3
-- EasyUIEx 2.2.0
+- EasyUI 1.4+
+- EasyUIEx 2.2+
 
-
-## Maven framework version
-
-```XML
-<java.version>1.7</java.version>
-<tomcat.version>8.5.8</tomcat.version>
-
-<spring.version>4.3.4.RELEASE</spring.version>
-<springboot.version>1.4.2.RELEASE</springboot.version>
-<mybatis.version>3.4.1</mybatis.version>
-<org.mybatis.spring.boot.version>1.1.1</org.mybatis.spring.boot.version>
-<mysql.version>5.1.34</mysql.version>
-<oracle.version>11.2.0.4</oracle.version>
-
-<slf4j.version>1.7.21</slf4j.version>
-<log4j2.version>2.7</log4j2.version>
-<druid.version>1.0.26</druid.version>
-<commonsfileupload.version>1.3.2</commonsfileupload.version>
-<gson.version>2.8.0</gson.version>
-<jackson.version>2.8.4</jackson.version>
-<ognl.version>3.1.12</ognl.version>
-<shiro.version>1.2.5</shiro.version>
-<easyshiro.version>2.5.0-RELEASE</easyshiro.version>
-<easyfilte.version>2.0.1-RELEASE</easyfilte.version>
-<jstl.version>1.2</jstl.version>
-```
 
 ## EasyEE Auto
 

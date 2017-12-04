@@ -6,44 +6,17 @@ EasyEE 是一个开源 JaveEE 企业级快速开发基础平台，提供多种�
 
 提供 [EasyEE Auto](https://github.com/ushelp/EasyEE-Auto 'EasyEE Auto') 自动化代码生成器。
 
-最新版本： `4.2.0`
 
 ## SM-Spring Boot Framework
 
-- **Spring Boot 1.4.2**
+- **Spring Boot 1.5+**
 - **MyBatis 3.4+**
 - **Shiro 2+**
 - EasyCommonDAO
 - EasyShiro 
 - EasyFilter
-- EasyUI 1.4.3
-- EasyUIEx 2.2.0
-
-## Maven framework version
-
-```XML
-<java.version>1.7</java.version>
-<tomcat.version>8.5.8</tomcat.version>
-
-<spring.version>4.3.4.RELEASE</spring.version>
-<springboot.version>1.4.2.RELEASE</springboot.version>
-<mybatis.version>3.4.1</mybatis.version>
-<org.mybatis.spring.boot.version>1.1.1</org.mybatis.spring.boot.version>
-<mysql.version>5.1.34</mysql.version>
-<oracle.version>11.2.0.4</oracle.version>
-
-<slf4j.version>1.7.21</slf4j.version>
-<log4j2.version>2.7</log4j2.version>
-<druid.version>1.0.26</druid.version>
-<commonsfileupload.version>1.3.2</commonsfileupload.version>
-<gson.version>2.8.0</gson.version>
-<jackson.version>2.8.4</jackson.version>
-<ognl.version>3.1.12</ognl.version>
-<shiro.version>1.2.5</shiro.version>
-<easyshiro.version>2.5.0-RELEASE</easyshiro.version>
-<easyfilte.version>2.0.1-RELEASE</easyfilte.version>
-<jstl.version>1.2</jstl.version>
-```
+- EasyUI 1.4+
+- EasyUIEx 2.2+
 
 
 ## EasyEE Auto

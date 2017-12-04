@@ -160,7 +160,11 @@
 
 	});
 </script>
-
+<%--
+<style>
+.datagrid-btable{ width:100%}
+</style>
+ --%>
 <%-- 2. 页面内容 --%>
 <table id="empDataGrid" title="员工列表" style="width: 100%" toolbar="#empToolbar"
 	idField="empno" rownumbers="true" fitColumns="true" nowrap="false">

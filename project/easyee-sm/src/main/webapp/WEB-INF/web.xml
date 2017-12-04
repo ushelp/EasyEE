@@ -79,4 +79,55 @@
     <jsp-file>/jsp/VerifyCode.jsp</jsp-file>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  
+  
+  <!-- CKFinder Start -->
+	<servlet>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
+		<init-param>
+			<description>
+				Path to configuration file can be relative path inside application,
+				absolute path on local file system or UNC path.
+			</description>
+			<param-name>XMLConfig</param-name>
+			<param-value>/WEB-INF/config.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<url-pattern>
+			/static/ckfinder/core/connector/java/connector.java
+		</url-pattern>
+	</servlet-mapping>
+	<!-- CKFinder End -->
+
+
+	<!-- JavaMelody Start -->
+	<filter>
+		<filter-name>javamelody</filter-name>
+		<filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
+		<async-supported>true</async-supported>
+
+		<init-param>
+			<param-name>url-exclude-pattern</param-name>
+			<param-value>/staticresources/.*|/webjars/.*|/css/.*|/images/.*|/fonts/.*|/js/.*</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>javamelody</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<listener>
+		<listener-class>net.bull.javamelody.SessionListener</listener-class>
+	</listener>
+	<!-- JavaMelody End -->
+  
 </web-app>

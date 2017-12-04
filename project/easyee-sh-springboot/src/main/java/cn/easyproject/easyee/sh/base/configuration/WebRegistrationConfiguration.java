@@ -3,10 +3,15 @@ package cn.easyproject.easyee.sh.base.configuration;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.DispatcherType;
+
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import cn.easyproject.easyfilter.filter.EasyFilter;
+import net.bull.javamelody.MonitoringFilter;
+import net.bull.javamelody.SessionListener;
 
 /**
  * 

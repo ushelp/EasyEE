@@ -101,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<%-- Head --%>
 		<div id="easysshtop" data-options="region:'north',split:true"
 			style="height:120px;padding: 0 20px;" title="EasyEE-SH(JPA) Demo (SpringMVC 4.X + Hibernate 5.X +EasyShiro 2.X + EasyCommonDAO + EasyFilter 2.X + EasyUI + EasyUIEX )">
-			<h1 style="display: inline;line-height: 80px;font-size: 38px;font-family: 'Roboto Condensed', 微软雅黑; font-weight: 700; ">
+			<h1 style="display: inline;line-height: 80px;font-size: 32px;font-family: 'Roboto Condensed', 微软雅黑; font-weight: 700; ">
 			
 		<%-- 	<img alt="" src="images/logo.png"/> --%>  
 		<span style="color:#8FC31F">Easy</span><span style="color:#376E91">E</span><span style="color:#376E91">E</span>-<span style="color:#000000">SH</span> Basic Development Platform

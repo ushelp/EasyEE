@@ -10,7 +10,7 @@ public class MD5Test {
 		System.out.println(MD5.getMd5("admin123","admin".toLowerCase()));
 		System.out.println(MD5.getMd5("user123","user".toLowerCase()));
 		System.out.println(MD5.getMd5("hr123","hr".toLowerCase()));
-		System.out.println(MD5.getMd5("111111","manager".toLowerCase()));
+		System.out.println(MD5.getMd5("111111","demo".toLowerCase()));
 	}
 
 }

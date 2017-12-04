@@ -1,6 +1,6 @@
 # EasyEE 开源 JavaEE 企业级快速开发平台
 
-EasyEE 是一个开源 JaveEE 企业级快速开发基础平台，提供多种技术方案选择，支持 Spring Boot, Hibernate, MyBatis, Struts, Shiro 等核心框架。
+EasyEE 是一个开源 JaveEE 企业级快速开发基础平台，提供多种技术方案选择，支持 Spring Boot, Hibernate, MyBatis, Struts, Shiro, Spring-Data-Redis(Jedis) 等核心框架。
 
 整合了广泛使用的 JaveEE 领域优秀框架及 EasyUI 前端框架；提供了基于用户、角色、权限方案的后台权限管理系统，安全管理框架及常用开发组件。为企业级项目开发提供了基础架构和规范。
 
@@ -11,8 +11,6 @@ EasyEE is an open source JaveEE enterprise-class rapid development of the basic 
 It integrates the widely used framework of JaveEE domain and EasyUI front-end framework. It provides the back-end rights management system, security management framework and common development components based on user, role and permission scheme. Provides infrastructure and specifications for enterprise-level project development.
 
 [EasyEE Auto](https://github.com/ushelp/EasyEE-Auto 'EasyEE Auto') automated code generator is provided.
-
-Least version: `4.2.0-RELEASE`
 
 ## EasyEE Releases/EasyEE 发行版本
 
@@ -35,14 +33,14 @@ Provide a variety of technical framework combinations.
 ### EasyEE-SH(JPA)-SpringBoot
 ---------------------------
 
-- **Spring Boot 1.4.2**
+- **Spring Boot 1.5+**
 - **Hibernate 5+(JPA)**
 - **Shiro 2+**
 - EasyCommonDAO
 - EasyShiro 
 - EasyFilter
-- EasyUI 1.4.3
-- EasyUIEx 2.2.0
+- EasyUI 1.4+
+- EasyUIEx 2.2+
 
 #### Develop documentation/开发文档
 
@@ -54,14 +52,14 @@ Provide a variety of technical framework combinations.
 ### EasyEE-SM-SpringBoot
 ---------------------------
 
-- **Spring Boot 1.4.2**
+- **Spring Boot 1.5+**
 - **MyBatis 3.4+**
 - **Shiro 2+**
 - EasyCommonDAO
 - EasyShiro 
 - EasyFilter
-- EasyUI 1.4.3
-- EasyUIEx 2.2.0
+- EasyUI 1.4+
+- EasyUIEx 2.2+
 
 #### Develop documentation/开发文档
 
@@ -83,8 +81,8 @@ Provide a variety of technical framework combinations.
 - EasyCommonDAO
 - EasyShiro 
 - EasyFilter
-- EasyUI 1.4.3
-- EasyUIEx 2.2.0
+- EasyUI 1.4+
+- EasyUIEx 2.2+
 
 #### Develop documentation/开发文档
 
@@ -103,8 +101,8 @@ Provide a variety of technical framework combinations.
 - EasyCommonDAO
 - EasyShiro 
 - EasyFilter
-- EasyUI 1.4.3
-- EasyUIEx 2.2.0
+- EasyUI 1.4+
+- EasyUIEx 2.2+
 
 #### Develop documentation/开发文档
 
@@ -124,8 +122,8 @@ Provide a variety of technical framework combinations.
 - EasyMyBatis-Pagination
 - EasyShiro 
 - EasyFilter
-- EasyUI 1.4.3
-- EasyUIEx 2.2.0
+- EasyUI 1.4+
+- EasyUIEx 2.2+
 
 #### Develop documentation/开发文档
 
@@ -225,6 +223,37 @@ Provide a variety of technical framework combinations.
  Password: `admin123`
 
 
+## Monitoring/监控
+
+[JavaMelody](https://github.com/javamelody/javamelody/wiki) based performance monitoring, **Must log in  EasyEE first**.
+
+`http://127.0.0.1:9999/monitoring`
+
+## CKEditor&CKFiner
+
+EasyEE 不提供 CKFinder 的授权，如需授权请联系 CKFinder 购买。
+
+Easyy does not provide CKFiner license, please contact CKFinder purchase.
+
+- Non-SpringBoot: 
+`http://127.0.0.1:9999/test/ckeditor.jsp`
+
+- SpringBoot: 
+`http://127.0.0.1:9999/test/ckeditor`
+
+
+## Redis
+
+- 集成了 Spring-Data-Redis(Jedis)。 Integrated Spring-Data-Redis (Jedis).
+
+	- `redis/redis.xml`(Single Node)
+	
+	- `redis/redis_sentinel.xml`
+
+- 支持基于  Redis 的 Shiro Session 和 Cache，方便集群管理。Support Shiro Session and Cache based on Redis, to use cluster management.
+	
+	- `shiro_redis.xml`
+
 
 
 
@@ -251,11 +280,18 @@ EasyEE Automated code generator。
 
 ## The EasyEE Roadmap
 
+### EasyEE-BootStrap
+	
+- Use BootStrap UI
+> EasyUI 主要面向企业后台，注重商业效率，组件更加全面，有官方维护。
+> 
+> Bootstrap 的响应式方面更加现代化，UI 更灵活，组件方面主要依靠生态自身的繁荣。
+
 ### Planned versions/计划版本
 
 - **EasyEE 5.0.0**: 
 
- Module Support
+ Module Support 
 
 
 ## Official home/官方主页

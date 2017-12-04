@@ -3,6 +3,9 @@
     "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 
+	<!-- javamelody-monitor -->
+	<constant name="struts.action.excludePattern" value="/monitoring/.*"></constant>
+
 	<!-- easyssh 默认父包 -->
 	<package name="easyssh-default" extends="json-default" namespace="/" strict-method-invocation="true" >
 	
@@ -11,8 +14,8 @@
 			<interceptor-stack name="easySSHStack">
 				<interceptor-ref name="defaultStack">
 					<!-- Multipart -->
-					    <!--  Action能接受的最大上传单个文件的字节大小 10Mb -->
-					    <param name="fileUpload.maximumSize">10485760</param>
+					    <!--  Action能接受的最大上传单个文件的字节大小 500Mb -->
+					    <param name="fileUpload.maximumSize">524288000</param>
 					    <!-- 设置允许上传的文件类型列表 -->
 					   <!--  <param name="fileUpload.allowedTypes">image/gif,image/jpeg</param> -->
 					    <!-- 设置允许上传的文件后缀列表 -->

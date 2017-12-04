@@ -3,11 +3,9 @@ package cn.easyproject.easyee.sh.base.util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 /**
  * 日期格式化工具类
- * 
- * @author easyproject.cn
+ * @author  easyproject.cn
  *
  */
 public class DateUtil {
@@ -31,7 +29,6 @@ public class DateUtil {
 
 	/**
 	 * 日期对象转字符串
-	 * 
 	 * @param date
 	 * @param formartStr
 	 * @return
@@ -48,7 +45,6 @@ public class DateUtil {
 
 	/**
 	 * 字符串转日期对象
-	 * 
 	 * @param strDate
 	 * @param formartStr
 	 * @return
@@ -66,10 +62,8 @@ public class DateUtil {
 		}
 		return date;
 	}
-
 	/**
 	 * 当前日期字符串
-	 * 
 	 * @param formartStr
 	 * @return
 	 */
@@ -81,10 +75,8 @@ public class DateUtil {
 		}
 		return strDate;
 	}
-
 	/**
 	 * 检测日期是否在今天
-	 * 
 	 * @param date
 	 * @return
 	 */

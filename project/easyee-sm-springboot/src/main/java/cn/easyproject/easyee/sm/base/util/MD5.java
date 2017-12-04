@@ -35,7 +35,7 @@ public class MD5 {
 //		System.out.println(MD5.getMd5("111111", "manager".toLowerCase()));
 //		System.out.println(MD5.getMd5("demo", "demo".toLowerCase()));
 //	}
-	
+//	
 	
 	
 	

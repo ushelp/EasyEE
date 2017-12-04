@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 @SuppressWarnings("unchecked")
 public class SpringUtil {	
-	static ApplicationContext ac=new ClassPathXmlApplicationContext("applicationContext.xml");
+	static ApplicationContext ac=new ClassPathXmlApplicationContext("spring/ApplicationContext.xml");
 
 	public static <T> T getBean(String name){
 		return (T) ac.getBean(name);

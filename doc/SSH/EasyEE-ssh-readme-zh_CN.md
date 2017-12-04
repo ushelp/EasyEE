@@ -6,7 +6,6 @@ EasyEE 是一个开源 JaveEE 企业级快速开发基础平台，提供多种�
 
 提供 [EasyEE Auto](https://github.com/ushelp/EasyEE-Auto 'EasyEE Auto') 自动化代码生成器。
 
-最新版本： `4.2.0`
 
 ## SSH Framework
 
@@ -17,28 +16,9 @@ EasyEE 是一个开源 JaveEE 企业级快速开发基础平台，提供多种�
 - EasyCommonDAO
 - EasyShiro 
 - EasyFilter
-- EasyUI 1.4.3
-- EasyUIEx 2.2.0
+- EasyUI 1.4+
+- EasyUIEx 2.2+
 
-
-## Maven framework version
-
-```XML
-<struts.version>2.5.5</struts.version>
-<hibernate.version>5.2.4.Final</hibernate.version>
-<spring.version>4.3.4.RELEASE</spring.version>
-
-<druid.version>1.0.26</druid.version>
-<gson.version>2.8.0</gson.version>
-<slf4j.version>1.7.21</slf4j.version>
-<log4j2.version>2.7</log4j2.version>
-<mysql.version>5.1.34</mysql.version>
-<oracle.version>11.2.0.4</oracle.version>
-
-<shiro.version>1.2.5</shiro.version>
-<easyshiro.version>2.5.0-RELEASE</easyshiro.version>
-<easyfilte.version>2.0.1-RELEASE</easyfilte.version>
-```
 
 - **Struts 2.5 注意：**
 

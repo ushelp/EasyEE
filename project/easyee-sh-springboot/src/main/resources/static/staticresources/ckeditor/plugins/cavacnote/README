@@ -1,0 +1,13 @@
+This plugin let's you add "Cavac Notes", Link-like text
+sections that pop up a small jquery dialog with additional
+informations or witty hints.
+
+On the viewer side of things (not in ckeditor), you need the
+additional jquery plugin in the jquery subfolder, and call
+    $("span.cavacnote").cavacnote();
+during your jquery initialization (onload or whenever)
+
+You also need to use the CSS provided in the css subfolder
+in order for the pseudo-link to get rendered correctly (of course,
+you may adapt the CSS properties to fit your design).
+

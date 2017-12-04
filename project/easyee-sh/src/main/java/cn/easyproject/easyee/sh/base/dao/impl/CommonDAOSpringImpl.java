@@ -150,7 +150,7 @@ public class CommonDAOSpringImpl implements CommonDAO {
 		}
 		// 封装为Map结果
 		if (mapResult) {
-			query.unwrap(org.hibernate.query.Query.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+			query.unwrap(org.hibernate.Query.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
 		}
 
 		if (values != null && values.length > 0) {

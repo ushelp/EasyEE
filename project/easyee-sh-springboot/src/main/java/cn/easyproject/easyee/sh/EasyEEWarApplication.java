@@ -26,7 +26,17 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //		scanBasePackages = { "cn.easyproject.easyee.sh" }, 
 //		exclude = { SecurityAutoConfiguration.class })
 //@ImportResource({ 
-//	"classpath*:/spring/spring_shiro.xml"
+//	
+//	/* Redis */
+//	// Single Node
+////	"classpath*:/redis/spring_shiro.xml",
+//	// Redis Sentinel
+////	"classpath*:/redis/redis_sentinel.xml",
+//	/*Shiro*/
+//	// EhCache
+//	"classpath*:/shiro/shiro_ehcache.xml"
+//	// Redis
+////	"classpath*:/shiro/shiro_redis.xml"
 //})
 //@EnableTransactionManagement
 //@ServletComponentScan(basePackages={"cn.easyproject.easyee.sh"})

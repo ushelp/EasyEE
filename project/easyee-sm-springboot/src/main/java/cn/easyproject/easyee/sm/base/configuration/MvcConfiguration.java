@@ -22,6 +22,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter  {
 		registry.addViewController("/easyshiro/locklogin").setViewName("locklogin/admin");
 		registry.addViewController("/echartsDemo").setViewName("jsp/echarts/doChart");
 		registry.addViewController("/captcha").setViewName("jsp/VerifyCode");
+		registry.addViewController("/test/ckeditor").setViewName("test/ckeditor");
 		super.addViewControllers(registry);
 	}
 	

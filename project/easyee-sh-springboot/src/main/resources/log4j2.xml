@@ -17,7 +17,7 @@
           <Logger name="org.hibernate.cache" level="TRACE" />
           
           <!-- ## UserInterceptor ## -->
-          <Root level="INFO">
+          <Root level="DEBUG">
                <AppenderRef ref="Console" />
           </Root>
      </Loggers>

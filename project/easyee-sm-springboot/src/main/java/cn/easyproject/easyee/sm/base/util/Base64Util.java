@@ -45,7 +45,7 @@ public class Base64Util {
 	
 
 	}
-
+//
 //	public static void main(String[] args) throws IOException {
 //		File file = new File("E:/desktop/default.jpg");
 //		FileInputStream inputFile = new FileInputStream(file);

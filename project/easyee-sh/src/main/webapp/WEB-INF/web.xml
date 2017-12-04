@@ -93,8 +93,8 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup><!-- 启动时初始化Servlet -->
 		<multipart-config>
-			<max-file-size>10485760</max-file-size> <!-- 单个文件的最大大小 10MB-->
-			<max-request-size>104857600</max-request-size> <!-- 一次上传文件的最大大小 100MB -->
+			<max-file-size>524288000</max-file-size> <!-- 单个文件的最大大小 10MB-->
+			<max-request-size>524288000</max-request-size> <!-- 一次上传文件的最大大小 100MB -->
 			<!-- 当文件大小超过指定的大小后将写入到硬盘上。默认0，全部写入临时文件 -->
 			<file-size-threshold>0</file-size-threshold>
 		</multipart-config>
@@ -111,6 +111,54 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+	<!-- CKFinder Start -->
+	<servlet>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
+		<init-param>
+			<description>
+				Path to configuration file can be relative path inside application,
+				absolute path on local file system or UNC path.
+			</description>
+			<param-name>XMLConfig</param-name>
+			<param-value>/WEB-INF/config.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<url-pattern>
+			/static/ckfinder/core/connector/java/connector.java
+		</url-pattern>
+	</servlet-mapping>
+	<!-- CKFinder End -->
+
+
+	<!-- JavaMelody Start -->
+	<filter>
+		<filter-name>javamelody</filter-name>
+		<filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
+		<async-supported>true</async-supported>
+
+		<init-param>
+			<param-name>url-exclude-pattern</param-name>
+			<param-value>/staticresources/.*|/webjars/.*|/css/.*|/images/.*|/fonts/.*|/js/.*</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>javamelody</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<listener>
+		<listener-class>net.bull.javamelody.SessionListener</listener-class>
+	</listener>
+	<!-- JavaMelody End -->
 
 
 	<!-- @TODO -->
