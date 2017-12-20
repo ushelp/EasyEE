@@ -34,7 +34,7 @@
 	<!-- Spring Shiro End -->
 
 	<!-- Spring JavaMelody Start -->
-	<import resource="javamelody-monitor.xml" />
+	<import resource="javamelody-monitor.xml" /> 
 	<!-- Spring JavaMelody End -->
 
 

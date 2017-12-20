@@ -4,7 +4,7 @@
 	<groupId>cn.easyproject</groupId>
 	<artifactId>easyee-sm</artifactId>
 	<packaging>war</packaging>
-	<version>4.3.0-RELEASE</version>
+	<version>4.4.0-RELEASE</version>
 	<name>easyee-sh Maven Webapp</name>
 	<url>http://easyproject.cn/easyee</url>
 	<properties>
@@ -28,7 +28,7 @@
 		<shiro.version>1.2.6</shiro.version>
 		<easyshiro.version>2.6.0-RELEASE</easyshiro.version>
 		<easyshiro.redis.cache.version>2.6.0-RELEASE</easyshiro.redis.cache.version>
-		<easyfilte.version>2.0.1-RELEASE</easyfilte.version>
+		<easyfilter.version>2.0.2-RELEASE</easyfilter.version>
 		<jstl.version>1.2</jstl.version>
 		<!-- JavaMelody -->
 		<javamelody.version>1.70.0</javamelody.version>
@@ -38,6 +38,8 @@
 		<!-- Redis -->
 		<spring.data.redis.version>1.8.9.RELEASE</spring.data.redis.version>
 		<jedis.version>2.9.0</jedis.version>
+		<!-- Test -->
+		<junit.version>4.12</junit.version>
 	</properties>
 
 	<dependencies>
@@ -45,7 +47,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 		
@@ -357,7 +359,7 @@
 		<dependency>
 			<groupId>cn.easyproject</groupId>
 			<artifactId>easyfilter</artifactId>
-			<version>${easyfilte.version}</version>
+			<version>${easyfilter.version}</version>
 		</dependency>
 
 
@@ -405,7 +407,16 @@
 					<!-- <webApp> <contextPath>/easyee-sh</contextPath> </webApp> -->
 				</configuration>
 			</plugin>
-			
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<path>/</path>
+					<port>8080</port>
+					<uriEncoding>UTF-8</uriEncoding>
+				</configuration>
+			</plugin>
 			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

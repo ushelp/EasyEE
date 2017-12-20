@@ -3,6 +3,7 @@ package cn.easyproject.easyee.sh.hr.criteria;
 import cn.easyproject.easyee.sh.base.util.EasyCriteria;
 import cn.easyproject.easyee.sh.base.util.StringUtils;
 
+
 /**
  * 
  * @author easyproject.cn
@@ -18,14 +19,15 @@ public class DeptCriteria extends EasyCriteria implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	/*
-	 * 1. 条件属性
-	 */
+ 	 * 1. 条件属性
+ 	 */
 	private String dname;
 	private String loc;
-
-	/*
-	 * 2. 构造方法
-	 */
+	
+	
+	 /*
+ 	 * 2. 构造方法
+ 	 */
 	public DeptCriteria() {
 		super();
 	}
@@ -36,26 +38,27 @@ public class DeptCriteria extends EasyCriteria implements java.io.Serializable {
 		this.loc = loc;
 	}
 
-	/*
-	 * 3. 条件生成抽象方法实现
-	 */
+	 /*
+ 	 * 3. 条件生成抽象方法实现
+ 	 */
 	public String getCondition() {
-		values.clear(); // 清除条件数据
+		values.clear(); //清除条件数据
 		StringBuffer condition = new StringBuffer();
+		/*
 		if (StringUtils.isNotNullAndEmpty(this.getDname())) {
 			condition.append(" and dname like ?");
 			values.add("%" + this.getDname() + "%");
 		}
+		*/
 		if (StringUtils.isNotNullAndEmpty(this.getLoc())) {
-			condition.append(" and loc like ?");
-			values.add("%" + this.getLoc() + "%");
+			condition.append(" and loc like :loc");
+			values.put("loc", "%" + this.getLoc() + "%");
 		}
 		return condition.toString();
 	}
-
-	/*
-	 * 4. Setters & Getters...
-	 */
+	 /*
+ 	 * 4. Setters & Getters...
+ 	 */ 
 	public String getDname() {
 		return dname;
 	}
@@ -72,4 +75,6 @@ public class DeptCriteria extends EasyCriteria implements java.io.Serializable {
 		this.loc = loc;
 	}
 
+	
+	
 }

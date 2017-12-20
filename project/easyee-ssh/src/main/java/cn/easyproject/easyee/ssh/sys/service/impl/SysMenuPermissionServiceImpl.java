@@ -1,12 +1,14 @@
 package cn.easyproject.easyee.ssh.sys.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import cn.easyproject.easyee.ssh.base.service.BaseService;
 import cn.easyproject.easyee.ssh.sys.entity.SysMenuPermission;
 import cn.easyproject.easyee.ssh.sys.service.SysMenuPermissionService;
-import cn.easyproject.easyee.ssh.base.service.BaseService;
 
 /**
  * 
@@ -37,6 +39,7 @@ public class SysMenuPermissionServiceImpl extends BaseService implements
 
 	@Override
 	public List<SysMenuPermission> list() {
+		
 		List<SysMenuPermission> list = commonDAO.findByCache("from SysMenuPermission",
 				"SysMenuPermission.list");
 		for (SysMenuPermission sysMenuPermission : list) {
@@ -62,10 +65,13 @@ public class SysMenuPermissionServiceImpl extends BaseService implements
 
 		Object res = null;
 		if (parentId != -1) { // 非根节点
+			Map<String, Object> params=new HashMap<String, Object>();
+			params.put("parentId", parentId);
+			
 			res = commonDAO
 					.findVal(
-							"select max(sortNum) from SysMenuPermission where sysMenuPermission.menuPermissionId=?",
-							parentId);
+							"select max(sortNum) from SysMenuPermission where sysMenuPermission.menuPermissionId=:parentId",
+							params);
 		} else {
 			// 根节点
 			res = commonDAO
@@ -77,9 +83,11 @@ public class SysMenuPermissionServiceImpl extends BaseService implements
 
 	@Override
 	public int getSortNum(Integer menuPermissionId) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("menuPermissionId", menuPermissionId);
 		Object res = commonDAO.findVal(
-				"select sortNum from SysMenuPermission where menuPermissionId=?",
-				menuPermissionId);
+				"select sortNum from SysMenuPermission where menuPermissionId=:menuPermissionId",
+				params);
 		return res != null ? Integer.valueOf(res.toString()) : 0;
 	}
 
@@ -90,10 +98,10 @@ public class SysMenuPermissionServiceImpl extends BaseService implements
 				menuPermissionId);
 		//查找上移或下移需要交换的相邻对象
 		// 下移
-		String hql = "from SysMenuPermission where sysMenuPermission.menuPermissionId=? and sortNum=(select min(sortNum) from SysMenuPermission where sysMenuPermission.menuPermissionId=? and sortNum>?)";
+		String hql = "from SysMenuPermission where sysMenuPermission.menuPermissionId=:parentId and sortNum=(select min(sortNum) from SysMenuPermission where sysMenuPermission.menuPermissionId=:parentId and sortNum>:sortNum)";
 		if (up) {
 			// 上移
-			 hql = "from SysMenuPermission where sysMenuPermission.menuPermissionId=? and sortNum=(select max(sortNum) from SysMenuPermission where sysMenuPermission.menuPermissionId=? and sortNum<?)";
+			 hql = "from SysMenuPermission where sysMenuPermission.menuPermissionId=:parentId and sortNum=(select max(sortNum) from SysMenuPermission where sysMenuPermission.menuPermissionId=:parentId and sortNum<:sortNum)";
 		}
 		
 		Integer parentId=null;
@@ -101,9 +109,12 @@ public class SysMenuPermissionServiceImpl extends BaseService implements
 		if(sysMenuPermission.getSysMenuPermission()!=null){
 			parentId=sysMenuPermission.getSysMenuPermission().getMenuPermissionId();
 		}
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("parentId", parentId);
+		params.put("sortNum", sysMenuPermission.getSortNum());
 		SysMenuPermission neighbour = commonDAO.findVal(
 				hql,
-				parentId, parentId, sysMenuPermission.getSortNum());
+				params);
 		// 存在相邻节点，则更新
 		if(sysMenuPermission!=null&&neighbour!=null){
 			//如果需要交换，则交换次序
@@ -121,20 +132,25 @@ public class SysMenuPermissionServiceImpl extends BaseService implements
 
 	@Override
 	public boolean hashChildMenu(Integer menuPermissionId) {
-		return commonDAO.findCount("select count(*) from SysMenuPermission where sysMenuPermission.menuPermissionId=?", menuPermissionId)>0?true:false;
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("menuPermissionId", menuPermissionId);
+		return commonDAO.findCount("select count(*) from SysMenuPermission where sysMenuPermission.menuPermissionId=:menuPermissionId", params)>0?true:false;
 	}
 
 	@Override
 	public void delete(SysMenuPermission sysMenuPermission) {
 		// 删除一对多，多方的操作权限
-		commonDAO.updateByJpql("delete from SysOperationPermission where sysMenuPermission.menuPermissionId=?", sysMenuPermission.getMenuPermissionId());
-		commonDAO.updateByJpql("delete from SysMenuPermission where menuPermissionId=?",
-				sysMenuPermission.getMenuPermissionId());
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("menuPermissionId", sysMenuPermission.getMenuPermissionId());
+		commonDAO.updateByJpql("delete from SysOperationPermission where sysMenuPermission.menuPermissionId=:menuPermissionId", params);
+		commonDAO.updateByJpql("delete from SysMenuPermission where menuPermissionId=:menuPermissionId",params);
 	}
 
 	@Override
 	public List<String> getIdsByRoleId(Integer roleId) {
-		return commonDAO.findBySQL("select menu_Permission_Id from sys_role_menu where ROLE_ID=?",roleId);
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("roleId", roleId);
+		return commonDAO.findBySQL("select menu_Permission_Id from sys_role_menu where ROLE_ID=:roleId",params);
 	}
 
 
@@ -142,8 +158,10 @@ public class SysMenuPermissionServiceImpl extends BaseService implements
 	public List<SysMenuPermission> listByUserId(int userId) {
 		//SELECT t FROM Teacher t join t.students s join s.books b where b.name = 'a' 
 		// 查询用户启用的角色及其菜单权限
-		List<SysMenuPermission> list = commonDAO.findByCache("select r.sysMenuPermissions from SysRole r join r.sysUsers u where u.userId=? and r.status=0",
-				"SysMenuPermission.list",userId);
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("userId", userId);
+		List<SysMenuPermission> list = commonDAO.findByCache("select r.sysMenuPermissions from SysRole r join r.sysUsers u where u.userId=:userId and r.status=0",
+				"SysMenuPermission.list",params);
 		for (SysMenuPermission sysMenuPermission : list) {
 			commonDAO.initializeDeep(sysMenuPermission.getSysMenuPermissions());
 		}

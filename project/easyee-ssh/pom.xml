@@ -4,29 +4,29 @@
 	<groupId>cn.easyproject</groupId>
 	<artifactId>easyee-ssh</artifactId>
 	<packaging>war</packaging>
-	<version>4.3.0-RELEASE</version>
+	<version>4.4.0-RELEASE</version>
 	<name>easyee-ssh Maven Webapp</name>
 	<url>http://easyproject.cn/easyee</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+
 		<struts.version>2.5.5</struts.version>
-		<hibernate.version>5.2.4.Final</hibernate.version>
+		<hibernate.version>5.1.10.Final</hibernate.version>
 		<spring.version>4.3.4.RELEASE</spring.version>
-		
+
 		<druid.version>1.1.5</druid.version>
 		<gson.version>2.8.2</gson.version>
 		<slf4j.version>1.7.21</slf4j.version>
 		<log4j2.version>2.7</log4j2.version>
 		<mysql.version>5.1.34</mysql.version>
 		<oracle.version>11.2.0.4</oracle.version>
-		
+
 		<shiro.version>1.2.6</shiro.version>
 		<easyshiro.version>2.6.0-RELEASE</easyshiro.version>
 		<easyshiro.redis.cache.version>2.6.0-RELEASE</easyshiro.redis.cache.version>
-		<easyfilte.version>2.0.1-RELEASE</easyfilte.version>
+		<easyfilte.version>2.0.2-RELEASE</easyfilte.version>
 		<jstl.version>1.2</jstl.version>
-		
+
 		<!-- JavaMelody -->
 		<javamelody.version>1.70.0</javamelody.version>
 		<itext.version>2.1.7</itext.version>
@@ -38,7 +38,7 @@
 	</properties>
 
 	<dependencies>
-	
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -46,7 +46,7 @@
 			<scope>test</scope>
 		</dependency>
 
-<!-- Redis Start -->
+		<!-- Redis Start -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
@@ -137,9 +137,9 @@
 			<version>${shiro.version}</version>
 		</dependency>
 		<dependency>
-		  <groupId>org.apache.shiro</groupId>
-		  <artifactId>shiro-quartz</artifactId>
-		  <version>${shiro.version}</version>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-quartz</artifactId>
+			<version>${shiro.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>cn.easyproject</groupId>
@@ -151,7 +151,7 @@
 			<artifactId>easyshiro-redis-cache</artifactId>
 			<version>${easyshiro.redis.cache.version}</version>
 		</dependency>
-		
+
 
 		<dependency>
 			<groupId>org.apache.struts</groupId>
@@ -191,8 +191,8 @@
 			<artifactId>struts2-jfreechart-plugin</artifactId>
 			<version>${struts.version}</version>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
@@ -244,19 +244,25 @@
 			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.el</groupId>
+					<artifactId>el-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-ehcache</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
@@ -267,13 +273,13 @@
 			<artifactId>aopalliance</artifactId>
 			<version>1.0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 			<version>${druid.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -281,43 +287,40 @@
 		</dependency>
 
 		<dependency>
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-api</artifactId>
-		    <version>${log4j2.version}</version>
-		  </dependency>
-		  <dependency>
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-core</artifactId>
-		    <version>${log4j2.version}</version>
-		  </dependency>
-		  <dependency> <!-- 桥接：告诉Slf4j使用Log4j2 -->
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-slf4j-impl</artifactId>
-		    <version>${log4j2.version}</version>
-		</dependency>
-		<dependency> <!-- 桥接：告诉commons logging使用Log4j2 -->
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-jcl</artifactId>
-		    <version>${log4j2.version}</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j2.version}</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.slf4j</groupId>
-		    <artifactId>slf4j-api</artifactId>
-		    <version>${slf4j.version}</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j2.version}</version>
 		</dependency>
-		
-		
+		<dependency> <!-- 桥接：告诉Slf4j使用Log4j2 -->
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<dependency> <!-- 桥接：告诉commons logging使用Log4j2 -->
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jcl</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
 		</dependency>
-		<!-- <dependency> 
-		  <groupId>cn.easyproject</groupId>
-		  <artifactId>ojdbc6</artifactId>
-		  <version>${oracle.version}</version>
-		</dependency>  -->
-		
+		<!-- <dependency> <groupId>cn.easyproject</groupId> <artifactId>ojdbc6</artifactId> 
+			<version>${oracle.version}</version> </dependency> -->
+
 		<dependency>
 			<groupId>org.acegisecurity</groupId>
 			<artifactId>acegi-security</artifactId>
@@ -334,8 +337,8 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>cn.easyproject</groupId>
 			<artifactId>easycommons-object</artifactId>
@@ -371,9 +374,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>jstl</artifactId>
-		    <version>${jstl.version}</version>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
 		</dependency>
 
 	</dependencies>
@@ -396,8 +399,17 @@
 					<!-- <webApp> <contextPath>/easyee-ssh</contextPath> </webApp> -->
 				</configuration>
 			</plugin>
-			
-			
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<path>/</path>
+					<port>8080</port>
+					<uriEncoding>UTF-8</uriEncoding>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>

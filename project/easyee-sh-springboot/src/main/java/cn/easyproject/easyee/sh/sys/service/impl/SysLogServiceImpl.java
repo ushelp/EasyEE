@@ -9,7 +9,7 @@ import cn.easyproject.easyee.sh.sys.entity.SysLog;
 import cn.easyproject.easyee.sh.sys.service.SysLogService;
 
 @Service("sysLogService")
-public class SysLogServiceImpl extends BaseService implements SysLogService {
+public class SysLogServiceImpl extends BaseService  implements SysLogService {
 
 	@Override
 	public void add(SysLog sysLog) {
@@ -24,7 +24,7 @@ public class SysLogServiceImpl extends BaseService implements SysLogService {
 		pb.setSort("logId");
 		pb.setSortOrder("desc");
 		// 按条件分页查询
-		commonDAO.findByPage(pb, sysLogCriteria);
+		commonDAO.findByPage(pb,sysLogCriteria);
 	}
 
 }

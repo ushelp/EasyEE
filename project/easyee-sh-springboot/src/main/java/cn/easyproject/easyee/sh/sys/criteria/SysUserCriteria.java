@@ -1,5 +1,6 @@
 package cn.easyproject.easyee.sh.sys.criteria;
 
+
 import cn.easyproject.easyee.sh.base.util.EasyCriteria;
 import cn.easyproject.easyee.sh.base.util.StringUtils;
 
@@ -22,9 +23,9 @@ public class SysUserCriteria extends EasyCriteria implements java.io.Serializabl
 	private String realName;
 	private Integer status; // 用户状态：0启用；1禁用；2删除
 
-	/*
-	 * 2. 构造方法
-	 */
+	 /*
+ 	 * 2. 构造方法
+ 	 */
 	public SysUserCriteria() {
 	}
 
@@ -36,29 +37,29 @@ public class SysUserCriteria extends EasyCriteria implements java.io.Serializabl
 	}
 
 	/*
-	 * 3. 条件生成抽象方法实现
-	 */
+ 	 * 3. 条件生成抽象方法实现
+ 	 */
 	public String getCondition() {
-		values.clear(); // 清除条件数据
+		values.clear(); //清除条件数据
 		StringBuffer condition = new StringBuffer();
 		if (StringUtils.isNotNullAndEmpty(this.getName())) {
-			condition.append(" and name like ?");
-			values.add("%" + this.getName() + "%");
+			condition.append(" and name like :name");
+			values.put("name","%" + this.getName() + "%");
 		}
 		if (StringUtils.isNotNullAndEmpty(this.getRealName())) {
-			condition.append(" and realName like ?");
-			values.add("%" + this.getRealName() + "%");
+			condition.append(" and realName like :realName");
+			values.put("realName","%" + this.getRealName() + "%");
 		}
 		if (StringUtils.isNotNullAndEmpty(this.getStatus())) {
-			condition.append(" and status=?");
-			values.add(this.getStatus());
+			condition.append(" and status=:status");
+			values.put("status",this.getStatus());
 		}
 		return condition.toString();
 	}
 
 	/*
-	 * 4. Setters & Getters...
-	 */
+ 	 * 4. Setters & Getters...
+ 	 */ 
 	public String getName() {
 		return name;
 	}
@@ -82,5 +83,6 @@ public class SysUserCriteria extends EasyCriteria implements java.io.Serializabl
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+
 
 }

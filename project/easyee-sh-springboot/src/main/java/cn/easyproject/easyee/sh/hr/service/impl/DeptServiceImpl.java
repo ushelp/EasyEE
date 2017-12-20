@@ -1,7 +1,9 @@
 package cn.easyproject.easyee.sh.hr.service.impl;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,8 @@ import cn.easyproject.easyee.sh.hr.entity.Dept;
 import cn.easyproject.easyee.sh.hr.service.DeptService;
 
 /**
- * 业务实现类统一继承BaseService类 BaseService中注入了通用DAO，直接调用commonDAO的数据方法方法即可
+ * 业务实现类统一继承BaseService类
+ * BaseService中注入了通用DAO，直接调用commonDAO的数据方法方法即可
  * 
  * @author easyproject.cn
  * @version 1.0
@@ -28,7 +31,9 @@ public class DeptServiceImpl extends BaseService implements DeptService {
 
 	@Override
 	public void delete(Serializable deptno) {
-		commonDAO.updateByJpql("delete from Dept where deptno=?", deptno);
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("deptno", deptno);
+		commonDAO.updateByJpql("delete from Dept where deptno=:deptno",params);
 	}
 
 	@Override
@@ -46,9 +51,9 @@ public class DeptServiceImpl extends BaseService implements DeptService {
 	public void findByPage(PageBean pageBean, DeptCriteria deptCriteria) {
 		pageBean.setEntityName("Dept dept");
 		pageBean.setSelect("select dept");
-
+		
 		// 按条件分页查询
-		commonDAO.findByPage(pageBean, deptCriteria);
+		commonDAO.findByPage(pageBean,deptCriteria);
 	}
 
 	@Override

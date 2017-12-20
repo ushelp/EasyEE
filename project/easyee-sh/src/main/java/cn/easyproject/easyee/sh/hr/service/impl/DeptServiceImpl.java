@@ -1,7 +1,9 @@
 package cn.easyproject.easyee.sh.hr.service.impl;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -29,7 +31,9 @@ public class DeptServiceImpl extends BaseService implements DeptService {
 
 	@Override
 	public void delete(Serializable deptno) {
-		commonDAO.updateByJpql("delete from Dept where deptno=?",deptno);
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("deptno", deptno);
+		commonDAO.updateByJpql("delete from Dept where deptno=:deptno",params);
 	}
 
 	@Override

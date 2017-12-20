@@ -42,7 +42,6 @@ public class Base64Util {
 			e.printStackTrace();
 			return "";
 		}
-	
 
 	}
 

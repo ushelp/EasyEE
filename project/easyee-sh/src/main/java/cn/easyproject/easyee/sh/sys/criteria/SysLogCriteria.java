@@ -52,26 +52,26 @@ public class SysLogCriteria extends EasyCriteria implements java.io.Serializable
 		values.clear(); //清除条件数据
 		StringBuffer condition = new StringBuffer();
 		if (StringUtils.isNotNullAndEmpty(this.getIp())) {
-			condition.append(" and ip like ?");
-			values.add("%"+this.getIp()+"%");
+			condition.append(" and ip like :ip");
+			values.put("ip","%"+this.getIp()+"%");
 		}
 		if (StringUtils.isNotNullAndEmpty(this.getAccount())) {
-			condition.append(" and account like ?");
-			values.add("%"+this.getAccount()+"%");
+			condition.append(" and account like :account");
+			values.put("account","%"+this.getAccount()+"%");
 		}
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		if (StringUtils.isNotNullAndEmpty(this.getStartTime())) {
 			try {
-				values.add(sdf.parse(this.getStartTime()));
-				condition.append(" and logTime>=?");
+				condition.append(" and logTime>=:startTime");
+				values.put("startTime",sdf.parse(this.getStartTime()));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		}
 		if (StringUtils.isNotNullAndEmpty(this.getEndTime())) {
 			try {
-				values.add(sdf.parse(this.getEndTime()));
-				condition.append(" and logTime<=?");
+				condition.append(" and logTime<=:endTime");
+				values.put("endTime",sdf.parse(this.getEndTime()));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}

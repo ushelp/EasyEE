@@ -1,6 +1,8 @@
 package cn.easyproject.easyee.sh.sys.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -27,12 +29,12 @@ public class SysRoleServiceImpl extends BaseService implements SysRoleService {
 
 	@Override
 	public void delete(int id) {
-		commonDAO.remove(SysRole.class, id);
+			commonDAO.delete(SysRole.class, id);
 	}
 
 	@Override
 	public void update(SysRole SysRole) {
-		commonDAO.merge(SysRole);
+			commonDAO.merge(SysRole);
 	}
 
 	@Override
@@ -49,9 +51,9 @@ public class SysRoleServiceImpl extends BaseService implements SysRoleService {
 	public void findByPage(PageBean pb, SysRoleCriteria sysRoleCriteria) {
 		pb.setEntityName("SysRole s");
 		pb.setSelect("select s");
-
+		
 		// 按条件分页查询
-		commonDAO.findByPage(pb, sysRoleCriteria);
+		commonDAO.findByPage(pb,sysRoleCriteria);
 	}
 
 	@Override
@@ -62,27 +64,33 @@ public class SysRoleServiceImpl extends BaseService implements SysRoleService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List getAllPermissionsIds(int roleId) {
-		// 查询角色的菜单权限Id和操作权限Id
-		List menuIds = commonDAO.findMapResultBySQL(
-				"select 'menu' as TYPE,menu_Permission_Id as ID from sys_role_menu where ROLE_ID=?", roleId);
-		List permissionIds = commonDAO.findMapResultBySQL(
-				"select 'operation' as TYPE,Operation_Permission_Id as ID from sys_role_operation where ROLE_ID=?",
-				roleId);
-		// 返回所有权限id
+		//查询角色的菜单权限Id和操作权限Id
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("roleId", roleId);
+		
+		List menuIds=commonDAO.findMapResultBySQL("select 'menu' as TYPE,menu_Permission_Id as ID from sys_role_menu where ROLE_ID=?",params);
+		List permissionIds=commonDAO.findMapResultBySQL("select 'operation' as TYPE,Operation_Permission_Id as ID from sys_role_operation where ROLE_ID=?",params);
+		//返回所有权限id
 		menuIds.addAll(permissionIds);
 		return menuIds;
 	}
-
 	@Override
 	public boolean existsName(String name) {
-		return commonDAO.findCount("select count(*) from SysRole where lower(name)=?", name.toLowerCase()) > 0;
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("name", name.toLowerCase());
+		return commonDAO.findCount("select count(*) from SysRole where lower(name)=:name", params)>0;
 	}
-
 	@Override
 	public boolean existsName(String name, Integer roleId) {
-		// 修改用户时，检测名是否存在
-		return commonDAO.findCount("select count(*) from SysRole where lower(name)=? and roleId!=?", name.toLowerCase(),
-				roleId) > 0;
+		//修改用户时，检测名是否存在
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("name", name.toLowerCase());
+		params.put("roleId", roleId);
+		return commonDAO.findCount("select count(*) from SysRole where lower(name)=:name and roleId!=:roleId", 
+				params
+				)>0;
 	}
+
+	
 
 }

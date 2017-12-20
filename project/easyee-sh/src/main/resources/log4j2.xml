@@ -9,12 +9,12 @@
      <Loggers>
      	   <!-- ##  Hibernate  ## -->
      	  <!-- log just the SQL -->
-          <Logger name="org.hibernate.SQL" level="TRACE" />
+          <Logger name="org.hibernate.SQL" level="DEBUG" />
           <!-- log JDBC bind parameters -->
-          <Logger name="org.hibernate.type" level="TRACE" />
-          <Logger name="org.hibernate.type.descriptor.sql" level="TRACE" />
+          <Logger name="org.hibernate.type" level="DEBUG" />
+          <Logger name="org.hibernate.type.descriptor.sql" level="DEBUG" />
           <!-- log Cache -->
-          <Logger name="org.hibernate.cache" level="TRACE" />
+          <Logger name="org.hibernate.cache" level="DEBUG" />
           
           <!-- ## UserInterceptor ## -->
           <Logger name="com.bank.spdbank.base.interceptor.UserInterceptor" level="DEBUG"></Logger>

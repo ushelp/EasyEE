@@ -24,6 +24,7 @@ public class DeptCriteria extends EasyCriteria implements java.io.Serializable {
 	private String dname;
 	private String loc;
 	
+	
 	 /*
  	 * 2. 构造方法
  	 */
@@ -43,13 +44,15 @@ public class DeptCriteria extends EasyCriteria implements java.io.Serializable {
 	public String getCondition() {
 		values.clear(); //清除条件数据
 		StringBuffer condition = new StringBuffer();
+		/*
 		if (StringUtils.isNotNullAndEmpty(this.getDname())) {
 			condition.append(" and dname like ?");
 			values.add("%" + this.getDname() + "%");
 		}
+		*/
 		if (StringUtils.isNotNullAndEmpty(this.getLoc())) {
-			condition.append(" and loc like ?");
-			values.add("%" + this.getLoc() + "%");
+			condition.append(" and loc like :loc");
+			values.put("loc", "%" + this.getLoc() + "%");
 		}
 		return condition.toString();
 	}
@@ -71,4 +74,7 @@ public class DeptCriteria extends EasyCriteria implements java.io.Serializable {
 	public void setLoc(String loc) {
 		this.loc = loc;
 	}
+
+	
+	
 }

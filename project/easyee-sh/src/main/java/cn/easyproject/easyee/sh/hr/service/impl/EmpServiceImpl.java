@@ -2,6 +2,8 @@ package cn.easyproject.easyee.sh.hr.service.impl;
 
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -30,7 +32,9 @@ public class EmpServiceImpl extends BaseService implements EmpService {
 
 	@Override
 	public void delete(Serializable empno) {
-		commonDAO.updateByJpql("delete from Emp where empno=?",empno);
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("empno", empno);
+		commonDAO.updateByJpql("delete from Emp where empno=:empno",params);
 	}
 	
 	@Override
@@ -71,7 +75,9 @@ public class EmpServiceImpl extends BaseService implements EmpService {
 
 	@Override
 	public int findEmpCountByDeptno(int deptno) {
-		return commonDAO.findCount("select count(emp) from Emp emp where emp.dept.deptno=?", deptno);
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("deptno", deptno);
+		return commonDAO.findCount("select count(emp) from Emp emp where emp.dept.deptno=?", params);
 	}
 
 }

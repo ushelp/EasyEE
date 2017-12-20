@@ -43,12 +43,12 @@ public class SysRoleCriteria extends EasyCriteria implements java.io.Serializabl
 		values.clear(); //清除条件数据
 		StringBuffer condition = new StringBuffer();
 		if(StringUtils.isNotNullAndEmpty(this.getName())){
-			condition.append(" and name like ?");
-			values.add("%"+this.getName()+"%");
+			condition.append(" and name like :name");
+			values.put("name","%"+this.getName()+"%");
 		}
 		if(StringUtils.isNotNullAndEmpty(this.getStatus())){
-			condition.append(" and status=?");
-			values.add(this.getStatus());
+			condition.append(" and status=:status");
+			values.put("status",this.getStatus());
 		}
 		return condition.toString();
 	}

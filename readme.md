@@ -145,27 +145,28 @@ Provide a variety of technical framework combinations.
  
 2. 创建数据库
 
- 执行相应 SQL 脚本  `database\DATABASE_easyee_LANGUAGE[_COUNTRY].sql`
+   执行相应 SQL 脚本  `database\DATABASE_easyee_LANGUAGE[_COUNTRY].sql`
 
  - MySQL
-  ```SQL
-  mysql> source MySQL_easyee_LANGUAGE[_COUNTRY].sql
-  ```
  
- - Oracle 
-  ```SQL
-  SQL> start Oracle_easyee_LANGUAGE[_COUNTRY].sql
-  ```
+	  ```SQL
+	  mysql> source MySQL_easyee_LANGUAGE[_COUNTRY].sql
+	  ```
+ 
+ - Oracle（**代码默认基于 MySQL，基于 Oracle 需要手动修改实体主键生成策略**）
+	  ```SQL
+	  SQL> start Oracle_easyee_LANGUAGE[_COUNTRY].sql
+	  ```
  
 3. 编辑 JDBC 数据库连接配置参数
 
- Spring Boot: `src/main/resources/application.properties`
-
- Non-Spring Boot: `src/main/resources/db.properties`
+	 Spring Boot: `src/main/resources/application.properties`
+	
+	 Non-Spring Boot: `src/main/resources/db.properties`
 
 4. 启动
   
- 执行 `startup.bat`/`startup.sh` 
+	 执行 `startup.bat`/`startup.sh` 
  
  > Spring Boot: `mvn compile spring-boot:run`
  >
@@ -173,11 +174,11 @@ Provide a variety of technical framework combinations.
 
 5. 访问( jetty HTTP 端口 `9999`)
  
- [http://localhost:9999/](http://localhost:9999/)
- 
- 最高管理员用户名: `admin`
- 
- 密码: `admin123`
+	 [http://localhost:9999/](http://localhost:9999/)
+	 
+	  最高管理员用户名: `admin`
+	 
+	  密码: `admin123`
 
 ### English
 
@@ -188,39 +189,39 @@ Provide a variety of technical framework combinations.
  
 2. Create database
 
- execute `database\DATABASE_easyee_LANGUAGE[_COUNTRY].sql`
+	 execute `database\DATABASE_easyee_LANGUAGE[_COUNTRY].sql`
 
  - MySQL
-  ```SQL
-  mysql> source MySQL_easyee_LANGUAGE[_COUNTRY].sql
-  ```
+	  ```SQL
+	  mysql> source MySQL_easyee_LANGUAGE[_COUNTRY].sql
+	  ```
  
- - Oracle 
-  ```SQL
-  SQL> start Oracle_easyee_LANGUAGE[_COUNTRY].sql
-  ```
+ - Oracle (**The code default use MySQL, If want to run with Oracle need modify entity primary key generator**)
+	  ```SQL
+	  SQL> start Oracle_easyee_LANGUAGE[_COUNTRY].sql
+	  ```
  
 3. Edit jdbc properties
 
- Spring Boot: `src/main/resources/application.properties`
-
- Non-Spring Boot: `src/main/resources/db.properties`
+	 Spring Boot: `src/main/resources/application.properties`
+	
+	 Non-Spring Boot: `src/main/resources/db.properties`
  
 4. Start
   
- Run `startup.bat`/`startup.sh` 
- 
- > Spring Boot: `mvn compile spring-boot:run`
- >
- > Non-Spring Boot: `mvn jetty:run`
+	 Run `startup.bat`/`startup.sh` 
+	 
+	 > Spring Boot: `mvn compile spring-boot:run`
+	 >
+	 > Non-Spring Boot: `mvn jetty:run`
 
 5. Visit( jetty HTTP port `9999`)
  
- [http://localhost:9999/](http://localhost:9999/)
- 
- Username: `admin`
- 
- Password: `admin123`
+	 [http://localhost:9999/](http://localhost:9999/)
+	 
+	 Username: `admin`
+	 
+	 Password: `admin123`
 
 
 ## Monitoring/监控

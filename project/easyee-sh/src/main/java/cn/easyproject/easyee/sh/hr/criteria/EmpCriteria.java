@@ -45,20 +45,20 @@ public class EmpCriteria extends EasyCriteria implements java.io.Serializable {
 		values.clear(); //清除条件数据
 		StringBuffer condition = new StringBuffer();
 		if(StringUtils.isNotNullAndEmpty(this.getEname())){
-			condition.append(" and ename like ?");
-			values.add("%"+this.getEname()+"%");
+			condition.append(" and ename like :ename");
+			values.put("ename","%"+this.getEname()+"%");
 		}
 		if(StringUtils.isNotNullAndEmpty(this.getEmpno())){
-			condition.append(" and empno=?");
-			values.add(this.getEmpno());
+			condition.append(" and empno=:empno");
+			values.put("empno",this.getEmpno());
 		}
 		if(StringUtils.isNotNullAndEmpty(this.getDeptno())){
-			condition.append(" and dept.deptno=?");
-			values.add(this.getDeptno());
+			condition.append(" and dept.deptno=:deptno");
+			values.put("deptno",this.getDeptno());
 		}
 		if(StringUtils.isNotNullAndEmpty(this.getJob())){
-			condition.append(" and job like ?");
-			values.add("%"+this.getJob()+"%");
+			condition.append(" and job like :job");
+			values.put("","%"+this.getJob()+"%");
 		}
 		return condition.toString();
 	}

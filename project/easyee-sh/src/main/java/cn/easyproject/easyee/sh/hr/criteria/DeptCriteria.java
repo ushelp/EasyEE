@@ -51,8 +51,8 @@ public class DeptCriteria extends EasyCriteria implements java.io.Serializable {
 		}
 		*/
 		if (StringUtils.isNotNullAndEmpty(this.getLoc())) {
-			condition.append(" and loc like ?");
-			values.add("%" + this.getLoc() + "%");
+			condition.append(" and loc like :loc");
+			values.put("loc", "%" + this.getLoc() + "%");
 		}
 		return condition.toString();
 	}

@@ -1,6 +1,9 @@
 package cn.easyproject.easyee.sh.hr.service.impl;
 
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -11,7 +14,8 @@ import cn.easyproject.easyee.sh.hr.entity.Emp;
 import cn.easyproject.easyee.sh.hr.service.EmpService;
 
 /**
- * 业务实现类统一继承BaseService类 BaseService中注入了通用DAO，直接调用commonDAO的数据方法方法即可
+ * 业务实现类统一继承BaseService类
+ * BaseService中注入了通用DAO，直接调用commonDAO的数据方法方法即可
  * 
  * @author easyproject.cn
  * @version 1.0
@@ -28,13 +32,16 @@ public class EmpServiceImpl extends BaseService implements EmpService {
 
 	@Override
 	public void delete(Serializable empno) {
-		commonDAO.updateByJpql("delete from Emp where empno=?", empno);
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("empno", empno);
+		commonDAO.updateByJpql("delete from Emp where empno=:empno",params);
 	}
-
+	
 	@Override
 	public void deleteCascade(String[] empnos) {
 		commonDAO.deleteCascadeByValues(Emp.class, "empno", empnos);
 	}
+
 
 	@Override
 	public void update(Emp emp) {
@@ -51,9 +58,9 @@ public class EmpServiceImpl extends BaseService implements EmpService {
 	public void findByPage(PageBean pageBean, EmpCriteria empCriteria) {
 		pageBean.setEntityName("Emp emp");
 		pageBean.setSelect("select emp");
-
+		
 		// 按条件分页
-		commonDAO.findByPage(pageBean, empCriteria);
+		commonDAO.findByPage(pageBean,empCriteria);
 	}
 
 	@Override
@@ -68,7 +75,9 @@ public class EmpServiceImpl extends BaseService implements EmpService {
 
 	@Override
 	public int findEmpCountByDeptno(int deptno) {
-		return commonDAO.findCount("select count(emp) from Emp emp where emp.dept.deptno=?", deptno);
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("deptno", deptno);
+		return commonDAO.findCount("select count(emp) from Emp emp where emp.dept.deptno=?", params);
 	}
 
 }

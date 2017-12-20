@@ -133,7 +133,7 @@ public class BaseController {
 		jsonMap.put("locationUrl", locationUrl.get());
 		if (jsonKeyAndValuePair.length > 0) {
 			for (int i = 0; i < jsonKeyAndValuePair.length / 2; i++) {
-				jsonMap.put(jsonKeyAndValuePair[i],
+				jsonMap.put(jsonKeyAndValuePair[2 * i],
 						jsonKeyAndValuePair[2 * i + 1]);
 			}
 		}
@@ -183,7 +183,7 @@ public class BaseController {
 		jsonMap.put("locationUrl", locationUrl.get());
 		if (jsonKeyAndValuePair.length > 0) {
 			for (int i = 0; i < jsonKeyAndValuePair.length / 2; i++) {
-				jsonMap.put(jsonKeyAndValuePair[i],
+				jsonMap.put(jsonKeyAndValuePair[2*i],
 						jsonKeyAndValuePair[2 * i + 1]);
 			}
 		}

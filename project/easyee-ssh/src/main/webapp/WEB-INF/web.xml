@@ -44,8 +44,6 @@
 		<dispatcher>INCLUDE</dispatcher>
 		<dispatcher>ERROR</dispatcher>
 	</filter-mapping>
-
-
 	<!-- EasyFilter -->
 	<filter>
 		<filter-name>contentFilter</filter-name>
@@ -65,7 +63,6 @@
 		<filter-name>javamelody</filter-name>
 		<filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
 		<async-supported>true</async-supported>
-
 		<init-param>
 			<param-name>url-exclude-pattern</param-name>
 			<param-value>/staticresources/.*|/webjars/.*|/css/.*|/images/.*|/fonts/.*|/js/.*</param-value>
@@ -133,9 +130,6 @@
 		</url-pattern>
 	</servlet-mapping>
 	<!-- CKFinder End -->
-
-
-
 	
 	
 	<!-- Error page -->

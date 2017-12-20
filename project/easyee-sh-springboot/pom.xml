@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cn.easyproject</groupId>
 	<artifactId>easyee-sh-springboot</artifactId>
-	<version>4.3.0-RELEASE</version>
+	<version>4.4.0-RELEASE</version>
 	<packaging>jar</packaging>
 	<name>easyee-sh Maven Webapp</name>
 	<url>http://easyproject.cn/easyee</url>
@@ -15,7 +15,7 @@
 		<java.version>1.7</java.version>
 		<tomcat.version>8.5.8</tomcat.version>
 
-		<hibernate.version>5.2.4.Final</hibernate.version>
+		<hibernate.version>5.1.10.Final</hibernate.version>
 		<springboot.version>1.5.9.RELEASE</springboot.version>
 
 		<slf4j.version>1.7.21</slf4j.version>
@@ -32,7 +32,7 @@
 		<shiro.version>1.2.6</shiro.version>
 		<easyshiro.version>2.6.0-RELEASE</easyshiro.version>
 		<easyshiro.redis.cache.version>2.6.0-RELEASE</easyshiro.redis.cache.version>
-		<easyfilte.version>2.0.1-RELEASE</easyfilte.version>
+		<easyfilte.version>2.0.2-RELEASE</easyfilte.version>
 		<jstl.version>1.2</jstl.version>
 		<!-- JavaMelody -->
 		<javamelody.version>1.70.0</javamelody.version>
