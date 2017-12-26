@@ -68,8 +68,8 @@ public class SysRoleServiceImpl extends BaseService implements SysRoleService {
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("roleId", roleId);
 		
-		List menuIds=commonDAO.findMapResultBySQL("select 'menu' as TYPE,menu_Permission_Id as ID from sys_role_menu where ROLE_ID=?",params);
-		List permissionIds=commonDAO.findMapResultBySQL("select 'operation' as TYPE,Operation_Permission_Id as ID from sys_role_operation where ROLE_ID=?",params);
+		List menuIds=commonDAO.findMapResultBySQL("select 'menu' as TYPE,menu_Permission_Id as ID from sys_role_menu where ROLE_ID=:roleId",params);
+		List permissionIds=commonDAO.findMapResultBySQL("select 'operation' as TYPE,Operation_Permission_Id as ID from sys_role_operation where ROLE_ID=:roleId",params);
 		//返回所有权限id
 		menuIds.addAll(permissionIds);
 		return menuIds;

@@ -77,7 +77,7 @@ public class EmpServiceImpl extends BaseService implements EmpService {
 	public int findEmpCountByDeptno(int deptno) {
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("deptno", deptno);
-		return commonDAO.findCount("select count(emp) from Emp emp where emp.dept.deptno=?", params);
+		return commonDAO.findCount("select count(emp) from Emp emp where emp.dept.deptno=:deptno", params);
 	}
 
 }
