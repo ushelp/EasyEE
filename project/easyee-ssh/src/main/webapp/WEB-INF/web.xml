@@ -126,9 +126,30 @@
 	<servlet-mapping>
 		<servlet-name>ConnectorServlet</servlet-name>
 		<url-pattern>
-			/static/ckfinder/core/connector/java/connector.java
+			/staticresources/ckfinder/core/connector/java/connector.java
 		</url-pattern>
 	</servlet-mapping>
+	<!-- Tomcat CORS for CKFinder when back-end separation-->
+	<!-- <filter>
+		<filter-name>CorsFilter</filter-name>
+		<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+		<init-param>
+			<param-name>cors.allowed.origins</param-name>
+			<param-value>*</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.allowed.methods</param-name>
+			<param-value>GET,POST,HEAD,OPTIONS,PUT,DELETE</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.allowed.headers</param-name>
+			<param-value>*</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CorsFilter</filter-name>
+		<url-pattern>/staticresources/ckfinder/core/connector/java/connector.java</url-pattern>
+	</filter-mapping> -->
 	<!-- CKFinder End -->
 	
 	

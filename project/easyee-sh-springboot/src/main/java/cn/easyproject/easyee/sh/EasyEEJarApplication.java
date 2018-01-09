@@ -3,6 +3,7 @@ package cn.easyproject.easyee.sh;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -36,6 +37,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //	"classpath*:/shiro/shiro_redis.xml"
 })
 @EnableTransactionManagement
+@ServletComponentScan
 public class EasyEEJarApplication {
 
 	public static void main(String[] args) {

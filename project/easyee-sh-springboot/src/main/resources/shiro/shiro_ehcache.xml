@@ -247,6 +247,7 @@
 	        <value>
 	            # anonymous 
 	            /test/ckeditor = anon
+	            /ckfinderfiles/** = anon
 	            /monitoring = auth
 	            
 	            /captcha = anon

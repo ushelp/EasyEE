@@ -89,7 +89,7 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:spring/ApplicationContext.xml,classpath:spring/ApplicationContext_mvc.xml</param-value>
+			<param-value>classpath:spring/ApplicationContext_mvc.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup><!-- 启动时初始化Servlet -->
 		<multipart-config>
@@ -103,7 +103,17 @@
 		<servlet-name>springDispatcherServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<!-- needed for ContextLoaderListener -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/ApplicationContext.xml</param-value>
+	</context-param>
 
+	<!-- Bootstraps the root web application context before servlet initialization -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
 	<servlet>
 		<servlet-name>captcha</servlet-name>
@@ -132,9 +142,32 @@
 	<servlet-mapping>
 		<servlet-name>ConnectorServlet</servlet-name>
 		<url-pattern>
-			/static/ckfinder/core/connector/java/connector.java
+			/staticresources/ckfinder/core/connector/java/connector.java
 		</url-pattern>
 	</servlet-mapping>
+	
+	<!-- Tomcat CORS for CKFinder when back-end separation -->
+	<!-- <filter>
+		<filter-name>CorsFilter</filter-name>
+		<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+		<init-param>
+			<param-name>cors.allowed.origins</param-name>
+			<param-value>*</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.allowed.methods</param-name>
+			<param-value>GET,POST,HEAD,OPTIONS,PUT,DELETE</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.allowed.headers</param-name>
+			<param-value>*</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CorsFilter</filter-name>
+		<url-pattern>/staticresources/ckfinder/core/connector/java/connector.java</url-pattern>
+	</filter-mapping> -->
+	
 	<!-- CKFinder End -->
 
 

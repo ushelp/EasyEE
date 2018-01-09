@@ -40,6 +40,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //})
 //@EnableTransactionManagement
 //@ServletComponentScan(basePackages={"cn.easyproject.easyee.sh"})
+//@ServletComponentScan
 public class EasyEEWarApplication extends SpringBootServletInitializer {
 
 //    @Override
