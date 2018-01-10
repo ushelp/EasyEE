@@ -9,8 +9,6 @@
      <Loggers>
      	 <!-- MyBatis -->
            <Logger name="cn.easyproject.easyee.sm" level="DEBUG" />
-          <!-- ## UserInterceptor ## -->
-          <Logger name="com.bank.spdbank.base.interceptor.UserInterceptor" level="DEBUG"></Logger>
           <Root level="INFO">
                <AppenderRef ref="Console" />
           </Root>
