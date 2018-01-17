@@ -735,67 +735,83 @@ function setDocumentScrollTop(ypos)
 <h2> <a id="run运行" class="anchor" href="#run%E8%BF%90%E8%A1%8C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Run/运行</h2> 
 <h3> <a id="中文" class="anchor" href="#%E4%B8%AD%E6%96%87" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>中文</h3> 
 <ol> 
- <li>运行环境</li> 
-</ol> 
-<ul> 
- <li>JDK 7+</li> 
- <li>Oracle / MySQL 5.7</li> 
- <li>Maven 3+</li> 
-</ul> 
-<ol start="2"> 
- <li> <p>创建数据库</p> <p>执行相应 SQL 脚本 <code>database\DATABASE_easyee_LANGUAGE[_COUNTRY].sql</code></p> </li> 
-</ol> 
-<ul> 
- <li> <p>MySQL</p> 
-  <div class="highlight highlight-source-sql">
-   <pre>mysql<span class="pl-k">&gt;</span> source MySQL_easyee_LANGUAGE[_COUNTRY].sql</pre>
-  </div> </li> 
- <li> <p>Oracle（<strong>代码默认基于 MySQL，基于 Oracle 需要手动修改实体主键生成策略</strong>）</p> 
-  <div class="highlight highlight-source-sql">
-   <pre>SQL<span class="pl-k">&gt;</span> start Oracle_easyee_LANGUAGE[_COUNTRY].sql</pre>
-  </div> </li> 
-</ul> 
-<ol start="3"> 
- <li> <p>编辑 JDBC 数据库连接配置参数</p> <p>Spring Boot: <code>src/main/resources/application.properties</code></p> <p>Non-Spring Boot: <code>src/main/resources/db.properties</code></p> </li> 
- <li> <p>启动</p> <p>执行 <code>startup.bat</code>/<code>startup.sh</code></p> </li> 
-</ol> 
-<blockquote> 
- <p>Spring Boot: <code>mvn compile spring-boot:run</code></p> 
- <p>Non-Spring Boot: <code>mvn jetty:run</code></p> 
-</blockquote> 
-<ol start="5"> 
- <li> <p>访问( jetty HTTP 端口 <code>9999</code>)</p> <p><a href="http://localhost:9999/" rel="nofollow">http://localhost:9999/</a></p> <p>最高管理员用户名: <code>admin</code></p> <p>密码: <code>admin123</code></p> </li> 
+ <li> <p>运行环境</p> 
+  <ul> 
+   <li>JDK 7+</li> 
+   <li>Oracle / MySQL 5.7</li> 
+   <li>Maven 3+</li> 
+  </ul> </li> 
+ <li> <p>安装 <code>Maven local artifact install/</code> 下的 Maven 本地库</p> 
+  <ul> 
+   <li>Windows: <code>install.bat</code> </li> 
+   <li>Linux: <code>install.sh</code> </li> 
+  </ul> </li> 
+ <li> <p>创建数据库</p> <p>执行相应 SQL 脚本 <code>database\DATABASE_easyee_LANGUAGE[_COUNTRY].sql</code></p> 
+  <ul> 
+   <li> <p>MySQL</p> 
+    <div class="highlight highlight-source-sql">
+     <pre>mysql<span class="pl-k">&gt;</span> source MySQL_easyee_LANGUAGE[_COUNTRY].sql</pre>
+    </div> </li> 
+   <li> <p>Oracle（<strong>代码默认基于 MySQL，基于 Oracle 需要手动修改实体主键生成策略</strong>）</p> 
+    <div class="highlight highlight-source-sql">
+     <pre>SQL<span class="pl-k">&gt;</span> start Oracle_easyee_LANGUAGE[_COUNTRY].sql</pre>
+    </div> </li> 
+  </ul> </li> 
+ <li> <p>编辑 JDBC 数据库连接配置参数</p> 
+  <ul> 
+   <li> <p>Spring Boot: <code>src/main/resources/application.properties</code></p> </li> 
+   <li> <p>Non-Spring Boot: <code>src/main/resources/db.properties</code></p> </li> 
+  </ul> </li> 
+ <li> <p>启动</p> 
+  <ul> 
+   <li> <p>执行 <code>startup.bat</code>/<code>startup.sh</code></p> </li> 
+   <li> <p>或者</p> 
+    <ul> 
+     <li>Spring Boot: <code>mvn compile spring-boot:run</code> </li> 
+     <li>Non-Spring Boot: <code>mvn jetty:run</code>，<code>mvn tomcat7:run</code> </li> 
+    </ul> </li> 
+  </ul> </li> 
+ <li> <p>访问( Jetty HTTP 端口 <code>9999</code>， Tomcat 端口 <code>8080</code>)</p> <p><a href="http://localhost:9999/" rel="nofollow">http://localhost:9999/</a></p> <p>最高管理员用户名: <code>admin</code></p> <p>密码: <code>admin123</code></p> </li> 
 </ol> 
 <h3> <a id="english" class="anchor" href="#english" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>English</h3> 
 <ol> 
- <li>Run Enviroment</li> 
-</ol> 
-<ul> 
- <li>JDK 7+</li> 
- <li>Oracle / MySQL 5.7</li> 
- <li>Maven 3+</li> 
-</ul> 
-<ol start="2"> 
- <li> <p>Create database</p> <p>execute <code>database\DATABASE_easyee_LANGUAGE[_COUNTRY].sql</code></p> </li> 
-</ol> 
-<ul> 
- <li> <p>MySQL</p> 
-  <div class="highlight highlight-source-sql">
-   <pre>mysql<span class="pl-k">&gt;</span> source MySQL_easyee_LANGUAGE[_COUNTRY].sql</pre>
-  </div> </li> 
- <li> <p>Oracle (<strong>The code default use MySQL, If want to run with Oracle need modify entity primary key generator</strong>)</p> 
-  <div class="highlight highlight-source-sql">
-   <pre>SQL<span class="pl-k">&gt;</span> start Oracle_easyee_LANGUAGE[_COUNTRY].sql</pre>
-  </div> </li> 
-</ul> 
-<ol start="3"> 
- <li> <p>Edit jdbc properties</p> <p>Spring Boot: <code>src/main/resources/application.properties</code></p> <p>Non-Spring Boot: <code>src/main/resources/db.properties</code></p> </li> 
- <li> <p>Start</p> <p>Run <code>startup.bat</code>/<code>startup.sh</code></p> 
-  <blockquote> 
-   <p>Spring Boot: <code>mvn compile spring-boot:run</code></p> 
-   <p>Non-Spring Boot: <code>mvn jetty:run</code></p> 
-  </blockquote> </li> 
- <li> <p>Visit( jetty HTTP port <code>9999</code>)</p> <p><a href="http://localhost:9999/" rel="nofollow">http://localhost:9999/</a></p> <p>Username: <code>admin</code></p> <p>Password: <code>admin123</code></p> </li> 
+ <li> <p>Run Enviroment</p> 
+  <ul> 
+   <li>JDK 7+</li> 
+   <li>Oracle / MySQL 5.7</li> 
+   <li>Maven 3+</li> 
+  </ul> </li> 
+ <li> <p>Execute <code>Maven local artifact install/</code></p> 
+  <ul> 
+   <li>Windows: <code>install.bat</code> </li> 
+   <li>Linux: <code>install.sh</code> </li> 
+  </ul> </li> 
+ <li> <p>Create database</p> <p>execute <code>database\DATABASE_easyee_LANGUAGE[_COUNTRY].sql</code></p> 
+  <ul> 
+   <li> <p>MySQL</p> 
+    <div class="highlight highlight-source-sql">
+     <pre>mysql<span class="pl-k">&gt;</span> source MySQL_easyee_LANGUAGE[_COUNTRY].sql</pre>
+    </div> </li> 
+   <li> <p>Oracle (<strong>The code default use MySQL, If want to run with Oracle need modify entity primary key generator</strong>)</p> 
+    <div class="highlight highlight-source-sql">
+     <pre>SQL<span class="pl-k">&gt;</span> start Oracle_easyee_LANGUAGE[_COUNTRY].sql</pre>
+    </div> </li> 
+  </ul> </li> 
+ <li> <p>Edit jdbc properties</p> 
+  <ul> 
+   <li> <p>Spring Boot: <code>src/main/resources/application.properties</code></p> </li> 
+   <li> <p>Non-Spring Boot: <code>src/main/resources/db.properties</code></p> </li> 
+  </ul> </li> 
+ <li> <p>Start</p> 
+  <ul> 
+   <li> <p>Run <code>startup.bat</code>/<code>startup.sh</code></p> </li> 
+   <li> <p>Or</p> 
+    <ul> 
+     <li>Spring Boot: <code>mvn compile spring-boot:run</code> </li> 
+     <li>Non-Spring Boot: <code>mvn jetty:run</code>，<code>mvn tomcat7:run</code> </li> 
+    </ul> </li> 
+  </ul> </li> 
+ <li> <p>Visit( Jetty HTTP port <code>9999</code>, Tomcat HTTP port <code>8080</code>)</p> <p><a href="http://localhost:9999/" rel="nofollow">http://localhost:9999/</a></p> <p>Username: <code>admin</code></p> <p>Password: <code>admin123</code></p> </li> 
 </ol> 
 <h2> <a id="monitoring监控" class="anchor" href="#monitoring%E7%9B%91%E6%8E%A7" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Monitoring/监控</h2> 
 <p><a href="https://github.com/javamelody/javamelody/wiki">JavaMelody</a> based performance monitoring, <strong>Must log in EasyEE first</strong>.</p> 

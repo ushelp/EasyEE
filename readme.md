@@ -139,40 +139,46 @@ Provide a variety of technical framework combinations.
 ### 中文
 
 1. 运行环境
- - JDK 7+
- - Oracle / MySQL 5.7
- - Maven 3+
+
+   - JDK 7+
+   - Oracle / MySQL 5.7
+   - Maven 3+
  
-2. 创建数据库
+2. 安装 `Maven local artifact install/` 下的  Maven 本地库
+
+   - Windows: `install.bat` 
+   - Linux: `install.sh`
+ 
+3. 创建数据库
 
    执行相应 SQL 脚本  `database\DATABASE_easyee_LANGUAGE[_COUNTRY].sql`
 
- - MySQL
+   - MySQL
  
 	  ```SQL
 	  mysql> source MySQL_easyee_LANGUAGE[_COUNTRY].sql
 	  ```
  
- - Oracle（**代码默认基于 MySQL，基于 Oracle 需要手动修改实体主键生成策略**）
+   - Oracle（**代码默认基于 MySQL，基于 Oracle 需要手动修改实体主键生成策略**）
 	  ```SQL
 	  SQL> start Oracle_easyee_LANGUAGE[_COUNTRY].sql
 	  ```
  
-3. 编辑 JDBC 数据库连接配置参数
+4. 编辑 JDBC 数据库连接配置参数
 
-	 Spring Boot: `src/main/resources/application.properties`
+	 - Spring Boot: `src/main/resources/application.properties`
 	
-	 Non-Spring Boot: `src/main/resources/db.properties`
+	 - Non-Spring Boot: `src/main/resources/db.properties`
 
-4. 启动
+5. 启动
   
-	 执行 `startup.bat`/`startup.sh` 
- 
- > Spring Boot: `mvn compile spring-boot:run`
- >
- > Non-Spring Boot: `mvn jetty:run`
+	 - 执行 `startup.bat`/`startup.sh` 
+	 
+ 	 - 或者
+	    - Spring Boot: `mvn compile spring-boot:run`
+	    - Non-Spring Boot: `mvn jetty:run`，`mvn tomcat7:run`
 
-5. 访问( jetty HTTP 端口 `9999`)
+6. 访问( Jetty HTTP 端口 `9999`， Tomcat 端口 `8080`)
  
 	 [http://localhost:9999/](http://localhost:9999/)
 	 
@@ -183,39 +189,44 @@ Provide a variety of technical framework combinations.
 ### English
 
 1. Run Enviroment
- - JDK 7+
- - Oracle / MySQL 5.7
- - Maven 3+
+   - JDK 7+
+   - Oracle / MySQL 5.7
+   - Maven 3+
  
-2. Create database
+2. Execute `Maven local artifact install/`
+
+   - Windows: `install.bat` 
+   - Linux: `install.sh` 
+ 
+3. Create database
 
 	 execute `database\DATABASE_easyee_LANGUAGE[_COUNTRY].sql`
 
- - MySQL
+    - MySQL
 	  ```SQL
 	  mysql> source MySQL_easyee_LANGUAGE[_COUNTRY].sql
 	  ```
  
- - Oracle (**The code default use MySQL, If want to run with Oracle need modify entity primary key generator**)
+    - Oracle (**The code default use MySQL, If want to run with Oracle need modify entity primary key generator**)
 	  ```SQL
 	  SQL> start Oracle_easyee_LANGUAGE[_COUNTRY].sql
 	  ```
  
-3. Edit jdbc properties
+4. Edit jdbc properties
 
-	 Spring Boot: `src/main/resources/application.properties`
+	 - Spring Boot: `src/main/resources/application.properties`
 	
-	 Non-Spring Boot: `src/main/resources/db.properties`
+	 - Non-Spring Boot: `src/main/resources/db.properties`
  
-4. Start
+5. Start
   
-	 Run `startup.bat`/`startup.sh` 
+	 - Run `startup.bat`/`startup.sh` 
 	 
-	 > Spring Boot: `mvn compile spring-boot:run`
-	 >
-	 > Non-Spring Boot: `mvn jetty:run`
+	 - Or
+	    - Spring Boot: `mvn compile spring-boot:run`
+	    - Non-Spring Boot: `mvn jetty:run`，`mvn tomcat7:run`
 
-5. Visit( jetty HTTP port `9999`)
+6. Visit( Jetty HTTP port `9999`, Tomcat HTTP port `8080`)
  
 	 [http://localhost:9999/](http://localhost:9999/)
 	 

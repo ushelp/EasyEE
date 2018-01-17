@@ -39,6 +39,8 @@
 		<itext.version>2.1.7</itext.version>
 		<xstream.version>1.4.10</xstream.version>
 		<jrobin.version>1.5.9</jrobin.version>
+		<!-- CKFinder -->
+		<ckfinder.version>2.6.2.1</ckfinder.version>
 		<!-- Redis -->
 		<spring.data.redis.version>1.8.9.RELEASE</spring.data.redis.version>
 		<jedis.version>2.9.0</jedis.version>
@@ -149,7 +151,27 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
-
+<!-- CKFinder -->
+		<dependency>
+			<groupId>com.ckfinder</groupId>
+			<artifactId>CKFinder</artifactId>
+			<version>${ckfinder.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ckfinder</groupId>
+			<artifactId>CKFinderPlugin-FileEditor</artifactId>
+			<version>${ckfinder.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ckfinder</groupId>
+			<artifactId>CKFinderPlugin-ImageResize</artifactId>
+			<version>${ckfinder.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ckfinder</groupId>
+			<artifactId>CKFinderPlugin-Watermark</artifactId>
+			<version>${ckfinder.version}</version>
+		</dependency>
 
 		<!-- Spring Boot devtools -->
  		<dependency>

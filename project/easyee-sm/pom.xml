@@ -38,6 +38,8 @@
 		<!-- Redis -->
 		<spring.data.redis.version>1.8.9.RELEASE</spring.data.redis.version>
 		<jedis.version>2.9.0</jedis.version>
+		<!-- CKFinder -->
+		<ckfinder.version>2.6.2.1</ckfinder.version>
 		<!-- Test -->
 		<junit.version>4.12</junit.version>
 	</properties>
@@ -362,7 +364,28 @@
 			<version>${easyfilter.version}</version>
 		</dependency>
 
-
+<!-- CKFinder -->
+		<dependency>
+			<groupId>com.ckfinder</groupId>
+			<artifactId>CKFinder</artifactId>
+			<version>${ckfinder.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ckfinder</groupId>
+			<artifactId>CKFinderPlugin-FileEditor</artifactId>
+			<version>${ckfinder.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ckfinder</groupId>
+			<artifactId>CKFinderPlugin-ImageResize</artifactId>
+			<version>${ckfinder.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ckfinder</groupId>
+			<artifactId>CKFinderPlugin-Watermark</artifactId>
+			<version>${ckfinder.version}</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -423,9 +446,10 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.1.1</version>
 				<configuration>
-					<warName>easyee-sh</warName>
+					<warName>easyee-sm</warName>
 				</configuration>
 			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
