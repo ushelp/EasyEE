@@ -1,2 +1,2 @@
-﻿mvn spring-boot:run
-port: 9999
+﻿jetty HTTP port: 9999
+Tomcat HTTP port: 8080

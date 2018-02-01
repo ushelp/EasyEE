@@ -29,7 +29,6 @@ public class LogInterceptor implements HandlerInterceptor {
 	@Resource
 	SysLogService sysLogService;
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {

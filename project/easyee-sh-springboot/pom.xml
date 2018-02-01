@@ -1,7 +1,7 @@
-<!-- jar runtime pom -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<!-- jar runtime pom -->
+	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cn.easyproject</groupId>
 	<artifactId>easyee-sh-springboot</artifactId>
@@ -65,8 +65,8 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
-		
-<!-- Redis Start -->
+
+		<!-- Redis Start -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
@@ -123,10 +123,10 @@
 			<version>${jrobin.version}</version>
 		</dependency>
 		<!-- JavaMelody End -->
-		<!-- Spring Boot web(Tomcat)-->
+		<!-- Spring Boot web(Tomcat) -->
 		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-web</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -140,7 +140,12 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
-<!-- CKFinder -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<!-- CKFinder -->
 		<dependency>
 			<groupId>com.ckfinder</groupId>
 			<artifactId>CKFinder</artifactId>
@@ -184,7 +189,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
-		</dependency> 
+		</dependency>
 
 		<!-- Spring Boot JPA -->
 		<dependency>
@@ -195,11 +200,8 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-	<!-- 	<dependency>
-		  <groupId>cn.easyproject</groupId>
-		  <artifactId>ojdbc6</artifactId>
-		  <version>${oracle.version}</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>cn.easyproject</groupId> <artifactId>ojdbc6</artifactId> 
+			<version>${oracle.version}</version> </dependency> -->
 		<!-- Druid -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -212,7 +214,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
-		
+
 		<!-- Spring Boot AOP -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -324,7 +326,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -338,17 +340,17 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	    <resources>
-	    	 <!-- JSP 打 jar 包时将jsp文件拷贝到META-INF目录下-->  
-            <resource>  
-                <!-- 指定resources插件处理哪个目录下的资源文件 -->  
-                <directory>src/main/webapp</directory>  
-                <!--注意此次必须要放在此目录下才能被访问到-->  
-                <targetPath>META-INF/resources</targetPath>  
-                <includes>  
-                    <include>**/**</include>  
-                </includes>  
-            </resource>  
+		<resources>
+			<!-- JSP 打 jar 包时将jsp文件拷贝到META-INF目录下 -->
+			<resource>
+				<!-- 指定resources插件处理哪个目录下的资源文件 -->
+				<directory>src/main/webapp</directory>
+				<!--注意此次必须要放在此目录下才能被访问到 -->
+				<targetPath>META-INF/resources</targetPath>
+				<includes>
+					<include>**/**</include>
+				</includes>
+			</resource>
 			<resource>
 				<directory>src/main/java</directory>
 				<includes>
@@ -360,8 +362,8 @@
 				<includes>
 					<include>**/**</include>
 				</includes>
-				<filtering>false</filtering>  
+				<filtering>false</filtering>
 			</resource>
-		</resources> 
+		</resources>
 	</build>
 </project>

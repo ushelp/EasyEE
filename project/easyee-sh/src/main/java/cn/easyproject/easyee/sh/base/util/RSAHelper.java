@@ -9,17 +9,16 @@ import java.security.PublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;  
 import java.security.spec.X509EncodedKeySpec;  
    
-import javax.crypto.Cipher;  
-   
-import sun.misc.BASE64Decoder;  
-import sun.misc.BASE64Encoder;  
+import javax.crypto.Cipher;
+
+import com.thoughtworks.xstream.core.util.Base64Encoder;  
+
    
 /**
  * RSA
  * @author easyproject.cn
  *
  */
-@SuppressWarnings("restriction")
 public class RSAHelper {  
    
       /** 
@@ -29,7 +28,9 @@ public class RSAHelper {
        */  
 	public static PublicKey getPublicKey(String key) throws Exception {  
             byte[] keyBytes;  
-            keyBytes = (new BASE64Decoder()).decodeBuffer(key);  
+            
+            
+            keyBytes = new Base64Encoder().decode(key);  
    
             X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);  
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");  
@@ -43,7 +44,7 @@ public class RSAHelper {
        */  
       public static PrivateKey getPrivateKey(String key) throws Exception {  
             byte[] keyBytes;  
-            keyBytes = (new BASE64Decoder()).decodeBuffer(key);  
+            keyBytes = new Base64Encoder().decode(key);  
    
             PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);  
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");  
@@ -57,7 +58,7 @@ public class RSAHelper {
        */  
       public static String getKeyString(Key key) throws Exception {  
             byte[] keyBytes = key.getEncoded();  
-            String s = (new BASE64Encoder()).encode(keyBytes);  
+            String s = new Base64Encoder().encode(keyBytes);  
             return s;  
       }  
    

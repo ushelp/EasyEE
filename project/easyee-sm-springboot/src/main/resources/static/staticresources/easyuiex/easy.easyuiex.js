@@ -1,7 +1,7 @@
 /**
  * EasyUIEx
  * 
- * Version 2.2.8
+ * Version 2.2.9
  * 
  * http://easyproject.cn https://github.com/ushelp
  * 
@@ -362,15 +362,13 @@
 	 *            row对象
 	 * 
 	 */
-	showTreegridContextMenu = function(e, index, row) {
+	showTreegridContextMenu = function(e, row) {
 		e.preventDefault();
-		if (index != -1) {
-			$(this).treegrid('select', row.id);
-			$($(this).treegrid('options').menuSelector).menu('show', {
-				left : e.pageX,
-				top : e.pageY
-			});
-		}
+		$(this).treegrid('select', row.id);
+		$($(this).treegrid('options').menuSelector).menu('show', {
+			left : e.pageX,
+			top : e.pageY
+		});
 	},
 	/**
 	 * 表头添加右键菜单，可选择显示的列 showHeaderContextMenu :true onHeaderContextMenu事件处理
@@ -461,9 +459,9 @@
 			// 如果存在用户自定义的操作行事件，则保留自定义操作
 			if (params.onContextMenu) {
 				var userEvent = params.onContextMenu;
-				p.onContextMenu = function(e, index, row) {
-					userEvent(e, index, row);
-					showTreegridContextMenu(e, index, row);
+				p.onContextMenu = function(e, row) {
+					userEvent(e, row);
+					showTreegridContextMenu(e, row);
 				}
 			} else {
 				p.onContextMenu = showTreegridContextMenu;

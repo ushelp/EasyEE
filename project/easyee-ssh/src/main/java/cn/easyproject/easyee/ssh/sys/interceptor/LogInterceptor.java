@@ -34,7 +34,6 @@ public class LogInterceptor extends AbstractInterceptor {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
 		HttpServletRequest request = ServletActionContext.getRequest();
