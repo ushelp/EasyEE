@@ -64,10 +64,6 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 	public void findByPage(PageBean pb,SysUserCriteria sysUserCriteria) {
 		pb.setEasyCriteria(sysUserCriteria);
 		String condition="";
-		if(pb.getEasyCriteria()!=null){
-			condition=pb.getEasyCriteria().getCondition();
-			pb.setSqlParameterValues(pb.getEasyCriteria().getValues());
-		}
 		
 		String sort="USER_ID";
 		String sortOrder="ASC";
@@ -79,7 +75,12 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 			sortOrder=pb.getSortOrder();
 		}
 		
+		if(pb.getEasyCriteria()!=null){
+			condition=pb.getEasyCriteria().getCondition();
+			pb.setSqlParameterValues(pb.getEasyCriteria().getValues());
+		}
 		if(pb.getDialect()==PageBean.MYSQL_DIALECT){
+			
 			pb.setSql("SELECT " + 
 					"	A.* " + 
 					"FROM " + 
@@ -129,10 +130,13 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 					"				LIMIT " 
 					+((pb.getPageNo()-1)*pb.getRowsPerPage())+","+pb.getRowsPerPage()+
 					"			) T" + 
-					"	)");
+					"	) ORDER BY "+ 
+					sort+" "+sortOrder);
 		}else if(pb.getDialect()==PageBean.ORACLE_DIALECT || pb.getDialect()==PageBean.ORACLE_12C_DIALECT){
 			int start=((pb.getPageNo()-1)*pb.getRowsPerPage());
 			int end=start+pb.getRowsPerPage();
+			
+
 			String idsql="select * from ( "
 					+ "select B.*,rownum r from ("
 					+ "select user_id from sys_user where 1=1 "
@@ -178,17 +182,14 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 					"			( " + 
 							idsql+
 					"			) T " + 
-					"	)");
-			
+					"	)  ORDER BY "+ 
+					sort+" "+sortOrder);
 		}
 		
 		pb.setCountSQL("SELECT COUNT(*) FROM sys_user A "
 				+ " WHERE 1=1 "
 				+  condition
 		);
-		
-		
-		
 				
 		// 按条件分页查询
 		sysUserDAO.pagination(pb);
