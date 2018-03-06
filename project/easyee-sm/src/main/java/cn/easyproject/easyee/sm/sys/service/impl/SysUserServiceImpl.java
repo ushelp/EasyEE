@@ -80,51 +80,118 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 			pb.setSqlParameterValues(pb.getEasyCriteria().getValues());
 		}
 		if(pb.getDialect()==PageBean.MYSQL_DIALECT){
-			pb.setSql("select A.* from ("
-					+ "SELECT s.*,r.role_id AS ROLE_ID,r.name AS ROLE_NAME "
-					+ " FROM Sys_User s, SYS_USER_ROLE ur, sys_role r WHERE 1=1 AND s.user_id=ur.user_id AND r.role_id=ur.role_id "
-					+ " UNION"
-					+ " SELECT s.*,-1,'' FROM Sys_User s WHERE NOT EXISTS(SELECT 1 FROM sys_user_role ur WHERE ur.USER_ID=s.USER_ID)"
-					+ " ) A"
-					+ " WHERE 1=1 "
-					+  condition
-					+ " order by A."+sort+" "+sortOrder+" limit "+((pb.getPageNo()-1)*pb.getRowsPerPage())+","+pb.getRowsPerPage());
+			pb.setSql("SELECT " + 
+					"	A.* " + 
+					"FROM " + 
+					"	( " + 
+					"		SELECT " + 
+					"			s.*, r.role_id AS ROLE_ID, " + 
+					"			r. NAME AS ROLE_NAME " + 
+					"		FROM " + 
+					"			Sys_User s, " + 
+					"			SYS_USER_ROLE ur, " + 
+					"			sys_role r " + 
+					"		WHERE " + 
+					"			1 = 1 " + 
+					"		AND s.user_id = ur.user_id " + 
+					"		AND r.role_id = ur.role_id " + 
+					"		UNION " + 
+					"			SELECT " + 
+					"				s.*,- 1,'' " + 
+					"			FROM " + 
+					"				Sys_User s " + 
+					"			WHERE " + 
+					"				NOT EXISTS (" + 
+					"					SELECT " + 
+					"						1 " + 
+					"					FROM " + 
+					"						sys_user_role ur " + 
+					"					WHERE " + 
+					"						ur.USER_ID = s.USER_ID " + 
+					"				)" + 
+					"	) A " + 
+					" WHERE " + 
+					"	A.user_id IN ( " + 
+					"		SELECT " + 
+					"			T.user_id " + 
+					"		FROM " + 
+					"			(" + 
+					"				SELECT " + 
+					"					user_id " + 
+					"				FROM" + 
+					"					Sys_User " + 
+					"				WHERE " + 
+					"					1 = 1 " +
+					condition +
+					"				ORDER BY " + 
+					sort+" "+sortOrder+
+					"					" + 
+					"				LIMIT " 
+					+((pb.getPageNo()-1)*pb.getRowsPerPage())+","+pb.getRowsPerPage()+
+					"			) T" + 
+					"	)");
 		}else if(pb.getDialect()==PageBean.ORACLE_DIALECT || pb.getDialect()==PageBean.ORACLE_12C_DIALECT){
 			int start=((pb.getPageNo()-1)*pb.getRowsPerPage());
 			int end=start+pb.getRowsPerPage();
-			String sql="select A.* from ("
-					+ "SELECT s.*,r.role_id AS ROLE_ID,r.name AS ROLE_NAME "
-					+ " FROM Sys_User s, SYS_USER_ROLE ur, sys_role r WHERE 1=1 AND s.user_id=ur.user_id AND r.role_id=ur.role_id "
-					+ " UNION"
-					+ " SELECT s.*,-1,'' FROM Sys_User s WHERE NOT EXISTS(SELECT 1 FROM sys_user_role ur WHERE ur.USER_ID=s.USER_ID)"
-					+ " ) A"
-					+ " WHERE 1=1 "
-					+  condition
-					+ " order by A."+sort+" "+sortOrder;
-			
-			 sql="select * from ("
-					+ "select B.*,rownum r from ("+sql+") B where rownum<="+end
+			String idsql="select * from ( "
+					+ "select B.*,rownum r from ("
+					+ "select user_id from sys_user where 1=1 "
+					+condition + " ORDER BY " + sort+ " "+sortOrder
+					+ ") B where rownum<="+end
 					+ ") where r>"+start;
 			
-			 pb.setSql(sql);
+			pb.setSql("SELECT " + 
+					"	A.* " + 
+					"FROM " + 
+					"	( " + 
+					"		SELECT " + 
+					"			s.*, r.role_id AS ROLE_ID, " + 
+					"			r. NAME AS ROLE_NAME " + 
+					"		FROM " + 
+					"			Sys_User s, " + 
+					"			SYS_USER_ROLE ur, " + 
+					"			sys_role r " + 
+					"		WHERE " + 
+					"			1 = 1 " + 
+					"		AND s.user_id = ur.user_id " + 
+					"		AND r.role_id = ur.role_id " + 
+					"		UNION " + 
+					"			SELECT " + 
+					"				s.*,- 1,'' " + 
+					"			FROM " + 
+					"				Sys_User s " + 
+					"			WHERE " + 
+					"				NOT EXISTS ( " + 
+					"					SELECT " + 
+					"						1 " + 
+					"					FROM " + 
+					"						sys_user_role ur " + 
+					"					WHERE " + 
+					"						ur.USER_ID = s.USER_ID " + 
+					"				) " + 
+					"	) A " + 
+					" WHERE " + 
+					"	A.user_id IN ( " + 
+					"		SELECT " + 
+					"			T.user_id " + 
+					"		FROM " + 
+					"			( " + 
+							idsql+
+					"			) T " + 
+					"	)");
 			
 		}
 		
-		pb.setCountSQL("SELECT COUNT(*) FROM ("
-				+ " SELECT s.*,r.role_id AS ROLE_ID,r.name AS ROLE_NAME "
-				+ " FROM Sys_User s, SYS_USER_ROLE ur, sys_role r WHERE 1=1 AND s.user_id=ur.user_id AND r.role_id=ur.role_id "
-				+ " UNION"
-				+ " SELECT s.*,-1,'' FROM Sys_User s WHERE NOT EXISTS(SELECT 1 FROM sys_user_role ur WHERE ur.USER_ID=s.USER_ID)"
-				+ " ) A"
+		pb.setCountSQL("SELECT COUNT(*) FROM sys_user A "
 				+ " WHERE 1=1 "
 				+  condition
-				);
+		);
 		
 		
 		
 				
-				// 按条件分页查询
-				sysUserDAO.pagination(pb);
+		// 按条件分页查询
+		sysUserDAO.pagination(pb);
 	}
 
 	@Override
