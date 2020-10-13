@@ -41,7 +41,7 @@
 		<!-- CKFinder -->
 		<ckfinder.version>2.6.2.1</ckfinder.version>
 		<!-- Test -->
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 	</properties>
 
 	<dependencies>
