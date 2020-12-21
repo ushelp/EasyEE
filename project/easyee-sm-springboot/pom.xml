@@ -41,7 +41,7 @@
 		<!-- JavaMelody -->
 		<javamelody.version>1.70.0</javamelody.version>
 		<itext.version>2.1.7</itext.version>
-		<xstream.version>1.4.10</xstream.version>
+		<xstream.version>1.4.15</xstream.version>
 		<jrobin.version>1.5.9</jrobin.version>
 		<!-- CKFinder -->
 		<ckfinder.version>2.6.2.1</ckfinder.version>
