@@ -21,7 +21,7 @@
 		<mysql.version>5.1.34</mysql.version>
 		<oracle.version>11.2.0.4</oracle.version>
 
-		<shiro.version>1.2.6</shiro.version>
+		<shiro.version>1.6.0</shiro.version>
 		<easyshiro.version>2.6.0-RELEASE</easyshiro.version>
 		<easyshiro.redis.cache.version>2.6.0-RELEASE</easyshiro.redis.cache.version>
 		<easyfilte.version>2.0.2-RELEASE</easyfilte.version>
