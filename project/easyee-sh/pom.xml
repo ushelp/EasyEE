@@ -31,7 +31,7 @@
 		<!-- JavaMelody -->
 		<javamelody.version>1.70.0</javamelody.version>
 		<itext.version>2.1.7</itext.version>
-		<xstream.version>1.4.10</xstream.version>
+		<xstream.version>1.4.18</xstream.version>
 		<jrobin.version>1.5.9</jrobin.version>
 		<!-- Redis -->
 		<spring.data.redis.version>1.8.9.RELEASE</spring.data.redis.version>
